@@ -23,25 +23,23 @@
 
   <style id="compiled-css" type="text/css">
 .tile {
-  transform: scale(1); // stacking context
+  -webkit-transform: scale(1);
+          transform: scale(1);
   position: relative;
-  // for demo purposes
   width: 50%;
   max-width: 15em;
   margin: 0.5em;
 }
 
 .tile-thumbnail {
-  // aspect ratio box
   position: relative;
   height: 0;
   padding-bottom: 60%;
-  
-  > img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
+}
+.tile-thumbnail > img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 .tile-title {
@@ -51,24 +49,22 @@
   font-weight: 700;
   text-align: center;
   text-decoration: none;
-  // ellipsis
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  
-  &:before {
-    // full-tile clickable area
-    content: '';
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: block;
-    background: rgba(#f00, 0.25);
-  }
 }
+.tile-title:before {
+  content: '';
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  background: rgba(255, 0, 0, 0.25);
+}
+
   </style>
 
 

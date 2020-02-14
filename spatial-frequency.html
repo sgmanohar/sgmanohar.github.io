@@ -54,9 +54,11 @@ h3{
 
   <script type="text/javascript">//<![CDATA[
 
-    window.onload=function(){
-      
-// find elements
+
+    
+    
+    
+    // find elements
 var canvas = $('#canvas')[0];
 var D = 4, // color depth
     W = canvas.width;
@@ -64,12 +66,17 @@ var D = 4, // color depth
 var val;
 var amp = [1,0,0,0,0, 0,0,0,0 ]
 var updating = false;
+var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+var pw, sin, cos, audo;
 
 // handle click and add class
 $(function(){
   $('.slider').slider({
     change:function(e,u){      
       if(!updating){ read_sliders(); }
+    },
+    stop:function(e,u){
+      if(!updating){ do_sound();  }
     },
     slide: function(e,u){      read_sliders();    },
     value:50
@@ -81,9 +88,9 @@ $(function(){
     console.log(amp);
     set_sliders();
     redraw();
+    do_sound();
   });
   read_sliders();
-  redraw();
 });
 
 // read sliders and update amp
@@ -125,13 +132,25 @@ var redraw = function(){
     ctx.fillRect(x,val/2,3,5)
   }
 };
+var do_sound = function (){
+  sin = new Float32Array([ 0, ...amp]);
+  cos = new Float32Array( amp.length+1 ).fill(0);
+  pw = audioCtx.createPeriodicWave( sin,cos );
+  audo = audioCtx.createOscillator();
+  audo.setPeriodicWave(pw);
+  audo.connect(audioCtx.destination);
+	audo.start();
+  audo.stop(audioCtx.currentTime+2); 
+};
 var set_amp = function(x){
   amp = x;
 }
 
   
-
-    }
+    
+    
+    
+    
 
   //]]></script>
 
@@ -161,10 +180,12 @@ var set_amp = function(x){
   <div class='slider slider-9'>  <span class='slist'>9th</span>
   </div>
   <button data-amp="[0,0,0,0,0,0,0,0,0]"> Zero
+  </button><button data-amp="[1,0,0,0,0,0,0,0,0]"> Sine
   </button><button data-amp="[1,0,1/3,0,1/5,0,1/7,0,1/9]"> Square
   </button><button data-amp="[1,-1/2,1/3,-1/4,1/5,-1/6,1/7,-1/8,1/9].map(x=>x/4)"> Saw1
   </button><button data-amp="[1,1/2,1/3,1/4,1/5,1/6,1/7,1/8,1/9].map(x=>x/2)"> Saw2
   </button><button data-amp="[1,1,1,1,1,1,1,1,1].map(x=>x/8)"> Comb
+  </button><button data-amp="[1,1,1,1,1,1,1,1,1].map(x=>(Math.random()-0.5)*0.5)"> Random
   </button>
 </div>
 

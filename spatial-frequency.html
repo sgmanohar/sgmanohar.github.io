@@ -49,8 +49,57 @@ h3{
 }
   </style>
 
+</head>
+<body>
+    <div id="banner-message">
+  <h3>
+    Spatial harmonics
+  </h3><canvas id='canvas'></canvas>
 
-  <!-- TODO: Missing CoffeeScript 2 -->
+  <div class='slider slider-1'>  <span class='slist'>1st</span>
+  </div>
+  <div class='slider slider-2'>  <span class='slist'>2nd</span>
+  </div>
+  <div class='slider slider-3'>  <span class='slist'>3rd</span>
+  </div>
+  <div class='slider slider-4'>  <span class='slist'>4th</span>
+  </div>
+  <div class='slider slider-5'>  <span class='slist'>5th</span>
+  </div>
+  <div class='slider slider-6'>  <span class='slist'>6th</span>
+  </div>
+  <div class='slider slider-7'>  <span class='slist'>7th</span>
+  </div>
+  <div class='slider slider-8'>  <span class='slist'>8th</span>
+  </div>
+  <div class='slider slider-9'>  <span class='slist'>9th</span>
+  </div>
+  <button data-amp="[0,0,0,0,0,0,0,0,0]"> Zero
+  </button><button data-amp="[1,0,0,0,0,0,0,0,0]"> Sine
+  </button><button data-amp="[1,0,1/3,0,1/5,0,1/7,0,1/9]"> Square
+  </button><button data-amp="[1,-1/2,1/3,-1/4,1/5,-1/6,1/7,-1/8,1/9].map(x=>x/4)"> Saw1
+  </button><button data-amp="[1,1/2,1/3,1/4,1/5,1/6,1/7,1/8,1/9].map(x=>x/2)"> Saw2
+  </button><button data-amp="[1,1,1,1,1,1,1,1,1].map(x=>x/8)"> Comb
+  </button><button data-amp="[1,1,1,1,1,1,1,1,1].map(x=>(Math.random()-0.5)*0.5)"> Random
+  </button>
+</div>
+
+
+  
+  <script>
+    // tell the embed parent frame the height of the content
+    if (window.parent && window.parent.parent){
+      window.parent.parent.postMessage(["resultsFrame", {
+        height: document.body.getBoundingClientRect().height,
+        slug: "qdt4aup9"
+      }], "*")
+    }
+
+    // always overwrite window.name, in case users try to set it manually
+    window.name = "result"
+  </script>
+	
+	
 
   <script type="text/javascript">//<![CDATA[
 
@@ -154,54 +203,5 @@ var set_amp = function(x){
 
   //]]></script>
 
-</head>
-<body>
-    <div id="banner-message">
-  <h3>
-    Spatial harmonics
-  </h3><canvas id='canvas'></canvas>
-
-  <div class='slider slider-1'>  <span class='slist'>1st</span>
-  </div>
-  <div class='slider slider-2'>  <span class='slist'>2nd</span>
-  </div>
-  <div class='slider slider-3'>  <span class='slist'>3rd</span>
-  </div>
-  <div class='slider slider-4'>  <span class='slist'>4th</span>
-  </div>
-  <div class='slider slider-5'>  <span class='slist'>5th</span>
-  </div>
-  <div class='slider slider-6'>  <span class='slist'>6th</span>
-  </div>
-  <div class='slider slider-7'>  <span class='slist'>7th</span>
-  </div>
-  <div class='slider slider-8'>  <span class='slist'>8th</span>
-  </div>
-  <div class='slider slider-9'>  <span class='slist'>9th</span>
-  </div>
-  <button data-amp="[0,0,0,0,0,0,0,0,0]"> Zero
-  </button><button data-amp="[1,0,0,0,0,0,0,0,0]"> Sine
-  </button><button data-amp="[1,0,1/3,0,1/5,0,1/7,0,1/9]"> Square
-  </button><button data-amp="[1,-1/2,1/3,-1/4,1/5,-1/6,1/7,-1/8,1/9].map(x=>x/4)"> Saw1
-  </button><button data-amp="[1,1/2,1/3,1/4,1/5,1/6,1/7,1/8,1/9].map(x=>x/2)"> Saw2
-  </button><button data-amp="[1,1,1,1,1,1,1,1,1].map(x=>x/8)"> Comb
-  </button><button data-amp="[1,1,1,1,1,1,1,1,1].map(x=>(Math.random()-0.5)*0.5)"> Random
-  </button>
-</div>
-
-
-  
-  <script>
-    // tell the embed parent frame the height of the content
-    if (window.parent && window.parent.parent){
-      window.parent.parent.postMessage(["resultsFrame", {
-        height: document.body.getBoundingClientRect().height,
-        slug: "qdt4aup9"
-      }], "*")
-    }
-
-    // always overwrite window.name, in case users try to set it manually
-    window.name = "result"
-  </script>
 </body>
 </html>

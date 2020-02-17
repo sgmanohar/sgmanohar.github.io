@@ -290,5 +290,34 @@
     <input type="button" class="button button-ok" value="Yes">
   </div>
 
+
+
+
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAgjLOQuNSZn_fyQNe5COKmsmLNKjulGqI",
+    authDomain: "medical-lists.firebaseapp.com",
+    databaseURL: "https://medical-lists.firebaseio.com",
+    projectId: "medical-lists",
+    storageBucket: "medical-lists.appspot.com",
+    messagingSenderId: "941216447391",
+    appId: "1:941216447391:web:92f6c93c77f2b1c2b75baa",
+    measurementId: "G-4DVZWD3X3M"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+
+
 </body>
 </html>

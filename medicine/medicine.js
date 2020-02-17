@@ -4,7 +4,7 @@ var  MedicineReader = function(){
   // the server to prepend. Will probably be 
   // http://www.homphysiology.org, but this gives CORS errors
   // if not using https... So "/" may work better.
-  my.server_root = "//www.homphysiology.com/";
+  my.server_root = "//www.homphysiology.org/";
   my.server      = my.server_root + "cgi-bin/MedicineReaderJson.py";
   my.edit_server = my.server_root + "cgi-bin/MedicineEdit.py";
   my.entityname = 'Disease';  // starting entity name

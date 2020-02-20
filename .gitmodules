@@ -1,0 +1,4 @@
+[submodule "4inarow-online"]
+	path = 4inarow-online
+	url = https://github.com/basvanopheusden/4inarow-online
+	branch = localbrowser

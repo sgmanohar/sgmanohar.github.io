@@ -1,5 +1,17 @@
 <html>
     <!--  create 3 panels titled "Motivation", "Artificial intelligence" and "Working memory", each one with an image and some text  -->
+    <script>
+        $(document).ready(function(){
+            ul = $("#highlightslist");
+            // load the latest publications for Manohar,SG from the internet
+            $.get("https://scholar.google.co.uk/citations?user=4wCwjAIAAAAJ", function(data){
+                // find the highlights
+                $(data).find(".gsc_prf_il").each(function(){
+                    ul.append("<li>"+$(this).text()+"</li>");
+                });
+            });
+        });
+    </script>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Google scholar</h3>
@@ -16,6 +28,9 @@
             Publications on PubMed
         </a>
         </p>
+        Highlights:
+        <ul id="highlightslist">
+        </ul>
       </div>
     </div>
   

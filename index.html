@@ -30,6 +30,17 @@
       return false;
     });
     $("#maincontent").load("home.html"); 
+
+    $(".pic-and-text").addClass("card");       // format cards
+    $(".pic-and-text img").addClass("card-img-top");
+    $(".pic-and-text h3").addClass("card-title");
+    $(".pic-and-text p").addClass("card-text");
+
+    $(".posts li").addClass("card");           // format posts
+    $(".posts li img").addClass("card-img-top");
+    $(".posts li h3").addClass("card-title");
+    $(".posts li p").addClass("card-text");
+
   });
 </script>
 
@@ -98,6 +109,6 @@
   <div class="container py-5">
     <div id="maincontent"></div>
   </div>
-  
+
 </body>
 </html>

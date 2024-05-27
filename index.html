@@ -20,17 +20,7 @@
 </head>
 
 <script>
-  $(document).ready(function(){
-    $('h1').addClass('text-center');           // center the title
-    $('.nav li a').click(function(){           // when a link is clicked
-      var page = $(this).attr('href');         // get the href attribute
-      $('#maincontent').load(page);            // load the page
-      $('.nav li').removeClass('active');      // make the li  active
-      $(this).parent().addClass('active');
-      return false;
-    });
-    $("#maincontent").load("home.html"); 
-
+  applyclasses = functions(){
     $(".pic-and-text").addClass("card");       // format cards
     $(".pic-and-text img").addClass("card-img-top");
     $(".pic-and-text h3").addClass("card-title");
@@ -40,6 +30,18 @@
     $(".posts li img").addClass("card-img-top");
     $(".posts li h3").addClass("card-title");
     $(".posts li p").addClass("card-text");
+  };
+  $(document).ready(function(){
+    $('h1').addClass('text-center');           // center the title
+    $('.nav li a').click(function(event){           // when a link is clicked
+      var page = $(this).attr('href');         // get the href attribute
+      $('#maincontent').load(page, applyclasses);            // load the page
+      $('.nav li').removeClass('active');      // make the li  active
+      $(this).parent().addClass('active');
+      event.preventDefault();
+      return false;
+    });
+    $("#maincontent").load("home.html", applyclasses); 
 
   });
 </script>

@@ -21,15 +21,21 @@
 
 <script>
   applyclasses = function(){
-    $(".pic-and-text").addClass("card mx-2 mt-2 ");       // format cards
-    $(".pic-and-text img").addClass("card-img-top");
-    $(".pic-and-text h3").addClass("card-title");
-    $(".pic-and-text p").addClass("card-body");
+    // $(".pic-and-text").addClass("card mx-2 mt-2 ");       // format cards
+    // $(".pic-and-text img").addClass("card-img-top");
+    // $(".pic-and-text h3").addClass("card-title");
+    // $(".pic-and-text p").addClass("card-body");
 
     $(".posts li").addClass("card");           // format posts
     $(".posts li img").addClass("card-img-top");
     $(".posts li h3").addClass("card-title");
     $(".posts li p").addClass("card-text");
+
+    $(".cards").addClass("d-inline-flex justify-content-between flex-wrap")
+    $(".cards > div").addClass("card mx-2 mt-2 ");       // format cards
+    $(".card > img").addClass("card-img-top");    
+    $(".card > h3").addClass("card-title");
+    $(".card > p").addClass("card-body");
   };
   $(document).ready(function(){
     $('h1').addClass('text-center');           // center the title

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ROC</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+Diagram to understand Receiver operating characteristic with sliders to change the threshold,
+total sample size, the two means, and the two standard deviations.
+<style>
+    .input_sliders label {
+        display: inline-block;
+        width: 200px;
+    }
+    .input_sliders input {
+        width: 300px;
+    }
+    .stat_table {
+        margin: 10px;
+    }
+</style>
+</head>
+<body>
+
+
+Controls:
+<form class="input_sliders">
+    <label for="threshold">Threshold:</label>
+    <input type="range" id="threshold" name="threshold" min="-4" max="4" step="0.01" value="0.5">
+    <label for="threshold"> = <span id="threshold_value">0.5</span></label>
+    <br>
+    <label for="n1">Sample size 1:</label>
+    <input type="range" id="n1" name="n1" min="10" max="1000" step="10" value="100">
+    <label for="n1"> = <span id="n1_value">100</span></label>
+    <br>
+    <label for="n2">Sample size 2:</label>
+    <input type="range" id="n2" name="n2" min="10" max="1000" step="10" value="100">
+    <label for="n2"> = <span id="n2_value">100</span></label>
+    <br>
+    <label for="mean1">Mean of first distribution:</label>
+    <input type="range" id="mean1" name="mean1" min="-5" max="5" step="0.1" value="0">
+    <label for="mean1"> = <span id="mean1_value">0</span></label>
+    <br>
+    <label for="mean2">Mean of second distribution:</label>
+    <input type="range" id="mean2" name="mean2" min="-5" max="5" step="0.1" value="1">
+    <label for="mean2"> = <span id="mean2_value">1</span></label>
+    <br>
+    <label for="sd1">Standard deviation of first distribution:</label>
+    <input type="range" id="sd1" name="sd1" min="0.1" max="5" step="0.1" value="1">
+    <label for="sd1"> = <span id="sd1_value">1</span></label>
+    <br>
+    <label for="sd2">Standard deviation of second distribution:</label>
+    <input type="range" id="sd2" name="sd2" min="0.1" max="5" step="0.1" value="1">
+    <label for="sd2"> = <span id="sd2_value">1</span></label>
+</form>
+<div id="roc">
+    <!-- plot the probability density of the two gaussians with shading indicating proportions that
+are above and below the threshold. -->
+
+</div>
+<div>
+    <table class = "stat_table">
+        <tr>
+             <td>  True positives:  </td>
+                <td id = "numTP">  </td>
+
+        </tr>
+        <tr>
+            <td>  False positives:  </td>
+            <td id = "numFP">  </td>
+        </tr>
+        <tr>
+            <td>  True negatives:  </td>
+            <td id = "numTN">  </td>
+        </tr>
+        <tr>
+            <td>  False negatives:  </td>
+            <td id = "numFN">  </td>
+        </tr>
+        <tr>
+            <td>  Sensitivity:  </td>
+            <td id = "sensitivity">  </td>
+        </tr>
+        <tr>
+            <td>  Specificity:  </td>
+            <td id = "specificity">  </td>
+        </tr>
+        <tr>
+            <td>  Positive predictive value:  </td>
+            <td id = "ppv">  </td>
+        </tr>
+        <tr>
+            <td>  Negative predictive value:  </td>
+            <td id = "npv">  </td>
+        </tr>
+
+    </table>
+</div>
+
+
+<script>
+    var threshold = document.getElementById("threshold");
+    var n1 = document.getElementById("n1");
+    var n2 = document.getElementById("n2");
+    var mean1 = document.getElementById("mean1");
+    var mean2 = document.getElementById("mean2");
+    var sd1 = document.getElementById("sd1");
+    var sd2 = document.getElementById("sd2");
+    var roc = document.getElementById("roc");
+
+    var threshold_value = document.getElementById("threshold_value");
+    var n1_value = document.getElementById("n1_value");
+    var n2_value = document.getElementById("n2_value");
+    var mean1_value = document.getElementById("mean1_value");
+    var mean2_value = document.getElementById("mean2_value");
+    var sd1_value = document.getElementById("sd1_value");
+    var sd2_value = document.getElementById("sd2_value");
+    
+
+
+    function updateAllSlider_text(){
+        threshold_value.innerHTML = threshold.value; // update slider value text
+        n1_value.innerHTML = n1.value; // update slider value text
+        n2_value.innerHTML = n2.value; // update slider value text
+        mean1_value.innerHTML = mean1.value; // update slider value text
+        mean2_value.innerHTML = mean2.value; // update slider value text
+        sd1_value.innerHTML = sd1.value; // update slider value text
+        sd2_value.innerHTML = sd2.value;
+
+    }
+    
+    function normalcdf(mean, sd, x) {
+        return 0.5 * (1 + erf((x - mean) / (sd * Math.sqrt(2))));
+    }
+    // define normpdf
+    function normalpdf(mean, sd, x) {
+        return (1 / (sd * Math.sqrt(2 * Math.PI))) * Math.exp(-Math.pow(x - mean, 2) / (2 * Math.pow(sd, 2)));
+    }
+
+    function erf(x) {
+        // save the sign of x
+        var sign = (x >= 0) ? 1 : -1;
+        x = Math.abs(x);
+
+        // constants
+        var a1 =  0.254829592;
+        var a2 = -0.284496736;
+        var a3 =  1.421413741;
+        var a4 = -1.453152027;
+        var a5 =  1.061405429;
+        var p  =  0.3275911;
+
+        // A&S formula 7.1.26
+        var t = 1.0 / (1.0 + p * x);
+        var y = 1 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
+
+        return sign * y; // erf(-x) = -erf(x);
+    }
+    // plot the number of people in each group as a function of the measured variables, 
+    // as  two gaussians with shading indicating proportions that
+    // are above and below the threshold. X should vary in the range -5 to +5
+    function plotROC(threshold, n1,n2, mean1, mean2, sd1, sd2) {
+        var x = [];
+        var y1 = [];
+        var y2 = [];
+        var y3 = [];
+        var y4 = [];
+        for (var i = -5; i <= 5; i += 0.1) {
+            x.push(i);
+            y1.push(n1*normalpdf(mean1, sd1, i));
+            y2.push(n2*normalpdf(mean2, sd2, i));
+            y3.push(i > threshold ? n1*normalpdf(mean1, sd1, i) : 0);
+            y4.push(i > threshold ? n2*normalpdf(mean2, sd2, i) : 0);
+
+        }
+        var trace1 = {
+            x: x,
+            y: y1,
+            type: 'scatter', // shade the area
+            fill: 'tozeroy',
+            mode: 'lines',
+            name: 'Distribution 1'
+        };
+        var trace2 = {
+            x: x,
+            y: y2,
+            type: 'scatter',
+            fill: 'tozeroy',
+            mode: 'lines',
+            name: 'Distribution 2'
+        };
+        var trace3 = {
+            x: x,
+            y: y3,
+            type: 'scatter',
+            fill: 'tozeroy',
+            // but no line here
+            line: {
+                color: 'rgba(0,0,0,0)'
+            },
+
+            mode: 'lines',
+            name: 'Distribution 1 above threshold'
+        };
+        var trace4 = {
+            x: x,
+            y: y4,
+            type: 'scatter',
+            fill: 'tozeroy',
+            line: {
+                color: 'rgba(0,0,0,0)'
+            },
+            mode: 'lines',
+            name: 'Distribution 2 above threshold'
+        };
+        var layout = {
+            title: 'Receiver operating characteristic',
+            xaxis: {
+                title: 'x'
+            },
+            yaxis: {
+                title: 'Probability'
+            }
+        };
+        var data = [trace1, trace2, trace3, trace4];
+        Plotly.newPlot(roc, data, layout);
+        // update the table with the number of true positives, false positives, true negatives, and false negatives
+        var numTP = n1 * (1 - normalcdf(mean1, sd1, threshold));
+        var numFP = n2 * (1 - normalcdf(mean2, sd2, threshold));
+        var numTN = n2 * normalcdf(mean2, sd2, threshold);
+        var numFN = n1 * normalcdf(mean1, sd1, threshold);
+        
+        // convert values to 3 significant  figures
+        document.getElementById("numTP").innerHTML = numTP.toPrecision(3);
+        document.getElementById("numFP").innerHTML = numFP.toPrecision(3);
+        document.getElementById("numTN").innerHTML = numTN.toPrecision(3);
+        document.getElementById("numFN").innerHTML = numFN.toPrecision(3);
+        document.getElementById("sensitivity").innerHTML = ( numTP / (numTP + numFN) ).toPrecision(3);
+        document.getElementById("specificity").innerHTML = ( numTN / (numTN + numFP) ).toPrecision(3);
+        document.getElementById("ppv").innerHTML = ( numTP / (numTP + numFP) ).toPrecision(3);
+        document.getElementById("npv").innerHTML = ( numTN / (numTN + numFN) ).toPrecision(3);
+
+    }
+    // handle slider events
+    sliderchange = function(){
+        updateAllSlider_text();
+        plotROC(threshold.value, n1.value,n2.value, mean1.value, mean2.value, sd1.value, sd2.value);
+    }
+
+    threshold.oninput = function() {
+        sliderchange();
+    }
+    n1.oninput = function() {
+        sliderchange();
+    }
+    n2.oninput = function() {
+        sliderchange();
+    }
+    mean1.oninput = function() {
+        sliderchange();
+    }
+    mean2.oninput = function() {
+        sliderchange();
+    }
+    sd1.oninput = function() {
+        sliderchange();
+    }
+    sd2.oninput = function() {
+        sliderchange();
+    }
+    sliderchange();
+
+</script>
+
+</body>
+</html>

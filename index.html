@@ -20,7 +20,7 @@
 </head>
 
 <script>
-  applyclasses = functions(){
+  applyclasses = function(){
     $(".pic-and-text").addClass("card");       // format cards
     $(".pic-and-text img").addClass("card-img-top");
     $(".pic-and-text h3").addClass("card-title");
@@ -42,7 +42,6 @@
       return false;
     });
     $("#maincontent").load("home.html", applyclasses); 
-
   });
 </script>
 

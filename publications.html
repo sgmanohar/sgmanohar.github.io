@@ -289,52 +289,53 @@
         });
 </script>
 <script>
-    nconsole.log('good');
-    function x($){
-        function get_common_ancestor(a, b){
-            $parentsa = $(a).parents();
-            $parentsb = $(b).parents();
-            var found = null;
-            $parentsa.each(function() {
-                    var thisa = this;
-                    $parentsb.each(function() {
-                        if (thisa == this) {
-                            found = this;
-                            return false;
-                        }
-                    });
-            if (found) return false;
-        });
-        return found;
-    }
-    
-    var item;
-    $(document).ready(function(){
-            $.get('/proxy.php?url=http://scholar.google.co.uk/citations?user=Q5oQw4MAAAAJ', 
-                function (data){           
-                    //doc=$.parseHTML(data);
-                    doc=$(data);
-                    n1=doc.find('td:contains("Reward pays the cost")');
-                    n2=doc.find('td:contains("Dopamine enhances willingness")');
-                    domancestor=get_common_ancestor(n1[0],n2[0]);
-                    n = $(domancestor); // get the parent of all papers (send as DOM nodes, convert back to jquery)
-                    n.find('[class='+n1.attr('class')+']').each( function(i,x){ 
-                        // get all paper-name elementsn             
-                        listitem = $('<tr></tr>').appendTo($('#publist')); // add new list item
-                        e=$(this);
-                        e.find('a').each(function(){  // re-base each of the the hrefs in this element to scholar
-                            href = $(this).attr("href");    
-                            if(href.startsWith("/"))
-                                $(this).attr("href","http://scholar.google.com"+href);
-                            href = $(this).attr("data-href");
-                            if(href.startsWith("/")) 
-                                $(this).attr("href","http://scholar.google.com"+href);
+    if(0){ // old code to load scholar data
+        console.log('good');
+        function x($){
+            function get_common_ancestor(a, b){
+                $parentsa = $(a).parents();
+                $parentsb = $(b).parents();
+                var found = null;
+                $parentsa.each(function() {
+                        var thisa = this;
+                        $parentsb.each(function() {
+                            if (thisa == this) {
+                                found = this;
+                                return false;
+                            }
                         });
-                        e.appendTo(listitem);
-                    });
-                });// 
+                if (found) return false;
             });
-    };
-    x(jQuery);
-    
+            return found;
+        }
+        
+        var item;
+        $(document).ready(function(){
+                $.get('/proxy.php?url=http://scholar.google.co.uk/citations?user=Q5oQw4MAAAAJ', 
+                    function (data){           
+                        //doc=$.parseHTML(data);
+                        doc=$(data);
+                        n1=doc.find('td:contains("Reward pays the cost")');
+                        n2=doc.find('td:contains("Dopamine enhances willingness")');
+                        domancestor=get_common_ancestor(n1[0],n2[0]);
+                        n = $(domancestor); // get the parent of all papers (send as DOM nodes, convert back to jquery)
+                        n.find('[class='+n1.attr('class')+']').each( function(i,x){ 
+                            // get all paper-name elementsn             
+                            listitem = $('<tr></tr>').appendTo($('#publist')); // add new list item
+                            e=$(this);
+                            e.find('a').each(function(){  // re-base each of the the hrefs in this element to scholar
+                                href = $(this).attr("href");    
+                                if(href.startsWith("/"))
+                                    $(this).attr("href","http://scholar.google.com"+href);
+                                href = $(this).attr("data-href");
+                                if(href.startsWith("/")) 
+                                    $(this).attr("href","http://scholar.google.com"+href);
+                            });
+                            e.appendTo(listitem);
+                        });
+                    });// 
+                });
+        };
+        x(jQuery);
+    }
 </script>

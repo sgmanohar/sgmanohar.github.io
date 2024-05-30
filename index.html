@@ -32,7 +32,7 @@
     $('h1').addClass('text-center');           // center the title
     $('.navbar-nav li a').click(function(event){           // when a link is clicked
       var page = $(this).attr('href');         // get the href attribute
-      $('#maincontent').load(page, applyclasses);            // load the page
+      $('#maincontent').load(page, applyclasses);  // load the page
       $('.nav li').removeClass('active');      // make the li  active
       $(this).parent().addClass('active');
       event.preventDefault();

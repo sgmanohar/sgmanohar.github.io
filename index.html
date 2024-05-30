@@ -23,7 +23,7 @@
   applyclasses = function(){
     console.log('applying classes')
     $(".cards").addClass("d-inline-flex justify-content-between flex-wrap")
-    $(".cards > div").addClass("card col-12 col-md-6 col-lg-4");       // format cards
+    $(".cards > *").addClass("card col-12 col-md-6 col-lg-4");       // format cards
     $(".card > img").addClass("card-img-top");    
     $(".card > h3").addClass("card-header p2");
     $(".card > p").addClass("card-body");

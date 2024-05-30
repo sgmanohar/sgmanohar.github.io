@@ -23,9 +23,10 @@
   applyclasses = function(){
     console.log('applying classes')
     $(".cards").addClass("d-inline-flex justify-content-between flex-wrap")
-    $(".cards > *").addClass("card col-12 col-md-6 col-lg-4");       // format cards
+    $(".cards > *").wrap('<div class="wrapper col-12 col-md-6 col-lg-4"></div>');
+    $(".cards > div > * ").addClass("card m-3");       // format cards
     $(".card > img").addClass("card-img-top");    
-    $(".card > h3").addClass("card-header p2");
+    $(".card > h3").addClass("card-header p-2");
     $(".card > p").addClass("card-body");
   };
   $(document).ready(function(){

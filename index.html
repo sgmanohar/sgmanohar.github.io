@@ -22,12 +22,41 @@
 <script>
   applyclasses = function(){
     console.log('applying classes')
-    $(".cards").addClass("d-inline-flex justify-content-between flex-wrap")
+    $(".cards").addClass("d-inline-flex  flex-wrap")
     $(".cards > *").wrap('<div class="wrapper col-12 col-md-6 col-lg-4"></div>');
-    $(".cards > div > * ").addClass("card m-3");       // format cards
+    $(".cards > div > * ").addClass("card m-3 myoverflow");       // format cards
     $(".card > img").addClass("card-img-top");    
     $(".card > h3").addClass("card-header p-2");
     $(".card > p").addClass("card-body");
+    $(".card > a").addClass("card-link btn btn-primary");
+
+    // add a footer expand button to each card which doesn't have .noexpand
+    foot = $(".card:not(.noexpand)").append('<div class="card-footer"></div>');
+    btn = foot.append("<a  href='#'></a>");
+    btn.click(function(event){
+      // create modal dialog containing the card
+      var modal = $('<div class="modal fade" tabindex="-1" role="dialog"></div>');
+      var dialog = $('<div class="modal-dialog" role="document"></div>');
+      var content = $('<div class="modal-content"></div>');
+      var header = $('<div class="modal-header"></div>');
+      var body = $('<div class="modal-body"></div>');
+      var footer = $('<div class="modal-footer"></div>');
+      var close = $('<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>');
+      var title =  $(this).parent().find('h3').clone();
+      var text = $(this).parent().find('img,p,a').clone();
+      modal.append(dialog);
+      dialog.append(content);
+      content.append(header);
+      content.append(body);
+      content.append(footer);
+      header.append(title);
+      header.append(close);
+      body.append(text);
+      modal.modal('show');
+
+      event.preventDefault();
+      return false;
+    });
   };
   $(document).ready(function(){
     $('h1').addClass('text-center');           // center the title
@@ -39,23 +68,44 @@
       event.preventDefault();
       return false;
     });
-    $("#maincontent").load("home.html", applyclasses); 
+    // get active li from navbar-nav
+    var active = $('.navbar-nav li.active a').attr('href');
+    // load that file
+    $('#maincontent').load(active, applyclasses);
   });
 </script>
+<style>
+  .myoverflow{
+    -webkit-box-orient:vertical;
+    display:-webkit-box;
+    -webkit-line-clamp:10;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space:normal;
+  }
+  .card:not(.noexpand){
+    cursor:pointer;
+  }
+  .cards .card-img-top{
+    height: 200px;
+    object-fit: cover;
+  
+  }
+</style>
 
 <body>
   
   <div class="navbar navbar-expand-lg fixed-top bg-primary " data-bs-theme="dark">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand" href="index.html">Computational Neurology Lab</a>
+        <a class="navbar-brand" href="index.html">Computational Neurology</a>
       </div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div  id="navbarResponsive" class="collapse navbar-collapse">
         <ul class="navbar-nav">
-        <li class="nav-item active"><a class='nav-link' href="index.html">Home</a></li>
+        <li class="nav-item active"><a class='nav-link' href="home.html">Home</a></li>
         <li class="nav-item"><a class='nav-link' href="research.html">Research</a></li>
         <li class="nav-item"><a class='nav-link' href="publications.html">Publications</a></li>
         <li class="nav-item"><a class='nav-link' href="team.html">Team</a></li>

@@ -1,16 +1,4 @@
-    <!--  create 3 panels titled "Motivation", "Artificial intelligence" and "Working memory", each one with an image and some text  -->
-    <script>
-        $(document).ready(function(){
-            ul = $("#highlightslist");
-            // load the latest publications for Manohar,SG from the internet
-            $.get("https://scholar.google.co.uk/citations?user=4wCwjAIAAAAJ", function(data){
-                // find the highlights
-                $(data).find(".gsc_prf_il").each(function(){
-                    ul.append("<li>"+$(this).text()+"</li>");
-                });
-            });
-        });
-    </script>
+
     <h2>Lab publications</h2>
     <div class="cards">
       <div>
@@ -30,8 +18,8 @@
              PubMed
           </a>
         </h3>
-        <p> Publications by date
-        </p>
+          <p> Publications by date
+          </p>
       </div>
     </div>
 
@@ -92,23 +80,168 @@
             
             
 </li><li>
-
-(579, 1, '2021-02-13 00:52:41', '2021-02-13 00:52:41', '<!-- wp:paragraph -->\n<p>Learning from reinforcement is a classic way to study how brain areas contribute to adaptive behaviour. The most frontal parts of the brain probably contribute at a very high, abstract level. In this study (<a href=\"https://ora.ox.ac.uk/objects/uuid:e4e7c79d-dc0b-479b-accd-a8a4e8d5ce15\">Manohar et al. Cortex 2021</a>), we asked how confident people are in what they have learned. </p>\n<!-- /wp:paragraph -->\n\n<!-- wp:columns -->\n<div class=\"wp-block-columns has-2-columns\"><!-- wp:column -->\n<div class=\"wp-block-column\"><!-- wp:image {\"id\":577,\"width\":213,\"height\":165} -->\n<figure class=\"wp-block-image is-resized\"><img src=\"http://www.smanohar.com/wp-content/uploads/2021/02/OFC.png\" alt=\"\" class=\"wp-image-577\" width=\"213\" height=\"165\"/></figure>\n<!-- /wp:image -->\n\n<!-- wp:paragraph -->\n<p>Underside of a human brain</p>\n<!-- /wp:paragraph --></div>\n<!-- /wp:column -->\n\n<!-- wp:column -->\n<div class=\"wp-block-column\"><!-- wp:paragraph -->\n<p>Healthy people are biased by previous choices, and by competing information, when making these \"meta-cognitive\" estimates. However, patients with selective damage to the medial prefrontal cortex <strong>lacked these biases</strong>. They were effectively better at this. </p>\n<!-- /wp:paragraph --></div>\n<!-- /wp:column --></div>\n<!-- /wp:columns -->\n\n<!-- wp:quote -->\n<blockquote class=\"wp-block-quote\"><p>One patient had lesions on both the left and the right side, and he outperformed all the 47 other people in the study!</p></blockquote>\n<!-- /wp:quote -->\n\n<!-- wp:paragraph -->\n<p> </p>\n<!-- /wp:paragraph -->', 'Frontal brain damage makes decisions less biased', '', 'inherit', 'closed', 'closed', '', '549-revision-v1', '', '', '2021-02-13 00:52:41', '2021-02-13 00:52:41', '', 549, 'http://www.smanohar.com/549-revision-v1/', 0, 'revision', '', 0);
+    <h3>Frontal brain damage makes decisions less biased</h3>
+    <p>Learning from reinforcement is a classic way to study
+         how brain areas contribute to adaptive behaviour. 
+         The most frontal parts of the brain probably contribute at a very high, 
+         abstract level. 
+         In this study (<a href="https://ora.ox.ac.uk/objects/uuid:e4e7c79d-dc0b-479b-accd-a8a4e8d5ce15">
+            Manohar et al. Cortex 2021</a>), 
+     we asked how confident people are in what they have learned. </p>
+     <img src="images/OFC.png">
+     <p>Underside of a human brain</p>
+     <p>Healthy people are biased by previous choices, 
+        and by competing information, when making these 
+        "meta-cognitive" estimates.
+         However, patients with selective damage to the medial prefrontal cortex
+          <strong>lacked these biases</strong>. They were effectively better at this. 
+        </p>
+        <p>One patient had lesions on both the left and the right side, 
+            and he outperformed all the 47 other people in the study!</p>
 </li><li>
 
 </li><li>
 
-(592, 1, '2021-02-24 23:51:44', '2021-02-24 23:51:44', '<!-- wp:heading {\"level\":4} -->\n<h4>Motivation is what drives us to act. Many diseases alter motivation. </h4>\n<!-- /wp:heading -->\n\n<!-- wp:media-text {\"mediaPosition\":\"right\",\"mediaId\":463,\"mediaType\":\"image\"} -->\n<div class=\"wp-block-media-text alignwide has-media-on-the-right\"><figure class=\"wp-block-media-text__media\"><img src=\"http://www.smanohar.com/wp-content/uploads/2019/10/gambling1-1024x683.png\" alt=\"\" class=\"wp-image-463\"/></figure><div class=\"wp-block-media-text__content\"><!-- wp:paragraph -->\n<p>Damage to some brain areas causes abnormal, <strong>misdirected motivation </strong>-- sometimes leading to compulsive stereotyped behaviours, or unplanned impulsive acts.  This can sometimes be dramatic, causing considerable embarassment for patients and their families.</p>\n<!-- /wp:paragraph --></div></div>\n<!-- /wp:media-text -->\n\n<!-- wp:paragraph -->\n<p>A loss of motivation results in <strong>clinical apathy </strong>-- a disabling disorder that can be difficult to pin down. It is often missed, and is hard to quantify. It carries a huge social and economic burden, and is often frustrating and distressing for carers. </p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>We study what motivation is, in terms of computations. Is it the selection of an appropriate action, given a goal? Or is it the willingness to invest energy, at a cost, in a rewarding course of action?  We found that:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:list -->\n<ul><li>Damage to specific brian areas <em>increase or decrease</em> responses to incentives. <a href=\"https://www.sciencedirect.com/science/article/pii/S0010945216000083\">\"Human ventromedial prefrontal lesions alter incentivisation by reward\", <strong>Manohar &amp; Husain <em>Cortex </em>2016</strong></a></li><li>Rewards and dopamine improve motor performance by reducing internal noise. <a href=\"https://www.sciencedirect.com/science/article/pii/S0960982215006120\">\"Reward pays the cost of motor and cognitive control\", <strong>Manohar et al. <em>Current Biology </em>2015</strong></a></li><li>Motivation increases the strength of error-corrective internal feedback, making movements more robust to variability: <a href=\"https://www.sciencedirect.com/science/article/pii/S0028393218303117\">\"Motivation dynamically increases noise resistance by internal feedback during movement\" <strong>Manohar et al., <em>Neuropsychologia </em>2019</strong></a> </li><li>People are independently motivated by performance-dependent pay and fixed guaranteed pay: <a href=\"https://journals.sagepub.com/doi/full/10.1177/0956797617693326\">\"Distinct motivational effects of contingent and noncontingent reward\" <strong>Manohar et al. <em>Psychological Science</em> 2017</strong></a></li><li>These two types of motivation are affected  oppositely  by the neurotransmitter dopamine: \"Dopamine promotes instrumental motivation, but reduces reward-related vigour\" <strong><a href=\"https://elifesciences.org/articles/58321\">Grogan et al., <em>eLife </em>2020</a></strong></li></ul>\n<!-- /wp:list -->\n\n<!-- wp:paragraph -->\n<p></p>\n<!-- /wp:paragraph -->', 'Motivation', '', 'inherit', 'closed', 'closed', '', '394-revision-v1', '', '', '2021-02-24 23:51:44', '2021-02-24 23:51:44', '', 394, 'http://www.smanohar.com/394-revision-v1/', 0, 'revision', '', 0),
+    <img src="images/gambling1.png">
+    <h4>Motivation is what drives us to act. Many diseases alter motivation. </h4>
+    <p>Damage to some brain areas causes abnormal, 
+        <strong>misdirected motivation </strong>--
+         sometimes leading to compulsive stereotyped behaviours, 
+        or unplanned impulsive acts.  This can sometimes be dramatic,
+         causing considerable embarassment for patients and their families.
+    </p>
+    <p>
+        A loss of motivation results in <strong>clinical apathy </strong>
+        -- a disabling disorder that can be difficult to pin down.
+        It is often missed, and is hard to quantify. 
+        It carries a huge social and economic burden, 
+        and is often frustrating and distressing for carers. 
+    </p>
+    <p>
+        We study what motivation is, in terms of computations. 
+        Is it the selection of an appropriate action, 
+        given a goal? Or is it the willingness to invest energy, 
+        at a cost, in a rewarding course of action?  We found that:
+    </p>
+    <ul>
+        <li>
+            Damage to specific brian areas <em>increase or decrease</em>
+                responses to incentives. <a href="https://www.sciencedirect.com/science/article/pii/S0010945216000083">
+            "Human ventromedial prefrontal lesions alter incentivisation by reward",
+            <strong>Manohar &amp; Husain <em>Cortex </em>2016</strong></a></li>
+        <li>
+            Rewards and dopamine improve motor performance by reducing internal noise. 
+            <a href="https://www.sciencedirect.com/science/article/pii/S0960982215006120">
+                "Reward pays the cost of motor and cognitive control", 
+                <strong>Manohar et al. <em>Current Biology </em>2015</strong>
+            </a>
+        </li><li>
+            Motivation increases the strength of error-corrective internal feedback, 
+            making movements more robust to variability: 
+            <a href="https://www.sciencedirect.com/science/article/pii/S0028393218303117">
+                "Motivation dynamically increases noise resistance by internal feedback 
+                during movement" <strong>Manohar et al., <em>Neuropsychologia </em>2019
+                </strong></a> 
+        </li><li>
+            People are independently motivated by performance-dependent 
+            pay and fixed guaranteed pay: 
+            <a href="https://journals.sagepub.com/doi/full/10.1177/0956797617693326">
+                "Distinct motivational effects of contingent and noncontingent reward" 
+                <strong>Manohar et al. <em>Psychological Science</em> 2017</strong>
+            </a></li>
+        <li>
+            These two types of motivation are affected  oppositely  
+            by the neurotransmitter dopamine: 
+            "Dopamine promotes instrumental motivation, but reduces reward-related vigour"
+                <strong><a href="https://elifesciences.org/articles/58321">
+                Grogan et al., <em>eLife </em>2020</a></strong>
+        </li>
+    </ul>
+                
 </li><li>
-(593, 1, '2021-02-24 23:54:18', '2021-02-24 23:54:18', '<!-- wp:paragraph -->\n<p>Working memory is our ability to hold information in mind, for short periods of time. It can be disrupted by almost any brain problem. It has been difficult to pinpoint where and how such immediate memories are held. </p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>We study short-term visual memories, measuring our memory capacity,  how memories decay, and are disrupted by irrelevant information.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Recently we have developed a neural model of working memory, proposing a very simple network. It is unlike previously proposed mechanisms, because it suggests that the patterns of brain activity do not correspond to what we are remembering. Rather, rapid interference leads to highly variable -- but predictable -- codes in prefrontal cortex. \"Neural mechanisms of attending to items in working memory\", <strong><a href=\"https://www.sciencedirect.com/science/article/pii/S0149763419300624\">Manohar et al., <em>Neuroscience and Biobehavioral Reviews </em>(2019</a></strong>)</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p></p>\n<!-- /wp:paragraph -->', 'Working Memory', '', 'inherit', 'closed', 'closed', '', '400-revision-v1', '', '', '2021-02-24 23:54:18', '2021-02-24 23:54:18', '', 400, 'http://www.smanohar.com/400-revision-v1/', 0, 'revision', '', 0),
+    <h3>Working Memory</h3>
+    <p>Working memory is our ability to hold information in mind, 
+        for short periods of time. 
+        It can be disrupted by almost any brain problem. 
+        It has been difficult to pinpoint where and how such immediate memories are held. 
+    </p>
+    <p>
+        We study short-term visual memories, measuring our memory capacity,  
+        how memories decay, and are disrupted by irrelevant information.
+    </p>
+    <p>Recently we have developed a neural model of working memory, 
+        proposing a very simple network. It is unlike previously proposed mechanisms, 
+        because it suggests that the patterns of brain activity do not correspond 
+        to what we are remembering. Rather, 
+        rapid interference leads to highly variable -- 
+        but predictable -- codes in prefrontal cortex. 
+        "Neural mechanisms of attending to items in working memory", 
+        <strong><a href="https://www.sciencedirect.com/science/article/pii/S0149763419300624">
+            Manohar et al., <em>Neuroscience and Biobehavioral Reviews </em>(2019
+        </a></strong>)
+    </p>
 </li><li>
-    (597, 1, '2021-02-25 00:03:32', '2021-02-25 00:03:32', '<!-- wp:paragraph -->\n<p>When you recall an item from memory, a prompt usually brings associated parts of that item into mind. Could this process be the same thing that occurs when you search for a visual target? </p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>We tested a neural model designed to perform working memory tasks, to see if it could also perform visual search.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>The model retrieves information when a partial cue re-activates a pattern of neurons by associative pattern completion. This same process could occur when we look for an item that we have in mind: the target in mind corresponds to information in memory, and the display that must be searched corresponds to a (complicated) retrieval cue. </p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>We found that when pattern completion is applied to the search display, the memory item \"amplifies\" matching features in the display. Remarkably, this reproduces a number of classical findings in the visual search literature.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Importantly, the model also gets some things wrong. This shows us that there are certain mechanistic differences between memory and search. </p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>\"A common neural network architecture for visual search and working memory\", <a href=\"https://www.tandfonline.com/doi/full/10.1080/13506285.2020.1825142\"><strong>Bocincova et al.</strong></a><strong>, </strong><em><strong>Visual cognition </strong></em><strong>(2020)</strong></p>\n<!-- /wp:paragraph -->', 'Are working memory and visual search windows into the same neural process?', '', 'inherit', 'closed', 'closed', '', '546-revision-v1', '', '', '2021-02-25 00:03:32', '2021-02-25 00:03:32', '', 546, 'http://www.smanohar.com/546-revision-v1/', 0, 'revision', '', 0),
+    <h3>Are working memory and visual search windows into the same neural process?</h3>
+    <p>When you recall an item from memory, 
+        a prompt usually brings associated parts of that item into mind. 
+        Could this process be the same thing that occurs when you search 
+        for a visual target? 
+    </p>
+    <p> We tested a neural model designed to perform working memory tasks, 
+        to see if it could also perform visual search.</p>
+    <p> The model retrieves information when a partial cue re-activates
+         a pattern of neurons by associative pattern completion. 
+         This same process could occur when we look for an item 
+         that we have in mind: the target in mind corresponds 
+         to information in memory, 
+         and the display that must be searched corresponds to
+          a (complicated) retrieval cue. 
+    </p>
+    <p> We found that when pattern completion 
+        is applied to the search display, 
+        the memory item \"amplifies\" matching features 
+        in the display. Remarkably, this reproduces a 
+        number of classical findings in the visual search literature.
+    </p>
+    <p> Importantly, the model also gets some things wrong.
+         This shows us that there are certain mechanistic
+          differences between memory and search. </p>
+          
+    <p>"A common neural network architecture for visual search and working memory", 
+        <a href="https://www.tandfonline.com/doi/full/10.1080/13506285.2020.1825142">
+            <strong>Bocincova et al.</strong></a><strong>, </strong>
+            <em><strong>Visual cognition </strong></em><strong>(2020)</strong>
+        </p>
 </li><li>
-    (598, 1, '2021-03-04 09:07:37', '2021-03-04 09:07:37', '<!-- wp:paragraph -->\n<p>Learning from reinforcement is a classic way to study how brain areas contribute to adaptive behaviour. The most frontal parts of the brain probably contribute at a very high, abstract level. In this study (<a href=\"https://www.sciencedirect.com/science/article/pii/S0010945221000411\">Manohar et al. Cortex 2021</a>), we asked how confident people are in what they have learned. </p>\n<!-- /wp:paragraph -->\n\n<!-- wp:columns -->\n<div class=\"wp-block-columns has-2-columns\"><!-- wp:column -->\n<div class=\"wp-block-column\"><!-- wp:image {\"id\":577,\"width\":213,\"height\":165} -->\n<figure class=\"wp-block-image is-resized\"><img src=\"http://www.smanohar.com/wp-content/uploads/2021/02/OFC.png\" alt=\"\" class=\"wp-image-577\" width=\"213\" height=\"165\"/></figure>\n<!-- /wp:image -->\n\n<!-- wp:paragraph -->\n<p>Underside of a human brain</p>\n<!-- /wp:paragraph --></div>\n<!-- /wp:column -->\n\n<!-- wp:column -->\n<div class=\"wp-block-column\"><!-- wp:paragraph -->\n<p>Healthy people are biased by previous choices, and by competing information, when making these \"meta-cognitive\" estimates. However, patients with selective damage to the medial prefrontal cortex <strong>lacked these biases</strong>. They were effectively better at this. </p>\n<!-- /wp:paragraph --></div>\n<!-- /wp:column --></div>\n<!-- /wp:columns -->\n\n<!-- wp:quote -->\n<blockquote class=\"wp-block-quote\"><p>One patient had lesions on both the left and the right side, and he outperformed all the 47 other people in the study!</p></blockquote>\n<!-- /wp:quote -->\n\n<!-- wp:paragraph -->\n<p> </p>\n<!-- /wp:paragraph -->', 'Frontal brain damage makes decisions less biased', '', 'inherit', 'closed', 'closed', '', '549-revision-v1', '', '', '2021-03-04 09:07:37', '2021-03-04 09:07:37', '', 549, 'http://www.smanohar.com/549-revision-v1/', 0, 'revision', '', 0),
 </li><li>
-    (606, 1, '2021-05-26 23:20:55', '2021-05-26 22:20:55', '<!-- wp:paragraph -->\n<p>Sometimes we plan ahead, thinking about future consequences of our actions.  Other times, we select actions based only on their immediate reward associations. Planning ahead is crucial to staying healthy, but might be affected by motivation. </p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>We asked whether hunger affects planned vs directly reinforced action (<a href=\"https://www.biorxiv.org/content/10.1101/2021.03.24.436435v1\">van Swieten, Bogacz &amp; Manohar </a><em><a href=\"https://www.biorxiv.org/content/10.1101/2021.03.24.436435v1\">Cortex </a></em><a href=\"https://www.biorxiv.org/content/10.1101/2021.03.24.436435v1\">2021</a>). We found that people learned quicker about action values when they were hungry. Hunger didn\'t affect planning.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:quote -->\n<blockquote class=\"wp-block-quote\"><p> Overall, hunger may actually improve our decision-making. </p></blockquote>\n<!-- /wp:quote -->\n\n<!-- wp:list -->\n<ul><li></li></ul>\n<!-- /wp:list -->', 'Hunger increases reinforcement learning rate', '', 'inherit', 'closed', 'closed', '', '603-revision-v1', '', '', '2021-05-26 23:20:55', '2021-05-26 22:20:55', '', 603, 'http://www.smanohar.com/603-revision-v1/', 0, 'revision', '', 0),
+    <h3>Hunger increases reinforcement learning rate</h3>
+    <p>Sometimes we plan ahead, thinking about future consequences
+         of our actions.  Other times, we select actions 
+         based only on their immediate reward associations. 
+         Planning ahead is crucial to staying healthy, 
+         but might be affected by motivation. 
+    </p>
+    <p>We asked whether hunger affects planned vs 
+        directly reinforced action 
+        (<a href="https://www.biorxiv.org/content/10.1101/2021.03.24.436435v1">
+        van Swieten, Bogacz &amp; Manohar </a><em>
+        <a href="https://www.biorxiv.org/content/10.1101/2021.03.24.436435v1">
+            Cortex </a></em><a href="https://www.biorxiv.org/content/10.1101/2021.03.24.436435v1">
+                2021</a>). 
+                We found that people learned quicker 
+                about action values when they were hungry.
+                 Hunger didn\'t affect planning.
+    </p>
+    <p> Overall, hunger may actually improve our decision-making. </p>
+
 </li><li>
-    (607, 1, '2021-05-26 23:24:23', '2021-05-26 22:24:23', '<!-- wp:heading {\"level\":3} -->\n<h3> Our group aims to apply computational neuroscience to clinical neurology. </h3>\n<!-- /wp:heading -->\n\n<!-- wp:media-text {\"align\":\"full\",\"mediaPosition\":\"right\",\"mediaId\":361,\"mediaType\":\"image\",\"mediaWidth\":24} -->\n<div class=\"wp-block-media-text alignfull has-media-on-the-right\" style=\"grid-template-columns:auto 24%\"><figure class=\"wp-block-media-text__media\"><img src=\"http://www.smanohar.com/wp-content/uploads/2019/07/brains.png\" alt=\"\" class=\"wp-image-361\"/></figure><div class=\"wp-block-media-text__content\"><!-- wp:heading {\"level\":4} -->\n<h4>Our integrative approach</h4>\n<!-- /wp:heading -->\n\n<!-- wp:list -->\n<ul><li>We try to break cognition down into its elementary <strong>computational steps,</strong> asking what quantities the healthy brain must be using</li><li>Then we try to understand how these steps map on to brain areas and chemicals, e.g. using brain <strong>imaging </strong>(fMRI, EEG and MEG)</li><li>Next we study how<strong> neurological diseases</strong>, such as stroke or dementia, can disrupt cognition. This needs detailed, quantitative characterisation of the clinical problem by studying how patients perform carefully designed tasks.</li><li>Finally, we ask whether <strong>medications</strong> can modify cognition. We are particularly interested in the motivational effects of dopamine and acetylcholine. </li></ul>\n<!-- /wp:list -->\n\n<!-- wp:paragraph -->\n<p></p>\n<!-- /wp:paragraph --></div></div>\n<!-- /wp:media-text -->\n\n<!-- wp:heading {\"level\":3} -->\n<h3>Publications</h3>\n<!-- /wp:heading -->\n\n<!-- wp:columns -->\n<div class=\"wp-block-columns has-2-columns\"><!-- wp:column -->\n<div class=\"wp-block-column\"><!-- wp:heading {\"level\":4} -->\n<h4><a href=\"https://scholar.google.co.uk/citations?user=Q5oQw4MAAAAJ&amp;hl=en&amp;oi=ao\">Google Scholar (sorted by impact)</a></h4>\n<!-- /wp:heading -->\n\n<!-- wp:html -->\n<script lang=\"javascript\">\nconsole.log(\'good\');\n       function x($){\n\n       function get_common_ancestor(a, b)\n       {\n           $parentsa = $(a).parents();\n           $parentsb = $(b).parents();\n           var found = null;\n           $parentsa.each(function() {\n               var thisa = this;\n               $parentsb.each(function() {\n                   if (thisa == this) {\n                       found = this;\n                       return false;\n                   }\n               });\n               if (found) return false;\n           });\n           return found;\n       }\n\n       var item;\n//     $(document).ready(function(){\n         $.get(\'/proxy.php?url=http://scholar.google.co.uk/citations?user=Q5oQw4MAAAAJ\', function (data){\n           //doc=$.parseHTML(data);\n           doc=$(data);\n           n1=doc.find(\'td:contains(\"Reward pays the cost\")\');\n           n2=doc.find(\'td:contains(\"Dopamine enhances willingness\")\');\n           domancestor=get_common_ancestor(n1[0],n2[0]);\n           n = $(domancestor); // get the parent of all papers (send as DOM nodes, convert back to jquery)\n           n.find(\'[class=\'+n1.attr(\'class\')+\']\').each( function(i,x){  // get all paper-name elements\n             listitem = $(\'<tr></tr>\').appendTo($(\'#publist\')); // add new list item\n             e=$(this);\n             e.find(\'a\').each(function(){  // re-base each of the the hrefs in this element to scholar\n                 href = $(this).attr(\"href\");\n                 if(href.startsWith(\"/\"))\n                   $(this).attr(\"href\",\"http://scholar.google.com\"+href);\n\n                 href = $(this).attr(\"data-href\");\n                 if(href.startsWith(\"/\"))\n                   $(this).attr(\"href\",\"http://scholar.google.com\"+href);\n             });\n             e.appendTo(listitem);\n           });\n	 });\n//     });\n\n       };\n       x(jQuery);\n     </script>\n<div id=\"publist\">\n\n</div>\n<!-- /wp:html -->\n\n<!-- wp:paragraph -->\n<p></p>\n<!-- /wp:paragraph --></div>\n<!-- /wp:column -->\n\n<!-- wp:column -->\n<div class=\"wp-block-column\"><!-- wp:heading {\"level\":4} -->\n<h4>Pubmed (sorted by year)</h4>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>[publications]</p>\n<!-- /wp:paragraph --></div>\n<!-- /wp:column --></div>\n<!-- /wp:columns -->', 'About our research', '', 'inherit', 'closed', 'closed', '', '2-revision-v1', '', '', '2021-05-26 23:24:23', '2021-05-26 22:24:23', '', 2, 'http://www.smanohar.com/2-revision-v1/', 0, 'revision', '', 0),
+    <h3> Our group aims to apply computational neuroscience to clinical neurology. </h3>
+    <img src="images/brains.png" >
+    <h4>Our integrative approach</h4>
+    >We try to break cognition down into its elementary
+     <strong>computational steps,</strong> 
+     asking what quantities the healthy brain must be using
+     </li><li>Then we try to understand how these steps map on to brain areas and chemicals, e.g. using brain <strong>imaging </strong>(fMRI, EEG and MEG)</li><li>Next we study how<strong> neurological diseases</strong>, such as stroke or dementia, can disrupt cognition. This needs detailed, quantitative characterisation of the clinical problem by studying how patients perform carefully designed tasks.</li><li>Finally, we ask whether <strong>medications</strong> can modify cognition. We are particularly interested in the motivational effects of dopamine and acetylcholine. </li></ul>\n<!-- /wp:list -->\n\n<!-- wp:paragraph -->\n<p></p>\n<!-- /wp:paragraph --></div></div>\n<!-- /wp:media-text -->\n\n<!-- wp:heading {\"level\":3} -->\n<h3>Publications</h3>\n<!-- /wp:heading -->\n\n<!-- wp:columns -->\n<div class=\"wp-block-columns has-2-columns\"><!-- wp:column -->\n<div class=\"wp-block-column\"><!-- wp:heading {\"level\":4} -->\n<h4><a href=\"https://scholar.google.co.uk/citations?user=Q5oQw4MAAAAJ&amp;hl=en&amp;oi=ao\">Google Scholar (sorted by impact)</a></h4>\n<!-- /wp:heading -->\n\n<!-- wp:html -->\n<script lang=\"javascript\">\nconsole.log(\'good\');\n       function x($){\n\n       function get_common_ancestor(a, b)\n       {\n           $parentsa = $(a).parents();\n           $parentsb = $(b).parents();\n           var found = null;\n           $parentsa.each(function() {\n               var thisa = this;\n               $parentsb.each(function() {\n                   if (thisa == this) {\n                       found = this;\n                       return false;\n                   }\n               });\n               if (found) return false;\n           });\n           return found;\n       }\n\n       var item;\n//     $(document).ready(function(){\n         $.get(\'/proxy.php?url=http://scholar.google.co.uk/citations?user=Q5oQw4MAAAAJ\', function (data){\n           //doc=$.parseHTML(data);\n           doc=$(data);\n           n1=doc.find(\'td:contains(\"Reward pays the cost\")\');\n           n2=doc.find(\'td:contains(\"Dopamine enhances willingness\")\');\n           domancestor=get_common_ancestor(n1[0],n2[0]);\n           n = $(domancestor); // get the parent of all papers (send as DOM nodes, convert back to jquery)\n           n.find(\'[class=\'+n1.attr(\'class\')+\']\').each( function(i,x){  // get all paper-name elements\n             listitem = $(\'<tr></tr>\').appendTo($(\'#publist\')); // add new list item\n             e=$(this);\n             e.find(\'a\').each(function(){  // re-base each of the the hrefs in this element to scholar\n                 href = $(this).attr(\"href\");\n                 if(href.startsWith(\"/\"))\n                   $(this).attr(\"href\",\"http://scholar.google.com\"+href);\n\n                 href = $(this).attr(\"data-href\");\n                 if(href.startsWith(\"/\"))\n                   $(this).attr(\"href\",\"http://scholar.google.com\"+href);\n             });\n             e.appendTo(listitem);\n           });\n	 });\n//     });\n\n       };\n       x(jQuery);\n     </script>\n<div id=\"publist\">\n\n</div>\n<!-- /wp:html -->\n\n<!-- wp:paragraph -->\n<p></p>\n<!-- /wp:paragraph --></div>\n<!-- /wp:column -->\n\n<!-- wp:column -->\n<div class=\"wp-block-column\"><!-- wp:heading {\"level\":4} -->\n<h4>Pubmed (sorted by year)</h4>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>[publications]</p>\n<!-- /wp:paragraph --></div>\n<!-- /wp:column --></div>\n<!-- /wp:columns -->', 'About our research', '', 'inherit', 'closed', 'closed', '', '2-revision-v1', '', '', '2021-05-26 23:24:23', '2021-05-26 22:24:23', '', 2, 'http://www.smanohar.com/2-revision-v1/', 0, 'revision', '', 0),
 </li></ul>
 
 
@@ -116,3 +249,15 @@
     </div>
 </div>
   
+<script>
+        $(document).ready(function(){
+            ul = $("#highlightslist");
+            // load the latest publications for Manohar,SG from the internet
+            $.get("https://scholar.google.co.uk/citations?user=4wCwjAIAAAAJ", function(data){
+                // find the highlights
+                $(data).find(".gsc_prf_il").each(function(){
+                    ul.append("<li>"+$(this).text()+"</li>");
+                });
+            });
+        });
+</script>

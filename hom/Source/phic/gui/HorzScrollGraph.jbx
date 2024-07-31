@@ -1,0 +1,38 @@
+[PropertyInfo]
+border1,Border,false,false, , ,false,<default>
+border2,Border,false,false, , ,false,<default>
+borderLayout1,BorderLayout,false,false, , ,false,<default>
+borderLayout2,BorderLayout,false,false, , ,false,<default>
+borderLayout3,BorderLayout,false,false, , ,false,<default>
+clock,phic.common.Clock,false,false, , ,false,<default>
+closeIcon,ImageIcon,false,false, , ,false,<default>
+controlpane,JPanel,false,false, , ,false,<default>
+defaultTimerInterval,int,false,false, , ,false,<default>
+drawXHair,boolean,false,false, , ,false,<default>
+enableHistory,boolean,false,false, , ,true,<default>
+enableWholeSessionHistory,boolean,false,false, , ,false,<default>
+flashIfOutOfRange,boolean,false,false, , ,false,<default>
+jMenuItem1,JMenuItem,false,false, , ,false,<default>
+jPanel1,JPanel,false,false, , ,false,<default>
+mainpane,MainPane,false,false, , ,false,<default>
+popupmenu,JPopupMenu,false,false, , ,false,<default>
+running,boolean,false,false, , ,false,<default>
+scalespacer,JPanel,false,false, , ,false,<default>
+scrollRate,int,false,false, , ,false,<default>
+serial,int,false,false, , ,false,<default>
+speeds,double[],false,false, , ,false,<default>
+thinNodeView,ThinNodeView,false,false, , ,false,<default>
+thread,Thread,false,false, , ,false,<default>
+timer,int,false,false, , ,false,<default>
+tscalepane,TScalePane,false,false, , ,false,<default>
+TSpeed,double,false,false, , ,true,<default>
+vars,Vector,false,false, , ,false,<default>
+waiter,Object,false,false, , ,false,<default>
+xHair,int,false,false, , ,false,<default>
+yscalelayout,GridLayout,false,false, , ,false,<default>
+yscalepane,JPanel,false,false, , ,false,<default>
+[IconNames]
+
+
+
+

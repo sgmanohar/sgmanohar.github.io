@@ -1,0 +1,16 @@
+[PropertyInfo]
+controlled,VDouble,false,false, , ,false,<default>
+controlledVariable,VisibleVariable,false,false, , ,false,<default>
+controlling,VDouble,false,false, , ,false,<default>
+controllingVariable,VisibleVariable,false,false, , ,false,<default>
+description,String,false,false, , ,true,<default>
+desiredError,double,false,false, , ,true,<default>
+drugProperty,String,false,false, , ,true,<default>
+gain,double,false,false, , ,false,<default>
+rateFractionPerMinute,double,false,false, , ,false,<default>
+type,Type,false,false, , ,false,<default>
+[IconNames]
+
+
+
+

@@ -1,0 +1,16 @@
+[PropertyInfo]
+actionlistener,ActionListener,false,false, , ,false,<default>
+branchMask,int,false,false, , ,true,<default>
+currentDistance,int,false,false, , ,false,<default>
+MAX_DISTANCE,int,false,false, , ,false,<default>
+maxTraverseCount,int,false,false, , ,false,<default>
+searched,Vector,false,false, , ,false,<default>
+searching,boolean,false,false, , ,false,<default>
+serial,int,false,false, , ,false,<default>
+start,Entity,false,false, , ,false,<default>
+traversedCount,Vector,false,false, , ,false,<default>
+[IconNames]
+
+
+
+

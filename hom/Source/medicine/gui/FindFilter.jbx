@@ -1,0 +1,66 @@
+[PropertyInfo]
+bg1,ButtonGroup,false,false, , ,false,<default>
+bg2,ButtonGroup,false,false, , ,false,<default>
+bg3,ButtonGroup,false,false, , ,false,<default>
+border1,Border,false,false, , ,false,<default>
+border2,Border,false,false, , ,false,<default>
+border3,Border,false,false, , ,false,<default>
+border4,Border,false,false, , ,false,<default>
+borderLayout1,BorderLayout,false,false, , ,false,<default>
+borderLayout2,BorderLayout,false,false, , ,false,<default>
+borderLayout3,BorderLayout,false,false, , ,false,<default>
+causeRadio,JRadioButton,false,false, , ,false,<default>
+childRadio,JRadioButton,false,false, , ,false,<default>
+currentEntity,JLabel,false,false, , ,false,<default>
+currentEntityRadio,JRadioButton,false,false, , ,false,<default>
+descriptionCheck,JCheckBox,false,false, , ,false,<default>
+effectRadio,JRadioButton,false,false, , ,false,<default>
+entity,Entity,false,false, , ,false,<default>
+entityChooserComboBox1,EntityChooserComboBox,false,false, , ,false,<default>
+exactCheck,JCheckBox,false,false, , ,false,<default>
+excludeRadio,JRadioButton,false,false, , ,false,<default>
+flowLayout1,FlowLayout,false,false, , ,false,<default>
+flowLayout2,FlowLayout,false,false, , ,false,<default>
+flowLayout3,FlowLayout,false,false, , ,false,<default>
+flowLayout4,FlowLayout,false,false, , ,false,<default>
+flowLayout5,FlowLayout,false,false, , ,false,<default>
+flowLayout6,FlowLayout,false,false, , ,false,<default>
+gridLayout1,GridLayout,false,false, , ,false,<default>
+gridLayout3,GridLayout,false,false, , ,false,<default>
+ignoreCaseCheck,JCheckBox,false,false, , ,false,<default>
+includeRadio,JRadioButton,false,false, , ,false,<default>
+includeSuperCheck,JCheckBox,false,false, , ,false,<default>
+isaPane,JPanel,false,false, , ,false,<default>
+isSelected,boolean,false,false, , ,false,<default>
+jLabel1,JLabel,false,false, , ,false,<default>
+jPanel1,JPanel,false,false, , ,false,<default>
+jPanel2,JPanel,false,false, , ,false,<default>
+jPanel3,JPanel,false,false, , ,false,<default>
+jPanel4,JPanel,false,false, , ,false,<default>
+jPanel5,JPanel,false,false, , ,false,<default>
+jPanel6,JPanel,false,false, , ,false,<default>
+jPanel7,JPanel,false,false, , ,false,<default>
+jPanel8,JPanel,false,false, , ,false,<default>
+jPanel9,JPanel,false,false, , ,false,<default>
+label,JLabel,false,false, , ,false,<default>
+matchingRulesCheck,JCheckBox,false,false, , ,false,<default>
+matchLC,String,false,false, , ,false,<default>
+orCheckbox,JCheckBox,false,false, , ,false,<default>
+orFilter,boolean,false,false, , ,true,<default>
+parentRadio,JRadioButton,false,false, , ,false,<default>
+regex,Pattern,false,false, , ,false,<default>
+regexCheck,JCheckBox,false,false, , ,false,<default>
+searchText,JTextPane,false,false, , ,false,<default>
+selected,boolean,false,false, , ,true,<default>
+selectEntityRadio,JRadioButton,false,false, , ,false,<default>
+standardsCombo,JComboBox,false,false, , ,false,<default>
+standardsModel,DefaultComboBoxModel,false,false, , ,false,<default>
+standarEntityRadio,JRadioButton,false,false, , ,false,<default>
+synonymCheck,JCheckBox,false,false, , ,false,<default>
+tabbedPane,JTabbedPane,false,false, , ,false,<default>
+textPane,JPanel,false,false, , ,false,<default>
+[IconNames]
+
+
+
+

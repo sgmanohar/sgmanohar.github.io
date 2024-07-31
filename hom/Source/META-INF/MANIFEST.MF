@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Main-Class: phic.gui.HomLauncher
+version-number: 2003.1.9
+Created-By: 1.2.2 (Sun Microsystems Inc.)
+

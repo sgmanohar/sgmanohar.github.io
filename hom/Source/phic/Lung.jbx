@@ -1,0 +1,52 @@
+[PropertyInfo]
+airwayResistance,VDouble,false,false, , ,false,<default>
+alvBlood,GasConc,false,false, , ,false,<default>
+alvP,Gas,false,false, , ,false,<default>
+alvTmp,Gas,false,false, , ,false,<default>
+alvV,Gas,false,false, , ,false,<default>
+AVent,VDoubleReadOnly,false,false, , ,false,<default>
+AVentAir,double,false,false, , ,false,<default>
+barp,double,false,false, , ,false,<default>
+BIPAP,int,false,false, , ,false,<default>
+cardout,double,false,false, , ,false,<default>
+CO2Permeability,double,false,false, , ,false,<default>
+compliance,VDouble,false,false, , ,false,<default>
+DdSp,VDouble,false,false, , ,false,<default>
+dpp,Gas,false,false, , ,false,<default>
+effectiveCompliance,double,false,false, , ,false,<default>
+ESTIMATE_DELTA,double,false,false, , ,false,<default>
+exhaled_example,Container,false,false, , ,false,<default>
+exhaled_temp,Container,false,false, , ,false,<default>
+exhaledWater,Container,false,false, , ,false,<default>
+expiratoryResistanceRatio,double,false,false, , ,false,<default>
+expired,Gas.WithCO,false,false, , ,false,<default>
+flow,VDouble,false,false, , ,false,<default>
+fractionEquilibration,double,false,false, , ,false,<default>
+FRC,VDouble,false,false, , ,false,<default>
+H2Oloss,VDouble,false,false, , ,false,<default>
+iap,double,false,false, , ,false,<default>
+IEratio,double,false,false, , ,false,<default>
+initialFractionEquilibration,double,false,false, , ,false,<default>
+ITP,VDouble,false,false, , ,false,<default>
+lungVolume,VDouble,false,false, , ,false,<default>
+maximumCompliance,double,false,false, , ,false,<default>
+Oedema,VDouble,false,false, , ,false,<default>
+Pa,double,false,false, , ,false,<default>
+Pairway,VDouble,false,false, , ,false,<default>
+peakPressure,double,false,false, , ,false,<default>
+phase,double,false,false, , ,false,<default>
+PtoDC,double,false,false, , ,false,<default>
+RespR,VDouble,false,false, , ,false,<default>
+Shunt,VDouble,false,false, , ,false,<default>
+SPONTANEOUS,int,false,false, , ,false,<default>
+TidV,VDouble,false,false, , ,false,<default>
+ttco2,double,false,false, , ,false,<default>
+tto2,double,false,false, , ,false,<default>
+Vent,VDoubleReadOnly,false,false, , ,false,<default>
+ventilate,boolean,false,false, , ,false,<default>
+ventilationMode,int,false,false, , ,false,<default>
+[IconNames]
+
+
+
+

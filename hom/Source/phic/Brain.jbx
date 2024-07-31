@@ -1,0 +1,33 @@
+[PropertyInfo]
+asleep,boolean,false,false, , ,true,<default>
+CO2drive,VDouble,false,false, , ,false,<default>
+DEAD,int,false,false, , ,false,<default>
+diabetesInsipidus,boolean,false,false, , ,false,<default>
+feeling,int,false,false, , ,true,<default>
+gainThresholdWhenAsleep,double,false,false, , ,false,<default>
+greed,VDouble,false,false, , ,false,<default>
+hunger,double,false,false, , ,false,<default>
+hypoxia,VDouble,false,false, , ,false,<default>
+ILL,int,false,false, , ,false,<default>
+nausea,double,false,false, , ,false,<default>
+newFeeling,int,false,false, , ,false,<default>
+O2drive,VDouble,false,false, , ,false,<default>
+O2Supply,VDouble,false,false, , ,false,<default>
+opiateBinding,double,false,false, , ,false,<default>
+pain,VDouble,false,false, , ,false,<default>
+pHdrive,VDouble,false,false, , ,false,<default>
+predicate,String,false,false, , ,false,<default>
+previousVoluntaryOverride,boolean,false,false, , ,false,<default>
+respiratoryDrive,VDouble,false,false, , ,false,<default>
+sedation,double,false,false, , ,false,<default>
+Symp,VDouble,false,false, , ,false,<default>
+thirst,double,false,false, , ,false,<default>
+thirstiness,VDouble,false,false, , ,false,<default>
+unconscious,ConsciousLevelOptions,false,false, , ,true,<default>
+UNCONSCIOUS,int,false,false, , ,false,<default>
+WELL,int,false,false, , ,false,<default>
+[IconNames]
+
+
+
+

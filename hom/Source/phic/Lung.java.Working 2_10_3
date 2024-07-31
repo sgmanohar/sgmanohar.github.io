@@ -1,0 +1,277 @@
+package phic;
+import phic.common.*;
+
+/**
+ * Lungs are responsible for maintaining arterial gases in response to a ventilation
+	 * signal from the CNS. They exchange gases from blood.venous, and the resulting
+ * gases go to blood.arterial.
+ * This is one half of the cycle, which is completed by
+ * @link phic.Muscle Muscle.
+ */
+public final class Lung extends Organ{
+	public Lung(){}
+
+	public void tick(){
+		body.blood.acidbase(elapsedTime);
+		breathe();
+//		inform(Quantity.toString(body.blood.ABC)+" M increase HCO3 & H+");
+		waitSeconds(60);
+	}
+
+	/**
+	 * Dead space is represented by a constant value, the volume in L of the
+	 * mouth, trachea, bronchi and non-respiratory bronchioles.
+	 */
+	public double DdSp;
+
+	/**
+	 * Tidal volume is the volume of air taken in on each breath, in L.
+	 * It is controlled by the @link phic.Brain brain.
+	 */
+	public VDouble TidV=new VDouble();
+
+	/**
+	 * The respiratory rate is the rate of taking breaths, in Hz.
+	 * It is controlled by the brain.
+	 */
+	public VDouble RespR=new VDouble();
+
+	/** Respiratory water loss rate, in litres per minute */
+	public double H2Oloss;
+
+	/**
+	 * Alveolar volume, in centilitres
+	 * @todo check the units for this! revert to L?
+	 */
+	protected double AVcl;
+
+	/**
+	 * The alveolar blood is the local intermediate, which begins by containing
+	 * venous blood, and ends up with the new arterial blood.
+	 * Alveolar blood has same haematocrit as normal blood -- so no conversion
+	 */
+	public GasConc alvBlood=new GasConc(null);
+
+	/**
+		 * Temporary values of the difference in partial pressures between the alveolar
+	 * gas and alveolar blood
+	 */
+	public Gas dpp=new Gas();
+
+	/**
+	 * Alveolar partial pressures of gas
+	 */
+	public Gas alvP=new Gas();
+
+	/**
+	 * Alveolar volumes of gas
+	 */
+	public Gas alvV=new Gas();
+
+	/**
+	 * The container that logs the water that is exhaled.
+	 * @todo move this into Environment?
+	 */
+	protected Container exhaledWater=new Container();
+
+	/**
+	 * Expired CO2 percentage = atmospheric CO2 percentage +
+	 * produced CO2 volume / respiratory rate
+	 */
+	public double XCO2(){
+		return environment.air.CO2.get()+body.CO2Production()/Vent();
+	}
+
+	/**
+	 * Expired O2 percentage = atmospheric O2 percentage - consumed O2 volume
+	 * / respiratory rate.
+	 */
+	public double XO2(){
+		return environment.air.O2.get()-body.O2Use.get()/Vent();
+	}
+
+	/**
+	 * Indicates whether the lungs will be ventilated. If false, the alveoli will
+	 * receive no air.
+	 */
+	public boolean ventilate=true;
+
+	/**
+	 * Ventilation rate = respiratory rate * tidal volume, the rate of air entry.
+	 */
+	public double Vent(){
+		return RespR.get()*TidV.get();
+	}
+
+	/**
+	 * Alveolar ventilation = respiratory rate * (tidal volume - dead space)
+	 */
+	public double AVent(){
+		return Math.max(RespR.get()*TidV.get()-DdSp,0);
+	}
+
+	/**
+	 * Performs the calculations involved in breathing.
+	 *
+	 * Moisture is exchanged with the atmosphere:
+	 *  Ambient SVP depends on environment temperature.
+	 *  Partial pressure of water vapour is calculated from ambient SVP and %-humidity.
+	 *  Volume of water inhaled per min = ventilation rate * partial pressure H2O / atmospheric pressure.
+	 *  Respiratory water loss =
+	 *
+	 * Gases are exchanged by allowing equilibration between the air and blood.
+	 *  Alveoli receive atmospheric air, and blood.venous.
+	 *  The partial pressure difference determines the amount of gas transfer.
+	 *  The gases equilibrate over 5 cycles @see exchange().
+	 *  Alveolar gas is exhaled, and the blood goes to blood.arterial.
+	 */
+	public void breathe(){
+		double asvp=environment.getSVP(environment.Temp); //ambient SVP
+		//evaporation
+		double volumePerMinute=Vent()*(asvp/0.76)*(1-environment.Hum);
+		double volume=volumePerMinute*elapsedTime/60;
+		//calculate volume of H2O lost in litres, correct to STP
+		double qH2Oloss=volume*273/(273+environment.Temp)*environment.H2OX;
+		//rate of water loss
+		H2Oloss=qH2Oloss/(elapsedTime/60);
+		exhaledWater.add(body.blood.withdrawVol(Fluids.get("Water",qH2Oloss)));
+		//log daily water loss
+		if(body.getClock().dayChanged()){
+			body.eventLog.document(EventLog.FLUID_EVENT,"Expired",
+				new Double(-exhaledWater.volume.get()));
+			environment.rubbish.add(exhaledWater);
+		}
+		//alveolar gases
+		double dpH2O=environment.getSVP(body.Temp.get())-environment.Hum*asvp; //difference in water vapour pressure
+		double pa=(environment.BarP-asvp); //alveolar air pressure without water
+		Blood blood=body.blood;
+		alvBlood.setHct(blood.solids);
+		alvBlood.set(blood.venous); //concs from venous blood gases
+		if(ventilate){
+			AVcl=AVent()*(dpH2O+environment.BarP)/environment.BarP; //alveolar inspired gas volume
+		} else{
+			AVcl=0;
+		}
+		tto2=0;
+		ttco2=0; //start logging how much gas is exchanged
+		if(AVcl>0){ // begin gas exchange loop
+			// set initial alveolar pressures of gases
+			alvP.O2.set(environment.air.O2.get()*pa);
+			alvP.CO2.set(environment.air.CO2.get()*pa);
+			alveolarPtoV();
+			cardout=body.CVS.heart.CO(); //remember the current cardiac output
+			//five iterations of gas exchange should
+			//suffice for equilibrium.
+			int extraCycles=0;
+			fractionEquilibration=initialFractionEquilibration;
+			for(int i=0;i<5;i++){
+				double otto2=tto2,ottco2=ttco2;
+				exchange();
+				if(Math.abs(tto2-otto2)>0.030){ //repeat if unsuccessful
+					extraCycles++;if(extraCycles<10)
+						i--;
+					fractionEquilibration*=0.5;
+				}
+				if(extraCycles>4)
+					inform("extra cycles = "+extraCycles);
+				if(extraCycles>9)
+					inform("last transfer = "+(tto2-otto2));
+			}
+		}
+		//send the alveolar blood gas concentrations to Blood.arterial
+		//low passing to account for residual volume
+		//added 26-9-02: 0 < concentrations < 1 Litre/Litre
+		blood.arterial.O2.lowPass(Math.max(0,Math.min(1,alvBlood.O2.get())),
+			fractionDecayPerMinute(0.7));
+		blood.arterial.CO2.lowPass(Math.max(0,Math.min(1,alvBlood.CO2.get())),
+			fractionDecayPerMinute(0.7));
+//		inform("Exchanged "+UnitConstants.formatValue(tto2, UnitConstants.LITRES_PER_ML)+" O2, "+
+//			UnitConstants.formatValue(ttco2, UnitConstants.LITRES_PER_ML)+" CO2");
+	}
+
+	/**
+	 * Fraction between the partial pressures to equilibrate to.
+	 * Ought to be ~0.5
+	 * @todo should be private
+	 */
+	public double fractionEquilibration=0.2;
+
+	private double initialFractionEquilibration=0.2;
+
+	/**
+	 * Convert the difference in partial pressures between blood and air
+	 * into the target concentration change.
+	 * @todo should be private
+	 */
+	public double PtoDC=0.25;
+
+	/**
+	 * Temporary variable storing current cardiac output,
+	 * which is constant across successive calls to exchange()
+	 */
+	private double cardout;
+
+	/**
+	 * Temporary record of cumulative volumes of O2 and CO2 that have been
+	 * exchanged -- primarily for debugging
+	 * @todo should be private
+	 */
+	public double tto2,ttco2;
+
+	/**
+	 * This routine iterated five times to equilibrate partial pressures of
+	 * gases in alveolar gas and capillary gas. Ratio 'PtoDC' is used to convert
+	 * a difference in partial pressure to a volume.
+	 */
+	public void exchange(){
+		//find alveolar volumes
+		alveolarPtoV();
+		//difference in gas & blood partials
+		dpp.O2.set(alvP.O2.get()-alvBlood.PO2.get());
+		dpp.CO2.set(alvP.CO2.get()-alvBlood.PCO2.get());
+		double targetPPO2=alvP.O2.get()-dpp.O2.get()*fractionEquilibration;
+		double targetPPCO2=alvP.CO2.get()-dpp.CO2.get()*fractionEquilibration;
+		// estimation based upon alveolar partial pressure reaching target
+		double transO2=dpp.O2.get()*fractionEquilibration/environment.BarP,
+			transCO2=dpp.CO2.get()*fractionEquilibration/environment.BarP;
+		// rate of gas transfer
+		tto2+=transO2;
+		ttco2+=transCO2;
+		//transfer gases between alveoli and capillaries
+		alvBlood.O2.set(alvBlood.O2.get()+transO2);
+		alvV.O2.set(alvV.O2.get()-transO2*cardout);
+		alvBlood.CO2.set(alvBlood.CO2.get()+transCO2);
+		alvV.CO2.set(alvV.CO2.get()-transCO2*cardout);
+		//convert back to pp
+		alvP.O2.set(aVtoP(alvV.O2.get()));
+		alvP.CO2.set(aVtoP(alvV.CO2.get()));
+	}
+
+	/** Convert alveolar partial pressures to alveolar volumes of gases */
+	private void alveolarPtoV(){
+		alvV.O2.set(aPtoV(alvP.O2.get()));
+		alvV.CO2.set(aPtoV(alvP.CO2.get()));
+	}
+
+	/** Alveolar pressure-volume conversion */
+	protected double aPtoV(double p){
+		return p*AVcl/Current.environment.BarP;
+	}
+
+	/** Alveolar volume-pressure conversion */
+	protected double aVtoP(double v){
+		return v*Current.environment.BarP/AVcl;
+	}
+
+	public void reset(){
+		AVcl=0;
+		alvBlood.empty();
+		dpp.empty();
+		alvP.empty();
+		alvV.empty();
+	}
+
+	private static final double min_abs(double a,double b){
+		return(Math.abs(a)<Math.abs(b))?a:b;
+	}
+}

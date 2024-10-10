@@ -1,0 +1,5 @@
+this folder and its contents will eventually be
+
+	getDocumentBase()+"/resources"
+
+(it is currently getCodeBase()+"/resources")

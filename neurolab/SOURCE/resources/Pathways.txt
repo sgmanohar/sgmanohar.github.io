@@ -1,0 +1,264 @@
+
+Spinal cord
+Cerebral cortex
+Vestibular apparatus
+Retina
+Cochlea
+Cuneate nucleus
+Gracile nucleus
+Superior olive
+Inferior olive and accessory olivary nuclei
+Pontine nuclei
+Medullary reticular formation
+Centromedian thalamic nuclei
+Cerebellar cortex
+Thalamus
+Lateral geniculate nucleus
+Mamillary body
+Amygdala
+Septal nuclei
+Hippocampus
+Vestibular nucleus
+Nucleus accumbens
+Anterior thalamic nucleus
+Arcuate hypothalamic nucleus
+Corpus striatum
+Cochlear nucleus
+Edinger-Westphal nucleus
+Emboliform nucleus
+Fastigial nucleus
+Medial geniculate nucleus
+Globose nucleus
+Gustatory nucleus
+Habenular nucleus
+Dentate nucleus
+Anterior hypothalamus
+Dorsomedial hypothalamic nucleus
+Lateral hypothalamus
+Paraventricular hypothalamic nucleus
+Posterior Hypothalamus
+Supraoptic hypothalamic nucleus
+Suprachiasmatic hypothalamic nucleus
+Inferior colliculus
+Superior colliculus
+Lateral thalamic nucleus
+Globus pallidus
+Substantia Nigra
+Subthalamus
+Pulvinar
+Lateral posterior thalamic nucleus
+Dorsal raphe
+Red nucleus
+Ventral anterior thalamic nucleus
+Ventroposterolateral (VPL) thalamic nucleus
+Ventrolateral thalamic nucleus
+Brainstem motor nuclei
+Clarke's column (dorsal nucleus)
+Accessory cuneate nucleus
+Olfactory bulb
+Pretectal areas
+Accessory oculomotor nuclei
+Cingulate gyrus
+Dorsomedial thalamic nucleus
+Tegmentum
+Periventricular hypothalamus
+Medial hypothalamic nuclei
+subiculum
+Entorhinal cortex
+Prepyriform cortex
+Ventromedial hypothalamus
+Locus ceruleus
+Pituitary (hypophysis)
+Ventroposteromedial thalamus
+*
+Corticospinal (pyramidal) tract
+2 1
+Vestibulospinal tract
+20 1
+Rubrospinal tract
+50 1
+Reticulospinal tract
+11 1, 10 1
+
+Tectospinal tract
+42 1
+
+Anterior spinothalamic tract
+1 52
+
+Spino-olivary tract
+1 9
+
+Anterior spinocerebellar tract
+1 13
+
+Medial lemniscus
+6 52, 7 52
+
+Dorsal columns
+1 6, 1 7
+
+Optic nerve/tract
+4 15, 4 58, 4 42, 4 40
+
+Optic radiation (geniculocalcarine tract)
+15 2
+
+Auditory nerve (VIII)
+5 25
+Vestibular nerve (VIII)
+3 20, 3 13
+
+Medial Longitudinal fasciculus
+20 1, 20 54, 20 59, 59 54
+
+Anterior commissure
+2 2, 57 57
+
+Posterior commissure
+58 58, 59 59
+
+Corpus callosum
+2 2
+
+Fornix
+18 19, 69 19, 19 18, 65 16, 65 18, 65 62
+
+Cingulum
+69 65, 69 60, 60 66
+
+Corticobulbar tract
+2 6, 2 7, 2 11, 2 54
+
+
+Corticomammillary tract
+2 16
+
+Corticopontine tract
+2 10
+
+Corticostriate tract
+2 24
+
+Corticotectal tract
+2 42
+
+Corticothalamic tract
+2 14
+
+Cuneocerebellar tract
+56 13
+
+Dentatoreticular tract
+33 11
+
+Dentatorubral tract
+33 50
+
+Dentatothalamic tract
+33 53
+
+Fastigiobulbar tract (Russell's uncinate bundle)
+28 20, 28 11, 28 12, 28 1, 28 42, 28 53, 28 52
+
+Frontopontine tract
+2 10
+
+Geniculotemporal tract
+29 2
+
+Lateral lemniscus
+25 41, 8 41
+
+Nigrostriatal tract
+45 24
+Nigrotectal tract
+45 42
+
+Nigrothalamic tract
+45 53, 45 51, 45 61
+
+Olivocerebellar tract
+9 13
+
+Olfactory tract
+57 67, 57 17
+
+Pallidonigral tract
+44 45
+
+Stria terminalis
+17 34, 35 17, 17 23, 17 68, 17 34, 17 36
+
+Pallidothalamic tract
+44 51, 44 12, 44 53
+
+Pontocerebellar tract
+10 13
+
+Reticulocerebellar tract
+11 13, 62 13
+
+Retinotectal tract
+4 42
+
+Strionigral tract
+24 45
+
+Striopallidal tract
+24 44
+
+Tectobulbar tract
+42 11
+
+Tectothalamic tract
+42 47
+
+(unnamed)
+1 1, 43 2, 2 50, 50 54, 51 2, 52 2, 53 2, 1 56, 61 2, 45 61, 62 2, 69 36, 69 17, 69 12, 69 22, 69 2, 69 15, 25 8, 2 41, 2 9, 50 9, 59 9, 15 52, 15 58, 2 15, 22 60, 13 20, 13 30, 13 28, 13 33, 13 27, 67 17, 60 17, 2 17, 45 17, 69 17, 17 61, 17 21, 2 66, 67 66, 66 65, 66 19, 17 67, 18 19, 21 44, 21 45, 12 24, 49 24, 49 13, 58 26, 26 54, 28 13, 30 13, 33 13, 27 13, 20 28, 50 27, 62 33, 9 33, 42 10, 41 10, 49 1, 49 42, 49 69, 49 57, 49 17, 49 24, 49 15, 49 2, 49 18, 49 45, 2 48, 2 47, 2 46, 44 46, 46 45, 46 44, 43 60, 62 9, 27 50, 31 32, 32 2, 41 42, 42 15, 2 47, 2 48, 47 2, 48 2, 47 2, 48 2
+
+Olivocochlear bundle
+8 5
+
+Tectopontine tract
+42 10
+
+Vestibulocerebellar tract
+3 13
+
+Diagonal band of Broca
+17 18
+
+Dorsal Integeritudinal fasciculus
+63 62, 64 62
+
+Lenticular fasciculus
+44 51, 44 53
+
+Pallidotegmental fasciculus
+44 62
+
+Brachium of the inferior colliculus
+41 29
+
+Medial forebrain bundle
+36 18, 18 36, 18 62
+
+Posterior spinocerebellar tract
+55 13
+
+Lateral spinothalamic tract
+1 52
+
+Mammillothalamic fasciculus
+16 22
+
+Mammillotegmental tract
+16 62
+
+Mammillary peduncle
+62 16
+
+Supraopticohypophyseal tract
+39 70, 37 70
+*

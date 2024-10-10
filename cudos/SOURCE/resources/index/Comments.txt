@@ -1,0 +1,18 @@
+[Properties]
+Corpus callosum=Connects the two cerebral hemispheres. A bundle of nerve fibres, usually corticocortical axons from the pyramidal cells in layer V of the cortex, that project to layer VI of the neighbouring cortex. If the fibres are lesioned, a syndrome results in which the two halves of the cortex do not communicate with each other readily.
+Fornix=Fibre bundle from hippocampus to mammillary bodies. It is a bilateral structure formed from hippocampal axons, which travel posterodorsally proximal to the cingulate gyrus.
+Lateral ventricle
+Thalamus
+Caudate nucleus
+Aqueduct
+Periaqueductal grey
+Dentate gyrus
+Cornu ammonis
+Internal capsule
+Cerebellar hemispheres
+Middle cerebellar peduncle
+Medial longitudinal fasciculus
+Lateral lemniscus
+Medial lemniscus
+Pons
+Inferior olivary nucleus

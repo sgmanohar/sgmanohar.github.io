@@ -1,0 +1,307 @@
+
+//[Hair colour example]
+Genome=HairColour$HairGenome
+Phenotype=HairColour$HairPhenotype
+Info= Polygenic inheritance. We have shown two genes responsible for producing hair colour pigments, A and B. There are three alleles at each locus: 0, 1 or 2, corresponding to how much of the pigment will be produced by the allele. The pigment coded for by gene A is yellow-brown, whereas the pigment coded for by gene B is red-brown.
+
+//[Mendel's pea plants]
+Genome=Pea$PeaGenome
+Phenotype=Pea$PeaPhenotype
+Info=Mendel's original pea plant experiments studied recessively inherited physical characteristics. This example shows two genes that influence appearance of the pea seed: colour and shape. The genes segregate independently.
+
+
+///////////////////////////
+//
+// [*Name of disease*]
+//
+//
+// // Information and comments
+//
+// Info = *description of disease*
+//
+//
+// // List of gene loci
+//
+// Genes = *first gene locus*, *second gene locus* ...
+//
+//
+// // List of alleles at each locus
+//
+// *first gene locus*  = *allele 1*, *allele 2*
+// *second gene locus* = *allele 3*, *allele 4*
+// ...
+//
+//
+// // Define each allele, giving image + description
+//
+// *allele 1* = "*allele image resource name*", *description of allele*
+// ...
+// *allele 4* = "*allele image resource name*", *description of allele*
+//
+//
+// //Define each combination of alleles, giving image + description
+//
+// *allele 1* *allele 3* = *genotype image resource*, *description of genotype*
+// *allele 1* *allele 4* = Lethal
+// ...
+// *allele 2* *allele 4* = *genotype image resource*, *description of genotype*
+//
+//
+// // Specify how much linkage between each gene and the previous one
+//
+// Linkage = 0, *linkage of first gene to second gene*
+//
+//
+// // For sex linked genes, specify which alleles are on Y
+//
+// Y Chromosome = *allele 2*, *allele 3*
+//
+////////////////////////////
+
+
+
+
+[Sickle cell anaemia (recessive)]
+Info= Simple autosomal recessive inheritance. There is only one gene locus, with two possible alleles, sickle-cell haemoglobin or wild-type haemoglobin. Sickle cell anaemia only manifests if both alleles are sickle type. Heterozygotes are carriers.
+
+Genes = Haemoglobin beta chain gene
+Linkage = 0, 0
+
+Haemoglobin beta chain gene = HbS, HbA
+
+HbS = resources/images/HbS.jpg, Sicke cell beta haemoglobin with a point mutation substitution of valine at position 6
+HbA = resources/images/HbA.jpg, Wild type (normal) beta haemoglobin with glutamic acid at position 6
+
+HbS HbS = resources/images/rbc_sickle.jpg, Sickle cell anaemia
+HbS HbA = resources/images/rbc_norm.jpg, Sickle cell trait (carrier)
+HbA HbA = resources/images/rbc_norm.jpg, Normal
+
+
+
+
+
+[Human blood group (co-dominance)]
+
+Info = Human ABO blood grouping reflects the antigen on the red cell surface. The three alleles exhibit two relations: O is recessive to both A and B, whereas A and B together are Co-dominant - i.e., elements of both the A phenotype and the B phenotype are separately present in the heterozygote.
+
+Genes = Blood group
+Blood group = O, A, B
+
+A = The allele for antigen A
+B = The allele for antigen B
+O = The allele for no antigen
+
+O O = resources/images/rbc_o.gif, Blood group O
+O A = resources/images/rbc_a.gif, Blood group A
+O B = resources/images/rbc_b.gif, Blood group B
+A A = resources/images/rbc_a.gif, Blood group A
+A B = resources/images/rbc_ab.gif, Blood group AB
+B B = resources/images/rbc_b.gif, Blood group B
+
+
+
+
+[Four-o-clock flower (incomplete dominance)]
+
+Info = This flower exhibits incomplete dominance. The two alleles generate white or red flowers respectively, when expressed alone. When both alleles are present, the phenotype is intermediate, a blend of pink.
+
+Genes = Flower colour
+Flower colour = R, W
+R = resources/images/codom_red.gif, Red allele
+W = resources/images/codom_white.gif, White allele
+
+R R = resources/images/codom_red.jpg, Red flowers
+R W = resources/images/codom_pink.jpg, Pink flowers
+W W = resources/images/codom_white.jpg, White flowers
+
+
+
+
+[Red-green colour blindness (sex linked)]
+Info=Red-green colour blindness is a common (1 in 25) sex-linked recessive trait. The lack of one of the colour-sensitive pigments in the cones of the retina prevents the individual from distinguishing red and green light. Females can rarely be suffers, only when both X-chromosomes are affected.
+
+Genes = Red-green opsin
+Red-green opsin = Xo, X+, Y
+Xo = Abnormal X chromosome with defective pigment
+X+ = Normal X chromosome with normal pigment
+Y = Y chromosome (does not carry pigment gene)
+Y Chromosome = Y
+Xo Xo = resources/images/colour_yb.gif, Colour-blind female
+Xo X+ = resources/images/colour_rgb.gif, Carrier (always female)
+X+ X+ = resources/images/colour_rgb.gif, Normal female
+X+ Y = resources/images/colour_rgb.gif, Normal male
+Xo Y = resources/images/colour_yb.gif, Colour-blind male
+
+
+
+
+[Mendel's pea seeds (independent genes)]
+Info=Mendel's original pea plant experiments studied recessively inherited physical characteristics. This example shows two genes that influence appearance of the pea seed: colour and shape. The genes segregate independently; therefore the dihybrid cross will give a 9:3:3:1 ratio of phenotypes.
+
+Genes = Seed colour, Seed shape
+Seed colour = y,Y
+Seed shape = r,R
+y = resources/images/pea_grn.gif, Green seed
+Y = resources/images/pea_yel.gif, Yellow seed
+r = resources/images/pea_wri.gif, Wrinkled seed
+R = resources/images/pea_rnd.gif, Round seed
+
+y y r r = resources/images/pea_grn_wri.gif, Green wrinkled seed
+y Y r r = resources/images/pea_yel_wri.gif, Yellow wrinkled seed
+y y r R = resources/images/pea_grn_rnd.gif, Green round seed
+y Y r R = resources/images/pea_yel_rnd.gif, Yellow round seed
+y y R R = resources/images/pea_grn_rnd.gif, Green round seed
+Y Y r r = resources/images/pea_yel_wri.gif, Yellow wrinkled seed
+Y Y r R = resources/images/pea_yel_rnd.gif, Yellow round seed
+y Y R R = resources/images/pea_yel_rnd.gif, Yellow round seed
+Y Y R R = resources/images/pea_yel_rnd.gif, Yellow round seed
+
+
+
+
+[Pepper colour (two genes for one phenotype)]
+Info= Peppers can be green, red, yellow or brown. There are two genes: the chlorophyll gene that controls the presence of green, and a gene controlling red pigment. 
+
+Genes = Chlorophyll, Red pigment
+Chlorophyll = y, Y
+Red pigment = r, R
+
+y = resources/images/pep_g.jpg, Recessive y allele that allows chlorophyll to be produced
+Y = resources/images/pep_y.jpg, Dominant Y allele that prevents chlorophyll production
+r = resources/images/pep_y.jpg, Recessive r allele that does not produce red pigment
+R = resources/images/pep_r.jpg, Dominant R allele causes production of red pigment
+
+Y Y R R = resources/images/pep_red.jpg, Red pepper
+y Y R R = resources/images/pep_red.jpg, Red pepper
+Y Y r R = resources/images/pep_red.jpg, Red pepper
+y Y r R = resources/images/pep_red.jpg, Red pepper
+y y R R = resources/images/pep_bro.jpg, Brown pepper
+y y r R = resources/images/pep_bro.jpg, Brown pepper
+Y Y r r = resources/images/pep_yel.jpg, Yellow pepper
+y Y r r = resources/images/pep_yel.jpg, Yellow pepper
+y y r r = resources/images/pep_gre.jpg, Green pepper
+
+
+
+
+[Labrador retriever coat (recessive epistasis)]
+Info = With epistasis, two genes are inherited independently but interact at the phenotypic level. For example, an allele's absence at one locus can prevent expression of other alleles at a second locus. The labrador retriever's coat pigment has three forms: yellow, brown and black. Two separate genes E and B convert pigment from yellow to brown, then brown to black respectively. If there is no E allele, then only yellow pigment is present. The coat is black if both E and B are, present or brown if there is E but no B. The E gene is said to exert recessive epistasis over the B gene (e.g. in the eeBB genotype). 
+
+Genes = Enzyme E, Enzyme B
+Enzyme E = e, E
+Enzyme B = b, B
+e = Recessive allele e
+E = Dominant allele E
+b = Recessive allele b
+B = Dominant allele B
+
+E E B B = resources/images/labr_bla.jpg, Black coat
+e E B B = resources/images/labr_bla.jpg, Black coat
+E E b B = resources/images/labr_bla.jpg, Black coat
+e E b B = resources/images/labr_bla.jpg, Black coat
+e e B B = resources/images/labr_yel.jpg, Yellow coat
+e e b B = resources/images/labr_yel.jpg, Yellow coat
+e e b b = resources/images/labr_yel.jpg, Yellow coat
+E E b b = resources/images/labr_bro.jpg, Brown coat
+e E b b = resources/images/labr_bro.jpg, Brown coat
+
+
+
+
+[Summer squash colour (dominant epistasis)]
+Info = Summer squash skin colour is white, yellow or green, and these are controlled by two genes A and B. Dominant homozygotes (AABB) are white and recessive homozygotes (aabb) are green. However, as long as a 'B' allele is present, the colour is white. If allele 'B' is absent, then the yellow phenotype emerges when allele 'A' is present. The dominant B allele is epistatic over gene A.
+
+Genes = Gene A, Gene B
+Gene A = a, A
+Gene B = b, B
+
+a=Recessive a allele
+b=Recessive b allele
+A=Dominant A allele
+B=Dominant B allele
+
+A A B B = resources/images/ssq_white.jpg, White summer squash
+a A B B = resources/images/ssq_white.jpg, White summer squash
+A A b B = resources/images/ssq_white.jpg, White summer squash
+a A b B = resources/images/ssq_white.jpg, White summer squash
+a a B B = resources/images/ssq_white.jpg, White summer squash
+a a b B = resources/images/ssq_white.jpg, White summer squash
+A A b b = resources/images/ssq_yellow.jpg, Yellow summer squash
+a A b b = resources/images/ssq_yellow.jpg, Yellow summer squash
+a a b b = resources/images/ssq_green.jpg, Green summer squash
+
+
+
+
+//[Multiple genes]
+
+
+
+
+
+[Mendel's pea flowers (complementation)]
+
+Info = The synthsis of pea flower purple pigment depends on the presence of both a copy of the allele A and the allele B. If either A or B are homozygous recessive, the flower will be white. This mode of inheritance is sometimes known as duplicate recessive epistasis; both genes exert recessive epistasis on each other. It often occurs when a biochemical pathway requires the presence of two different enzymes to function.
+
+Genes = A gene, B gene
+A gene = a, A
+B gene = b, B
+a = Recessive allele a
+A = Dominant allele A
+b = Recessive allele b
+B = Dominant allele B
+
+A A B B = resources/images/peaf_purple.jpg, Purple flower
+a A B B = resources/images/peaf_purple.jpg, Purple flower
+A A b B = resources/images/peaf_purple.jpg, Purple flower
+a A b B = resources/images/peaf_purple.jpg, Purple flower
+a a B B = resources/images/peaf_white.jpg, White flower
+A A b b = resources/images/peaf_white.jpg, White flower
+a A b b = resources/images/peaf_white.jpg, White flower
+a a b B = resources/images/peaf_white.jpg, White flower
+a a b b = resources/images/peaf_white.jpg, White flower
+
+
+
+
+
+
+['Yellow' mouse (Lethal allele)]
+
+Info= The mutation 'Yellow' in mice is a dominant colour allele. When present, the fur colour is lighter than the wild type (recessive homozygote). However, the combination of two 'Yellow' alleles is lethal, and no such individuals are born. Therefore a 2:1 ratio is seen with the heterozygote cross.
+
+Genes=Fur colour gene
+Fur colour gene = Yellow, yellow
+Yellow = The abnormal "Yellow" allele
+yellow = The normal (wild type) fur colour
+Yellow Yellow = Lethal
+Yellow yellow = resources/images/mouse_yel.jpg, "Abnormal yellow mouse"
+yellow yellow = resources/images/mouse_brown.jpg, "Normal (wild type) mouse"
+
+
+[Corn kernel colour and shape (linkage)]
+Info = Corn kernels can be yellow (dominant) or colourless, and also can be smooth (dominant) or wrinkled. These two genes do not segregate independently into gametes; two alleles that are on the same physical chromosome (from the same parent) tend to stay together in the gametes. This is because crossing over in meiosis does not always occur between the two loci.
+
+Genes = Kernel colour, Kernel texture
+Kernel colour = c, C
+Kernel texture = sh, Sh
+
+C=resources/images/pea_yel.gif, Dominant colour allele for yellow colouration
+c=resources/images/grey.gif, Recessive colour allele - does not give any colour
+sh = resources/images/pea_wri.gif,  Recessive allele for shrunken kernel - wrinkled appearance
+Sh = resources/images/pea_rnd.gif,  Dominant allele for normal size kernel - causes smooth appearance
+
+C C Sh Sh = resources/images/corn_yel_smo.jpg, Coloured smooth kernel
+c C Sh Sh = resources/images/corn_yel_smo.jpg, Coloured smooth kernel
+C C sh Sh = resources/images/corn_yel_smo.jpg, Coloured smooth kernel
+c C sh Sh = resources/images/corn_yel_smo.jpg, Coloured smooth kernel
+c c Sh Sh = resources/images/corn_whi_smo.jpg, Colourless smooth kernel
+c c sh Sh = resources/images/corn_whi_smo.jpg, Colourless smooth kernel
+C C sh sh = resources/images/corn_yel_wri.jpg, Coloured shrunken kernel
+c C sh sh = resources/images/corn_yel_wri.jpg, Coloured shrunken kernel
+c c sh sh = resources/images/corn_whi_wri.jpg, Colourless shrunken kernel
+
+Linkage = 0, 0.97
+
+
+

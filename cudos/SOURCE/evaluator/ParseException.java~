@@ -1,0 +1,38 @@
+
+/**
+ * Exception thrown while parsing an expression
+ */
+package evaluator;
+
+class ParseException extends IllegalArgumentException{
+	String parseString="";
+	int position=0;
+	public ParseException(){
+	}
+	public ParseException(String s){
+		super(s);
+	}
+	public String getMessage(){		//add a location indicator
+		String s=super.getMessage();
+		s+='\n'+parseString+'\n';
+		for(int i=0;i<position;i++)s+=' ';
+		s+='^';
+		return s;
+	}
+}
+
+class MathException extends Exception{
+	public Operator[] code;
+	public int location=0;
+	public Stack stack;
+	public MathException(Stack stk, String str){
+		super("Mathematical error: "+str+stk);
+		stack=stk;
+	}
+}
+
+class StackException extends Exception{
+	public StackException(){
+		super("Stack overflow");
+	}
+}

@@ -1,0 +1,25 @@
+[Properties]
+ImagePath=resources/images/
+HighlightColour=green
+HighlightAlpha=0.7
+
+[Typical Cell]
+CELLFIG.gif
+CELLFIGix.gif
+Plasma membrane
+Heterochromatin
+Nucleoplasm
+Nucleolus
+Nuclear pore
+Nuclear membrane
+Smooth endoplasmic reticulum
+Rough endoplasmic reticulum
+Ribosomes
+Centriole
+Cytoskeletal elements
+Golgi apparatus
+Lysosomes
+Mitochondria
+Cytoplasm
+
+[End]

@@ -1,0 +1,34 @@
+
+/**
+ * Title:        <p>
+ * Description:  <p>
+ * Copyright:    Copyright (c) Sanjay Manohar<p>
+ * Company:      CUDOS<p>
+ * @author Sanjay Manohar
+ * @version 1.0
+ */
+package evaluator;
+
+import java.applet.Applet;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Evaluator extends Applet {
+  EvaluatorConsole evaluatorConsole1 = new EvaluatorConsole();
+
+  public Evaluator() {
+    try {
+      jbInit();
+    }
+    catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void jbInit() throws Exception {
+    evaluatorConsole1.setBounds(new Rectangle(4, 4, 269, 249));
+    this.setLayout(null);
+    this.add(evaluatorConsole1, null);
+  }
+
+}

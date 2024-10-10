@@ -1,0 +1,2 @@
+This folder should live directly under WebRoot
+(i.e. in the DocumentBase)

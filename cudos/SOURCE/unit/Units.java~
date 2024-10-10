@@ -1,0 +1,30 @@
+package unit;
+
+import java.util.*;
+
+public class Units{
+	static Vector units;
+	static{
+		units=new Vector();
+		units.addElement(new Unit( "Kilogram",	"kg","Mass"));
+		units.addElement(new Unit( "Metre",	"m", "Length"));
+		units.addElement(new Unit( "Second",	"s", "Time"));
+		units.addElement(new Unit( "Coulomb",	"C", "Charge"));
+		units.addElement(new Unit( "Mole",	"mol", "Quantity"));
+
+		units.addElement(new Unit( "kg m/s^2",	"Newton",	"N", "Force"));
+		units.addElement(new Unit( "mol/m^3", 1E-3,	"Molar",	"M", "Concentration"));
+		units.addElement(new Unit("N/m^2",	"Pascal",	"Pa","Pressure"));
+		units.addElement(new Unit("C/s",	"Ampère",	"A", "Current"));
+		units.addElement(new Unit("N m",	"Joule",	"J", "Energy"));
+		units.addElement(new Unit("J/C",	"Volt",		"V", "Voltage"));
+		units.addElement(new Unit("A/V",	"Ohm",		"O", "Resistance"));
+		units.addElement(new Unit("C/V",	"Farad",	"F", "Capacitance"));
+		units.addElement(new Unit("N/A/m",	"Tesla",	"T", "Magnetic Flux Density"));
+
+		units.addElement(new Unit( "m^3",	"Litre",	"l", "Volume"));
+		units.addElement(new Unit( "J/s",	"Watt",		"W", "Power"));
+
+	}
+	public static Enumeration elements(){return units.elements();}
+}

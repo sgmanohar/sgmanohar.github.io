@@ -1,0 +1,661 @@
+[Properties]
+ImagePath=resources/images/BrainSections/
+
+[Coronal section 1]
+coronal-01.jpg
+coronal-01ix.gif
+Corpus callosum
+Fornix
+Lateral ventricle
+Thalamus
+Caudate nucleus
+Aqueduct
+Periaqueductal grey
+Dentate gyrus
+Cornu ammonis
+Internal capsule
+Cerebellar hemispheres
+Middle cerebellar peduncle
+Medial longitudinal fasciculus
+Lateral lemniscus
+Medial lemniscus
+Pons
+Inferior olivary nucleus
+
+[Coronal section 2]
+coronal-02.jpg
+coronal-02ix.gif
+Corpus callosum
+Lateral ventricle
+Third ventricle
+Internal capsule
+Cerebral peduncles
+Red nucleus
+Putamen
+Substantia nigra
+Optic tract
+Lateral geniculate nucleus
+Caudate nucleus
+Dentate gyrus
+Cornu ammonis
+Fornix
+Thalamus
+Pons
+
+[Coronal section 3]
+coronal-03.jpg
+coronal-03ix.gif
+CorpusCallosum
+LateralVentricle
+ThirdVentricle
+SeptumPellucidum
+InternalCapsule
+Fornix
+AnteriorCommissure
+Putamen
+Globus pallidus
+CaudateNucleus
+OpticTract
+Hippocampus
+DentateGyrus
+MammillaryBody
+Amygdala
+Pons 
+
+[Coronal section 4]
+coronal-04.jpg
+coronal-04ix.gif
+CorpusCallosum
+LateralVentricle
+InternalCapsule
+ExternalCapsule
+Claustrum
+AnteriorCommissure
+CaudateNucleus
+Putamen
+GlobusPallidus
+SeptumPellucidum
+OlfactoryArea
+OpticChiasm
+Amygdala
+PreopticRecess
+Infundibulum
+
+[Coronal section 5]
+coronal-05.jpg
+coronal-05ix.gif
+Corpus callosum
+Lateral ventricle
+Internal capsule
+External capsule
+Claustrum
+Caudate nucleus
+Olfactory tract
+
+[Transverse section 1]
+transverse-01.jpg
+transverse-01ix.gif
+Central canal
+Median septum
+Pyramidal decussation
+Cuneate fascicle
+Gracile fascicle
+Gracile nucleus
+Trigeminal nucleus
+Accessory nucleus
+Central grey
+Corticospinal tract
+Rubrospinal tract
+Spinocerebellar tract
+Tectospinal tract
+Vestibulospinal tract
+
+[Transverse section 2]
+transverse-02.jpg
+transverse-02ix.gif
+Fourth ventricle
+Central grey
+Cuneate nucleus
+Gracile nucleus
+Trigeminal nucleus
+Decussation of the medial lemniscus
+Medullary reticular formation
+Olivocerebellar fibres
+Inferior olivary nucleus
+Dorsal nucleus of vagus nerve
+Hypoglossal nucleus
+Corticospinal tract
+
+[Transverse section 3]
+transverse-03.jpg
+transverse-03ix.gif
+Fourth ventricle
+Reticular formation
+Dorsal raphe
+Medial lemniscus
+Cochlear nerve
+Trigeminal nucleus
+Vestibular nucleus
+Cochlear nucleus
+Hypoglossal nucleus
+Inferior olivary nucleus
+Pontine nuclei
+Inferior cerebellar peduncle
+Middle cerebellar peduncle
+Corticospinal tract
+
+[Transverse section 4]
+transverse-04.jpg
+transverse-04ix.gif
+Fourth ventricle
+Reticular formation
+Raphe
+Medial lemniscus
+Vestibular nerve
+Trigeminal nerve
+Trigeminal nucleus
+Abducens nucleus
+Facial nucleus
+Inferior olivary nucleus
+Corticospinal tract
+Medial longitudinal fasciculus
+
+[Transverse section 5]
+transverse-05.jpg
+transverse-05ix.gif
+Fourth ventricle
+Raphe
+Superior cerebellar peduncle
+Middle cerebellar peduncle
+Vermis
+Cerebellar hemispheres
+Medial lemniscus
+Trigeminal nucleus
+Locus coeruleus
+Corticospinal tract
+Medial longitudinal fasciculus
+
+[Transverse section 6]
+transverse-06.jpg
+transverse-06ix.gif
+Aqueduct
+Inferior colliculus
+Lateral lemniscus
+Medial lemniscus
+Pontine nuclei
+Medial longitudinal fasciculus
+Substantia nigra
+Locus coeruleus
+Rubrospinal tract
+Corticospinal tract
+Tegmentum 
+Tectum
+Periaqueductal grey
+
+[Transverse section 7]
+transverse-07.jpg
+transverse-07ix.gif
+Aqueduct
+Periaqueductal grey 
+Superior colliculus
+Oculomotor nucleus
+Medial geniculate nucleus
+Medial lemniscus
+Red nucleus
+Substantia nigra
+Cerebral peduncle
+Oculomotor nerve
+
+[Transverse section 8]
+transverse-08.jpg
+transverse-08ix.gif
+Aqueduct
+Periaqueductal grey
+Fornix 
+Fimbria
+Dentate gyrus
+Lateral ventricle
+Caudate nucleus
+Pulvinar nucleus
+Lateral geniculate nucleus
+Medial geniculate nucleus
+Substantia nigra
+Red nucleus
+Mammillary body
+Optic tract
+Amygdala
+Cerebral peduncles
+
+[Transverse section 9]
+transverse-09.jpg
+transverse-09ix.gif
+Corpus callosum
+Lateral ventricle
+Third ventricle
+Fornix
+Globus pallidus
+Putamen
+Caudate nucleus
+Dentate gyrus
+Posterior commissure
+Red nucleus
+Medial lemniscus
+Optic tract
+Thalamus
+Hypothalamus
+Mammillary body
+Amygdala
+Cerebral peduncle
+Internal capsule
+
+[Transverse section 10]
+transverse-10.jpg
+transverse-10ix.gif
+Corpus callosum
+Lateral ventricle
+Third ventricle
+Fornix
+Internal capsule
+Putamen
+Globus pallidus
+Caudate nucleus
+Thalamus
+Nucleus accumbens
+Optic tract
+Optic nerve
+Preoptic recess
+Anterior commissure
+Olfactory area
+
+[Transverse section 11]
+transverse-11.jpg
+transverse-11ix.gif
+Corpus callosum
+Anterior commissure
+Lateral ventricle
+Third ventricle
+Fornix
+Internal capsule
+Putamen
+Globus pallidus
+Caudate nucleus
+Nucleus accumbens
+Thalamus
+
+[Transverse section 12]
+transverse-12.jpg
+transverse-12ix.gif
+Corpus callosum
+Lateral ventricle
+Septum pellucidum
+Olfactory fascicle
+Fimbria 
+Internal capsule
+Caudate nucleus
+Putamen
+Thalamus
+
+[Horizontal section 1]
+horizontal-01.jpg
+horizontal-01ix.gif
+Corpus callosum
+Lateral ventricle
+Third ventricle
+Internal capsule
+Claustrum
+External capsule
+Fornix
+Thalamus
+Putamen
+Globus pallidus
+Caudate nucleus
+
+[Horizontal section 2]
+horizontal-02.jpg
+horizontal-02ix.gif
+Corpus callosum
+Lateral ventricle
+Septum pellucidum
+Internal capsule
+Claustrum
+External capsule
+Fimbria
+Putamen
+Caudate nucleus
+Thalamus
+
+[Spinal Cord Section - C3]
+sp-cervical-III.jpg
+sp-cervical-IIIix.gif
+Dorsal median septum
+Central canal
+Ventral median fissure
+Cuneate fascicle
+Gracile fascicle
+Ventral corticospinal tract
+Lateral corticospinal tract
+Rubrospinal tract
+Spinocerebellar tract
+Tectospinal tract
+Vestibulospinal tract
+Lissauer's tract
+Substantia gelatinosa
+Ventral white commissure
+Medial motor nuclei
+Lateral motor nuclei
+Ventrolateral funiculus
+Spinal grey matter
+
+[Spinal Cord Section - T1]
+sp-thoracic-II.jpg
+sp.thoracic-IIix.gif
+Doral median septum
+Ventral median fissure
+Central canal
+Cuneate fascicle
+Gracile fascicle
+Ventral corticospinal tract
+Lateral corticospinal tract
+Rubrospinal tract
+Spinocerebellar tract
+Tectospinal tract
+Vestibulospinal tract
+Lissauer's tract
+Substantia gelatinosa
+Ventral white commissure
+Clarke's column
+Medial motor nuclei
+Lateral motor nuclei
+Intermediolateral (sympathetic) nuclei
+
+[Spinal Cord Section - L2]
+sp-lumbar-I.jpg
+sp-lumbar-Iix.gif
+Dorsal median septum
+Ventral median fissure
+Central canal
+Gracile fascicle
+Corticospinal tract
+Rubrospinal tract
+Spinocerebellar tract
+Reticulospinal tract
+Lissauer's tract
+Substantia gelatinosa
+Medial motor nuclei
+Lateral motor nuclei
+Clarke's column
+Ventral white commissure
+Ventral funiculus
+Ventrolateral funiculus
+Spinal grey matter
+
+[Spinal Cord Section - S4]
+sp-sacral-IV.jpg
+sp-sacral-IVix.gif
+Dorsal median septum
+Ventral median fissure
+Central canal
+Ventral spinal artery
+Gracile fascicle
+Ventral funiculus
+Corticospinal tract
+Lateral funiculus
+Lissauer's tract
+Substantia gelatinosa
+Lateral motor nuclei
+Medial motor nuclei
+Ventral white commissure
+Dorsal grey commissure
+Spinal grey matter
+
+[Sagittal Section - ontological divisions]
+sagittal-01maj.jpg
+sagittal-01majix.gif
+Corpus callosum
+Lateral ventricle
+Interventricular foramen
+Fourth ventricle
+Fornix
+Septum
+Diencephalon
+Mesencephalon (midbrain)
+Metencephalon (pons)
+Myelencephalon (medulla oblongata)
+Metencephalon (cerebellum)
+Cerebral cortex
+
+[Sagittal Section - higher detail]
+sagittal-01min.jpg
+sagittal-01minix.gif
+Cerebral commissures
+Optic chiasm
+Thalamus
+Hypothalamus
+Mammillary body
+Tectum (colliculi)
+Periaqueductal grey
+Tegmentum
+Basal midbrain
+Red nucleus
+Substantia nigra
+Pontine nuclei
+Medial longitudinal fasciculus
+Reticular formation
+Medial lemniscus
+Inferior olivary nucleus
+Corticospinal tract
+Gracile fascicle
+
+[Sagittal Section - Cranial Nerves]
+sagittal-01nerves.jpg
+sagittal-01nervesix.gif
+Trochlear nerve
+Trochlear nucleus
+Abducens nerve
+Abducens nucleus
+Oculomotor fibres
+Oculomotor nucleus
+Facial nerve
+Vestibular nucleus
+Hypoglossal fibres
+Hypoglossal nucleus
+Dorsal nucleus of the vagus nerve
+
+[Parasagittal section]
+sagittal-05.jpg
+sagittal-05ix.gif
+Corpus callosum
+Lateral ventricle
+Caudate nucleus
+Nucleus accumbens
+Internal capsule
+Fornix 
+Anterior commissure
+Optic nerve
+Thalamus
+Substantia nigra 
+Cerebral peduncle
+Corticospinal tract
+Medial lemniscus
+Lateral lemniscus
+Superior cerebellar peduncle
+Dentate nucleus
+Inferior olivary nucleus
+
+[Sagittal MRI image 1]
+MRI-sag-01.jpg
+MRI-sag-01ix.gif
+Precentral gyrus
+Central sulcus
+Postcentral gyrus
+Temporal radiation
+Cerebellar hemisphere
+Sylvian fissure
+
+[Sagittal MRI image 2]
+MRI-sag-02.jpg
+MRI-sag-02ix.gif
+Lateral ventricle
+Cerebral white matter
+Cerebral cortex
+Hippocampus
+Cerebellar white matter
+Cerebellar cortex
+
+[Sagittal MRI image 3]
+MRI-sag-03.jpg
+MRI-sag-03ix.gif
+Corpus callosum
+Lateral ventricle
+Thalamus
+Caudate nucleus
+Optic tract
+Pons
+Cerebellar peduncle
+Visual cortex
+Calcarine sulcus
+Central sulcus
+Cingulate gyrus
+Vertebral artery
+Basal cistern
+Subarachnoid space
+
+[Sagittal MRI image 4]
+MRI-sag-04.jpg
+MRI-sag-04ix.gif
+Corpus callosum
+Septum pellicidum
+Fornix
+Thalamus
+Pineal body
+Anterior commissure
+Optic chiasm 
+Cerebral aqueduct
+Superior colliculus
+Inferior colliculus
+Fourth ventricle
+Hypothalamus
+Midbrain
+Pons
+Medulla
+Cerebellar tonsil
+Cisterna magna
+Basilar artery
+
+[Coronal MRI image 1]
+MRI-cor-01.jpg
+MRI-cor-01ix.gif
+Cerebral cortex
+Cerebral white matter
+Longitudinal fissure
+Optic nerve
+
+[Coronal MRI image 2]
+MRI-cor-02.jpg
+MRI-cor-02ix.gif
+Corpus callosum
+Septum pellucidum
+Lateral ventricle
+Longitudinal fissure
+Caudate nucleus
+Putamen
+Optic chiasm
+Pituitary gland
+Anterior communicating artery
+Internal capsule
+Corona radiata
+
+[Coronal MRI image 3]
+MRI-cor-03.jpg
+MRI-cor-03ix.gif
+Corpus callosum
+Lateral ventricle
+Septum pellucidum
+Fourth ventricle
+Caudate nucleus
+Putamen
+Globus pallidus
+Insula
+Amygdala
+Optic tract
+
+[Coronal MRI image 4]
+MRI-cor-04.jpg
+MRI-cor-04ix.gif
+Corpus callosum
+Lateral ventricle
+Thalamus
+Third ventricle
+Caudate nucleus
+Putamen
+Globus pallidus
+Internal capsule
+Hippocampus
+Substantia nigra
+Internal auditory meatus
+Vestibule and semicircular canals
+Parahippocampal gyrus
+Trochlear nerve
+Pons
+
+[Coronal MRI image 5]
+MRI-cor-05.jpg
+MRI-cor-05ix.gif
+Corpus callosum
+Lateral ventricle
+Falx cerebri
+Cingulate gyrus
+Corona radiata
+Thalamus
+Tentorium cerebelli
+Hippocampus
+Midbrain
+Pons
+Medulla oblongata
+Spinal cord
+Vertebral arteries
+
+[Coronal MRI image 6]
+MRI-cor-06.jpg
+MRI-cor-06ix.gif
+Corpus callosum
+Lateral ventricle
+Falx cerebri
+Cingulate gyrus
+Fornix
+Corona radiata
+Pineal gland
+Tentorium cerebelli
+Cerebellar peduncle
+Cerebellar hemisphere
+Fourth ventricle
+Thalamus
+Superior colliculus
+Inferior colliculus
+Foramen magnum
+
+[Coronal MRI image 7]
+MRI-cor-07.jpg
+MRI-cor-07ix.gif
+Corpus callosum
+Lateral ventricle
+Falx cerebri
+Cingulate gyrus
+Fornix
+Tentorium cerebelli
+Caudate nucleus
+Nodule of cerebellum
+Cisterna magna
+
+[Coronal MRI image 8]
+MRI-cor-08.jpg
+MRI-cor-08ix.gif
+Falx cerebri
+Superior sagittal sinus
+Calcarine sulcus
+Lateral ventricle
+Straight sinus
+Vermis of cerebellum
+Cerebellar hemisphere
+
+[End]

@@ -1,0 +1,28 @@
+package com.cudos.common;
+
+import evaluator.Expression;
+import java.awt.*;
+/**
+ * A graphing component to represent an equation
+ */
+
+public class FormulaGraphPanel extends GraphPaper {
+
+	public FormulaGraphPanel() {
+	}
+
+	/** The expression to graph */
+	Expression yExpr;
+
+
+	public void paint(Graphics g){
+		super.paint(g);
+		for(int xs=0;xs<getWidth();xs++){
+			double xg = xG(xs);
+			yExpr.
+			double yg = yExpr.eval();
+		}
+	}
+
+
+}

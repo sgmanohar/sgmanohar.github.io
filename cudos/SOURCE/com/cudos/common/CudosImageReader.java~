@@ -1,0 +1,50 @@
+
+/**
+ * Title:        Cudos<p>
+ * Description:  Cambridge University Distributed Opportunity Systems
+ * Roger Carpenter<p>
+ * Copyright:    Copyright (c) Sanjay Manohar<p>
+ * Company:      Cambridge University<p>
+ * @author Sanjay Manohar
+ * @version 1.0
+ */
+package com.cudos.common;
+import java.net.*;
+import java.io.*;
+
+public class CudosImageReader {
+	BufferedReader b;
+	public CudosImageReader(URL base,String f) {
+		try{
+			URL u=new URL(base,f);
+			InputStream is=u.openStream();
+			InputStreamReader d=new InputStreamReader(is);
+			b=new BufferedReader(d);
+		}catch(Exception e){e.printStackTrace();}
+	}
+	public  String[] getStringsInSection(String section){
+		boolean found=false;int count=0;
+		String curr;
+		try{
+			while(b.ready()){
+				curr=b.readLine();
+				if(found){
+					if(curr.charAt(0)=='[') break;
+					if(curr!="")count++;
+				}
+				if(curr=="["+section+"]"){
+					found=true;
+					b.mark(1000);
+				}
+			}
+			b.reset();
+			String[] txts=new String[count];
+			for(int i=0;i<count;i++){
+				txts[i]=b.readLine();
+			}
+			return txts;
+		}catch(Exception e){e.printStackTrace();}
+		return null;
+	}
+
+}

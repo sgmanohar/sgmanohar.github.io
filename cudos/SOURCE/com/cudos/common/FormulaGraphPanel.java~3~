@@ -1,0 +1,53 @@
+package com.cudos.common;
+
+import evaluator.*;
+import java.awt.*;
+
+/**
+ * A graphing component to represent an equation
+ */
+
+public class FormulaGraphPanel extends GraphPaper {
+
+	public FormulaGraphPanel() {
+	}
+
+	/** The expression to graph */
+	private Expression yExpr;
+
+	/** The colour for the graph line */
+	private Color lineColour = Color.yellow;
+
+	public void paint(Graphics g){
+		super.paint(g);
+		g.setColor(lineColour);
+		int ox,oy;
+		for(int xs=0;xs<getWidth();xs++){
+			//calculate the point
+			double xg = xG(xs);
+			Variable.set("x",xg);
+			try{
+				double yg = yExpr.value();
+			}catch(MathException e){
+
+			}
+			int ys = yS(yg);
+
+			//draw the line
+			if(xs>0)
+				g.drawLine(ox,oy,xs,ys);
+			ox=xs; oy=ys;
+		}
+	}
+	public Color getLineColour() {
+		return lineColour;
+	}
+	public void setLineColour(Color lineColour) {
+		this.lineColour = lineColour;
+	}
+
+	public void setExpression(String e){
+		yExpr = new Expression(e);
+	}
+
+}

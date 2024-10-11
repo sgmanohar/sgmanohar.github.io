@@ -10,12 +10,31 @@
  */
 package com.neurolab;
 
-import java.awt.*;
-import com.neurolab.common.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
+
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.Timer;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+
+import com.neurolab.common.JPanel0;
+import com.neurolab.common.JRadioButton0;
+import com.neurolab.common.Label3D;
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.Oscilloscope;
+import com.neurolab.common.ReturnButton;
 
 public class EyeMovements extends NeurolabExhibit {
  public String getExhibitName() {
@@ -120,7 +139,7 @@ public class EyeMovements extends NeurolabExhibit {
 					Y=nystag(dy*=0.97,8+rand.nextInt()%15);
 					break;
 				case 1:  // Optokinetic
-					X=(t>20)&&(t<300)?10:0;
+					X=(t>20)&&(t<170)?10:0;
 					dy=(12*dy+X)/15;
 					Y=nystag(dy,8+rand.nextInt()%15);
 					break;
@@ -139,7 +158,7 @@ public class EyeMovements extends NeurolabExhibit {
 					break;
 				case 4:  // Saccades
 					if(rand.nextDouble()>0.9){
-						X=-30+5*rand.nextInt()%7;	// -30 to 0 step 5
+						X=-10+5*(rand.nextInt()%5);	// -30 to 0 step 5
 						ct=5+rand.nextInt()%5;	//latency
 					}
 					if(ct==0){

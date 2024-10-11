@@ -1,12 +1,12 @@
 package com.neurolab.common;
 
-import javax.swing.JApplet;
-
-import javax.swing.*;
-import java.applet.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Image;
 import java.net.URL;
+
+import javax.swing.JApplet;
+import javax.swing.JFrame;
 
 /**
  * Added for mac compatibility to show in frame.
@@ -25,7 +25,9 @@ public class ExhibitFrameApplet extends JApplet implements HoldsExhibit{
 
 		frame = new JFrame();
 		frame.getContentPane().setLayout(new BorderLayout());
-		frame.setDefaultCloseOperation(3);
+		try {
+		  frame.setDefaultCloseOperation(3);
+		}catch (SecurityException ex) {}
 
 
 
@@ -33,6 +35,8 @@ public class ExhibitFrameApplet extends JApplet implements HoldsExhibit{
 		if(exhname==null){
 			exhname="ExhibitChooser";
 			ReturnButton.createOperational=true;
+		}else{
+		  ReturnButton.createOperational=false;
 		}
 		try{
 			Class newclass=Class.forName("com.neurolab."+exhname);
@@ -78,6 +82,7 @@ public class ExhibitFrameApplet extends JApplet implements HoldsExhibit{
 	URL codeBase=null;
 	public URL getURL(String filename) {
 		URL url = null;
+		/*// this version doesnt seem to work from within a JAR!
 		if (codeBase == null) {
 			codeBase = getCodeBase();
 		}
@@ -88,6 +93,13 @@ public class ExhibitFrameApplet extends JApplet implements HoldsExhibit{
 			return null;
 		}
 		return url;
+		*/
+		try {
+      return Class.forName("Neurolab").getResource(filename);
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+      throw new RuntimeException("Can't load resources - class Neurolab in default package not found.");
+    }
 	}
 
 	public ExhibitFrameApplet() {

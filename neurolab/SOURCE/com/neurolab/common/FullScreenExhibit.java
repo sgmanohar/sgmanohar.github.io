@@ -14,7 +14,7 @@ import javax.swing.*;
 import java.awt.event.*;
 
 
-public class FullScreenExhibit extends NeurolabExhibit {
+public abstract class FullScreenExhibit extends NeurolabExhibit {
 
   public FullScreenExhibit() {
   }

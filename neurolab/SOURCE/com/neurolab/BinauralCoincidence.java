@@ -47,6 +47,7 @@ public class BinauralCoincidence extends NeurolabExhibit{
 		boolean initing;
 		Vector collisions;	// vector of Boolean[2]
 		int ringstroke;
+		static final int PROPAGATION_RATE=25;
 		public WorldPanel(){
 			super();
 			setBG(this);
@@ -116,7 +117,7 @@ public class BinauralCoincidence extends NeurolabExhibit{
 			}	// erase
 			g.setColor(Color.red);
 			for(int i=0;i<radii.size();i++){
-				r[i]+=40;	//increment copy of value
+				r[i]+=PROPAGATION_RATE;	//increment copy of value
 				g.drawOval((int)c[i].getX()-r[i]/2,(int)c[i].getY()-r[i]/2,r[i],r[i]);
 				radii.set(i,new Integer(r[i]));
 				for(int j=0;j<2;j++)
@@ -145,14 +146,15 @@ public class BinauralCoincidence extends NeurolabExhibit{
 		}
 	}
 	public class EarPanel extends JPanel0 implements ActionListener{
+		public static final int CELL_TIMER_MS = 250;
 		Point2D p0[]=new Point2D[2],p1[]=new Point2D[2];
 		final int gutter=5;
-		final int numcells=10;
+		final int NUMCELLS=18;
 		boolean initing=true;
-		boolean[] celllit=new boolean[numcells]; // is the cell lit up?
+		boolean[] celllit=new boolean[NUMCELLS]; // is the cell lit up?
 		int[] earlit=new int[2];	// boolean, effectively, is the ear lit up?
 		Vector[] ap=new Vector[2];	// list of action potentials in each direction
-		Timer timer=new Timer(250,this);
+		Timer timer=new Timer(CELL_TIMER_MS,this);
 		int thick=5;
 		public EarPanel(){
 			ap[0]=new Vector();
@@ -176,7 +178,7 @@ public class BinauralCoincidence extends NeurolabExhibit{
 									 (int)p1[i].getX(), (int)p1[i].getY() );
 			}
 			Point2D p;
-			for(int i=0;i<numcells;i++){
+			for(int i=0;i<NUMCELLS;i++){
 				paintcell(g,i);
 			}
 		}
@@ -187,7 +189,7 @@ public class BinauralCoincidence extends NeurolabExhibit{
 		}
 		public void paintcell(Graphics g,int i){
 			g.setColor(celllit[i]?Color.red:Color.black);
-			double cx=p1[1].getX()+(p1[0].getX()-p1[1].getX())*(i+1)/(numcells+1);
+			double cx=p1[1].getX()+(p1[0].getX()-p1[1].getX())*(i+1)/(NUMCELLS+1);
 			g.fillOval((int)cx-10,60,20,20);
 			g.drawLine((int)cx,60,(int)cx,10);
 		}
@@ -200,7 +202,7 @@ public class BinauralCoincidence extends NeurolabExhibit{
 		public void clearneurones(){
 			Graphics g=getGraphics();
 			setStrokeThickness(g,thick);
-			for(int i=0;i<numcells;i++){
+			for(int i=0;i<NUMCELLS;i++){
 				celllit[i]=false;
 				paintcell(g,i);
 			}
@@ -217,7 +219,7 @@ public class BinauralCoincidence extends NeurolabExhibit{
 					g.setColor(Color.black);
 					if(p>0)drawAP(g,i,p);		//undraw if not starting
 					p++;
-					if(p<numcells+2){
+					if(p<NUMCELLS+2){
 						g.setColor(Color.red);
 						drawAP(g,i,p);			//redraw
 						ap[i].set(ap[i].indexOf(o),new Integer(p));
@@ -225,15 +227,17 @@ public class BinauralCoincidence extends NeurolabExhibit{
 					}else ap[i].remove(o);
 				}
 			}
-			if(numaps==0)timer.stop();	// if no more
+			if(numaps==0) {
+			  //timer.stop();	// if no more
+			}
 			else{				//collision check:
 				int q;
 				for(Enumeration e=ap[0].elements();e.hasMoreElements();){
 					p=((Integer)e.nextElement()).intValue();
 					for(Enumeration f=ap[1].elements();f.hasMoreElements();){
 						q=((Integer)f.nextElement()).intValue();
-						if((p==numcells-q)||(p==numcells-q+1)){
-							if((p>0)&&(p<numcells+1)){
+						if((p==NUMCELLS-q)||(p==NUMCELLS-q+1)){
+							if((p>0)&&(p<NUMCELLS+1)){
 								celllit[p-1]=true;
 								paintcell(g,p-1);
 							}
@@ -243,7 +247,7 @@ public class BinauralCoincidence extends NeurolabExhibit{
 			}
 		}
 		public void drawAP(Graphics g, int i,int pos){
-			double dx=(1-2*i)*(p1[0].getX()-p1[1].getX())/(numcells+1);
+			double dx=(1-2*i)*(p1[0].getX()-p1[1].getX())/(NUMCELLS+1);
 			double cx=p1[1-i].getX()+dx*(pos-1);
 			if(dx<0){cx+=dx;dx=Math.abs(dx);}	//switch left&right points if reversed
 			g.drawLine((int)cx, (i==0)?20:40, (int)(cx+dx), (i==0)?20:40);

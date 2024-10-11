@@ -10,10 +10,14 @@
  */
 package com.neurolab.common;
 
-import javax.swing.*;
-import java.awt.event.*;
-import javax.swing.event.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Polygon;
+import java.awt.SystemColor;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JPanel;
+import javax.swing.event.MouseInputAdapter;
 
 public class AngleControl extends JPanel {
 
@@ -52,17 +56,30 @@ public class AngleControl extends JPanel {
 	public int getMinimum(){return minimum;}
 	public void setMinimum(int m){minimum=m;}
 
-	int oldx=0;
+	int oldx=0, oldy=0;
+	public boolean mouseHorizontalMode = false; // use rotational mode 
 	public AngleControl() {
           this.setBackground(NeurolabExhibit.systemGray);
+         
 		MouseInputAdapter m=new MouseInputAdapter(){
+		  
 			public void mousePressed(MouseEvent e){
-				oldx=e.getX();
+				oldx=e.getX(); oldy=e.getY();
 			}
 			public void mouseDragged(MouseEvent e){
-				if(oldx!=e.getX()){
-					setValue(value+e.getX()-oldx);
-					oldx=e.getX();
+				if(oldx!=e.getX() || oldy!=e.getY()){
+				  if(mouseHorizontalMode) {
+				    setValue(value+e.getX()-oldx);
+				  }else { // calc rotation
+				    int cx=getWidth()/2, cy=getHeight()/2,
+				        x1=oldx-cx, y1=oldy-cy, x2=e.getX()-cx, y2=e.getY()-cy; // coords rel to centre
+				    // cos theta = ( r1 dot r2 ) / ( |r1| |r2| )
+				    double dt = Math.acos( (x1*x2+y1*y2)/Math.sqrt(x1*x1+y1*y1)/Math.sqrt(x2*x2+y2*y2) ) ;
+				    int sign = (x2-x1)*y1-(y2-y1)*x1; 
+				    if(sign!=0) sign=-sign/Math.abs(sign);
+				    setValue(value+sign*(int)(180*dt/Math.PI));
+				  }
+					oldx=e.getX();oldy=e.getY();
 				}
 			}
 		};

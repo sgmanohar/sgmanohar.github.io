@@ -17,41 +17,45 @@
 */
 package com.neurolab.common;
 
-import java.lang.reflect.Array;
-
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.Line;
 import javax.sound.sampled.Mixer;
 
-public class CustomSound extends Object{
+public class CustomSound16 extends Object{
 	private byte[] pBuffer;
 	private int length;
 	private Clip clp;
 	private Mixer mix;
 	private boolean silent=false;
-	public CustomSound(byte[] p){
+	public CustomSound16(double[] p){
     mix=AudioSystem.getMixer(AudioSystem.getMixerInfo()[0]);
 		open(p);
 	}
 	int loops=1;
-	public void open(byte[] p){
-		pBuffer=new byte[loops*p.length];
+	/** this version takes a signed double from -1 to +1 */
+	public void open(double[] p){
+		pBuffer=new byte[loops*p.length*2];
 		for(int i=0;i<p.length;i++){
-			byte value=(byte)((int)p[i]);
-			for(int j=0;j<loops;j++) pBuffer[j*p.length+i]=value;
+		  int x = (int)(Math.max(-1,Math.min(1,p[i]))*32767); 
+			byte lo=(byte)((int)(x & 0xff)),
+			     hi=(byte)((int)( (x>>8) & 0xff ));
+			for(int j=0;j<loops;j++) {
+			  pBuffer[j*p.length*2+i*2]   = lo;
+        pBuffer[j*p.length*2+i*2+1] = hi; // little-endian 16bit
+			}
 		}
 		reopen();
 	}
 	void reopen() { // call clip.open if needed
-	   length=Array.getLength(pBuffer);
+	   length=pBuffer.length;
 	    try {
 	      if(clp==null || !clp.isOpen()) {
 	        clp=(Clip)mix.getLine(mix.getSourceLineInfo(
 	            new Line.Info(Class.forName("javax.sound.sampled.Clip")) )[0]);
 	      }
-	      AudioFormat af=new AudioFormat(44100f,8,1,  false /* SIGNED */ ,false);
+	      AudioFormat af=new AudioFormat(44100f,16,1,  true /* SIGNED */ ,false);
 	      if(clp.isOpen())clp.close();
 	      clp.open(af,pBuffer,0,length);
 	    } catch (Exception e) {
@@ -90,43 +94,3 @@ public class CustomSound extends Object{
 		super.finalize();
 	}
 }
-
-/*example of ActionPotentials
-	ActionPotentials ap=new ActionPotentials();
-	JSlider s;
-	getMainContainer().add(s=new JSlider(JSlider.HORIZONTAL,0,20,1));
-	s.addChangeListener(this);
-	ap.timer.start();
-	public void stateChanged(ChangeEvent e){
-		ap.setRate(((JSlider)e.getSource()).getValue());
-	}
-*/
-/*
-class ActionPotentials extends Object implements ActionListener{
-	private CustomSound apsound;
-	public javax.swing.Timer timer;
-	private static byte[] buffer={(byte)127,(byte)127,(byte)127,(byte)127,(byte)127,(byte)127};
-	public ActionPotentials(){
-		timer=new javax.swing.Timer(1000,this);
-		timer.setInitialDelay(0);
-		timer.stop();	// initialise timer
-		apsound=new CustomSound(buffer);
-	}
-	public void setRate(float newfreq){
-		if(newfreq==0)timer.stop();
-		else {
-			timer.setDelay((int)(1000./newfreq));
-			timer.start();
-		}
-	}
-	public float getRate(){
-		int delay=timer.getDelay();
-		if(delay!=0)
-			return 1000/delay;
-		else return 1000;
-	}
-	public void actionPerformed(ActionEvent e){
-		apsound.playOnce();
-	}
-}
-*/

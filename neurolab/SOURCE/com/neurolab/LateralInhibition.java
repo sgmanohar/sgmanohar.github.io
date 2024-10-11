@@ -2,12 +2,42 @@
 
 package com.neurolab;
 
-import java.awt.*;
-import javax.swing.*;
-import com.neurolab.common.*;
-import javax.swing.border.*;
-import java.awt.event.*;
-import java.awt.image.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.image.BufferedImage;
+import java.awt.image.ConvolveOp;
+import java.awt.image.ImageObserver;
+import java.awt.image.Kernel;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JSlider;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.ReturnButton;
 
 public class LateralInhibition extends NeurolabExhibit implements ImageObserver{
 	BorderLayout borderLayout1 = new BorderLayout();
@@ -154,8 +184,10 @@ public class LateralInhibition extends NeurolabExhibit implements ImageObserver{
 	});
 	imagegraphic.addMouseListener(new MouseAdapter(){
 		public void mouseClicked(MouseEvent e){
-			imageindex = ++imageindex % imagename.length;
-			loadimage();
+		  if(e.getClickCount()>1) {
+  			imageindex = ++imageindex % imagename.length;
+  			loadimage();
+		  }
 		}
 	});
 	loadimage();
@@ -364,6 +396,8 @@ public class LateralInhibition extends NeurolabExhibit implements ImageObserver{
 		jPanel11.add(jButton8, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0
 						,GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 4, 0), 0, 0));
 		jPanel7.add(jPanel12, BorderLayout.CENTER);
+		((BorderLayout)jPanel7.getLayout()).setHgap(10);
+		setBG(jPanel7);
 		jPanel12.add(singleline, null);
 		jPanel12.add(edge, null);
 		jPanel12.add(pairoflines, null);
@@ -383,7 +417,7 @@ public class LateralInhibition extends NeurolabExhibit implements ImageObserver{
 	}
 
 	double[] kernelB=new double[]{1,2,4,6,7,6,4,2,1};
-	double[] kernelL=new double[]{-1,-2,-4,-6,-7,40,-7,-6,-4,-2,-1};
+	double[] kernelL=new double[]{-1,-2,-4,-6,-7,41,-7,-6,-4,-2,-1};
 	int RK=4;
 	double PV=7;
 	double gauss(double a){return Math.exp(-a*a);}
@@ -445,7 +479,7 @@ public class LateralInhibition extends NeurolabExhibit implements ImageObserver{
 	String s=e.getActionCommand();
 	switch(commandInt(s)){
 		case BLUR:
-			linedata=convolve(linedata,kernelB,0,1);
+			linedata=convolve(linedata,kernelB,0,0.8*completeness.getValue()/100.);
 			break;
 		case LATIN:
 			linedata=convolve(linedata,kernelL,20,completeness.getValue()/100.);
@@ -499,5 +533,7 @@ public class LateralInhibition extends NeurolabExhibit implements ImageObserver{
 	setupLinedata();
 	linegraphic.repaint();
 	}
+
+  public void close(){}
 
 }

@@ -10,11 +10,32 @@
  */
 package com.neurolab;
 
-import com.neurolab.common.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextPane;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+
+import com.neurolab.common.JPanel0;
+import com.neurolab.common.JRadioButton0;
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.ReturnButton;
 
 public class BlindSpot extends NeurolabExhibit {
 	JPanel jPanel1 = new JPanel0();
@@ -57,16 +78,17 @@ public class BlindSpot extends NeurolabExhibit {
 			super.paint(g);
 			if(patternbutton.isSelected()){
 				g.setColor(Color.green);
-				for(int i=0;i<4;i++)
-					g.fillRect(0,10+i*52,getWidth(),20);
-				for(int i=0;i<11;i++)
-					g.fillRect(20+i*52,0,20,getHeight());
+				for(int i=0;i<10;i++)
+					g.fillRect(0,10+i*32,getWidth(),10);
+				for(int i=0;i<20;i++)
+					g.fillRect(20+i*32,0,10,getHeight());
 			}
 			g.setColor(Color.red);
-			g.fillOval(reye.isSelected()?40:getWidth()-40,50,8,8);
+			g.fillOval(reye.isSelected()?40:getWidth()-40,YCOORD_FIX,8,8);
 		}
 
 	};
+	int YCOORD_FIX = 100;
 
 	static final String commentString="Using one eye only, fixate the red spot, and move the mouse in the black field. When the cursor falls in the blind spot, it will disappear: click with the mouse to mark its boundary. Later, drag the icons into the blind spot to see how they look, or call up the background pattern.";
 
@@ -242,5 +264,5 @@ public class BlindSpot extends NeurolabExhibit {
 		dropsrc=null;
 	}
 	}
-
+public void close() {}
 }

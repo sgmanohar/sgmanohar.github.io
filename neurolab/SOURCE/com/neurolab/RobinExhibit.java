@@ -5,14 +5,63 @@ package com.neurolab;
  */
 
 
-import javax.swing.*;
-import java.awt.image.*;
-import com.neurolab.common.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.border.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.image.FilteredImageSource;
+import java.awt.image.PixelGrabber;
+import java.awt.image.RGBImageFilter;
+
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.ComboBoxUI;
+import javax.swing.plaf.basic.BasicComboBoxRenderer;
+
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.Spacer;
 
 
+
+/**
+* This code was edited or generated using CloudGarden's Jigloo
+* SWT/Swing GUI Builder, which is free for non-commercial
+* use. If Jigloo is being used commercially (ie, by a corporation,
+* company or business for any purpose whatever) then you
+* should purchase a license for each developer using Jigloo.
+* Please visit www.cloudgarden.com for details.
+* Use of Jigloo implies acceptance of these licensing terms.
+* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
+* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
+* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
+*/
 public abstract class RobinExhibit extends NeurolabExhibit{
 	public abstract int getNumComponents();
 	protected abstract Dimension getImageDimension();
@@ -46,9 +95,6 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 		noarea = false;
 
 		// make flexible look & feel
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception e) { }
 
 		createComponents();
 	}
@@ -64,7 +110,7 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 	public JComboBox whichbit;
 
 	private GridBagLayout mainLayout,chkbxLayout;
-	private GridBagConstraints mainGbConstraints,chkbxGbConstraints;
+	public  GridBagConstraints mainGbConstraints,chkbxGbConstraints;
 
 	public JRadioButton buttonchoice[];
 	private ButtonGroup buttonset;
@@ -72,7 +118,13 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 	private JCheckBox testme;
 
 	private Container maincontainer;
-
+	JScrollPane textscrollbox=new JScrollPane();
+	BasicComboBoxRenderer myrenderer = new BasicComboBoxRenderer() {
+	   public void setForeground(Color c) {
+	     //if(this!=null && whichbit!=null && whichbit.isEnabled()) super.setForeground(c);
+	   };
+	};
+	
 //Create components
 
 	public void createComponents(){
@@ -110,18 +162,24 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 			addchkboxComponent( picgraphic, 0, 0, 1, 1);
 
 		// Make ComboBox
+			String[] htmlBrainStrings=new String[brainStrings.length];
+			for(int i=0;i<brainStrings.length;i++)htmlBrainStrings[i]="<HTML>"+brainStrings[i];
 		whichbit = new JComboBox(brainStrings);
 		//whichbit.setBackground(systemGray); looks better as white
-		whichbit.setMaximumRowCount(5);
+		//whichbit.setMaximumRowCount(5);
 		whichbit.setLightWeightPopupEnabled(false); // the key thing!!!!
 		whichbit.addItemListener( handler );
-
+		whichbit.setPreferredSize(new Dimension(200, whichbit.getPreferredSize().height));
+		whichbit.setRenderer(myrenderer);
+		
+		
 		// Make textbox
 		textbox = new TextPanel();
-		textbox.setBorder(etched);
+		textbox.setBorder(new CompoundBorder(etched, new EmptyBorder(3,3,3,3)));
 		textbox.setBackground(systemGray);
 		textbox.n =  no_components; //set as end (17th == 16 including number 0) thus initially in 'choose an area'
-
+		textscrollbox.getViewport().setView(textbox);
+		
 		// Make testme
 		testme = new JCheckBox ("Test Me");
 		testme.addItemListener( handler );
@@ -131,7 +189,7 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 					returnbutton = new JButton("Return");
 		returnbutton.setBackground(systemGray);
 		returnbutton.addActionListener( handler );
-
+		returnbutton.setDoubleBuffered(true);
 
 // add components to maincontainer
 
@@ -142,13 +200,13 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 		mainGbConstraints = new GridBagConstraints();
 
 		//add the combobox
-		mainGbConstraints.fill=GridBagConstraints.NONE;
-		addMainComponent( whichbit, 2, 2, 5, 1, 0, 20);
+		mainGbConstraints.fill=GridBagConstraints.BOTH;
+		addMainComponent( whichbit, 2, 3, 3, 1, 0, 20);
 
 		//add the textbox
 		mainGbConstraints.fill=GridBagConstraints.BOTH;
 		//textbox.setSize(100,200);
-		addMainComponent( textbox, 4, 3, 3, 1, 0, 20);
+		addMainComponent( textscrollbox, 4, 3, 3, 1, 0, 20);
 
 		//add the picturebox
 		mainGbConstraints.fill=GridBagConstraints.BOTH;
@@ -189,8 +247,14 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 		mainGbConstraints.fill = GridBagConstraints.BOTH;
 		addMainComponent( new Spacer (40,30), 7, 4, 1, 1, 0, 0);
 
-	} // end createcomponents()
+//		((JTextComponent)whichbit.getEditor().getEditorComponent()).setDisabledTextColor(Color.black);
+//    ComboBoxUIDecorator cuid=new ComboBoxUIDecorator((ComboBoxUI)UIManager.getUI(whichbit));
+//    whichbit.setUI(cuid);
+//		whichbit.addMouseListener(new MouseAdapter() { public void mouseClicked(MouseEvent e) {
+//		  e.consume(); 
+//		}});
 
+	} // end createcomponents()
 
 	public String getAppletInfo()
 	{
@@ -201,7 +265,7 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 //******************************************
 // addMainComponent for gridbag stuff
 //******************************************
-		 private void addMainComponent( Component c,
+		 public  void addMainComponent( Component c,
 				int row, int column, int width, int height,int weightx, int weighty )
 		 {
 				// set gridx and gridy
@@ -248,22 +312,21 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 	public class PicturePanel extends JPanel{
 		public PicturePanel() {
 			addMouseListener(new MouseClickHandler());
+			addMouseMotionListener(new MouseMotionHandler());
 		}
 		boolean painting=false;
 		public void paint(Graphics g){
+		  painting=true;
 			super.paint(g);
 			int i = index;
 
-			if (image_exists[i] == true) {
-				g.drawImage(picture[i],0,0,dimension.width, dimension.height,this);
-			} else {
+			if (!image_exists[i]) {
 				picture[i] = createImage(new FilteredImageSource(picture_base.getSource(),
 						new RedBlueSwapFilter(i)));
 				image_exists[i] = true;
 				try{Thread.sleep(100);}catch(Exception ex){ex.printStackTrace();}
-				g.drawImage(picture[i],0,0,dimension.width, dimension.height,this);
-
 			}
+      g.drawImage(picture[i],0,0,this);
 			painting=false;
 		}
 	}//end PicturePanel class
@@ -307,7 +370,7 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 						whichbit.setSelectedIndex(0);
 					}
 					ignore = false;
-					textbox.n = no_components;
+					textbox.n = no_components-1;
 					index = no_components;
 
 					picturebox.repaint();
@@ -337,7 +400,7 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 				if (whichbit.getSelectedIndex() == question[questionumber]){
 					whichbit.hidePopup();
 					nextQuestion(true);
-				} else {
+				} else { // show correct answer
 					ignore = true;
 					whichbit.hidePopup();
 					whichbit.setSelectedIndex(question[questionumber]);
@@ -357,14 +420,22 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 //*************************************
 
 	private class MouseClickHandler extends MouseAdapter {
+    boolean         mousedown = false;
+    public void mousePressed(MouseEvent e){
+      mousedown = true;
+    }
+    public void mouseReleased(MouseEvent e){
+      if(mousedown){
+        mouseClicked(e);
+        mousedown = false;
+      }
+    }
 
 		private boolean onceover = false;
-		public void mouseReleased(MouseEvent e){
-			doEvent(e);
-		}
+
 
 		public void mouseClicked(MouseEvent e)	{
-			//doEvent(e);
+			doEvent(e);
 		}
 		private void doEvent(MouseEvent e){
 			if (noarea == false){
@@ -375,16 +446,14 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 					onceover = true;
 				}else onceover = false;
 
-				int[] pixels = new int[1];
-
-				PixelGrabber pg = new PixelGrabber(picture_base, e.getX(), e.getY(), 1, 1, pixels, 0, 2);
-
-				try {
-					pg.grabPixels();
-				} catch (InterruptedException d) {System.out.println("interrupted waiting for pixels!");	    return;	}
+        int pixel;
+        try {
+          pixel = getPixelValueAt(e.getPoint());
+        }catch(InterruptedException x) {return;}
+        
 
 				for (int n=0;n<no_components;n++){
-					if (pixels[0] == (0xffff0000 - (n * 0x10000)) ){
+					if (pixel == (0xffff0000 - (n * 0x10000)) ){
 
 						if (whichbit.getSelectedIndex()!=n || onceover == true ){ //if not clicking on area that has already been selected
 							if (testmode == true){
@@ -395,6 +464,7 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 								//if (textbox.n==no_components) {textbox.n=0; textbox.update();}
 								//index=n;
 								//picturebox.repaint();
+							  if(n==0) whichbit.setSelectedIndex(1); // this triggers a change event on the first click of item 0
 								whichbit.setSelectedIndex(n); //make it selected!
 							}
 
@@ -413,11 +483,28 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 		}
 
 	} //end mouseclickhandler
+	
 
-
+	
+	/**
+	 * Set the mouse pointer based on whether any regions highlight.
+	 */
+  class MouseMotionHandler extends MouseMotionAdapter{
+    Cursor normal=Cursor.getDefaultCursor(), hand=Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
+    public void mouseMoved(MouseEvent e) {
+      try{
+        int px=getPixelValueAt(e.getPoint());
+        int msb=0xff - ((px/0x010000)& 0xff);
+        if(px!=0 && px!=-1 && (msb>=0 && msb<no_components)) {
+          setCursor(hand);
+        }else setCursor(normal);
+        
+      }  catch(InterruptedException x)  {}
+    }
+  }
 
 //**************************
-// Question Handler
+// Question Handler - create questions and call setupQuestion
 //**************************
 
 	private void QuestionHandler(){
@@ -428,18 +515,18 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 		double temp;
 		boolean unique;
 
-		for (n=0;n<(no_components*2);n++)
+		for (n=0;n<(no_components);n++)
 		{
 			do{
 				unique = true;
-				temp = (no_components*2 * Math.random());
+				temp = (no_components * Math.random());
 				question[n] = (int)temp;
 				for (m=0;m<n;m++) //check below n
-			 if (question[m] == question[n]) unique=false;
-		 for (m=(n+1);m<(no_components*2);m++) //check above n (not really needed as haven't yet defined them!!)
-			if (question[m] == question[n]) unique=false;
+				  if (question[m] == question[n]) unique=false;
 			}while (!unique);
 		}
+    for(int i=0;i<question.length;i++) 
+      if(Math.random()<0.5) question[i]+= no_components; 
 
 		setupQuestion();
 	} // ends Questionhandler
@@ -470,7 +557,7 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 		}
 
 
-		if (questionumber < ((no_components*2) - 1)){
+		if (questionumber < no_components - 1){
 			questionumber++;
 			setupQuestion();
 		}
@@ -485,11 +572,33 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 			ignore = false;
 
 
-			JOptionPane.showMessageDialog(null,correct + " out of " + (no_components*2),"You scored",JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null,correct + " out of " + (no_components),"You scored",JOptionPane.INFORMATION_MESSAGE);
 		}
 
 	}  // ends NextQuestion
 
+	public class ComboBoxUIDecorator extends ComboBoxUI {
+	  private ComboBoxUI m_parent;
+	  public ComboBoxUIDecorator(ComboBoxUI x) {
+	   m_parent = x;
+	  }
+	  public boolean isFocusTraversable(JComboBox c) {
+	   return m_parent.isFocusTraversable(c);
+	  }
+
+	  public void paint(Graphics g, JComponent c) {
+	    boolean ena=c.isEnabled();
+	    //c.setEnabled(true);
+	    m_parent.paint(g, c);
+	    //c.setEnabled(ena);
+	  }
+    public boolean isPopupVisible(JComboBox c){
+      return m_parent.isPopupVisible(c);
+    }
+    public void setPopupVisible(JComboBox c, boolean v){
+      m_parent.setPopupVisible(c, v);     
+    }
+	 }
 
 //*****************
 // Set up question
@@ -497,18 +606,21 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 
 	private void setupQuestion(){
 
-		if (!testmode) testmode = false;
+		if (!testmode) { testmode = false; return; }
 
-		else if (question[questionumber] > (no_components - 1))
+		if (question[questionumber] > (no_components - 1)) // question to click on picture
 		{
 			ignore = true;
 			noarea = false;
 			nocombo = true;
-			index = no_components;  // de-highlights all the picture
 
-			whichbit.setEnabled(false);	// prevents responses from combo box
+    	whichbit.setEnabled(false);	// prevents responses from combo box
+whichbit.setBackground(Color.white);
+			whichbit.setBackground(Color.white);
+			if(question[questionumber]-no_components>no_components)   question[questionumber]-=no_components;
 			whichbit.setSelectedIndex(question[questionumber]-no_components); // sets question up in combobox
 
+      index = no_components;  // de-highlights all the picture
 			picturebox.repaint();
 			textbox.update();
 
@@ -517,7 +629,7 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 			// can't click on correct area cos already 'highlighted' i.e. selected in combobox
 		}
 
-		else {
+		else { // question to select from list
 
 			ignore = true;
 			noarea = true;			//prevents clicking in the area window
@@ -557,7 +669,10 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 
 
 
+  public String questionTextSelectName = "Select the name of the highlighted region";
+  public String questionTextSelectArea = "Select the named area of the brain";
 
+  
 	protected class TextPanel extends JTextPane{
 		public TextPanel(){
 			setEditable(false);
@@ -571,14 +686,13 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 			n = 0;
 		};
 
-
 		public void update(){
 			String as = null;
 			if(testmode == true){
 				if (question[questionumber] <= no_components-1)
-					as = "Select the name of the highlighted region";
+					as = questionTextSelectName;
 				else if (question[questionumber] >= no_components)
-					as = "Select the area of brain named";
+					as = questionTextSelectArea;
 				else as = "something wrong with the text matching!";
 			}else{
 				as = textStrings[n];
@@ -607,4 +721,12 @@ public abstract class RobinExhibit extends NeurolabExhibit{
 		}
 	}
 
+  protected int getPixelValueAt(Point e) throws InterruptedException{
+    int[] pixels = new int[1];
+    PixelGrabber pg = new PixelGrabber(picture_base, e.x, e.y, 1, 1, pixels, 0, 2);
+    pg.grabPixels();
+    return pixels[0];
+  }
+  public void close() {  }
+  
 }

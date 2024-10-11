@@ -10,12 +10,33 @@
  */
 package com.neurolab;
 
-import com.neurolab.common.*;
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.util.Random;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JToggleButton;
+import javax.swing.Timer;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+
+import com.neurolab.common.AngleControl;
+import com.neurolab.common.JPanel0;
+import com.neurolab.common.JRadioButton0;
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.PercentageBar;
+import com.neurolab.common.ReturnButton;
 
 public class LineLearning extends NeurolabExhibit{
 	public String getExhibitName(){return "Learning lines";}
@@ -50,7 +71,7 @@ public class LineLearning extends NeurolabExhibit{
 		drawStim(this,g_);
 	}
 	};
-	JButton stimulusbutton = new JButton();
+	JToggleButton stimulusbutton = new JToggleButton();
 
 
 	void drawStim(Component c, Graphics g){
@@ -75,7 +96,8 @@ public class LineLearning extends NeurolabExhibit{
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-	stimulusbutton.addMouseListener(new MouseAdapter(){
+	/*
+	 stimulusbutton.addMouseListener(new MouseAdapter(){
 		public void mousePressed(MouseEvent e){
 			beginstimulus();
 		}
@@ -84,6 +106,13 @@ public class LineLearning extends NeurolabExhibit{
 		}
 	});
 	}
+	*/
+		stimulusbutton.addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) {
+		  if   (!stimulusbutton.isSelected()) { endstimulus();  }
+		  else { beginstimulus(); stimulusbutton.setEnabled(false); }
+		}});
+	}
+		
 
 	int nunits=5;
 	UnitPanel[] unit=new UnitPanel[nunits];
@@ -201,6 +230,7 @@ public class LineLearning extends NeurolabExhibit{
 			jPanel111.setLayout(new BorderLayout());
 			jPanel111.add(graph, BorderLayout.CENTER);
 			graph.setBackground(Color.black);
+			percentage.color=percentageIncomplete;
 		}
 		public void initDots(){
 			for(int i=0;i<ndots;i++){
@@ -229,6 +259,8 @@ public class LineLearning extends NeurolabExhibit{
 			percentage.setValue((activity>100)?100:(int)activity);
 			if(activity>=100){
 				response.setSelected(true);
+				response.setEnabled(true);
+				percentage.color=Color.red; percentage.repaint();
 				for(int i=0;i<ndots;i++){		//learning
 					if(Math.abs(z[i])<8)strength[i]+=0.5*(1-strength[i]);
 					else strength[i]*=0.5;		//unlearn
@@ -237,6 +269,7 @@ public class LineLearning extends NeurolabExhibit{
 				return true;
 			}else return false;
 		}
+		Color percentageIncomplete=Color.blue; // i'd like to make this static
 	}
 ///end of class
 
@@ -250,14 +283,19 @@ public class LineLearning extends NeurolabExhibit{
 		if(fired>=0){
 			timer.stop();
 			timer2.start();
+			stimulusbutton.setSelected(false);  
 		}
 	}});
-	Timer timer2=new Timer(1200,new ActionListener(){public void actionPerformed(ActionEvent e){
+	// end of outcome period
+	Timer timer2=new Timer(1800,new ActionListener(){public void actionPerformed(ActionEvent e){
 		for(int i=0;i<nunits;i++){
 			unit[i].lineVisible=false;
 			unit[i].response.setSelected(false);
+			unit[i].response.setEnabled(false);
+			unit[i].percentage.color=unit[i].percentageIncomplete; unit[i].percentage.repaint();
 			unit[i].graph.repaint();
 		}
+		stimulusbutton.setEnabled(true);// button up
 		if(continuous){
 			orientation.setValue(rand.nextInt()%180);
 			orientation.repaint();
@@ -273,6 +311,7 @@ public class LineLearning extends NeurolabExhibit{
 			unit[i].graph.repaint();
 			unit[i].initCalc();
 		}
+		stimulusbutton.setSelected(true); stimulusbutton.setEnabled(false);
 		timer.start();
 	}
 	public void endstimulus(){
@@ -298,5 +337,9 @@ public class LineLearning extends NeurolabExhibit{
 		contin.setText("Stop");
 		autotrainbegin();
 	}else contin.setText("Auto-train");
+	}
+	public void close() {
+	  timer.stop();
+	  timer2.stop();
 	}
 }

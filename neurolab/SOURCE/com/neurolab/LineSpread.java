@@ -10,12 +10,32 @@
  */
 package com.neurolab;
 
-import javax.swing.*;
-import java.awt.*;
-import com.neurolab.common.*;
-import javax.swing.border.*;
-import java.awt.event.*;
-import javax.swing.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JSlider;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+
+import com.neurolab.common.JPanel0;
+import com.neurolab.common.JRadioButton0;
+import com.neurolab.common.Label3D;
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.ReturnButton;
 
 public class LineSpread extends NeurolabExhibit {
 	JPanel jPanel1 = new JPanel0();
@@ -245,17 +265,17 @@ public class LineSpread extends NeurolabExhibit {
 		graph.setBackground(Color.black);
 		label3D1.setFont(new java.awt.Font("SansSerif", 1, 16));
 		label3D1.setText("Stimulus");
-		label3D1.setBounds(new Rectangle(28, 22, 83, 25));
+		label3D1.setBounds(new Rectangle(24, 22, 83, 25));
 		label3D2.setFont(new java.awt.Font("SansSerif", 1, 16));
 		label3D2.setText("distribution");
-		label3D2.setBounds(new Rectangle(4, 123, 111, 22));
-		label3D3.setBounds(new Rectangle(30, 99, 83, 25));
+		label3D2.setBounds(new Rectangle(24, 123, 111, 22));
+		label3D3.setBounds(new Rectangle(24, 99, 83, 25));
 		label3D3.setText("Stimulus");
 		label3D3.setFont(new java.awt.Font("SansSerif", 1, 16));
 		label3D4.setFont(new java.awt.Font("SansSerif", 1, 16));
 		label3D4.setText("Image");
-		label3D4.setBounds(new Rectangle(54, 197, 61, 25));
-		label3D5.setBounds(new Rectangle(3, 219, 111, 22));
+		label3D4.setBounds(new Rectangle(24, 197, 61, 25));
+		label3D5.setBounds(new Rectangle(24, 219, 111, 22));
 		label3D5.setText("distribution");
 		label3D5.setFont(new java.awt.Font("SansSerif", 1, 16));
 		jPanel1.add(jPanel2, BorderLayout.EAST);
@@ -299,4 +319,8 @@ public class LineSpread extends NeurolabExhibit {
 	//if(singleline.isSelected() || singleedge.isSelected())spacingpanel.setVisible(false); else spacingpanel.setVisible(true);
 	graph.repaint();
 	}
+  public void close(){
+    // TODO Auto-generated method stub
+    
+  }
 }

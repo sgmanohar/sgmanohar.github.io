@@ -10,12 +10,29 @@
  * @version 1.0
  */
 package com.neurolab;
-import com.neurolab.common.*;
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
-import java.awt.event.*;
+
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+
+import com.neurolab.common.GraphicComponent;
+import com.neurolab.common.JPanel0;
+import com.neurolab.common.JRadioButton0;
+import com.neurolab.common.Label3D;
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.ReturnButton;
 
 public class OlfactoryCoding extends NeurolabExhibit{
 	BorderLayout borderLayout1 = new BorderLayout();
@@ -70,13 +87,15 @@ public class OlfactoryCoding extends NeurolabExhibit{
 		Random rand=new Random (52);
 		for (int i=0; i<receptor.length;i++)
 //Draw initial lines
-			{g.setColor(receptor[i].getBackground());
-			g.drawLine(0,2+i*(getHeight()-4)/(receptor.length-1),50,2+i*(getHeight()-4)/(receptor.length-1));
+			{
+		    g.setColor(receptor[i].getBackground());
+		    g.drawLine(0,2+i*(getHeight()-4)/(receptor.length-1),50,2+i*(getHeight()-4)/(receptor.length-1));
+			}
 //Draw inhibitory and excitatory lines
-			g.setColor(Color.blue);
+			g.setColor(new Color(0,0,128)); // dark blue
 			g.drawLine(50,0*getHeight()/(receptor.length-1),getWidth(),1*getHeight()/(receptor.length-1));
 			g.drawLine(50,0*getHeight()/(receptor.length-1),getWidth(),3*getHeight()/(receptor.length-1));
-			g.drawLine(50,0*getHeight()/(receptor.length-1),getWidth(),0*getHeight()/(receptor.length-1));
+			g.drawLine(50,2+0*getHeight()/(receptor.length-1),getWidth(),2+0*getHeight()/(receptor.length-1));
 			g.drawLine(50,1*getHeight()/(receptor.length-1),getWidth(),5*getHeight()/(receptor.length-1));
 			g.drawLine(50,1*getHeight()/(receptor.length-1),getWidth(),0*getHeight()/(receptor.length-1));
 			g.drawLine(50,2*getHeight()/(receptor.length-1),getWidth(),2*getHeight()/(receptor.length-1));
@@ -88,8 +107,8 @@ public class OlfactoryCoding extends NeurolabExhibit{
 			g.drawLine(50,4*getHeight()/(receptor.length-1),getWidth(),5*getHeight()/(receptor.length-1));
 			g.drawLine(50,5*getHeight()/(receptor.length-1),getWidth(),6*getHeight()/(receptor.length-1));
 			g.drawLine(50,6*getHeight()/(receptor.length-1),getWidth(),5*getHeight()/(receptor.length-1));
-			g.drawLine(50,6*getHeight()/(receptor.length-1),getWidth(),6*getHeight()/(receptor.length-1));
-			g.setColor(Color.red);
+			g.drawLine(50,-2+6*getHeight()/(receptor.length-1),getWidth(),-2+6*getHeight()/(receptor.length-1));
+			g.setColor(new Color(128,0,0)); // dark red
 			//g.drawLine(50,i*getHeight()/(receptor.length-1),getWidth(),i*getHeight()/(receptor.length-1));
 			g.drawLine(50,0*getHeight()/(receptor.length-1),getWidth(),0*getHeight()/(receptor.length-1));
 			g.drawLine(50,1*getHeight()/(receptor.length-1),getWidth(),1*getHeight()/(receptor.length-1));
@@ -98,7 +117,7 @@ public class OlfactoryCoding extends NeurolabExhibit{
 			g.drawLine(50,3*getHeight()/(receptor.length-1),getWidth(),5*getHeight()/(receptor.length-1));
 			g.drawLine(50,4*getHeight()/(receptor.length-1),getWidth(),6*getHeight()/(receptor.length-1));
 			g.drawLine(50,5*getHeight()/(receptor.length-1),getWidth(),3*getHeight()/(receptor.length-1));
-			}
+			
 
 	}
 
@@ -150,6 +169,7 @@ public class OlfactoryCoding extends NeurolabExhibit{
 				if(i==result[j])bulb[i].setForeground(Color.red);
 				else bulb[i].setForeground(Color.gray);
 			}
+			network.repaint();
 		}} );
 	}
 	}
@@ -309,4 +329,6 @@ public class OlfactoryCoding extends NeurolabExhibit{
 		jPanel1.add(network, null);
 		jPanel1.add(label3D2, null);
 	}
+  public void close(){
+  }
 }

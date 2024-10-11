@@ -10,12 +10,29 @@
  */
 package com.neurolab;
 
-import java.awt.*;
-import javax.swing.*;
-import com.neurolab.common.*;
-import javax.swing.border.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
-import java.awt.event.*;
+
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+
+import com.neurolab.common.ActionPotentials;
+import com.neurolab.common.JPanel0;
+import com.neurolab.common.Label3D;
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.Oscilloscope;
+import com.neurolab.common.ReturnButton;
 
 public class PhaseLocking extends NeurolabExhibit implements ActionListener{
 
@@ -48,6 +65,7 @@ public class PhaseLocking extends NeurolabExhibit implements ActionListener{
 	Timer timer=new Timer(50,this);
 	int[] base=new int[numcells+2];
 	Color[] cols=new Color[numcells+2];
+	ActionPotentials ap;
 	public void init(){
 		super.init();
 		try {
@@ -56,17 +74,23 @@ public class PhaseLocking extends NeurolabExhibit implements ActionListener{
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-	base[0]=30;cols[0]=Color.red;
-	for(int i=0;i<numcells;i++){
-		base[i+1]=55+i*110/numcells;
-		cols[i+1]=Color.cyan;
-	}
-	base[numcells+1]=200;cols[numcells+1]=Color.yellow;
-	osc.setBaseY(base);
-	osc.setColors(cols);
-	osc.timer.setDelay(50);
-	osc.xSpeed=2;
-	timer.start();
+  	base[0]=30;cols[0]=Color.red;
+  	for(int i=0;i<numcells;i++){
+  		base[i+1]=55+i*110/numcells;
+  		cols[i+1]=Color.cyan;
+  	}
+  	base[numcells+1]=200;cols[numcells+1]=Color.yellow;
+  	osc.setBaseY(base);
+  	osc.setColors(cols);
+  	osc.timer.setDelay(50);
+  	osc.xSpeed=2;
+  	timer.start();
+  	new Thread(new Runnable() {public void run() { try{Thread.sleep(1500);}catch(Exception e) {}
+  	  SwingUtilities.invokeLater(new Runnable() {public void run() { osc.sweep.doClick() ; }});
+  	}}).start();
+  	ap=new ActionPotentials();
+  	ap.setRate(0);
+
 	}
 	//globals
 	int y[]=new int[numcells+2];
@@ -85,14 +109,18 @@ public class PhaseLocking extends NeurolabExhibit implements ActionListener{
 				y[i+1]=0;
 				if(refractory[i]>0)refractory[i]--;	// check not refractory
 				else{
-					if(s>35+r.nextInt()%65){		// crosses random threshold
-						refractory[i]=20+r.nextInt()%40;
-						y[i+1]=-30;
+					//if(s>35+r.nextInt()%65){		// crosses random threshold
+				  if(s>(-1+Math.random()*100)){    
+						refractory[i]=20+(int)(Math.random()*40);
+						y[i+1]=-20;
 					}
 				}
 				total+=y[i+1];
 			}
 			y[numcells+1]=total;
+			if(total<0 & ap!=null) {
+			  ap.doSingleAP();
+			}
 			osc.setPosY(y);	//set all positions
 		}
 	}
@@ -151,7 +179,10 @@ public class PhaseLocking extends NeurolabExhibit implements ActionListener{
 		getMainContainer().add(jPanel2, BorderLayout.CENTER);
 	}
 	public void finalize() throws Throwable{
-		timer.stop();
-		super.finalize();
+	  close();
+    super.finalize();
+	}
+	public void close() {
+    timer.stop();
 	}
 }

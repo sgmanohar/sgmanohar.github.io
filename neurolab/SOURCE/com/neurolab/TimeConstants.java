@@ -1,18 +1,39 @@
 // time constants by Sanjay Manohar
 package com.neurolab;
 
-import java.awt.event.*;
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-import java.util.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Vector;
 
-import com.neurolab.circuit.*;
-import com.neurolab.fluid.*;
-import com.neurolab.common.*;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
+import com.neurolab.circuit.CircuitCapacitor;
+import com.neurolab.circuit.CircuitCell;
+import com.neurolab.circuit.CircuitCurrent;
+import com.neurolab.circuit.CircuitPanel;
+import com.neurolab.circuit.CircuitResistor;
+import com.neurolab.circuit.CircuitSwitch;
+import com.neurolab.circuit.CircuitWire;
+import com.neurolab.common.NeurolabExhibit;
 import com.neurolab.common.Oscilloscope;
+import com.neurolab.common.RadioPanel;
+import com.neurolab.common.ReturnButton;
+import com.neurolab.fluid.FluidPanel;
+import com.neurolab.fluid.FluidPipe;
+import com.neurolab.fluid.FluidReservoir;
+import com.neurolab.fluid.FluidValve;
 
 public class TimeConstants extends NeurolabExhibit implements ActionListener,ChangeListener{
 	private Color[] oscColors={Color.green};
@@ -94,6 +115,8 @@ public class TimeConstants extends NeurolabExhibit implements ActionListener,Cha
 					case 1:
 						currentvalve.toggle();
 						leftSwitch.toggle();
+						if(leftSwitch.closed) fluidpanel.componentlist.addElement(currentFlow);
+						else                  fluidpanel.componentlist.removeElement(currentFlow);
 						break;
 					case 2:
 						rightSwitch.toggle();
@@ -207,8 +230,13 @@ public class TimeConstants extends NeurolabExhibit implements ActionListener,Cha
 			new Point(70,0),new Point(70,30) ));
 		currentvalve.diameter=10;
 		currentvalve.closed=true;
+		// added 3.4.12
+		currentFlow = new FluidPipe(fluidpanel, new Point(70,30), new Point(70,130));
+		currentFlow.drawEdges = false; currentFlow.diameter=12;
 	}
-
+  // added 3.4.12
+  FluidPipe currentFlow;   
+  
 	double floor=0.057;
 	double x=0.3,y=0.3;
 	public void actionPerformed(ActionEvent e){

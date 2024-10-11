@@ -9,11 +9,21 @@
  */
 package com.neurolab;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.JToggleButton;
+import javax.swing.Timer;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import com.neurolab.common.FullScreenExhibit;
-import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
-import javax.swing.event.*;
 
 public class WaterfallIllusion extends FullScreenExhibit {
 
@@ -31,9 +41,12 @@ public class WaterfallIllusion extends FullScreenExhibit {
 				int thick=maxr/nsquares;
 				int a=0;
 				for(int i=-2;i<nsquares;i++){
-					g.setColor(Math.abs(i)%2>0?getForeground():getBackground());
+				  boolean col=(Math.abs(i+100)%2)>0;
+					g.setColor(col?getForeground():getBackground());
 					a=i*thick+phase%(2*thick);	//inset from edge
-					g.fillRect(a,a,maxr-2*a,maxr-2*a);
+					if(maxr>2*a) {
+					  g.fillRect(a,a,maxr-2*a,maxr-2*a);
+					}
 				}
 			}else{
 				g.setColor(Color.black);
@@ -96,4 +109,7 @@ frame.setSize(400,450);
 		timer.start();
 	}
 	boolean testing=false;
+  public void close(){
+    timer.stop();
+  }
 }

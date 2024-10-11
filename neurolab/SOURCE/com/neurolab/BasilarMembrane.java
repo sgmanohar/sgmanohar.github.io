@@ -1,12 +1,26 @@
 package com.neurolab;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import com.neurolab.common.*;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+import javax.swing.border.TitledBorder;
+
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.RadioPanel;
+import com.neurolab.common.ReturnButton;
+import com.neurolab.common.ThickPanel;
 
 public class BasilarMembrane extends NeurolabExhibit implements ActionListener{
 	public String getExhibitName(){return "Basilar Membrane";}
@@ -34,15 +48,17 @@ public class BasilarMembrane extends NeurolabExhibit implements ActionListener{
 	int[] freqpeak={160,135,100,85,70,55};
 	int[] freqvalues={100,300,1000,2000,5000,10000};
 	int [] freqspeeds={6, 5, 4, 3, 2, 1}; //ods20
+  JCheckBox envelopeCheck;
+
 	public void createComponents(){
 		getMainContainer().add(lpanel=new JPanel(),BorderLayout.WEST);
 		getMainContainer().add(rpanel=new JPanel(),BorderLayout.EAST);
 		lpanel.setLayout(new BorderLayout());
 		lpanel.add(blpanel=new JPanel(),BorderLayout.SOUTH);
-		lpanel.add(tlpanel=new ThickPanel(15),BorderLayout.NORTH);
+		lpanel.add(tlpanel=new ThickPanel(19),BorderLayout.NORTH);
 		setBG(lpanel);setBG(rpanel);setBG(blpanel);
-		tlpanel.setFont(new Font("Dialog",Font.BOLD,15));
-								tlpanel.setText("Stapes                                       Helicotrema");
+		tlpanel.setFont(new Font("Dialog",Font.BOLD,14));
+								tlpanel.setText("Stapes                                                 Helicotrema");
 
 		tlpanel.inner.add(graph=new GraphPanel());
 
@@ -60,6 +76,8 @@ public class BasilarMembrane extends NeurolabExhibit implements ActionListener{
 
 		trpanel.setBorder(tborder1=BorderFactory.createTitledBorder(etched,"Frequency"));
 		trpanel.add(freqpanel=new RadioPanel(freqnames,radioListener),BorderLayout.CENTER);
+		rpanel.add(envelopeCheck=new JCheckBox("Show envelope"), BorderLayout.CENTER);
+		setBG(envelopeCheck);
 		setBG(freqpanel);
 
 		freqpanel.setSelected(2);
@@ -79,11 +97,12 @@ public class BasilarMembrane extends NeurolabExhibit implements ActionListener{
 	}
 	public ActionListener radioListener = new ActionListener(){
 		public void actionPerformed(ActionEvent e){// called when the frequency is changed
+		  selectedFreq=freqpanel.getSelected();
 			initCochlea();
 			graph.repaint();
 		}
 	};
-
+	int selectedFreq=0;
 	int time;
 	public void initCochlea(){
 		double X,pk;
@@ -98,7 +117,7 @@ public class BasilarMembrane extends NeurolabExhibit implements ActionListener{
 	void paintmemb(Graphics g){
 		int base=(graph.getHeight()-4)/2;
 		int wid=graph.getWidth();
-		int freq=freqvalues[freqpanel.getSelected()];
+		int freq=freqvalues[selectedFreq];
 		Point prev,curr=new Point(2, base);
 
 /*		g.setColor(new Color(0,64,0));		//undraw partially!
@@ -117,12 +136,15 @@ public class BasilarMembrane extends NeurolabExhibit implements ActionListener{
 			prev=curr;
 			curr=new Point(2+(int)(i*(wid-4)/npoints),
 				(int)(base + env[i] * Math.sin(2*(i*240/npoints)*Math.PI*(freq/80000.)
-					- time/(double)freqspeeds[freqpanel.getSelected()])));//ods20
+					- time/(double)freqspeeds[selectedFreq])));//ods20
 			g.drawLine(prev.x, prev.y, curr.x,curr.y);
 		}
 	}
+	boolean overlay=false;
 	public void tick(){
-		graph.repaint();
+	  overlay=(envelopeCheck!=null && envelopeCheck.isSelected());
+		if(!overlay)  graph.repaint();
+		else          paintmemb(graph.getGraphics());
 	}
 
 	class GraphPanel extends JPanel{

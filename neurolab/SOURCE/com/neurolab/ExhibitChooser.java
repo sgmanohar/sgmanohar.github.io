@@ -8,18 +8,21 @@ package com.neurolab;
 
 
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.BorderFactory;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
-import java.net.*;
+import javax.swing.JButton;
 
 import com.neurolab.common.NeurolabExhibit;
-import java.awt.image.ImageObserver;
-//import com.neurolab.common.HeldExhibit;	// needs to start other exhibits!
 
 public class ExhibitChooser extends NeurolabExhibit implements ActionListener{
 	private String[][] exhibits={
@@ -35,7 +38,7 @@ public class ExhibitChooser extends NeurolabExhibit implements ActionListener{
 
 		{"Synaptic",	"interaction",	"SynapticInteraction"},
 		{"Pacinian",	"corpuscle",	"PacinianCorpuscle"},
-		{"Sound and",	"hearing",	"SoundAndHearing"},
+		{"Sound &",	"hearing",	"SoundAndHearing"},
 		{"Basilar",	"membrane",	"BasilarMembrane"},
 		{"Phase",	"locking",	"PhaseLocking"},
 		{"Vowels"	,"",		"Vowels"},
@@ -43,7 +46,7 @@ public class ExhibitChooser extends NeurolabExhibit implements ActionListener{
 		{"Olfactory",	"recognition",	"OlfactoryCoding"},
 
 		{"Visual",	"optics",	"VisualOptics"},
-		{"Linespread",	"",		"LineSpread"},
+		{"Line",	"Spread",		"LineSpread"},
 		{"Retinal",	"receptors",	"RetinalReceptors"},
 		{"Blind",	"spot",		"BlindSpot"},
 		{"Horizontal",	"cells",	"HorizontalCells"},
@@ -78,13 +81,15 @@ public class ExhibitChooser extends NeurolabExhibit implements ActionListener{
 		bitmap=new Image[exhibits.length];
 		for(int i=0;i<exhibits.length;i++){
 			if(exhibits[i][0]!="")
-				bitmap[i]=getImage(iconpath+exhibits[i][2]+".gif");
+				bitmap[i]=getImage(iconpath+exhibits[i][2]+".GIF");
 		}	// grab images to memory
 		gridsize=new Dimension(7,6);
 		GridLayout gl=new GridLayout(gridsize.width,gridsize.height);
 		gl.setHgap(2);gl.setVgap(2);
 		getMainContainer().setLayout(gl);
 		createComponents();
+		// double-click on background to allow selecting the plaf.
+		getMainContainer().addMouseListener(new MouseAdapter() {public void mouseClicked(MouseEvent e) {if(e.getClickCount()==2) NeurolabExhibit.plafset=false;}});
 	}
 	PictureButton[] button;
 	public void createComponents(){
@@ -109,7 +114,9 @@ public class ExhibitChooser extends NeurolabExhibit implements ActionListener{
 	public String getExhibitName(){
 		return "";
 	}
-
+	boolean DRAW_BEVEL=false; // Set this to false if the Look and Feel does an 
+	                          // appropriate 3d button rendering
+	
 	public class PictureButton extends JButton{
 		Image image;
 		String text1,text2;
@@ -123,18 +130,21 @@ public class ExhibitChooser extends NeurolabExhibit implements ActionListener{
 			text2=t2;
 			setBackground(systemGray);
                         this.setMargin(new Insets(bt,bt,bt,bt));
-			font=new Font("Arial",Font.BOLD,9);
-                        this.setFont(font);
+			font=getFont();
+			font=new Font(font.getName(),0,font.getSize()-1);
+      this.setFont(font);
  		}
 		public void paintComponent(Graphics g){
                   super.paintComponent(g);
-                  antiAlias(g);
-			g.setColor(Color.white);	//hilite
-			g.drawLine(bt,bt,getWidth()-bt*2,bt);
-			g.drawLine(bt,bt,bt,getHeight()-bt*2);
-			g.setColor(Color.gray);		//shadow
-			g.drawLine(bt,getHeight()-bt*2,getWidth()-bt*2,getHeight()-bt*2);
-			g.drawLine(getWidth()-bt*2,bt,getWidth()-bt*2,getHeight()-bt*2);
+//                  antiAlias(g);
+      if(DRAW_BEVEL) {            
+  			g.setColor(Color.white);	//hilite
+  			g.drawLine(bt,bt,getWidth()-bt*2,bt);
+  			g.drawLine(bt,bt,bt,getHeight()-bt*2);
+  			g.setColor(Color.gray);		//shadow
+  			g.drawLine(bt,getHeight()-bt*2,getWidth()-bt*2,getHeight()-bt*2);
+  			g.drawLine(getWidth()-bt*2,bt,getWidth()-bt*2,getHeight()-bt*2);
+      }
 
 			if(image!=null) g.drawImage(image,inset,inset,getHeight()-2*inset,getHeight()-2*inset,this);
 			g.setColor(Color.black);
@@ -147,4 +157,6 @@ public class ExhibitChooser extends NeurolabExhibit implements ActionListener{
                    if( (f & ALLBITS) >0 ){repaint();return false;} else return true;
                  }
 	}
+
+  public void close(){  }
 }

@@ -23,12 +23,20 @@ package com.neurolab.common;
 */
 
 
-import java.lang.*;
-import java.applet.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.border.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.Panel;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 public class Oscilloscope extends JPanel implements ActionListener{
 	public JButton sweep,clear;
@@ -90,7 +98,7 @@ public class Oscilloscope extends JPanel implements ActionListener{
 			super.finalize();
 		}
 	}
-	public Panel buttons;
+	public JPanel buttons;
 	public Oscilloscope(){this(1,null);}
 	public Oscilloscope(int n,ActionListener list){
 		listener=list;	// pass a listener to receive "Sweep" ActionEvents
@@ -99,7 +107,7 @@ public class Oscilloscope extends JPanel implements ActionListener{
 		baseY=new int[nTraces];
 			// the south controls
 		setLayout(new BorderLayout());
-		buttons=new Panel();
+		buttons=new JPanel();
 		buttons.setLayout(new GridLayout());
 		buttons.add(sweep=new JButton("Sweep"));
 		sweep.addActionListener(this);
@@ -150,9 +158,14 @@ public class Oscilloscope extends JPanel implements ActionListener{
 			timer.start();			// if not still going?
 		}else if(e.getActionCommand()=="Clear"){
 			graph.repaint();		//clear screen
-			posX=0;setNewPoint();
+			if(resweepOnClear)
+			   posX=0;setNewPoint();
+			if(stopOnClear) 
+			  timer.stop();
 		}
 	}
+	public boolean resweepOnClear = true; // if this is true, then resweep on clear. This can be used to configure behaviour.
+	public boolean stopOnClear    = true; // if this is true, then clear stops output too.
 	public void setPosY(int ny[]){posY=ny;}	// for moving the guns
 	public int[] getPosY(){return posY;}
 	public void setPosX(int nx){posX=nx;}

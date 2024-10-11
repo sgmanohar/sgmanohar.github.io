@@ -1,13 +1,30 @@
 // Action Potentials by Sanjay Manohar
 package com.neurolab;
 
-import java.awt.event.*;
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.*;
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-import com.neurolab.common.Oscilloscope;
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JSlider;
+
 import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.Oscilloscope;
 import com.neurolab.common.ReturnButton;
 import com.neurolab.common.Spacer;
 
@@ -78,6 +95,7 @@ public class ActPots extends NeurolabExhibit implements ActionListener{
 		osc.setBaseY(base);
 		osc.timer.setDelay(130);
 		osc.xSpeed=2;
+		osc.buttons.remove(osc.clear);
 		getMainContainer().add(osc,BorderLayout.WEST);
 
 		getMainContainer().add(rightpanel=new JPanel(),BorderLayout.EAST);
@@ -203,7 +221,7 @@ public class ActPots extends NeurolabExhibit implements ActionListener{
 			if(ramp.isSelected()){
 				stim_size+=size.getValue()*0.0005f*((negative.isSelected())?-1f:1f);
 			}else{
-				stim_size=size.getValue()*0.01f*((negative.isSelected())?-1f:1f);
+				stim_size=size.getValue()*0.03f*((negative.isSelected())?-1f:1f);
 			}
 		}else{
 			stim_size=0;
@@ -224,8 +242,9 @@ public class ActPots extends NeurolabExhibit implements ActionListener{
 		newpos[0]=(int)(-2.0f *E);		// voltage
 		newpos[1]=(int)(-50f  *gNa);		// gNa
 		newpos[2]=(int)(-50f  *gK);		// gNa
-		newpos[3]=(int)(-1.0f *I);		// current
+		newpos[3]=(int)(-1.0f *I) ;		// current
 		newpos[4]=(int)(-50f *stim_size);	// stimulus
+		for(int i=0;i<5;i++)if(newpos[i]>500 || newpos[i]<-500) newpos[i]=0;
 		osc.setPosY(newpos);
 	}
 
@@ -275,6 +294,7 @@ public class ActPots extends NeurolabExhibit implements ActionListener{
 		timer.stop();
 		osc.timer.stop();
 	}
+
 }
 
 

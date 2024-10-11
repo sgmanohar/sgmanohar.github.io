@@ -65,9 +65,11 @@ public class MotivationalMaps extends NeurolabExhibit {
 	double px,py;
 	int radius=10;
 	ButtonGroup bg = new ButtonGroup();
+	boolean threadrunning=false;
 	Thread thread=new Thread(new Runnable(){
 		public void run(){
-			while(true){
+		  threadrunning=true;
+			while(threadrunning){
 				move();try{Thread.sleep(100);}
 				catch(Exception e){e.printStackTrace();}
 			}
@@ -236,6 +238,9 @@ public class MotivationalMaps extends NeurolabExhibit {
 	void jButton2_actionPerformed(ActionEvent e) {
 	items.removeAllElements();
 	arena.repaint();
+	}
+	public void close() {
+	  threadrunning=false;
 	}
 }
 	class Item{

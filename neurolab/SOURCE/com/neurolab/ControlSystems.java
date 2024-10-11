@@ -10,11 +10,34 @@
  */
 package com.neurolab;
 
-import java.awt.*;
-import javax.swing.*;
-import com.neurolab.common.*;
-import javax.swing.border.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Rectangle;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JSlider;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+
+import com.neurolab.common.GraphicComponent;
+import com.neurolab.common.JPanel0;
+import com.neurolab.common.JRadioButton0;
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.Oscilloscope;
+import com.neurolab.common.ReturnButton;
 
 public class ControlSystems extends NeurolabExhibit {
  public String getExhibitName() {
@@ -149,7 +172,8 @@ public class ControlSystems extends NeurolabExhibit {
 		public void actionPerformed(ActionEvent e){
 			calc();
 //System.out.println(X+","+Y);
-			oscilloscope1.setPosY(new int[]{(int)(512+X*450/30),(int)(512+Y*450/30)});
+			// oscilloscope1.setPosY(new int[]{(int)(512+X*450/30),(int)(512+Y*450/30)}); // swap X and Y colours!
+			oscilloscope1.setPosY(new int[]{(int)(512+Y*450/30), (int)(512+X*450/30)}); 
 		}
 	});
 
@@ -296,10 +320,10 @@ public class ControlSystems extends NeurolabExhibit {
     gridLayout3.setRows(3);
     gridLayout3.setColumns(1);
     jPanel8.setLayout(null);
-    gainslider.setBorder(border2);
-    gainslider.setBounds(new Rectangle(-4, 0, 126, 24));
-    biasslider.setBorder(border3);
-    biasslider.setBounds(new Rectangle(-4, 41, 126, 24));
+    //gainslider.setBorder(border2);
+    gainslider.setBounds(new Rectangle(0, 0, 118, 24));
+    //biasslider.setBorder(border3);
+    biasslider.setBounds(new Rectangle(0, 41, 118, 24));
     jLabel1.setFont(new java.awt.Font("Dialog", 1, 12));
     jLabel1.setText("Gain");
     jLabel1.setBounds(new Rectangle(46, 21, 31, 17));
@@ -307,11 +331,11 @@ public class ControlSystems extends NeurolabExhibit {
     jLabel2.setText("Bias");
     jLabel2.setBounds(new Rectangle(45, 61, 27, 16));
     jPanel9.setLayout(borderLayout4);
-    externalslider.setBorder(border6);
+    //externalslider.setBorder(border6);
     externalslider.setBounds(new Rectangle(10, 33, 110, 26));
     jLabel3.setText("External");
     jLabel3.setBounds(new Rectangle(44, 58, 51, 17));
-    plantgainslider.setBorder(BorderFactory.createLineBorder(SystemColor.control,1));
+    //plantgainslider.setBorder(BorderFactory.createLineBorder(SystemColor.control,1));
     plantgainslider.setBounds(new Rectangle(9, 82, 111, 24));
     jLabel4.setText("Plant gain");
     jLabel4.setBounds(new Rectangle(38, 106, 61, 17));
@@ -322,11 +346,11 @@ public class ControlSystems extends NeurolabExhibit {
     jPanel12.setLayout(null);
     jPanel12.setPreferredSize(new Dimension(13, 1));
     jLabel5.setFont(new java.awt.Font("SansSerif", 1, 16));
-    jLabel5.setForeground(Color.green);
+    jLabel5.setForeground(Color.red);
     jLabel5.setText("x");
     jLabel5.setBounds(new Rectangle(3, 24, 14, 17));
     jLabel6.setFont(new java.awt.Font("Dialog", 1, 16));
-    jLabel6.setForeground(Color.red);
+    jLabel6.setForeground(Color.green);
     jLabel6.setText("y");
     jLabel6.setBounds(new Rectangle(3, 58, 13, 17));
     jPanel13.setLayout(gridLayout4);

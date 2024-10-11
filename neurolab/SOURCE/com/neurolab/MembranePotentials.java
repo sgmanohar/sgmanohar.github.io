@@ -10,14 +10,39 @@
  */
 package com.neurolab;
 
-import javax.swing.*;
-import java.awt.*;
-import com.neurolab.common.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
 
-import java.beans.*;
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.MouseInputAdapter;
+
+import com.neurolab.common.IonicCell;
+import com.neurolab.common.Label3D;
+import com.neurolab.common.MultiPercentageBar;
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.ReturnButton;
+import com.neurolab.common.Spacer;
 
 public class MembranePotentials extends NeurolabExhibit
 
@@ -66,7 +91,7 @@ public class MembranePotentials extends NeurolabExhibit
 	JPanel jPanel16 = new JPanel();
 	Border border9;
 	TitledBorder titledBorder4;
-	JTextPane potential = new JTextPane();
+	JLabel potential = new JLabel();
 	GridLayout gridLayout5 = new GridLayout();
 	JPanel jPanel19 = new JPanel();
 	JPanel jPanel20 = new JPanel();
@@ -79,9 +104,9 @@ public class MembranePotentials extends NeurolabExhibit
 	JLabel jLabel3 = new JLabel();
 	BorderLayout borderLayout15 = new BorderLayout();
 	Border border10;
-	JTextPane ni = new JTextPane();
-	JTextPane ki = new JTextPane();
-	JTextPane ai = new JTextPane();
+	Spinner ni = new Spinner();
+	Spinner ki = new Spinner();
+	Spinner ai = new Spinner();
 	Border border11;
 	Border border12;
 	Border border13;
@@ -127,7 +152,7 @@ public class MembranePotentials extends NeurolabExhibit
 	BorderLayout borderLayout20 = new BorderLayout();
 	BorderLayout borderLayout16 = new BorderLayout();
 	Spacer spacer1 = new Spacer(50,10);
-	JPanel jPanel23 = new JPanel();
+	JPanel ionscale = new JPanel();
 	JPanel jPanel22 = new JPanel();
 	BorderLayout borderLayout11 = new BorderLayout();
 	Label3D label3D3 = new Label3D();
@@ -168,8 +193,26 @@ public class MembranePotentials extends NeurolabExhibit
 								}
 
 
-	class Spinner extends JTextPane
+	class Spinner extends JPanel
 							 {
+	  JLabel label=new JLabel();
+	  public Spinner(){
+	    addMouseListener(p);
+      addMouseMotionListener(p);
+      setCursor(Cursor.getPredefinedCursor(Cursor.N_RESIZE_CURSOR));
+      addKeyListener(k);
+	    setLayout(new BorderLayout());
+	    setBorder(new BevelBorder(BevelBorder.LOWERED));
+	    add(label);
+	    label.setOpaque(true);
+	    label.setBackground(Color.black);
+	    label.setFont(new java.awt.Font("SansSerif", 1, 18));
+	  }
+	  public void setForeground(Color c) { super.setForeground(c); if(label!=null)label.setForeground(c); }
+	  public void setText(String s) { label.setText(s);}
+	  public void setEditable(boolean e) {editable=e; if(!e)setCursor(Cursor.getDefaultCursor()); else setCursor(Cursor.getPredefinedCursor(Cursor.N_RESIZE_CURSOR));}
+	  private boolean editable=true;
+	  public String getText() {return label.getText();}
 		MouseInputAdapter p=new MouseInputAdapter()
 											 {int start;
 			public void mousePressed(MouseEvent e)
@@ -180,11 +223,13 @@ public class MembranePotentials extends NeurolabExhibit
 				{
 				int v=Integer.parseInt(getText());
 				v-=(e.getY()-start)/2;
-				if((v>0)&&(v<300)){
-					setText(String.valueOf(v));
-					start=e.getY();
+				if(editable) {
+  				if((v>0)&&(v<300)){
+  					setText(String.valueOf(v));
+  					start=e.getY();
+  				}
+  				updateTexts();
 				}
-				updateTexts();
 			}
 		} ;
 		KeyListener k=new KeyAdapter(){
@@ -193,12 +238,7 @@ public class MembranePotentials extends NeurolabExhibit
 				updateTexts();
 			}
 		};
-		public Spinner()
-											 {addMouseListener(p);
-			addMouseMotionListener(p);
-			setCursor(Cursor.getPredefinedCursor(Cursor.N_RESIZE_CURSOR));
-			addKeyListener(k);
-		}
+
 	}
 
 IonicCell cell= new IonicCell();
@@ -213,25 +253,29 @@ IonicCell cell= new IonicCell();
 			e.printStackTrace();
 		}
 		myinit();
+		
+		
 	}
 	public String getExhibitName(){return "Membrane Potentials";}
 	ButtonGroup bg=new ButtonGroup();
 	boolean burst=false;
-	JTextPane[] textbox;
+	Spinner[] textbox;
 	public void myinit(){
 		cell.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				if(e.getActionCommand()=="TextChange"){
-					for(int i=9;i<=12;i++){
+					for(int i=9;i<=11;i++){
 						if(textbox[i]!=null)
 						textbox[i].setText(String.valueOf((int)(cell.Text1[i])) +((i==12)?"mV":"") );
 					}
+					potential.setText(String.valueOf((int)cell.Text1[12])+"mV");
 				}else if(e.getActionCommand()=="AllTextChange"){
-					for(int i=0;i<=12;i++){
+					for(int i=0;i<=11;i++){
 						if(textbox[i]!=null)
 						textbox[i].setText(String.valueOf((int)(cell.Text1[i])) +((i==12)?"mV":"") );
 					}
-				}else if(e.getActionCommand()=="RedrawCell"){
+          potential.setText(String.valueOf((int)cell.Text1[12])+"mV");
+        }else if(e.getActionCommand()=="RedrawCell"){
 					picture.repaint();
 				}else if(e.getActionCommand()=="Burst"){
 					if(!burst){
@@ -248,8 +292,13 @@ IonicCell cell= new IonicCell();
 		bg.add(rbc);bg.add(squid);
 		rbc.setSelected(true);
 		pump.setSelected(true);
-		textbox=new JTextPane[]{null,ko,gk,null,no,gn,null,ao,ga,ai,ni,ki,potential};
-		Color[] cols=new Color[]{Color.red,Color.blue,new Color(0,192,0),Color.black};
+		textbox=new Spinner[]{null,ko,gk,null,no,gn,null,ao,ga,ai,ni,ki};
+//    for(int i=0;i<textbox.length;i++) {if(textbox[i]!=null) {
+//      textbox[i].setOpaque(true); textbox[i].setBackground(Color.black);
+//      }
+//    }
+
+		Color[] cols=new Color[]{Color.red,new Color(0,0,255),new Color(0,192,0),Color.black};
 		percentin.setColors(cols);
 		percentout.setColors(cols);
 	}
@@ -265,6 +314,7 @@ IonicCell cell= new IonicCell();
 		}
 		cell.spinChange(1);
 	}
+	Color potblue = new Color(0,128,255);
 
 	private void jbInit() throws Exception {
 		border1 = BorderFactory.createCompoundBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,Color.white,Color.white,new Color(134, 134, 134),new Color(93, 93, 93)),BorderFactory.createEmptyBorder(5,5,2,5));
@@ -273,14 +323,19 @@ IonicCell cell= new IonicCell();
 		border4 = BorderFactory.createCompoundBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,Color.white,Color.white,new Color(93, 93, 93),new Color(134, 134, 134)),BorderFactory.createEmptyBorder(5,5,5,5));
 		border5 = BorderFactory.createBevelBorder(BevelBorder.LOWERED,Color.white,Color.white,new Color(134, 134, 134),new Color(93, 93, 93));
 		border6 = BorderFactory.createEtchedBorder(Color.white,new Color(134, 134, 134));
+    Font titleFont=getFont().deriveFont(12f).deriveFont(Font.BOLD);
 		titledBorder1 = new TitledBorder(BorderFactory.createEtchedBorder(Color.white,new Color(134, 134, 134)),"Permeability");
+    titledBorder1.setTitleFont(titleFont);
 		border7 = BorderFactory.createEtchedBorder(Color.white,new Color(134, 134, 134));
 		titledBorder2 = new TitledBorder(border7,"Permeability");
+    titledBorder2.setTitleFont(titleFont);
 		border8 = BorderFactory.createEtchedBorder(Color.white,new Color(134, 134, 134));
 		titledBorder3 = new TitledBorder(border8,"External mM");
+    titledBorder3.setTitleFont(titleFont);
 		border9 = BorderFactory.createEtchedBorder(Color.white,new Color(134, 134, 134));
 		titledBorder4 = new TitledBorder(BorderFactory.createEtchedBorder(Color.white,new Color(134, 134, 134)),"Concentrations, mM");
-		border10 = BorderFactory.createCompoundBorder(new TitledBorder(BorderFactory.createEtchedBorder(Color.white,new Color(134, 134, 134)),"Concentrations, mM"),BorderFactory.createEmptyBorder(0,10,15,10));
+    
+		border10 = titledBorder4;
 		border11 = BorderFactory.createBevelBorder(BevelBorder.LOWERED,Color.red,Color.red,new Color(178, 0, 0),new Color(124, 0, 0));
 		border12 = BorderFactory.createBevelBorder(BevelBorder.LOWERED,Color.blue,Color.blue,new Color(124, 124, 124),new Color(178, 178, 178));
 		border13 = BorderFactory.createBevelBorder(BevelBorder.LOWERED,Color.green,Color.green,new Color(0, 134, 0),new Color(0, 93, 0));
@@ -288,8 +343,10 @@ IonicCell cell= new IonicCell();
 		titledBorder5 = new TitledBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED,Color.blue,Color.blue,new Color(0, 0, 124),new Color(0, 0, 178)),"");
 		border15 = BorderFactory.createEtchedBorder(Color.white,new Color(134, 134, 134));
 		titledBorder6 = new TitledBorder(border15,"Internal mM");
+		titledBorder6.setTitleFont(titleFont);
 		border16 = BorderFactory.createEtchedBorder(Color.white,new Color(134, 134, 134));
 		titledBorder7 = new TitledBorder(border16,"External mM");
+		titledBorder7.setTitleFont(titleFont);
 		jPanel1.setLayout(borderLayout2);
 		jPanel2.setLayout(borderLayout3);
 		jPanel2.setPreferredSize(new Dimension(160, 0));
@@ -364,15 +421,12 @@ IonicCell cell= new IonicCell();
 		jPanel16.setLayout(borderLayout15);
 		jPanel16.setBackground(systemGray);
 		potential.setText("-74 mV");
-		potential.setCaretColor(Color.white);
 		potential.setToolTipText("");
-		potential.setSelectionColor(Color.blue);
 		potential.setForeground(Color.green);
 		potential.setFont(new java.awt.Font("SansSerif", 1, 36));
-		potential.setSelectedTextColor(Color.white);
-		potential.setEditable(false);
-		potential.setSelectedTextColor(Color.black);
 		potential.setBackground(Color.black);
+		potential.setOpaque(true);
+
 		gridLayout5.setRows(3);
 		gridLayout5.setColumns(1);
 		gridLayout5.setVgap(15);
@@ -382,7 +436,7 @@ IonicCell cell= new IonicCell();
 		jLabel1.setForeground(Color.red);
 		jLabel1.setText("Na");
 		jLabel2.setFont(new java.awt.Font("Dialog", 1, 18));
-		jLabel2.setForeground(Color.blue);
+		jLabel2.setForeground(potblue);
 		jLabel2.setText("K");
 		jPanel20.setLayout(borderLayout13);
 		jPanel20.setBackground(systemGray);
@@ -395,21 +449,16 @@ IonicCell cell= new IonicCell();
 		ni.setPreferredSize(new Dimension(60, 21));
 		ni.setBackground(Color.lightGray);
 		ni.setBorder(BorderFactory.createLoweredBevelBorder());
-		ni.setEnabled(false);
 		ni.setForeground(Color.red);
 		ni.setFont(new java.awt.Font("SansSerif", 1, 18));
-		ki.setText("jTextPane3");
 		ki.setToolTipText("");
 		ki.setPreferredSize(new Dimension(60, 21));
 		ki.setBackground(Color.lightGray);
 		ki.setBorder(BorderFactory.createLoweredBevelBorder());
 		ki.setText("144");
-		ki.setForeground(Color.blue);
-		ki.setSelectedTextColor(Color.blue);
+		ki.setForeground(potblue);
 		ki.setFont(new java.awt.Font("SansSerif", 1, 18));
 		ki.setBorder(BorderFactory.createLoweredBevelBorder());
-		ki.setEnabled(false);
-		ai.setText("jTextPane4");
 		ai.setPreferredSize(new Dimension(60, 23));
 		ai.setBackground(Color.lightGray);
 		ai.setBorder(border13);
@@ -417,7 +466,6 @@ IonicCell cell= new IonicCell();
 		ai.setForeground(new Color(0,192,0));
 		ai.setFont(new java.awt.Font("SansSerif", 1, 18));
 		ai.setBorder(BorderFactory.createLoweredBevelBorder());
-		ai.setEnabled(false);
 		ao.setBorder(BorderFactory.createLoweredBevelBorder());
 		ao.setFont(new java.awt.Font("SansSerif", 1, 18));
 		//ao.setForeground(Color.white);
@@ -427,17 +475,15 @@ IonicCell cell= new IonicCell();
 		//ao.setBackground(new Color(0, 192, 0));
 		ao.setBackground(systemGray);
 		ao.setPreferredSize(new Dimension(60, 23));
-		ao.setText("jTextPane4");
 		ko.setBorder(border12);
 		ko.setBackground(systemGray);
 		ko.setFont(new java.awt.Font("SansSerif", 1, 18));
 		//ko.setForeground(Color.white);
-		ko.setForeground(Color.blue);
+		ko.setForeground(potblue);
 		ko.setText("144");
 		ko.setBorder(BorderFactory.createLoweredBevelBorder());
 		//ko.setBackground(new Color(0, 0, 192));
 		ko.setPreferredSize(new Dimension(60, 21));
-		ko.setText("jTextPane3");
 		no.setFont(new java.awt.Font("SansSerif", 1, 18));
 		no.setBackground(systemGray);
 		no.setForeground(Color.red);
@@ -460,7 +506,7 @@ IonicCell cell= new IonicCell();
 		jLabel4.setForeground(new Color(0, 192, 0));
 		jLabel4.setText("Cl");
 		jLabel5.setFont(new java.awt.Font("Dialog", 1, 18));
-		jLabel5.setForeground(Color.blue);
+		jLabel5.setForeground(potblue);
 		jLabel5.setText("K");
 		jLabel6.setFont(new java.awt.Font("Dialog", 1, 18));
 		jLabel6.setForeground(Color.red);
@@ -476,7 +522,6 @@ IonicCell cell= new IonicCell();
 		//ga.setBackground(new Color(0, 192, 0));
 		ga.setBackground(systemGray);
 		ga.setPreferredSize(new Dimension(60, 23));
-		ga.setText("jTextPane4");
 		gk.setBorder(border12);
 		gk.setFont(new java.awt.Font("SansSerif", 1, 18));
 		//gk.setForeground(Color.white);
@@ -484,9 +529,8 @@ IonicCell cell= new IonicCell();
 		gk.setText("144");
 		gk.setBorder(BorderFactory.createLoweredBevelBorder());
 		//gk.setBackground(new Color(0, 0, 192));
-		gk.setForeground(Color.blue);
+		gk.setForeground(potblue);
 		gk.setPreferredSize(new Dimension(60, 21));
-		gk.setText("jTextPane3");
 		gn.setFont(new java.awt.Font("SansSerif", 1, 18));
 		//gn.setForeground(Color.white);
 		gn.setBackground(systemGray);
@@ -509,7 +553,7 @@ IonicCell cell= new IonicCell();
 		jLabel7.setForeground(new Color(0, 192, 0));
 		jLabel7.setText("Cl");
 		jLabel8.setFont(new java.awt.Font("Dialog", 1, 18));
-		jLabel8.setForeground(Color.blue);
+		jLabel8.setForeground(potblue);
 		jLabel8.setText("K");
 		jLabel9.setFont(new java.awt.Font("Dialog", 1, 18));
 		jLabel9.setForeground(Color.red);
@@ -524,7 +568,7 @@ IonicCell cell= new IonicCell();
 		jPanel8.setLayout(borderLayout20);
 		jPanel8.setBackground(systemGray);
 		spacer1.setMinimumSize(new Dimension(500, 10));
-		jPanel23.setBackground(systemGray);
+		ionscale.setBackground(systemGray);
 		jPanel22.setLayout(borderLayout16);
 		jPanel22.setBackground(systemGray);
 		label3D3.setPreferredSize(new Dimension(50, 25));
@@ -538,7 +582,7 @@ IonicCell cell= new IonicCell();
 		jLabel10.setForeground(Color.red);
 		jLabel10.setText("Na");
 		jLabel11.setFont(new java.awt.Font("SansSerif", 1, 16));
-		jLabel11.setForeground(Color.blue);
+		jLabel11.setForeground(potblue);
 		jLabel11.setText("K");
 		jLabel12.setFont(new java.awt.Font("SansSerif", 1, 16));
 		jLabel12.setForeground(new Color(0, 192, 0));
@@ -600,7 +644,7 @@ IonicCell cell= new IonicCell();
 		jPanel17.add(percentin, BorderLayout.CENTER);
 		jPanel8.add(jPanel22, BorderLayout.CENTER);
 		jPanel22.add(spacer1, BorderLayout.WEST);
-		jPanel22.add(jPanel23, BorderLayout.CENTER);
+		jPanel22.add(ionscale, BorderLayout.CENTER);
 		jPanel8.add(jPanel18, BorderLayout.NORTH);
 		jPanel18.add(label3D3, BorderLayout.WEST);
 		jPanel18.add(percentout, BorderLayout.CENTER);
@@ -612,6 +656,17 @@ IonicCell cell= new IonicCell();
 		reset.setBackground(systemGray);
 		getMainContainer().setLayout(borderLayout1);
 		getMainContainer().add(jPanel1, BorderLayout.CENTER);
+		ionscale.setLayout(new GridLayout(1,7));
+		for(int i=0;i<7;i++) {
+		  JLabel l=new JLabel();
+		  ionscale.add(l);
+		  if(i%2==0)l.setText(" "+String.valueOf(100*i/2));
+		  Border b=new MatteBorder(0,1,0,0,Color.black);
+		  l.setBorder(b);
+		}
+		//ki.setEnabled(false); ni.setEnabled(false); ai.setEnabled(false);
+		//    potential.setEnabled(false);
+		ai.setEditable(false);ki.setEditable(false);ni.setEditable(false);
 	}
 
 	void reset_actionPerformed(ActionEvent e) {
@@ -630,4 +685,7 @@ IonicCell cell= new IonicCell();
 	void squid_actionPerformed(ActionEvent e) {
 	cell.Squid_Click();
 	}
+  public void close(){
+    cell.Timer1.stop();
+  }
 }

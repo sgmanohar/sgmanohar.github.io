@@ -9,11 +9,16 @@
  */
 package com.neurolab;
 
-import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import com.neurolab.common.*;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
+import com.neurolab.common.FullScreenExhibit;
 
 public class CornsweetIllusion extends FullScreenExhibit{
 
@@ -22,7 +27,7 @@ public class CornsweetIllusion extends FullScreenExhibit{
 	public String getExhibitName(){return "Cornsweet illusion";}
 
 	double centre=0.21;
-	int bands=40;
+	int bands=80;
 	JPanel mainpanel=new JPanel(){
 		public void paint(Graphics g){
 			super.paint(g);
@@ -51,8 +56,8 @@ public class CornsweetIllusion extends FullScreenExhibit{
 	public void init(){
 		parentExhibit="com.neurolab.LateralInhibition";
 		super.init();
-		mainpanel.setForeground(Color.darkGray);
-		mainpanel.setBackground(Color.lightGray);
+		mainpanel.setForeground(new Color(128,128,128));
+		mainpanel.setBackground(new Color(192,192,192));
 		frame.getContentPane().add(mainpanel,BorderLayout.CENTER);
 		timer.start();
 		frame.validate();
@@ -69,5 +74,6 @@ public class CornsweetIllusion extends FullScreenExhibit{
 		super.doClose();
 		timer.stop();
 	}
+	public void close() {timer.stop();}
 
 }

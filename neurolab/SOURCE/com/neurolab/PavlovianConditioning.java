@@ -10,11 +10,29 @@
  */
 package com.neurolab;
 
-import javax.swing.*;
-import java.awt.*;
-import com.neurolab.common.*;
-import javax.swing.border.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Rectangle;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.Timer;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+
+import com.neurolab.common.GraphicComponent;
+import com.neurolab.common.JPanel0;
+import com.neurolab.common.Label3D;
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.PercentageBar;
+import com.neurolab.common.ReturnButton;
 
 public class PavlovianConditioning extends NeurolabExhibit {
 	JPanel jPanel1 = new JPanel0();
@@ -73,12 +91,12 @@ public class PavlovianConditioning extends NeurolabExhibit {
 	double r,s,u,c;
 	public void clearValues(){r=s=u=c=0;}
 
-	Timer timer=new Timer(200,new ActionListener(){
+	Timer timer=new Timer(100,new ActionListener(){
 		public void actionPerformed(ActionEvent e){
-			s= s*(1 - decayslider.getValue()/1000.) + (1694 - s)*0.2*u*c - s*0.05*c;
-			u*=0.8;
-			c*=0.8;
-			r*=0.8;
+			s= s*(1 - decayslider.getValue()/2000.) + (1694 - s)*0.1*u*c - s*0.025*c;
+			u*=0.9;
+			c*=0.9;
+			r*=0.9;
 			percentages();
 		}
 	});
@@ -128,8 +146,8 @@ public class PavlovianConditioning extends NeurolabExhibit {
 		jLabel3.setBounds(new Rectangle(375, 95, 41, 33));
 		jLabel3.setIcon(arrowRt);
 		decayslider.setValue(0);
-		decayslider.setBorder(border2);
-		decayslider.setBounds(new Rectangle(482, 213, 64, 24));
+		//decayslider.setBorder(border2);
+		decayslider.setBounds(new Rectangle(472, 213, 64, 24));
 		jLabel4.setText("Decay rate");
 		jLabel4.setBounds(new Rectangle(483, 237, 68, 17));
 		graphicComponent1.setForeground(Color.red);

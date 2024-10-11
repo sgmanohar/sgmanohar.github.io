@@ -9,14 +9,33 @@ package com.neurolab;
 // vowels v1.4	sound added
 // needs return button, robin?
 // doesn't work, robin?
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Insets;
+import java.awt.Rectangle;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.BorderFactory;
-import javax.swing.border.Border;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.border.TitledBorder;
 
-import com.neurolab.common.*;
+import com.neurolab.common.CustomSound16;
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.ReturnButton;
+import com.neurolab.common.Spacer;
 
 public class Vowels extends NeurolabExhibit {
 
@@ -24,9 +43,9 @@ public class Vowels extends NeurolabExhibit {
 						"A (bat)","ER (Bert)","U (but) ","AH (Bart)",
 															"O (bot)","AW (bought)","OH (boat)","OO (boot)" };
 	 private String mnames[] =
-			{ "Larynx.gif", "EE.gif", "I.gif", "AY.gif",
-	"E.gif", "A.gif", "ER.gif", "U.gif", "AH.gif",
-	"O.gif", "AW.gif", "OH.gif", "OO.gif" };
+			{ "Larynx.GIF", "EE.GIF", "I.GIF", "AY.GIF",
+	"E.GIF", "A.GIF", "ER.GIF", "U.GIF", "AH.GIF",
+	"O.GIF", "AW.GIF", "OH.GIF", "OO.GIF" };
 
 	// frequencies of the formants 2 per vowel..
 	public static float formant [][] = {{0,0},{300, 2600},{400, 2400},{500, 2200},{600, 2000},{700, 1800},
@@ -48,8 +67,8 @@ public class Vowels extends NeurolabExhibit {
 
 	private int currentvowel=0,currentfreq=1;
 	public Image throatimage[];
-		private byte[] buffer;
-		CustomSound sound;			// current sound object
+		private double[] buffer;
+		CustomSound16 sound;			// current sound object
 		public JButton listen;
 		private int oldvowel=13;			// current vowel index
 		private int oldfreq=0;
@@ -64,8 +83,8 @@ public class Vowels extends NeurolabExhibit {
 		for (int i=0;i<13;i++){
 			throatimage[i]=getImage("resources/vowels/"+mnames[i]);
 		}
-		buffer=new byte[192];
-		sound=new CustomSound(buffer);
+		buffer=new double[44100];
+		sound=new CustomSound16(buffer);
 		createComponents();
 	}
 	public void createComponents(){
@@ -214,15 +233,16 @@ public class Vowels extends NeurolabExhibit {
 		 mainGbConstraints.fill = GridBagConstraints.BOTH;
 			mainGbConstraints.weightx = 20;
 			mainGbConstraints.weighty = 10;
-			listen=new Button3D("Listen");
+			listen=new JButton("Listen");
 			addMainComponent(listen, 6, 9, 1, 1);
+			listen.setFont(listen.getFont().deriveFont(Font.BOLD,listen.getFont().getSize()+2));
 			listen.setBackground(systemGray);
 		listen.addMouseListener(new MouseAdapter(){
 			public void mousePressed(MouseEvent e){
 				if((oldvowel!=getVowel())||(oldfreq!=getFreq())){	//if the wave needs reloading?
 					oldvowel=getVowel();
 					oldfreq=getFreq();
-					sound.close();
+					//sound.stop();
 					WaveMaker();
 					sound.open(buffer);
 				}
@@ -233,6 +253,7 @@ public class Vowels extends NeurolabExhibit {
 			}
 		} );
 	addMainComponent(new ReturnButton(),7,9,1,1);
+	WaveMaker();
 	}
 
 
@@ -290,23 +311,31 @@ public class Vowels extends NeurolabExhibit {
 
 	 // creates wave in a byte array
 	public void WaveMaker(){
-		float fbuffer[]=new float[192];
+		float fbuffer[]=new float[buffer.length];
 		int waven = 192 / getFreq();
 		if(getVowel()==0){	//larynx only
-			for(int i=0;i<192;i++)buffer[i]=(byte)128;
-			for(int i=0;i<getFreq();i++)buffer[i*waven]=buffer[i*waven+1]=1;;
+			for(int i=0;i<buffer.length;i++)
+			  buffer[i]= ((i%(384/getFreq()))<10) ? 0 : 1;
 		} else {
-			double x=formant[getVowel()][0]*Math.PI/11000;
-			double y=formant[getVowel()][1]*Math.PI/11000; //?11050?
-			for(int i=0;i<192;i++)fbuffer[i]=0;
-			for(int j=0;j<getFreq();j++){
-				for(int i = 0 ;i< 192;i++)
-				{
-					fbuffer[(i+j*waven)%192]+=(byte)(
-					 (Math.sin(x*(float)i)+Math.sin(y*(float)i))*Math.exp(-((float)i)/30));
-				}// /80
+			double x=formant[getVowel()][0]*2*Math.PI/44100; // was 11000
+			double y=formant[getVowel()][1]*2*Math.PI/44100; //?11050?
+			for(int i=0;i<buffer.length;i++)fbuffer[i]=0;
+  		for(int i = 0 ;i<384*2; i++) { // for 384 frames after,
+        double a=(Math.sin(x*i)+Math.sin(y*i))*Math.exp(-i/120.);
+        for(int j=i;j<buffer.length;j+=384/getFreq()){ // for each larynx click, 
+					fbuffer[j] += a;
+				}
 			}
-			for(int i=0;i<192;i++)buffer[i]=(byte)(128+32*fbuffer[i]);
+  		double min=Double.MAX_VALUE, max=Double.MIN_VALUE;
+  		for(int i=0;i<buffer.length;i++) { if(buffer[i]<min) min=buffer[i];
+  		                               if(buffer[i]>max) max=buffer[i];
+  		} 
+      System.out.println("min="+min+", max="+max);
+      max=Math.max(Math.abs(max), Math.abs(min)); 
+			for(int i=0;i<buffer.length;i++) {
+			  //buffer[i]=(byte)(int)(32*fbuffer[i]-128); // changed 19/4/12
+			  buffer[i]=fbuffer[i]/max/2; // scale from -1 to +1.
+			}
 		};
 	}
 	public int getVowel(){return currentvowel;}
@@ -475,6 +504,10 @@ class GraphPanel extends JPanel {
 			}
 		}
 	}
+}
+
+public void close(){
+  if(sound.isActive()) sound.stop();
 }
 
 }

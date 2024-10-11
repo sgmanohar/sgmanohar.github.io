@@ -10,12 +10,30 @@
  */
 package com.neurolab;
 
-import java.awt.*;
-import javax.swing.*;
-import com.neurolab.common.*;
-import java.awt.event.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JSlider;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+
+import com.neurolab.common.JPanel0;
+import com.neurolab.common.JRadioButton0;
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.ReturnButton;
 
 public class VisualOptics extends NeurolabExhibit {
  public String getExhibitName() {
@@ -209,7 +227,8 @@ public class VisualOptics extends NeurolabExhibit {
 		}
 		rety = radius * (accom + prescdio - distdio) / 50;
 //		retx = (int)(155 + Math.sqrt(80 * 80 + rety * rety));
-		retx=300;
+		// retx=300; // changed 2/5/12
+		retx = 310;
 		chrom = radius / 10;
 
 
@@ -424,8 +443,8 @@ public class VisualOptics extends NeurolabExhibit {
 				presbyopia_actionPerformed(e);
 			}
 		});
-		accommodation.setBorder(BorderFactory.createLineBorder(SystemColor.control,1));
-		accommodation.setBounds(new Rectangle(1, 35, 105, 28));
+		//accommodation.setBorder(BorderFactory.createLineBorder(SystemColor.control,1));
+		accommodation.setBounds(new Rectangle(1, 35, 95, 28));
 		accommodation.addChangeListener(new javax.swing.event.ChangeListener() {
 
 			public void stateChanged(ChangeEvent e) {
@@ -497,5 +516,8 @@ public class VisualOptics extends NeurolabExhibit {
 	void demo_actionPerformed(ActionEvent e) {
 		getHolder().setExhibit("com.neurolab.ChromaticAberration");
 	}
+
+  public void close(){
+  }
 
 }

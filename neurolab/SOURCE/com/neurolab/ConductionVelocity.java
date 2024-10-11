@@ -10,11 +10,31 @@
  */
 package com.neurolab;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import com.neurolab.common.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextPane;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+
+import com.neurolab.common.JPanel0;
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.ReturnButton;
 
 
 
@@ -48,24 +68,24 @@ public class ConductionVelocity extends NeurolabExhibit {
 	BorderLayout borderLayout5 = new BorderLayout();
 	Border border5;
 	Border border6;
-	JTextField veltext = new JTextField();
+	JTextPane veltext = new JTextPane();
 	Border border7;
 	JLabel jLabel2 = new JLabel();
 	JPanel jPanel13 = new JPanel0();
-	JTextField diamtext = new JTextField();
+	JTextPane diamtext = new JTextPane();
 	BorderLayout borderLayout6 = new BorderLayout();
 	JLabel jLabel3 = new JLabel();
 	JPanel jPanel14 = new JPanel0();
-	JTextField myeltext = new JTextField();
+	JTextPane myeltext = new JTextPane();
 	BorderLayout borderLayout7 = new BorderLayout();
 	JPanel jPanel15 = new JPanel0();
-	JTextField rltext = new JTextField();
+	JTextPane rltext = new JTextPane();
 	JLabel jLabel4 = new JLabel();
 	JPanel jPanel16 = new JPanel0();
-	JTextField cmtext = new JTextField();
+	JTextPane cmtext = new JTextPane();
 	JLabel jLabel5 = new JLabel();
 	GridLayout gridLayout3 = new GridLayout();
-	JTextField rmtext = new JTextField();
+	JTextPane rmtext = new JTextPane();
 	JLabel jLabel6 = new JLabel();
 	JPanel jPanel17 = new JPanel0();
 	FlowLayout flowLayout1 = new FlowLayout();
@@ -73,11 +93,11 @@ public class ConductionVelocity extends NeurolabExhibit {
 	FlowLayout flowLayout3 = new FlowLayout();
 	JPanel jPanel18 = new JPanel0();
 	FlowLayout flowLayout4 = new FlowLayout();
-	JTextField ttext = new JTextField();
+	JTextPane ttext = new JTextPane();
 	JLabel jLabel7 = new JLabel();
 	JPanel jPanel19 = new JPanel0();
 	FlowLayout flowLayout5 = new FlowLayout();
-	JTextField ltext = new JTextField();
+	JTextPane ltext = new JTextPane();
 	JLabel jLabel8 = new JLabel();
 	GridLayout gridLayout4 = new GridLayout();
 	Border border8;
@@ -90,16 +110,26 @@ public class ConductionVelocity extends NeurolabExhibit {
 	GridLayout gridLayout6 = new GridLayout();
 	JPanel jPanel21 = new JPanel();
 
+	
+	
 	JPanel picture = new JPanel0(){
 		public void paint(Graphics g){
 			super.paint(g);
 			antiAlias(g);
-			g.setColor(Color.yellow);
-			int r=(int)(middle*10);
-			g.fillOval(getWidth()/2-r, getHeight()/2-r, 2*r,2*r);
+//			g.setColor(Color.yellow);
+//			int r=(int)(middle*10);
+//			g.fillOval(getWidth()/2-r, getHeight()/2-r, 2*r,2*r);
+//			g.setColor(Color.black);
+//			setStrokeThickness(g,(float)(th*19)+1);
+//			g.drawOval(getWidth()/2-r, getHeight()/2-r, 2*r,2*r);
+			Point centre=new Point(getWidth()/2, getHeight()/2);
+			int outerR=(int)(diam*10/2), innerR=(int)(innr*10/2);
+			// draw outer circle
 			g.setColor(Color.black);
-			setStrokeThickness(g,(float)(th*19)+1);
-			g.drawOval(getWidth()/2-r, getHeight()/2-r, 2*r,2*r);
+			g.fillOval(centre.x-outerR,centre.y-outerR,2*outerR,2*outerR);
+			//draw inner circle
+			g.setColor(Color.yellow);
+	    g.fillOval(centre.x-innerR,centre.y-innerR,2*innerR,2*innerR);
 		}
 	};
 
@@ -118,8 +148,8 @@ public class ConductionVelocity extends NeurolabExhibit {
 			catch(Exception e) {
 			e.printStackTrace();
 		}
-		Icon iinc=new ImageIcon(getImage("resources/bitmaps/UpTriangle.gif"));
-		Icon idec=new ImageIcon(getImage("resources/bitmaps/DownTriangle.gif"));
+		Icon iinc=new ImageIcon(getImage("resources/bitmaps/UpTriangle.GIF"));
+		Icon idec=new ImageIcon(getImage("resources/bitmaps/DownTriangle.GIF"));
 		diamInc.setIcon(iinc);
 		diamDec.setIcon(idec);
 		myelInc.setIcon(iinc);
@@ -129,6 +159,15 @@ public class ConductionVelocity extends NeurolabExhibit {
 	}
 
 	private void jbInit() throws Exception {
+	  veltext.setContentType("text/html");
+	  diamtext.setContentType("text/html");
+	  myeltext.setContentType("text/html");
+	  rltext.setContentType("text/html");
+	  cmtext.setContentType("text/html");
+	  rmtext.setContentType("text/html");
+	  ttext.setContentType("text/html");
+	  ltext.setContentType("text/html");
+
 		border1 = BorderFactory.createCompoundBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED,new Color(255, 255, 235),Color.white,new Color(135, 133, 115),new Color(94, 93, 80)),BorderFactory.createEmptyBorder(3,3,3,3));
 		border2 = BorderFactory.createEtchedBorder(new Color(255, 255, 235),new Color(135, 133, 115));
 		titledBorder1 = new TitledBorder(border2,"Design parameters");
@@ -176,7 +215,6 @@ public class ConductionVelocity extends NeurolabExhibit {
 		veltext.setText("10.8 m/sec");
 		jLabel2.setLabelFor(jPanel13);
 		jLabel2.setText("External diameter");
-		diamtext.setText("5 mu m");
 		diamtext.setCaretColor(Color.yellow);
 		diamtext.setBorder(border7);
 		diamtext.setPreferredSize(new Dimension(80, 30));
@@ -188,7 +226,6 @@ public class ConductionVelocity extends NeurolabExhibit {
 		jLabel3.setLabelFor(jPanel14);
 		jLabel3.setText("Thickness");
 		jPanel14.setLayout(borderLayout7);
-		myeltext.setText("0 mu m");
 		myeltext.setCaretColor(Color.yellow);
 		myeltext.setBorder(border7);
 		myeltext.setPreferredSize(new Dimension(80, 30));
@@ -201,20 +238,18 @@ public class ConductionVelocity extends NeurolabExhibit {
 		rltext.setBorder(border7);
 		rltext.setCaretColor(Color.yellow);
 		rltext.setEditable(false);
-		rltext.setText("389 Mohm/cm");
 		rltext.setPreferredSize(new Dimension(110, 30));
 		jLabel4.setFont(new java.awt.Font("Dialog", 1, 16));
-		jLabel4.setText("Rl");
+		jLabel4.setText("<HTML>R<sub>L");
 		cmtext.setBackground(Color.black);
 		cmtext.setFont(new java.awt.Font("SansSerif", 1, 12));
 		cmtext.setForeground(Color.cyan);
 		cmtext.setBorder(border7);
 		cmtext.setCaretColor(Color.yellow);
 		cmtext.setEditable(false);
-		cmtext.setText("226.1 pF/cm");
 		cmtext.setPreferredSize(new Dimension(110, 30));
 		jLabel5.setFont(new java.awt.Font("Dialog", 1, 16));
-		jLabel5.setText("Cm");
+		jLabel5.setText("<HTML>C<sub>M");
 		jPanel8.setPreferredSize(new Dimension(150, 60));
 		jPanel8.setLayout(gridLayout3);
 		gridLayout3.setRows(3);
@@ -225,10 +260,9 @@ public class ConductionVelocity extends NeurolabExhibit {
 		rmtext.setBorder(border7);
 		rmtext.setCaretColor(Color.yellow);
 		rmtext.setEditable(false);
-		rmtext.setText("1.06 Mohm/cm");
 		rmtext.setPreferredSize(new Dimension(110, 30));
 		jLabel6.setFont(new java.awt.Font("Dialog", 1, 16));
-		jLabel6.setText("Rm");
+		jLabel6.setText("<HTML>R<sub>M</sub>");
 		jPanel16.setLayout(flowLayout1);
 		flowLayout1.setAlignment(FlowLayout.RIGHT);
 		jPanel17.setLayout(flowLayout2);
@@ -243,10 +277,9 @@ public class ConductionVelocity extends NeurolabExhibit {
 		ttext.setBorder(border7);
 		ttext.setCaretColor(Color.yellow);
 		ttext.setEditable(false);
-		ttext.setText(".23 msec");
 		ttext.setPreferredSize(new Dimension(110, 30));
 		jLabel7.setFont(new java.awt.Font("Dialog", 1, 16));
-		jLabel7.setText("t");
+		jLabel7.setText("<HTML><font face='Times New Roman'><I>&#964;"); // tau
 		jPanel19.setLayout(flowLayout5);
 		flowLayout5.setAlignment(FlowLayout.RIGHT);
 		ltext.setBackground(Color.black);
@@ -255,10 +288,9 @@ public class ConductionVelocity extends NeurolabExhibit {
 		ltext.setBorder(border7);
 		ltext.setCaretColor(Color.yellow);
 		ltext.setEditable(false);
-		ltext.setText("0.52 mm");
 		ltext.setPreferredSize(new Dimension(110, 30));
 		jLabel8.setFont(new java.awt.Font("Dialog", 1, 16));
-		jLabel8.setText("l");
+		jLabel8.setText("<HTML><font face='Times New Roman'><I>&#955;"); // lambda
 		jPanel9.setPreferredSize(new Dimension(111, 50));
 		jPanel9.setLayout(gridLayout4);
 		gridLayout4.setRows(3);
@@ -380,18 +412,19 @@ public class ConductionVelocity extends NeurolabExhibit {
 		/**
 		 update text and graphics
 		*/
-		cmtext.setText( cap(1000000 * cm, " pF/cm") );
-		rmtext.setText( cap(rm / 1000000, " Mohm.cm") );
-		rltext.setText( cap(rl / 1000000, " Mohm/cm") );
-		ltext.setText( cap(lambda, " mm") );
-		ttext.setText( cap(tau, " msec") );
-		veltext.setText( cap(v, " m/sec") );
-		diamtext.setText( cap(diam,"µ") );
-		myeltext.setText( cap(th,"µ") );
+		String yellow = "#ffff00", green = "#00ff00";
+		cmtext.setText( cap(1000000 * cm, " pF/cm", yellow) );
+		rmtext.setText( cap(rm / 1000000, " Mohm.cm", yellow ) );
+		rltext.setText( cap(rl / 1000000, " Mohm/cm",yellow ) );
+		ltext.setText( cap(lambda, " mm", yellow) );
+		ttext.setText( cap(tau, " msec", yellow) );
+		veltext.setText( cap(v, " m/sec", yellow) );
+		diamtext.setText( cap(diam," &#956;", green) );
+		myeltext.setText( cap(th," &#956;", green) );
 		picture.repaint();
 	}
 
-	String cap(double val, String unit){
+	String cap(double val, String unit, String colour){
 		//truncate to 3sf
 		String d=String.valueOf(val);
 		int p=d.indexOf('.');
@@ -406,7 +439,7 @@ public class ConductionVelocity extends NeurolabExhibit {
 			}
 		}
 		if(d.length()==0)d="0";
-		return d+unit;
+		return "<HTML><body bgcolor='black'><FONT FACE='arial' COLOR=\""+colour+"\"><B>" + d  + unit +"</body></HTML>";
 	}
 
 	void change(ActionEvent e) {
@@ -448,4 +481,7 @@ public class ConductionVelocity extends NeurolabExhibit {
 		else {oth=th; th=0;}
 		change(e);
 	}
+
+  public void close(){
+  }
 }

@@ -12,56 +12,36 @@ package com.neurolab.common;
 
 //import javax.sound.midi.*;
 
+import javax.sound.midi.*;
 import javax.swing.Timer;
 import java.awt.event.*;
+import java.lang.reflect.Method;
 
 
 public class MidiGenerator {
-
-//	MidiDevice md;
-//	Receiver rec;
-	public MidiGenerator() {
-		timer.setRepeats(false);
-/*		try{
-			md=MidiSystem.getMidiDevice(MidiSystem.getMidiDeviceInfo()[0]);
-			md.open();
-			rec=md.getReceiver();
-		}catch(Exception e){e.printStackTrace();}
-*/	}
-	int currnote=-1;
-	public void playNote(int note){
-		if(currnote!=-1){
-			stopNote();
-		}
-/*		ShortMessage m=new ShortMessage();
-		try{
-			m.setMessage(ShortMessage.NOTE_ON,1,note,127);
-			rec.send(m,-1);
-		}catch(Exception e){e.printStackTrace();}
-*/		timer.start();
-	}
-	Timer timer=new Timer(100,new ActionListener(){
-		public void actionPerformed(ActionEvent e){
-			stopNote();
-		}
-	});
-	public void stopNote(){
-		if(currnote!=-1){
-/*			ShortMessage m=new ShortMessage();
-			try{
-				m.setMessage(ShortMessage.NOTE_OFF,1,currnote,0);
-				rec.send(m,-1);
-			}catch(Exception e){e.printStackTrace();}
-*/			currnote=-1;
-			timer.stop();
-		}
-	}
-	public void finalize() throws Throwable{
-		close();
-		super.finalize();
-	}
-	public void close(){
-/*		rec.close();
-		md.close();
-*/	}
+  public MidiGenerator() {
+    try {
+      clas=Class.forName("com.neurolab.common.MidiImpl");
+      playmethod=clas.getMethod("playNote", new Class[] {int.class});
+      midiimpl  =clas.newInstance();
+    }catch(Exception e) {e.printStackTrace();}
+  }
+  Class clas;
+  Object midiimpl;
+  Method playmethod=null;
+  public void playNote(int note) {
+    if(playmethod==null)return;
+    try {
+      playmethod.invoke(midiimpl, new Object[] {new Integer(note)});
+    }catch(Exception e) {e.printStackTrace();}
+  }
+  public void close() {
+    if(midiimpl!=null) {
+      Method cl;
+      try{
+        cl = clas.getMethod("close", new Class[] {});
+        cl.invoke(midiimpl, new Object[] {});
+      }catch(Exception e) {e.printStackTrace();}
+    }
+  }
 }

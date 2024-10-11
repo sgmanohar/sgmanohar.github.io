@@ -1,13 +1,28 @@
 // Passive Currents by Sanjay Manohar
 package com.neurolab;
 
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import com.neurolab.common.*;
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.Timer;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.ReturnButton;
+import com.neurolab.common.ThickPanel;
 
 /*
 v1.1	ok
@@ -23,7 +38,7 @@ public class PassiveCurrents extends NeurolabExhibit implements ActionListener, 
 		super.init();
 		getMainContainer().setLayout(new BorderLayout());
 		createComponents();
-		timer=new Timer(200,this);
+		timer=new Timer(100,this);
 		ndecay=52;
 		decay=new float[ndecay];
 	}
@@ -73,7 +88,10 @@ public class PassiveCurrents extends NeurolabExhibit implements ActionListener, 
 
 		mrpanel.setLayout(new BorderLayout());
 		mrpanel.add(spacec=new NamedSliderPanel("Space-constant",100,LABEL_POS_BELOW),BorderLayout.NORTH);
-		mrpanel.add(timec =new NamedSliderPanel("Time-constant" ,100,LABEL_POS_BELOW),BorderLayout.SOUTH);
+		JPanel tmp=new JPanel();tmp.setLayout(new BorderLayout());
+		mrpanel.add(tmp, BorderLayout.CENTER); 
+		tmp.add(timec =new NamedSliderPanel("Time-constant" ,100,LABEL_POS_BELOW),BorderLayout.NORTH);
+		setBG(tmp);
 
 		charge.setSelected(true);
 		spacec.slider.setValue(100);
@@ -125,9 +143,10 @@ public class PassiveCurrents extends NeurolabExhibit implements ActionListener, 
 		Graphics g=graph.getGraphics();
 		int oht,ohp,ht,hp,ct=graph.getWidth()/2;
 		g.setColor(Color.green);
-		ohp=0;oht=(int)(getHeight()-165-2.5*vscale*decay[1]);
+		int Y0=graph.getHeight()-15;
+		ohp=0;oht=(int)(Y0-2.5*vscale*decay[1]);
 		for(int i=1;i<ndecay;i++){
-			ht=(int)(getHeight()-165-2.5*vscale*decay[i]);
+			ht=(int)(Y0-2.5*vscale*decay[i]);
 			hp=(i-1)*(ct-20)/ndecay;
 			g.drawLine(ct-ohp,oht,ct-hp,ht);
 			g.drawLine(ct+ohp,oht,ct+hp,ht);

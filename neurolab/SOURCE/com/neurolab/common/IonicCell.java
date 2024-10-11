@@ -29,7 +29,7 @@ boolean initflag, pumping=true;
 int oldno, oldni, oldko, oldki, oldvol;
 
 double X=5391,Y=3485,z=130.6;
-Timer Timer1=new Timer(150,new ActionListener(){
+public Timer Timer1=new Timer(150,new ActionListener(){
 	public void actionPerformed(ActionEvent e){
 		Timer1_Timer();
 	}

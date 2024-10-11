@@ -16,16 +16,33 @@ package com.neurolab.common;
 	}
 */
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Panel;
+import java.awt.Point;
+import java.lang.reflect.Method;
+import java.net.URL;
+import java.util.Vector;
+
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JSlider;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
-import javax.swing.event.ChangeListener;
-import java.net.*;
-import java.awt.image.ImageObserver;
-import java.util.*;
+
+import com.neurolab.ExhibitChooser;
 
 /*
 1.1	ok
@@ -41,7 +58,7 @@ import java.util.*;
 3.2	URLs all relative to codeBase not documentBase
 */
 
-public class NeurolabExhibit extends JPanel implements HeldExhibit{
+public  class NeurolabExhibit extends JPanel implements HeldExhibit{
 	private TitleBar titlebar;
 	static public Border etched,raisedbevel,loweredbevel;
 	private Container master,titlepanel,lowerpanel;
@@ -53,7 +70,34 @@ public class NeurolabExhibit extends JPanel implements HeldExhibit{
 	//to be defined!
 	public String getExhibitName(){return "";}	// should return short exhibit name
 	public void createComponents(){};	        // should use getMainContainer().add()
+	
+	public NeurolabExhibit() {
+    if(!plafset && !(this instanceof ExhibitChooser))
+      try{
+         LookAndFeelInfo[] inf=UIManager.getInstalledLookAndFeels();
+         JPanel choicepanel=new JPanel();ButtonGroup bg=new ButtonGroup();JRadioButton[] r=new JRadioButton[inf.length];;
+         for(int i=0;i<inf.length;i++) {
+           r[i]=new JRadioButton(inf[i].getName()); choicepanel.add(r[i] );
+           bg.add(r[i]);
+           r[i].setSelected(inf[i].getClassName().equals(lnf));
+         }choicepanel.setPreferredSize(new Dimension(200,200));
+         JOptionPane.showConfirmDialog(null,choicepanel);
+         for(int i=0;i<r.length;i++)if(r[i].isSelected()){
+           lnf=inf[i].getClassName();
+           UIManager.setLookAndFeel(lnf);
+           //plafset=true;
+         }
+         SwingUtilities.updateComponentTreeUI(this);
+      }catch(Exception e){
+        e.printStackTrace();
+      }
+
+	}
+	public static boolean plafset=true; // set to true once look and feel has been chosen.
+	                             // if false, then each exhibit will ask you what look and feel to use
+	static String lnf=null;
 	public void init(){
+	
 
 		etched = BorderFactory.createEtchedBorder();
 		raisedbevel = BorderFactory.createRaisedBevelBorder();
@@ -61,6 +105,7 @@ public class NeurolabExhibit extends JPanel implements HeldExhibit{
 
 		master=this;//master=getContentPane();
 		master.setBackground (systemGray);
+		//systemGray=SystemColor.control;
 		master.setLayout(new BorderLayout());
 
 			// generic titlebar with borders
@@ -76,21 +121,22 @@ public class NeurolabExhibit extends JPanel implements HeldExhibit{
 		lowerpanel.setLayout(new BorderLayout());
 		for(int i=1;i<4;i++)lowerpanel.add(new Spacer(10,10),edge[i]);	// space around lower part
 			//main container
-		maincontainer=new Panel();
+		maincontainer=new JPanel();
 		lowerpanel.add(maincontainer,BorderLayout.CENTER);
 		setBG(maincontainer);
+
 	}
 	public void setHolder(HoldsExhibit h){holder=h;}
 	public HoldsExhibit getHolder(){return holder;}
 	public Container getMainContainer(){return maincontainer;}
-	public Image getImage(String s){return getHolder().getImage(s);}
+	public Image getImage(String s){ return getHolder().getImage(s);}
 	public URL getURL(String s){return getHolder().getURL(s);}
 
 	public String getAppletInfo() {
 		return "Neurolab: "+getExhibitName()+", coded in Java by\nRobin Marlow and Sanjay Manohar\nbased on an original program by Dr. Carpenter";
 	}
 	public void toExhibitChooser(){
-		getHolder().setExhibit("com.neurolab.ExhibitChooser");
+		getHolder().setExhibit("com.neurolab.ExhibitChooser_HTML");
 	}
 	public static void paintText3D(Graphics g,String t,int x,int y){
 		g.setColor(Color.white);
@@ -100,16 +146,20 @@ public class NeurolabExhibit extends JPanel implements HeldExhibit{
 	}
 
 	public static int getTextWidth(Graphics g_,String t){
-		try{
-//			Graphics2D g = (Graphics2D) g_;
-//			return (int)(g.getFont().getStringBounds(t,0,t.length(),g.getFontRenderContext()).getWidth() );
-		}catch(Exception e){		}
+		try{ // big fiddle to avoid relying on the existence of Graphics2D 
+		  Method m=Class.forName("java.awt.Font").getMethod("getStringBounds", new Class[] {String.class, Integer.TYPE, Integer.TYPE, Class.forName("java.awt.font.FontRenderContext")});
+		  Object frc = Class.forName("java.awt.Graphics2D").getMethod("getFontRenderContext",new Class[] {}).invoke(g_,new Class[] {});
+			//Graphics2D g = (Graphics2D) g_;
+		  //return (int)(g.getFont().getStringBounds(t,0,t.length(),g.getFontRenderContext()).getWidth() );
+		  Method mw=Class.forName("java.awt.geom.Rectangle2D").getMethod("getWidth",new Class[] {});
+		  return (int)( ((Double)( mw.invoke( m.invoke(g_.getFont(), new Object[] {t, new Integer(0), new Integer(t.length()), frc}) , new Object[] {} ) )).doubleValue() );
+		}catch(Exception e){	e.printStackTrace();	}
 		return 20 * t.length();     ////?????
 	};
 	public static int getTextHeight(Graphics g_,String t){
 		try{
-//			Graphics2D g = (Graphics2D) g_;
-//			return (int)(g.getFont().getStringBounds(t,0,t.length(),g.getFontRenderContext()).getHeight() );
+			//Graphics2D g = (Graphics2D) g_;
+			//return (int)(g.getFont().getStringBounds(t,0,t.length(),g.getFontRenderContext()).getHeight() );
 		}catch(Exception e){		}
 		return g_.getFont().getSize() * 2;   ////////???????
 	}
@@ -125,7 +175,7 @@ public class NeurolabExhibit extends JPanel implements HeldExhibit{
 					return (NeurolabExhibit)p;
 				}
 
-	public void close(){}	// override this to finalize timers etc.; called on closing
+	//public void close(){}	// override this to finalize timers etc.; called on closing
 
 
 
@@ -230,6 +280,7 @@ class TitleBar extends JPanel {
 	String title;
 	public TitleBar(String t){
 		title=t;
+//		setEnabled(false);
 		setBorder(raisedbevel);
 		setBackground(systemGray);
 	}
@@ -255,7 +306,7 @@ class TitleBar extends JPanel {
 public static int LABEL_POS_LEFT=0,LABEL_POS_BELOW=1;
 public	class NamedSliderPanel extends JPanel{
 		public JSlider slider;
-		public Label label;
+		public JLabel label;
 		public NamedSliderPanel(String name,int max,int labelpos){
 			super();
 			setLayout(new BorderLayout());
@@ -264,11 +315,15 @@ public	class NamedSliderPanel extends JPanel{
 					return new Dimension(80,30);
 				}
 			},(labelpos==LABEL_POS_LEFT)?BorderLayout.EAST:BorderLayout.NORTH);
-			add(label=new Label(name),
+			add(label=new JLabel(name),
 				(labelpos==LABEL_POS_LEFT)?BorderLayout.WEST:BorderLayout.SOUTH);
 			setBG(slider);setBG(label);setBG(this);
 		}
 	}
+public void close(){
+  // TODO Auto-generated method stub
+  
+}
 
 
 }

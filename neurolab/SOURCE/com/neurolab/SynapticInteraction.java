@@ -9,11 +9,29 @@
  */
 package com.neurolab;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.*;
-import com.neurolab.common.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.image.ImageObserver;
+import java.awt.image.PixelGrabber;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
+import com.neurolab.common.ActionPotentials;
+import com.neurolab.common.Label3D;
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.Oscilloscope;
+import com.neurolab.common.ReturnButton;
 
 public class SynapticInteraction extends NeurolabExhibit {
  public String getExhibitName() {
@@ -69,7 +87,7 @@ public class SynapticInteraction extends NeurolabExhibit {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		cellimage=getImage("resources/SynapseCell.gif");
+		cellimage=getImage("resources/SynapseCell.GIF");
 		osc.setBaseY(new int[]{30});
 //		picture.setIcon( new ImageIcon(cellimage) );
 		picture.addMouseListener(new MouseAdapter(){
@@ -85,8 +103,22 @@ public class SynapticInteraction extends NeurolabExhibit {
 				}
 			}
 		});
+		picture.addMouseMotionListener(new MouseMotionAdapter() {
+		  public void mouseMoved(MouseEvent e) {
+        pg=new PixelGrabber(cellimage,e.getX(),e.getY(),1,1,false);
+        try{
+          pg.grabPixels(100);
+        }catch(Exception x){x.printStackTrace();}
+        pixel=(byte[])pg.getPixels();
+        if(pixel[0]>1 && pixel[0]<8) {
+          picture.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        } else picture.setCursor(Cursor.getDefaultCursor()); 
+        
+		  }
+		});
 		ap.timer.start();
 		timer.start();
+		osc.sweep.doClick();
 	}
 	public void close() {
 		ap.timer.stop();

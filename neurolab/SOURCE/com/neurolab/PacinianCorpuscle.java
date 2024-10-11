@@ -10,13 +10,33 @@
  */
 package com.neurolab;
 
-import javax.swing.*;
-import java.awt.*;
-import com.neurolab.common.*;
-import javax.swing.border.*;
-import java.awt.event.*;
-import com.neurolab.circuit.*;
-import javax.swing.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.Timer;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.MouseInputAdapter;
+
+import com.neurolab.circuit.CircuitDashpot;
+import com.neurolab.circuit.CircuitPanel;
+import com.neurolab.circuit.CircuitResistor;
+import com.neurolab.circuit.CircuitWire;
+import com.neurolab.common.JPanel0;
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.Oscilloscope;
+import com.neurolab.common.ReturnButton;
+import com.neurolab.common.SignalGenerator;
+import com.neurolab.common.SignalListener;
 
 public class PacinianCorpuscle extends NeurolabExhibit implements ActionListener,SignalListener{
  public String getExhibitName() {
@@ -59,6 +79,7 @@ public class PacinianCorpuscle extends NeurolabExhibit implements ActionListener
 		osc.setBaseY(base);
 		osc.timer.setDelay(50);
 		osc.xSpeed=2;
+		osc.resweepOnClear=false;
 		Timer nt=new Timer(50,new ActionListener(){public void actionPerformed(ActionEvent e){
 	initCircuit();
 		} });nt.setRepeats(false);nt.start();
@@ -86,14 +107,16 @@ public class PacinianCorpuscle extends NeurolabExhibit implements ActionListener
 			np[i]=new Point(nodes[i][0],nodes[i][1]);
 			circuit.nodes.addElement(np[i]);
 		}
+		CircuitDashpot cd;
 		circuit.componentlist.addElement(new CircuitWire(circuit,0,2));
 		circuit.componentlist.addElement(new CircuitWire(circuit,1,3));
 		circuit.componentlist.addElement(new CircuitResistor(circuit,3,4));
 		circuit.componentlist.addElement(new CircuitWire(circuit,4,5));
-		circuit.componentlist.addElement(new CircuitDashpot(circuit,5,6));
+		circuit.componentlist.addElement(cd=new CircuitDashpot(circuit,5,6));
 
 		circuit.addMouseListener(mia);
 		circuit.addMouseMotionListener(mia);
+		cd.height=80;
 	}
 	MouseInputAdapter mia=new MouseInputAdapter(){
 		int ox;
@@ -123,7 +146,7 @@ public class PacinianCorpuscle extends NeurolabExhibit implements ActionListener
 
 	public void actionPerformed(ActionEvent e){
 		if(e.getActionCommand()=="Sweep"){
-			if(osc!=null)osc.clear.doClick();
+			//if(osc!=null)osc.clear.doClick();
 		}
 	}
 	public double creep,stim;
@@ -144,7 +167,7 @@ public class PacinianCorpuscle extends NeurolabExhibit implements ActionListener
 		int base=circuit.getHeight()-10;
 		circuit.moveNode(4,new Point(mid,(int)(base-130-Y/6)));
 		circuit.moveNode(5,new Point(mid,(int)(base-140-Y/6)));
-		circuit.moveNode(6,new Point(mid,(int)(base-250-X/6)));
+		circuit.moveNode(6,new Point(mid,(int)(base-275-X/6)));
 		circuit.repaint();
 	}
 

@@ -10,11 +10,34 @@
  */
 package com.neurolab;
 
-import com.neurolab.common.*;
-import javax.swing.*;
-import java.awt.*;
-import javax.swing.border.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Rectangle;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.Timer;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+
+import com.neurolab.common.GraphicComponent;
+import com.neurolab.common.JPanel0;
+import com.neurolab.common.JRadioButton0;
+import com.neurolab.common.Label3D;
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.PercentageBar;
+import com.neurolab.common.ReturnButton;
 
 public class HorizontalCells extends NeurolabExhibit{
   JPanel mainpanel = new JPanel0();
@@ -151,14 +174,14 @@ public class HorizontalCells extends NeurolabExhibit{
     graphicComponent12.setType(1);
     graphicComponent12.setBounds(new Rectangle(414, 21, 21, 20));
     horizontalactivity.setOrientation(PercentageBar.VERTICAL);
-    horizontalactivity.setForeground(Color.magenta);
+    horizontalactivity.color = Color.magenta;
     horizontalactivity.setBounds(new Rectangle(473, 199, 24, 69));
     jLabel1.setFont(new java.awt.Font("Dialog", 1, 12));
     jLabel1.setForeground(Color.cyan);
     jLabel1.setText("Receptors");
     jLabel1.setBounds(new Rectangle(21, 0, 90, 13));
     jLabel2.setFont(new java.awt.Font("Dialog", 1, 12));
-    jLabel2.setForeground(SystemColor.activeCaption);
+    jLabel2.setForeground(new Color(0,0,128));
     jLabel2.setText("Bipolars");
     jLabel2.setBounds(new Rectangle(22, 290, 56, 15));
     jLabel3.setFont(new java.awt.Font("Dialog", 1, 12));
@@ -196,6 +219,7 @@ public class HorizontalCells extends NeurolabExhibit{
 		GraphicComponent bipolarbody = new GraphicComponent();
 		GraphicComponent bipolarcell = new GraphicComponent();
 		GraphicComponent bipolarterminal = new GraphicComponent();
+		Color bipolarcolor = new Color(0,0,128);
 		public RetinalUnit(){
 		    setLayout(null);
 		    add(receptoractivity, null);
@@ -206,22 +230,22 @@ public class HorizontalCells extends NeurolabExhibit{
 		    bipolarcell.add(bipolarbody, null);
 		    retinalunit.setBorder(BorderFactory.createLineBorder(Color.black));
 		    receptoractivity.setOrientation(PercentageBar.VERTICAL);
-		    receptoractivity.setForeground(Color.cyan);
+		    receptoractivity.color= Color.cyan;
 		    receptoractivity.setBounds(new Rectangle(5, 69, 10, 56));
 		    receptorcell.setBackground(Color.cyan);
 		    receptorcell.setBounds(new Rectangle(17, 4, 31, 122));
 		    bipolaractivity.setBounds(new Rectangle(4, 207, 10, 56));
 		    bipolaractivity.setOrientation(PercentageBar.VERTICAL);
 		    bipolarbody.setBackground(SystemColor.control);
-		    bipolarbody.setForeground(SystemColor.activeCaption);
+		    bipolarbody.setForeground(bipolarcolor);
 		    bipolarbody.setType(4);
 		    bipolarbody.setBounds(new Rectangle(0, 67, 21, 25));
-		    bipolarcell.setForeground(SystemColor.activeCaption);
+		    bipolarcell.setForeground(bipolarcolor);
 		    bipolarcell.setType(3);
 		    bipolarcell.setBounds(new Rectangle(25, 132, 21, 130));
 		    bipolarterminal.setType(1);
 		    bipolarterminal.setBounds(new Rectangle(2, 0, 17, 18));
-
+		    bipolarterminal.setForeground(bipolarcolor);
 			receptorcell.addMouseListener(this);
 
 		}
@@ -248,5 +272,8 @@ public class HorizontalCells extends NeurolabExhibit{
   void Exit_actionPerformed(ActionEvent e) {
 	timer.stop();
 	toExhibitChooser();
+  }
+  public void close(){
+    timer.stop();
   }
 }

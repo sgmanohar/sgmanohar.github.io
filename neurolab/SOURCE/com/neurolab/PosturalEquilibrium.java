@@ -10,12 +10,31 @@
  */
 package com.neurolab;
 
-import javax.swing.*;
-import java.awt.*;
-import javax.swing.border.*;
-import com.neurolab.common.*;
-import java.awt.event.*;
-import java.beans.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Polygon;
+import java.awt.Rectangle;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.JCheckBox;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+
+import com.neurolab.common.AngleControl;
+import com.neurolab.common.JPanel0;
+import com.neurolab.common.Label3D;
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.ReturnButton;
 
 public class PosturalEquilibrium extends NeurolabExhibit {
 	JPanel jPanel1 = new JPanel0();
@@ -50,17 +69,16 @@ public class PosturalEquilibrium extends NeurolabExhibit {
 		antiAlias(g);
 		try{
 			//Graphics2D g2=(Graphics2D)g;
-			//g2.translate(20,50);
+		  //g2.translate(20,50);
 			//g2.scale(1.3,1.3);
-
 			//Rectangle2D.Double sky = new Rectangle2D.Double(-20,-50,300,400);
 			//GradientPaint gp = new GradientPaint(140, -50, Color.blue, 140, 100, Color.cyan);
 			//g2.setPaint(gp);
 			//g2.fill(sky);
-			g.setColor(Color.cyan); g.fillRect(-20,-50,300,400);
+			g.setColor(Color.cyan); g.fillRect(-20,-100,440,400);
 
-			Polygon grass = new Polygon(new int[]	  {-20, 280, 280, -20},
-                                                    new int[]		{  j,   i, 400, 400}, 4 );
+			Polygon grass = new Polygon(new int[]	  {0, getWidth(), getWidth(), 0},
+                                                    new int[]		{  j*120/100+5,   i*120/100+5, 400, 400}, 4 );
 			g.setColor(Color.green);
 			g.fillPolygon(grass);
 			//g2.setStroke(new BasicStroke(4, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
@@ -69,6 +87,7 @@ public class PosturalEquilibrium extends NeurolabExhibit {
 			//?paint without graphics2D
 		}
 
+g.translate(65,30);//80
 		g.setColor(Color.black);
 		g.drawPolyline(new int[]{lx,nx,px,qx},new int[]{ly,ny,py,qy},4);
 		//                ' Back leg = q p n l
@@ -87,6 +106,7 @@ public class PosturalEquilibrium extends NeurolabExhibit {
 		g.drawLine (hx,hy+45,hx + 7, hy + 37);
 		g.drawLine (hx, hy + 45,hx - 7, hy + 37);
 
+g.translate(0,-80);
 	}
 	};
 
@@ -136,9 +156,9 @@ final double scaler = 0.15;
 		int Head=head.getValue();
 		int Slope=-slope.getValue();
 		double cam,sam,cal,sal;
-		if( support.isSelected()) body = body - oldbody * 4/10;
-		if( neck.isSelected()) body = body -  4* Head/10;
-		if( vestibular.isSelected() ) body = body - 4 * (oldbody - Head)/10;
+		if( support.isSelected()) body = body - oldbody * 2/10;
+		if( neck.isSelected()) body = body -  2* Head/10;
+		if( vestibular.isSelected() ) body = body - 2 * (oldbody - Head)/10;
 		body = limu(body, Slope + 38);
 		body = liml(body, Slope - 38);
 

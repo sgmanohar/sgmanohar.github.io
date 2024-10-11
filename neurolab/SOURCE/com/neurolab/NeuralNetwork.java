@@ -11,6 +11,8 @@ package com.neurolab;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Vector;
+
 import javax.swing.*;
 import com.neurolab.common.*;
 import javax.swing.border.*;
@@ -93,9 +95,9 @@ public class NeuralNetwork extends NeurolabExhibit {
 	}
 
 //?need vector for active timers to prevent null pointers, finalize, etc?
-
+	Vector timers=new Vector();
 	public void startNeurone(int i,boolean f){
-		Object timer=new NeuroneTimer(i,f);
+		timers.add(new NeuroneTimer(i,f));
 	}
 	class NeuroneTimer implements ActionListener{
 		int currentrow,currentcolumn;
@@ -180,5 +182,13 @@ public class NeuralNetwork extends NeurolabExhibit {
 
 	void jButton1_actionPerformed(ActionEvent e) {
 	getHolder().setExhibit("com.neurolab.NetworkLearning");
+	}
+	public void close() {
+	  for(int i=0;i<timers.size();i++) {
+	    Object o=(timers.get(i));
+	    if(o instanceof NeuroneTimer) {
+	      ((NeuroneTimer)o).timer.stop();
+	    }
+	  }
 	}
 }

@@ -9,12 +9,36 @@
  */
 package com.neurolab;
 
-import com.neurolab.common.*;
-import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
-import javax.swing.border.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.Vector;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
+import javax.swing.border.Border;
+
+import com.neurolab.common.JPanel0;
+import com.neurolab.common.NeurolabExhibit;
 
 public class NetworkLearning extends NeurolabExhibit {
 	BorderLayout borderLayout1 = new BorderLayout();
@@ -114,6 +138,7 @@ public class NetworkLearning extends NeurolabExhibit {
 		for(int i=0;i<hidden.length;i++)for(int j=0;j<output.length;j++)
 			who[i][j]=Math.random()*.2-.1;
 		examples=0; nCorrect=0;
+		scores.removeAllElements();
 		newinput();
 	}
 	boolean randomising=false, repeating=false;
@@ -298,13 +323,13 @@ public class NetworkLearning extends NeurolabExhibit {
 				jButton3_actionPerformed(e);
 			}
 		});
-		examplestxt.setPreferredSize(new Dimension(35, 21));
-		examplestxt.setText("0");
+    examplestxt.setText("0");
+		examplestxt.setColumns(3);
 		examplestxt.setHorizontalAlignment(SwingConstants.RIGHT);
 		jLabel1.setText("Seen");
 		jLabel2.setText("Accu%");
-		accutxt.setPreferredSize(new Dimension(28, 21));
-		accutxt.setText("0");
+    accutxt.setText("0");
+		accutxt.setColumns(3);
 		rightpanel.setPreferredSize(new Dimension(100, 0));
 		jPanel1.add(graphic, BorderLayout.CENTER);
 		jPanel1.add(jPanel3, BorderLayout.SOUTH);
@@ -343,5 +368,8 @@ public class NetworkLearning extends NeurolabExhibit {
 
 	void jButton3_actionPerformed(ActionEvent e) {
 	newinput();
+	}
+	public void close() {
+	  timer.stop();
 	}
 }

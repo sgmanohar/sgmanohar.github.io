@@ -63,4 +63,5 @@ if(f<0 || f>=1)System.out.println(x);
 		super.doClose();
 		timer.stop();
 	}
+	public void close() {timer.stop();}
 }

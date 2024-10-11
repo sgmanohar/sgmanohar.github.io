@@ -1,7 +1,9 @@
 package com.neurolab.common;
 
+import java.awt.BorderLayout;
+import java.awt.Graphics;
+
 import javax.swing.JPanel;
-import java.awt.*;
 
 public class ThickPanel extends JPanel implements NeurolabGuiComponent{
 	public JPanel inner;
@@ -28,6 +30,6 @@ public class ThickPanel extends JPanel implements NeurolabGuiComponent{
 					super.paint(g);
 					NeurolabExhibit.antiAlias(g);
 					g.setFont(getFont());
-					NeurolabExhibit.paintText3D(g,text,(getWidth()-NeurolabExhibit.getTextWidth(g,text))/2,getHeight()-4);
+					NeurolabExhibit.paintText3D(g,text,(getWidth()-NeurolabExhibit.getTextWidth(g,text))/2,getHeight()-6);
 				}
 }

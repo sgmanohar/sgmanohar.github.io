@@ -9,15 +9,36 @@
  */
 package com.neurolab;
 
-import javax.swing.*;
-import java.awt.*;
-import com.neurolab.common.*;
-import javax.swing.border.*;
-import java.io.*;
-import java.util.*;
-import java.net.*;
-import javax.swing.event.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+import java.util.Vector;
+
+import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.ListSelectionModel;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+import javax.swing.event.ListSelectionEvent;
+
+import com.neurolab.common.Label3D;
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.ReturnButton;
 
 public class AnatomicalPathways extends NeurolabExhibit {
 	JPanel jPanel1 = new JPanel();
@@ -38,7 +59,7 @@ public class AnatomicalPathways extends NeurolabExhibit {
 	JPanel jPanel7 = new JPanel();
 	Label3D label3D3 = new Label3D();
 	JList tractlist = new JList();
-	JTextPane jTextPane1 = new JTextPane();
+	JTextArea jTextPane1 = new JTextArea();
 	Border border1;
 	Border border2;
 	Border border3;
@@ -170,10 +191,12 @@ p.conn=new int[1][2];
 		});
 		jTextPane1.setPreferredSize(new Dimension(150, 100));
 		jTextPane1.setOpaque(false);
-		jTextPane1.setEnabled(false);
+		jTextPane1.setEditable(false);
 		jTextPane1.setText("Double-click on a destination to go one stage on, on a source to " +
 		"go one stage back");
+		jTextPane1.setLineWrap(true); jTextPane1.setWrapStyleWord(true);
 		jTextPane1.setFont(new java.awt.Font("Dialog", 0, 13));
+		jTextPane1.setBackground(systemGray);
 		sourcelist.setModel(sourcemodel);
 		sourcelist.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		sourcelist.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -215,6 +238,7 @@ p.conn=new int[1][2];
 	}
 	Vector find(int which, String name){
 		Vector f=new Vector();
+		if(pathways==null) return f;
 		for(int p=0;p<pathways.size();p++){
 			Pathway a=(Pathway)pathways.elementAt(p);
 			if(which<2){
@@ -237,6 +261,7 @@ p.conn=new int[1][2];
 		//takes vector of pathways, returns vector of strings
 	Vector displayableStrings(int which,Vector v){
 		Vector w=new Vector();
+		if(v==null) return w;
 		for(int i=0;i<v.size();i++){
 			Pathway p=(Pathway)v.elementAt(i);
 			for(int j=0;j<p.conn.length;j++){
@@ -307,4 +332,7 @@ p.conn=new int[1][2];
 	void sourcelist_valueChanged(ListSelectionEvent e) {
 
 	}
+  public void close(){
+    
+  }
 }

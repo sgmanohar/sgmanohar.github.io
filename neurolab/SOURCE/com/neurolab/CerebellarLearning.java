@@ -10,13 +10,29 @@
  */
 package com.neurolab;
 
-import java.awt.*;
-import javax.swing.*;
-import com.neurolab.common.*;
-import javax.swing.border.Border;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.Timer;
+
+import com.neurolab.common.GraphicComponent;
+import com.neurolab.common.JPanel0;
+import com.neurolab.common.JRadioButton0;
 import com.neurolab.common.MidiGenerator;
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.ReturnButton;
 
 public class CerebellarLearning extends NeurolabExhibit {
   BorderLayout borderLayout1 = new BorderLayout();
@@ -169,7 +185,7 @@ System.out.println("->"+purk[k].activity);
 	}
 	class ParallelFibre implements ActionListener{
 		int activity=0;
-		Color colInactive=Color.magenta;
+		Color colInactive=new Color(192,0,192);
 		Color colActive=Color.red;
 		public ParallelFibre(int i){
 			int dy=8;
@@ -183,7 +199,7 @@ System.out.println("->"+purk[k].activity);
 			setCol(colInactive);
 		}
 
-		Timer timer=new Timer(500,this);
+		Timer timer=new Timer(750,this);
 		public void actionPerformed(ActionEvent e){
 			if(activity>0){
 				activity--;
@@ -276,7 +292,7 @@ System.out.println("->"+purk[k].activity);
 			stim3.setType(3);
 			stim3.setThickness(3);
 			stimB.setBounds(new Rectangle(48,200,45,20));
-			stimB.setText( String.valueOf((char)('A'+i)) );
+			stimB.setText( String.valueOf((char)('C'+i)) );
 			stimB.setBackground(systemGray);
 			add(stimB);
 			add(graphicComponent1);
@@ -377,5 +393,12 @@ System.out.println("->"+purk[k].activity);
   }
 	public void close(){
 		midi.close();
+		for(int i=0;i<purk.length;i++) {
+		  purk[i].timer.stop();
+		  purk[i].timer2.stop();
+		}
+		for(int i=0;i<parf.length;i++) {
+		  parf[i].timer.stop();
+		}
 	}
 }

@@ -10,9 +10,12 @@
  */
 package com.neurolab.common;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
 
 public class PercentageBar extends JComponent {
 	public static final boolean HORIZONTAL=true,VERTICAL=false;
@@ -35,8 +38,9 @@ public class PercentageBar extends JComponent {
 	public void paint(Graphics g){
 		super.paint(g);
 		g.setColor(color);
+		int mw=(getWidth()-4);
 		if(p>0)
-			if(horz)g.fillRect(2,2,2+(int)(p*(getWidth()-4)/100),getHeight()-4);
+			if(horz)g.fillRect(2,2,Math.min((int)(p*mw/100),mw),getHeight()-4);
 			else	g.fillRect(2,getHeight()-2-(int)(p*(getHeight()-4)/100),getWidth()-4,(int)(p*(getHeight()-4)/100));
 	}
 }

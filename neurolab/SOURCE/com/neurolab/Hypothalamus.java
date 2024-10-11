@@ -27,18 +27,7 @@ points that need manually adjusting for change of objects
 
 package com.neurolab;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.*; // for manips
-//import java.awt.MediaTracker.*;
-import java.text.*;
-import javax.swing.*;
-import javax.swing.BorderFactory;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
-import java.io.*;
-
-import com.neurolab.common.*;
+import java.awt.Dimension;
 
 //public class Hypothalamus extends NeurolabExhibit implements ActionListener{
 
@@ -60,7 +49,7 @@ public class Hypothalamus extends RobinExhibit{
 			 "Supraoptic nucleus","Dorsal nucleus","Dorsomedial nucleus",
 			 "Ventromedial nucleus","Arcuate nucleus","Posterior nucleus",
 			 "Mammillary body","Optic chiasm","Lateral nucleus","Median eminence",
-			 "Adenohypophysis (anterior lobe)","Neurohypophysis (posterior lobe)"};
+			 "<HTML>Adenohypophysis <BR>(anterior lobe)","<HTML>Neurohypophysis <BR>(posterior lobe)"};
 
 	 textStrings = new String[]{
 			"Main origin of oxytocin-releasing cells in neurohypophysis, controlling uterine contraction and milk ejection.",

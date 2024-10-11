@@ -10,13 +10,37 @@
  */
 package com.neurolab;
 
-import java.awt.*;
-import javax.swing.*;
-import com.neurolab.common.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Random;
+
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.MouseInputAdapter;
+
+import com.neurolab.common.CustomSound16;
+import com.neurolab.common.JPanel0;
+import com.neurolab.common.JRadioButton0;
+import com.neurolab.common.Label3D;
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.ReturnButton;
 
 public class SoundAndHearing extends NeurolabExhibit {
  public String getExhibitName() {
@@ -79,14 +103,14 @@ public class SoundAndHearing extends NeurolabExhibit {
 		super.paint(g);
 		antiAlias(g);
 		g.setColor(Color.green);
-		Point o,n=new Point(2,128);
+		Point o,n=new Point(2,getHeight()/2);
 		int d,m;
 		for(int i=2;i<getWidth()-2;i++){
 			o=n;
-			m=(i*2)%480;
-			d=wave[m];
+			m=(i*2)%wave.length;
+			d=(int)( getHeight()*(0.5+0.3*wave[m]) );
 			n=new Point(i,d);
-			g.drawLine(o.x,o.y/3+10,n.x,n.y/3+10);
+			g.drawLine(o.x,o.y,n.x,n.y);
 		}
 	}
 	};
@@ -109,6 +133,7 @@ class Spectrum extends JPanel{
 			}
 			public void mouseDragged(MouseEvent e){
 				ampl[selection]-=e.getY()-oy;
+				if(ampl[selection]<0)ampl[selection]=0;
 				ampl[selection]=(byte)(int)Math.min(ampl[selection],getHeight()-10);
 				oy=e.getY();
 				doWave();
@@ -168,45 +193,44 @@ class Spectrum extends JPanel{
 
 	JRadioButton[] phase=new JRadioButton[]{jRadioButton9,jRadioButton10,jRadioButton11,jRadioButton12};
 	JRadioButton[] preset=new JRadioButton[]{jRadioButton1,jRadioButton2,jRadioButton3,jRadioButton4,jRadioButton5,jRadioButton6,jRadioButton7,jRadioButton8};
-	int[] wave=new int[480];
-	final int N=4;
-	byte[] buf=new byte[96*N];
-	CustomSound sound=new CustomSound(buf);
+	final int SZ=44100;
+	double[] wave=new double[SZ];
+	double[] buf=new double[SZ];
+	CustomSound16 sound=new CustomSound16(buf);
 	boolean waveHasChanged=true;
 
 	public void doWave(){
-		for(int i=0;i<480;i++)wave[i] = 128;//128;
+	  double f0=0.010;
+		for(int i=0;i<SZ;i++)wave[i] = 0;//128;
 		for(int j=1;j<25;j++){
 			if(ampl[j]>0){
-				int n=ph[j] * 120;
-				for(int i=0;i<480;i++)
-					wave[i]+=Math.max(Math.min(
-						ampl[j]*Math.sin(Math.PI*(j*i+n)/240),
-						256),-120)
-					;
+				for(int i=0;i<SZ;i++)
+					wave[i] += ampl[j]*Math.sin(2*Math.PI*(j*i*f0+ph[j]/4.)) *0.01;
 			}
 		}
 
 				//autoscale
-		int max=128,min=128;
-		for(int i=0;i<480;i++){		//calculate max deflection
+		double max=0,min=0;
+		for(int i=0;i<SZ;i++){		//calculate max deflection
 			if(wave[i]>max)max=wave[i];
 			if(wave[i]<min)min=wave[i];
 		}
-		max=Math.max(128-min,max-128);
+		max=Math.max(Math.abs(min),Math.abs(max));
 				//scale each point
-		if(max>127)for(int i=0;i<480;i++)wave[i]=128+(wave[i]-128)*127/max;
-
-
+		if(max>1)
+		  for(int i=0;i<buf.length;i++)wave[i]=wave[i]/max;
 
 		int j, t;
-		for(int i=0;i<96;i++){
-			j = i * 5;
-			t=(wave[j]-64)/2;
-			if(t<0)t=0;else if(t>127)t=127;	//truncate!
+		for(int i=0;i<buf.length;i++){
+			//j = i * 5;
+			//t=(wave[j]-64)/2;
+			t=(int)(wave[i])-128;
+			//if(t<0)t=0;else if(t>127)t=127;	//truncate!
 			//if(t>127)t-=128;else t=(t-128)&0xff;	// signed two's complement?
-			buf[i] = (byte)(t + 128);
-			for(int k=1;k<N;k++)buf[i+96*k]=buf[i];
+			//buf[i+1]   = (byte)(((int)t)/256);
+			//buf[i]     = (byte)(int)(t);// commented 19/4/12
+			buf[i]=wave[i];
+			//for(int k=1;k<N;k++)buf[i+96*k]=buf[i];
 
 //System.out.print(String.valueOf(t)+",");
 		}
@@ -235,7 +259,7 @@ System.out.println(buf[0]+","+buf[buf.length-1]);
 	listen.addMouseListener(new MouseAdapter(){
 		public void mousePressed(MouseEvent e){
 			if(waveHasChanged){	//regenerate wave
-				sound.close();
+				//sound.close();
 				sound.open(buf);
 			}
 			sound.start();

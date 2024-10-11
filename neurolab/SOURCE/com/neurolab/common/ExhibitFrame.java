@@ -1,10 +1,14 @@
 package com.neurolab.common;
 
-import javax.swing.*;
-import java.applet.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.net.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
+
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 /**
  * Added for compatibility -  runs without browser
@@ -15,15 +19,30 @@ public class ExhibitFrame extends JFrame implements HoldsExhibit{
 	String initialExhibit;
 
 	static String[] params;
+	static final boolean AJAXSWING = true; // are we running in ajaxwsing?
 	public static void main(String[] p){
 		params = p;
 		new ExhibitFrame();
 	}
 	public ExhibitFrame(){
-		//String plaf=UIManager.getInstalledLookAndFeels()[0].getClassName();
-		//LookAndFeel plaf=new com.oyoaha.swing.plaf.oyoaha.OyoahaLookAndFeel();
-		//try {UIManager.setLookAndFeel(plaf);}
-		//catch (Exception e) {e.printStackTrace();}
+    // order of preference of look-and-feel for Frame Application:
+    String[] preferredOrder = {"Nimbus", "Windows Classic", "Windows"};
+    if(!AJAXSWING){
+      String plaf=UIManager.getSystemLookAndFeelClassName(); //use system lnf if none found
+      LookAndFeelInfo[] lnfs=UIManager.getInstalledLookAndFeels();
+      int selected=-1;
+      for(int i=0;i<preferredOrder.length;i++) {
+        for(int j=0;j<lnfs.length;j++)
+          if(lnfs[j].getName().equalsIgnoreCase(preferredOrder[i])) {
+            selected=j;
+            break;
+          }
+        if(selected>=0) break;
+      }
+      if(selected>=0) plaf=lnfs[selected].getClassName();
+      try {UIManager.setLookAndFeel(plaf);}
+      catch (Exception e) {e.printStackTrace();}
+    }
 
 		setSize(620,440);
 		getContentPane().setLayout(new BorderLayout());
@@ -32,7 +51,7 @@ public class ExhibitFrame extends JFrame implements HoldsExhibit{
 		String exhname = null;
 		if(params!=null && params.length>0) exhname	= params[0];
 		if(exhname==null){
-			exhname="ExhibitChooser";
+			exhname="ExhibitChooser_HTML";
 			ReturnButton.createOperational=true;
 		}
 
@@ -47,9 +66,13 @@ public class ExhibitFrame extends JFrame implements HoldsExhibit{
 		content.init();
 		initialExhibit=exhname;
 		setTitle("Neurolab");
-		setDefaultCloseOperation(3); //system.exit on close
-		validateTree();
-
+		try {
+		  setDefaultCloseOperation(3); //system.exit on close
+		}catch(SecurityException e) {}
+		synchronized(getTreeLock()) {
+      validateTree();
+    }
+    
 		show();
 	}
 
@@ -72,8 +95,10 @@ public class ExhibitFrame extends JFrame implements HoldsExhibit{
 		content.setHolder(this);
 		getContentPane().add((Component)content);
 		content.init();
-		validateTree();
-
+		synchronized(getTreeLock()) {
+      validateTree();
+    }
+    
 	}
 
 	public URL getURL(String filename) {

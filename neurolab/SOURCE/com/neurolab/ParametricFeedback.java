@@ -10,12 +10,36 @@
  */
 package com.neurolab;
 
-import java.awt.*;
-import javax.swing.*;
-import com.neurolab.common.*;
-import javax.swing.border.*;
-import java.beans.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.AdjustmentEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.JCheckBox;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollBar;
+import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+
+import com.neurolab.common.JPanel0;
+import com.neurolab.common.JRadioButton0;
+import com.neurolab.common.Label3D;
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.Oscilloscope;
+import com.neurolab.common.ReturnButton;
+import com.neurolab.common.SignalGenerator;
+import com.neurolab.common.SignalListener;
+
 
 public class ParametricFeedback extends NeurolabExhibit implements ActionListener{
  public String getExhibitName() {
@@ -43,15 +67,23 @@ public class ParametricFeedback extends NeurolabExhibit implements ActionListene
   JLabel jLabel2 = new JLabel();
   JLabel jLabel3 = new JLabel();
   JLabel gaintext = new JLabel();
-  Oscilloscope ohead = new Oscilloscope(1,this);
-  Oscilloscope obackground = new Oscilloscope(1,this);
-  Oscilloscope oslip = new Oscilloscope(1,this);
-  Oscilloscope oeye = new Oscilloscope(1,this);
+  Oscilloscope ohead = new Oscilloscope();
+  Oscilloscope obackground = new Oscilloscope();
+  Oscilloscope oslip = new Oscilloscope();
+  Oscilloscope oeye = new Oscilloscope();
   Border border3;
   Label3D label3D2 = new Label3D();
   Label3D label3D3 = new Label3D();
   BorderLayout borderLayout3 = new BorderLayout();
   Label3D lbackground = new Label3D();
+  private LineOrArrowPanel inhib1;
+  private LineOrArrowPanel arrow5;
+  private LineOrArrowPanel line2;
+  private LineOrArrowPanel arrow4;
+  private LineOrArrowPanel arrow3;
+  private LineOrArrowPanel line1;
+  private LineOrArrowPanel arrow2;
+  private LineOrArrowPanel arrow1;
   Label3D label3D5 = new Label3D();
   Label3D lslip = new Label3D();
   Label3D label3D7 = new Label3D();
@@ -70,7 +102,7 @@ public class ParametricFeedback extends NeurolabExhibit implements ActionListene
   }};
   public ParametricFeedback() {
   }
-
+  JComponent[] hideInTheDark;
 	JRadioButton[] mode=new JRadioButton[]{jRadioButton1,jRadioButton2,jRadioButton3,jRadioButton4,jRadioButton5,jRadioButton6};
 	ButtonGroup bg=new ButtonGroup();
   public void init(){
@@ -94,15 +126,9 @@ public class ParametricFeedback extends NeurolabExhibit implements ActionListene
 	ActionListener buttonlistener=new ActionListener(){
 		public void actionPerformed(ActionEvent e){
 			if(getModetype()==0){
-				obackground.setVisible(false);
-				oslip.setVisible(false);
-				lbackground.setVisible(false);
-				lslip.setVisible(false);
+				for(int i=0;i<hideInTheDark.length;i++) hideInTheDark[i].setVisible(false);
 			}else{
-				obackground.setVisible(true);
-				oslip.setVisible(true);
-				lbackground.setVisible(true);
-				lslip.setVisible(true);
+        for(int i=0;i<hideInTheDark.length;i++) hideInTheDark[i].setVisible(true);
 			}
 		}
 	};
@@ -157,8 +183,8 @@ public class ParametricFeedback extends NeurolabExhibit implements ActionListene
 				}
 				Y = Y - 0.9 * rsv;
 				if(learn.isSelected()){
-					gainval =50 * vgain;
-					gain.setValue((int)(45+gainval/2));
+					gainval =50 * vgain; // to [-100 +100]
+					gain.setValue((int)(50+gainval/2));
 				}
 				ohead.setPosY(new int[]{(int)(X)*10});
 				obackground.setPosY(new int[]{(int)(background*10)});
@@ -208,15 +234,16 @@ public class ParametricFeedback extends NeurolabExhibit implements ActionListene
 	public void actionPerformed(ActionEvent e){
 	}
   private void jbInit() throws Exception {
+
     learn.setBackground(systemGray);
     border1 = BorderFactory.createCompoundBorder(BorderFactory.createEtchedBorder(Color.white,new Color(134, 134, 134)),BorderFactory.createEmptyBorder(2,5,2,5));
     border2 = BorderFactory.createCompoundBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,Color.white,Color.white,new Color(134, 134, 134),new Color(93, 93, 93)),BorderFactory.createEmptyBorder(2,2,2,2));
     border3 = BorderFactory.createBevelBorder(BevelBorder.LOWERED,Color.white,Color.white,new Color(134, 134, 134),new Color(93, 93, 93));
     getMainContainer().setLayout(borderLayout1);
     jPanel1.setLayout(null);
-    returnButton1.setBounds(new Rectangle(491, 282, 81, 30));
+    returnButton1.setBounds(488, 274, 81, 30);
     jPanel2.setBorder(border1);
-    jPanel2.setBounds(new Rectangle(248, 143, 320, 115));
+    jPanel2.setBounds(48, 243, 314, 70);
     jPanel2.setLayout(gridLayout1);
     gridLayout1.setRows(3);
     gridLayout1.setColumns(2);
@@ -233,7 +260,7 @@ public class ParametricFeedback extends NeurolabExhibit implements ActionListene
     jRadioButton6.setText("Minifying lenses");
     jRadioButton6.setFont(new java.awt.Font("SansSerif", 1, 12));
     jPanel3.setBorder(border2);
-    jPanel3.setBounds(new Rectangle(396, 15, 174, 97));
+    jPanel3.setBounds(230, 134, 173, 98);
     jPanel3.setLayout(borderLayout2);
     gain.setValue(45);
     gain.setOrientation(JScrollBar.HORIZONTAL);
@@ -263,19 +290,19 @@ public class ParametricFeedback extends NeurolabExhibit implements ActionListene
     gaintext.setHorizontalAlignment(SwingConstants.CENTER);
     gaintext.setText("0");
     gaintext.setBounds(new Rectangle(58, 63, 56, 19));
-    ohead.setBounds(new Rectangle(109, 89, 120, 67));
+    ohead.setBounds(38, 160, 123, 68);
     ohead.setGutter(2);
-    obackground.setBounds(new Rectangle(110, 13, 120, 67));
+    obackground.setBounds(35, 38, 121, 68);
     obackground.setGutter(2);
-    oslip.setBounds(new Rectangle(109, 164, 120, 67));
+    oslip.setBounds(252, 39, 120, 67);
     oslip.setGutter(2);
-    oeye.setBounds(new Rectangle(109, 238, 120, 67));
+    oeye.setBounds(449, 164, 120, 67);
     oeye.setGutter(2);
     gazepos.setBorder(border3);
-    gazepos.setBounds(new Rectangle(248, 53, 140, 21));
+    gazepos.setBounds(439, 38, 140, 21);
     gazepos.setLayout(null);
     headpos.setBorder(border3);
-    headpos.setBounds(new Rectangle(248, 91, 140, 21));
+    headpos.setBounds(439, 65, 140, 21);
     headpos.setLayout(null);
     label3D2.setFont(new java.awt.Font("Dialog", 1, 14));
     label3D2.setText("Head");
@@ -284,27 +311,28 @@ public class ParametricFeedback extends NeurolabExhibit implements ActionListene
     label3D3.setText("Gaze");
     label3D3.setBounds(new Rectangle(2, 5, 40, 16));
     lbackground.setFont(new java.awt.Font("SansSerif", 1, 13));
-    lbackground.setText("Background");
-    lbackground.setBounds(new Rectangle(4, 16, 96, 18));
-    label3D5.setBounds(new Rectangle(60, 92, 53, 16));
+    lbackground.setText("Target");
+    lbackground.setBounds(35, 20, 96, 18);
+    label3D5.setBounds(38, 144, 53, 16);
     label3D5.setText("Head");
     label3D5.setFont(new java.awt.Font("SansSerif", 1, 13));
-    lslip.setBounds(new Rectangle(10, 166, 93, 20));
+    lslip.setBounds(252, 19, 120, 20);
     lslip.setText("Retinal slip");
     lslip.setFont(new java.awt.Font("SansSerif", 1, 13));
     label3D7.setFont(new java.awt.Font("SansSerif", 1, 13));
     label3D7.setText("Eye-in-head");
-    label3D7.setBounds(new Rectangle(5, 238, 99, 19));
+    label3D7.setBounds(450, 143, 99, 19);
     learn.setText("Learn");
-    learn.setBounds(new Rectangle(293, 282, 64, 27));
+    learn.setBounds(418, 276, 64, 27);
     label3D4.setBounds(new Rectangle(3, 5, 106, 16));
     label3D4.setText("Background");
     label3D4.setToolTipText("");
     label3D4.setFont(new java.awt.Font("Dialog", 1, 14));
     backpos.setLayout(null);
     backpos.setBorder(border3);
-    backpos.setBounds(new Rectangle(248, 15, 140, 21));
+    backpos.setBounds(439, 11, 140, 21);
     this.add(jPanel1, BorderLayout.CENTER);
+    jPanel1.setPreferredSize(new java.awt.Dimension(374, 323));
     jPanel1.add(returnButton1, null);
     jPanel1.add(lbackground, null);
     jPanel1.add(oslip, null);
@@ -329,6 +357,55 @@ public class ParametricFeedback extends NeurolabExhibit implements ActionListene
     jPanel1.add(gazepos, null);
     gazepos.add(label3D3, null);
     jPanel1.add(jPanel3, null);
+    {
+      arrow1 = new LineOrArrowPanel();
+      jPanel1.add(arrow1);
+      arrow1.setBounds(157, 59, 95, 16);
+      arrow1.setArrowEnd(true);
+    }
+    {
+      arrow2 = new LineOrArrowPanel();
+      jPanel1.add(arrow2);
+      arrow2.setBounds(161, 189, 69, 14);
+      arrow2.setArrowEnd(true);
+    }
+    {
+      line1 = new LineOrArrowPanel();
+      jPanel1.add(line1);
+      line1.setBounds(199, 87, 10, 109);
+      line1.setLocations(LineOrArrowPanel.LOC_V);
+    }
+    {
+      arrow3 = new LineOrArrowPanel();
+      jPanel1.add(arrow3);
+      arrow3.setBounds(203, 81, 49, 16);
+      arrow3.setArrowEnd(true);
+    }
+    {
+      arrow4 = new LineOrArrowPanel();
+      jPanel1.add(arrow4);
+      arrow4.setBounds(403, 182, 46, 14);
+      arrow4.setArrowEnd(true);
+    }
+    {
+      line2 = new LineOrArrowPanel();
+      jPanel1.add(line2);
+      line2.setBounds(451, 97, 10, 40);
+      line2.setLocations(LineOrArrowPanel.LOC_V);
+    }
+    {
+      arrow5 = new LineOrArrowPanel();
+      jPanel1.add(arrow5);
+      arrow5.setBounds(374, 92, 84, 15);
+      arrow5.setArrowStart(true);
+    }
+    {
+      inhib1 = new LineOrArrowPanel();
+      jPanel1.add(inhib1); 
+      inhib1.setBounds(304, 106, 10, 22);
+      inhib1.setInhibEnd(true);
+      inhib1.setLocations(LineOrArrowPanel.LOC_V);
+    }
     jPanel3.add(jPanel4, BorderLayout.CENTER);
     jPanel4.add(jLabel3, null);
     jPanel4.add(jLabel2, null);
@@ -336,14 +413,20 @@ public class ParametricFeedback extends NeurolabExhibit implements ActionListene
     jPanel4.add(label3D1, null);
     jPanel4.add(gaintext, null);
     jPanel4.add(jLabel1, null);
+    hideInTheDark = new JComponent[]{arrow1, arrow3, arrow5, line1, line2, inhib1, obackground, oslip, lbackground, lslip};
+
   }
 
 
   void gain_adjustmentValueChanged(AdjustmentEvent e) {
 	if(gain.getValue()!=(int)(45+gainval/2)){
-		gainval=gain.getValue()*2.-100;
-		vgain=gainval/50.;
+		gainval=gain.getValue()*2.-100;  // convert slider val to [ -100, 100 ]
+		vgain=gainval/50.; // -2 to +2
 	}
   }
   Label3D label3D4 = new Label3D();
+  public void close(){
+    sig.timer.stop();
+  }
+
  }

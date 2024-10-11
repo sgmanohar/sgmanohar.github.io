@@ -29,18 +29,7 @@ points that need manually adjusting for change of objects
 
 package com.neurolab;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.*; // for manips
-//import java.awt.MediaTracker.*;
-import java.text.*;
-import javax.swing.*;
-import javax.swing.BorderFactory;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
-import java.io.*;
-
-import com.neurolab.common.*;
+import java.awt.Dimension;
 
 public class SpinalTracts extends RobinExhibit{
 
@@ -91,9 +80,11 @@ public class SpinalTracts extends RobinExhibit{
 
 		 // load in the picture
 		 picture_base = getImage("resources/imagemaps/spinaltracts.gif");
-
+		 
+		 // set info text
+		 questionTextSelectName = "Select the name of the highlighted tract";
+	   questionTextSelectArea = "Select the named spinal tract";
 	 }// end init
-
 
 }
 

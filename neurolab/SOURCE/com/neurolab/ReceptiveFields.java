@@ -1,15 +1,36 @@
-//Receptive fields by Sanjay Manohar
 package com.neurolab;
+//Receptive fields by Sanjay Manohar
 
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-import java.awt.*;
-import java.awt.geom.*;
-
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.GeneralPath;
 import java.util.Random;
-import java.awt.event.*;
-import com.neurolab.common.*;
+
+import javax.swing.BorderFactory;
+import javax.swing.JCheckBox;
+import javax.swing.JPanel;
+
+import com.neurolab.common.ActionPotentials;
+import com.neurolab.common.AngleControl;
+import com.neurolab.common.ExtraGraphics;
+import com.neurolab.common.JPanel0;
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.PercentageBar;
+import com.neurolab.common.RadioPanel;
+import com.neurolab.common.ReturnButton;
 
 
 
@@ -51,21 +72,19 @@ public class ReceptiveFields extends NeurolabExhibit implements ActionListener {
 
 	public void createComponents(){
 		getMainContainer().add(left=new JPanel(),BorderLayout.WEST);
-		getMainContainer().add(rightf=new JPanel(),BorderLayout.EAST);
+		getMainContainer().add(rightf=new JPanel(),BorderLayout.CENTER);
+		((BorderLayout)getMainContainer().getLayout()).setHgap(10);
 		setBG(left);setBG(rightf);
 
 		rightf.setLayout(new BorderLayout());
 		rightf.add(rightt=new JPanel(),BorderLayout.NORTH);
-		rightf.add(rbpanel=new JPanel(){
-			public Dimension getPreferredSize(){
-				return new Dimension(100,30);
-			}
-		},BorderLayout.SOUTH);
+		rightf.add(rbpanel=new JPanel(),BorderLayout.SOUTH);
+		//rbpanel.setPreferredSize(new Dimension(100,30));
 		setBG(rightt);setBG(rbpanel);
 
-		rightt.setLayout(new BorderLayout());
-		rightt.add(center=new JPanel(),BorderLayout.WEST);
-		rightt.add(right=new JPanel(),BorderLayout.EAST);
+		rightt.setLayout(new GridLayout(1,2));
+		rightt.add(center=new JPanel());
+		rightt.add(right=new JPanel());
 		setBG(right);setBG(center);
 
 		rbpanel.setLayout(new BorderLayout());
@@ -76,19 +95,20 @@ public class ReceptiveFields extends NeurolabExhibit implements ActionListener {
 				g.setFont(new Font("Arial",Font.BOLD,16));
 				paintText3D(g,"Click/Drag in black area",0,getHeight()-8);
 			}
-			public Dimension getPreferredSize(){
-				return new Dimension(200,30);
-			}
 		}, BorderLayout.WEST);
+		textpanel.setPreferredSize(new Dimension(200,30));
 		setBG(textpanel);
 
-		left.setLayout(new BorderLayout());
-		left.add(tlpanel=new JPanel(),BorderLayout.NORTH);
+		BorderLayout b=new BorderLayout();
+		b.setVgap(10);
+		left.setLayout(b);
+		left.add(tlpanel=new JPanel(),BorderLayout.CENTER);
 		left.add(blbar=new PercentageBar(),BorderLayout.SOUTH);
 		setBG(tlpanel);
 
 		tlpanel.setBorder(loweredbevel);
 		tlpanel.add(rfscreen=new RFScreen(),BorderLayout.NORTH);
+		rfscreen.setPreferredSize(new Dimension(250,250));
 
 		center.setBorder(BorderFactory.createTitledBorder(etched,"Stimulus Type"));
 		center.setLayout(new BorderLayout());
@@ -107,6 +127,7 @@ public class ReceptiveFields extends NeurolabExhibit implements ActionListener {
 		s_angle.setPreferredSize(new Dimension(40,60));
 		s_angle.setPrefix("Angle       ");
 
+
 		right.setBorder(BorderFactory.createTitledBorder(etched,"Field type"));
 		right.setLayout(new BorderLayout());
 		right.add(r_typepanel=new RadioPanel(r_typelist,typeaction),BorderLayout.NORTH);
@@ -124,7 +145,7 @@ public class ReceptiveFields extends NeurolabExhibit implements ActionListener {
 		s_typepanel.setSelected(1);
 		r_reveal.setSelected(true);
 		s_size.slider.setValue(50);
-		s_angle.setValue(0);
+		s_angle.setValue(40);
 	}
 	ActionListener typeaction = new ActionListener(){public void actionPerformed(ActionEvent e){
 		if((e.getSource()==s_invert)||e.getSource()==r_invert){
@@ -150,8 +171,10 @@ public class ReceptiveFields extends NeurolabExhibit implements ActionListener {
 			switch (stim){
 				case 3:case 4:
 					anglepanel.setVisible(true);
-					validateTree();
-					break;
+					synchronized(getTreeLock()) {
+			      validateTree();
+			    }
+			    break;
 				default:anglepanel.setVisible(false);
 			}
 		}
@@ -160,18 +183,21 @@ public class ReceptiveFields extends NeurolabExhibit implements ActionListener {
 
 
 
-	double oldactivity, activity;
-	double smoothrate=0.5;
+	double oldactivity, activity, oldf;
+	double smoothrate=0.4;
 	public void showActivity(double activit){
-		if((activity<0)||(activity>1))System.out.println("Activity="+String.valueOf(activity));
+		if(false)System.out.println("Activity="+String.valueOf(activity));
 		activity=smoothrate*activity+(1-smoothrate)*activit;
-		double f;
-		if(s_invert.isSelected())activity=1-activity;
-		if(r_invert.isSelected())activity=1-activity;
-		if(r_transient.isSelected())f=4*(activity-oldactivity)+(activity-0.5)*0.4+0.4;
-		else f=activity;
+		if(Math.abs(activity)<1e-4) activity=0;
+		double f=activity;
+		boolean si = s_invert.isSelected(), ri = r_invert.isSelected(); 
+		if(r_transient.isSelected())f=0.5 + 4*(activity-oldactivity) + (0.05*activity-1)*0.45;
+    if(si) f = -f; 
+    if(ri) f = -f;
+    if(r_typepanel.getSelected()==0 && (ri ^ si)) f+=1;  
 		oldactivity=activity;
 		blbar.p=(int)(100*f);
+		oldf=f;
 		blbar.repaint();	// percentage bar
 		ap.setRate(f*20);	// 0-20 Hz clicks
 	}
@@ -335,14 +361,14 @@ public class ReceptiveFields extends NeurolabExhibit implements ActionListener {
 				if((size<22)&&(d<50))return 1;
 				break;
 			case 4:	//simple linear
-				return 0.003*(segment(8+v ,size)-segment(v-8,size))
-					 -0.001005*(segment(v+25,size)-segment(v-25,size));
+				return 0.003*(segment(8+v ,size/2)-segment(v-8,size/2))
+					 -0.001005*(segment(v+25,size/2)-segment(v-25,size/2));
 		}
 		return 0;
 	}
 	public class RFScreen extends JPanel implements MouseMotionListener, MouseListener{
-		public int ox,oy;
-		public RFScreen(){
+		public int ox,oy; 
+		public RFScreen(){ 
 			super();
 			setBorder(loweredbevel);
 			addMouseMotionListener(this);
@@ -391,9 +417,7 @@ public class ReceptiveFields extends NeurolabExhibit implements ActionListener {
 				}
 			}
 		}
-		public Dimension getPreferredSize(){
-			return new Dimension(250,250);
-		}
+
 		public Color getForeColor(){
 			return (s_invert.isSelected())?Color.black:Color.white;
 		}
@@ -405,7 +429,7 @@ public class ReceptiveFields extends NeurolabExhibit implements ActionListener {
 		public void mouseExited(MouseEvent e){}
 		public void mouseClicked(MouseEvent e){}
 
-		GeneralPath stim_shape;
+		Shape stim_shape;
 		boolean pressing=false;
 		public void mousePressed(MouseEvent e){
 			int x=e.getX(),y=e.getY();
@@ -419,20 +443,21 @@ public class ReceptiveFields extends NeurolabExhibit implements ActionListener {
 					stim_shape=new GeneralPath(new Ellipse2D.Float(x-size/2,y-size/2,size,size));
 					break;
 				case 2:	// annulus, radius inner=0.6*outer
-					stim_shape=new GeneralPath(new Ellipse2D.Float(x-size/2,y-size/2,size,size));
-					stim_shape.setWindingRule(GeneralPath.WIND_EVEN_ODD);
-					stim_shape.append(new Ellipse2D.Float(
+				  GeneralPath p;
+					stim_shape=p=new GeneralPath(new Ellipse2D.Float(x-size/2,y-size/2,size,size));
+					p.setWindingRule(GeneralPath.WIND_EVEN_ODD);
+					p.append(new Ellipse2D.Float(
 						x-annulusf*size/2, y-annulusf*size/2, annulusf*size, annulusf*size), true);
 					break;
 				case 3:	// edge = rectangle 700 x 140
-					stim_shape=(GeneralPath)AffineTransform.getRotateInstance(
+					stim_shape=AffineTransform.getRotateInstance(
 						(s_angle.getValue()+90)*Math.PI/180,x,y)
 						.createTransformedShape(
 						new Rectangle(x-350,y-70,700,140)
 						);
 					break;
 				case 4:	// line width 4
-					stim_shape=(GeneralPath)AffineTransform.getRotateInstance(
+					stim_shape=AffineTransform.getRotateInstance(
 						(s_angle.getValue()+90)*Math.PI/180,x,y)
 						.createTransformedShape(
 						new Rectangle(x-size/2,y-2,size,4)
@@ -473,7 +498,8 @@ public class ReceptiveFields extends NeurolabExhibit implements ActionListener {
 //Antialiased sgm 16/12/01
 				antiAlias(g);
 
-				stim_shape.transform(AffineTransform.getTranslateInstance(dx,dy));
+				stim_shape=AffineTransform.getTranslateInstance(dx,dy).createTransformedShape(stim_shape);
+				//stim_shape.transform(AffineTransform.getTranslateInstance(dx,dy));
 				g.setColor(getForeColor());
 				doFillShape(g,stim_shape);	// redraw stim
 				drawRF(g);		// redraw RF
@@ -500,8 +526,8 @@ public class ReceptiveFields extends NeurolabExhibit implements ActionListener {
 		super.finalize();
 	}
 	public void close(){
-		timer.stop();
-		ap.timer.stop();
+		if(timer!=null)timer.stop();
+		if(ap!=null && ap.timer!=null) ap.timer.stop();
 	}
 
 /*  public ReceptiveFields() {
@@ -521,7 +547,7 @@ public class ReceptiveFields extends NeurolabExhibit implements ActionListener {
 	}
 */
 
-	void doFillShape(Graphics g, GeneralPath p){
+	void doFillShape(Graphics g, Shape p){
           ExtraGraphics.doFillShape(g, p);
 	}
 	void doFillShape(Graphics g, Rectangle r){

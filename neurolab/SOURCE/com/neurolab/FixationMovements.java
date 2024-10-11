@@ -30,7 +30,7 @@ public class FixationMovements extends NeurolabExhibit {
           "saccades.";
   public void init(){
     super.init();
-    image=getImage("resources/FixationMovement.gif");
+    image=getImage("resources/FixationMovement.GIF");
     JLabel pic=new JLabel(new ImageIcon(image));
     //JPanel textpanel=new JPanel();
     JTextArea text1=new JTextArea(string1+"\n\n"+string2);
@@ -51,4 +51,5 @@ public class FixationMovements extends NeurolabExhibit {
     //textpanel.setLayout(null);
     //textpanel.add(text1);
   }
+  public void close(){  }
 }

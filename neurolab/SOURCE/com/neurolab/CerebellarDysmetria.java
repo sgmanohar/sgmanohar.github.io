@@ -1,16 +1,29 @@
 // Cerebellar Dysmetria by Sanjay Manohar
 package com.neurolab;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.geom.*;
-import com.neurolab.common.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.TextArea;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+import com.neurolab.common.NeurolabExhibit;
+import com.neurolab.common.ReturnButton;
 
 // v1.1		ok
 
 public class CerebellarDysmetria extends NeurolabExhibit implements ActionListener{
-	Button clearbutton;
+	JButton clearbutton;
 	JPanel rightpanel, leftpanel, buttonpanel,canvas;
 	TextArea textarea;
 	Point lastpoint;
@@ -78,7 +91,7 @@ public class CerebellarDysmetria extends NeurolabExhibit implements ActionListen
 
 		buttonpanel.setLayout(new BorderLayout());
 		buttonpanel.setBackground(systemGray);
-		buttonpanel.add(clearbutton=new Button("Clear"),BorderLayout.WEST);
+		buttonpanel.add(clearbutton=new JButton("Clear"),BorderLayout.WEST);
 		clearbutton.addActionListener(this);
 		clearbutton.setBackground(systemGray);
 		buttonpanel.add(new ReturnButton(),BorderLayout.EAST);
@@ -86,6 +99,7 @@ public class CerebellarDysmetria extends NeurolabExhibit implements ActionListen
 	public void actionPerformed(ActionEvent e){
 		if(e.getActionCommand()=="Return")toExhibitChooser();
 		if(e.getActionCommand()=="Clear")canvas.repaint();
-	}
+	} 
+	public void close() {}
 }
 

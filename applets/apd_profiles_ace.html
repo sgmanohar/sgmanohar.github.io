@@ -39,7 +39,7 @@
             width:100%;
         }
         #middle-classifier-column {
-            padding: 2em 4em;
+            padding: 0.5em 0.5em;
         }
         .range-value-text{
             display:inline-block;
@@ -51,6 +51,12 @@
             display: flex;
             flex-direction: column;
             text-align: right;
+        }
+        .form-group.row {
+            margin: 0.2em 0em;
+        }
+        button.btn{
+            padding: 0.4em 0.1em;
         }
 
     </style>
@@ -72,10 +78,11 @@
                 <div id="middle-classifier-column" >
                     <!-- a slider with values from -1 to +1 -->
                     <div class="form-group row">
-                        <h2>Evidence (Logits)</h2>
-                        <div class="">
+                        <h2 style="text-align:center">Evidence (Logits)</h2>
+                        <div class="" style="width:100%">
                             <input type="range" class="form-control-range-not" 
-                            id="logits_slider" min="-1" max="1" value="0" disabled="true" step="0.01" list="steplist">
+                            id="logits_slider" min="-1" max="1" value="0" disabled="true" step="0.01" 
+                            list="steplist" style="width:100%">
                         </div>
                         <datalist id="steplist">
                             <option>-3</option>
@@ -86,9 +93,9 @@
                             <option>2</option>
                             <option>3</option>
                         </datalist>
-                        <div class="col-sm-8">
+                        <div class="" style="width:100%">
                             <span style="float:left">-1</span>
-                            <span style="float:right">1</span>
+                            <span style="float:right">+1</span>
                         </div>
                         <div class="col-sm-8">
                             <output id="logits-value">0</output>

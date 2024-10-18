@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognitive and Neuropsychiatric Profiles in Atypical Parkinsonian Syndromes</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            padding-top: 50px;
+        }
+        .custom-header {
+            background-color: #cbe2f8;
+            padding: 20px;
+            text-align: center;
+        }
+        #left-column {
+            border-right: 1px solid #ccc;
+        }
+        #right-column {
+            border-left: 1px solid #ccc;
+            display:flex;
+            padding-left:30px;
+        }
+        output {
+            display: inline-block;
+            width: 50px;
+            text-align: right;
+            font-size: 2.2em;
+            font-weight: bold;
+        }
+        .classifier-column {
+            display: flex;
+            flex-direction: column;
+            width:6em;
+        }
+        .classifier-column button {
+            width:100%;
+        }
+        #middle-classifier-column {
+            padding: 2em 4em;
+        }
+        .range-value-text{
+            display:inline-block;
+            width:2em;
+            text-align: center;
+        }
+        .input{
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="custom-header">
+        <h1>Cognitive and Neuropsychiatric Profiles in Atypical Parkinsonian Syndromes</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6" id="left-column">
+                <!-- Left content goes here -->
+                <h2>Measurements</h2>
+            </div>
+            <div class="col-md-6" id="right-column">
+                <!-- split this column in two-->
+                <div id="left-classifier-column" class="classifier-column">
+                </div>
+                <div id="middle-classifier-column" >
+                    <!-- a slider with values from -1 to +1 -->
+                    <div class="form-group row">
+                        <h2>Evidence (Logits)</h2>
+                        <div class="col-sm-8">
+                            <input type="range" class="form-control-range-not" 
+                            id="logits_slider" min="-1" max="1" value="0" disabled="true" step="0.01" list="steplist">
+                        </div>
+                        <datalist id="steplist">
+                            <option>-3</option>
+                            <option>-2</option>
+                            <option>-1</option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </datalist>
+                        <div class="col-sm-8">
+                            <span style="float:left">-1</span>
+                            <span style="float:right">1</span>
+                        </div>
+                        <div class="col-sm-8">
+                            <output id="logits-value">0</output>
+                        </div>
+                        <div class="col-sm-8">
+                            <span> Odds ratio: </span>
+                            <span id="oddsratio-value">1</span>
+                        </div>
+                    </div>
+                </div>
+            <div id="right-classifier-column" class="classifier-column">
+            </div>
+        </div>
+        <div class="col-sm-8"><p>            
+            The algorithm z-scores each predictor, then subtracts the mean of the features, 
+            before running a simple logistic classifier.
+            This means that the classifier focuses on the <em> relative  pattern </em>
+            of features. This minimises the possibility
+            that the classifier is picking up on just disease severity. 
+            
+            <a class='reveal', data-reveal='#reveal1'> More info...  </a>
+            </p>
+        <div id='reveal1' class="hidden">
+            These classifiers are trained on N=935 PD, 100 PSP, 50 CBS, 53 MSA. 
+
+            Features were z-scored across people, and then each person's mean across all features
+            was subtracted from each of their feature values, 
+            so that the classifier only detects the relative profile across features,
+            ignoring overall severity of symptoms. 
+            The classifier is not corrected for motor symptoms, which correlate 
+            with some of the features more than others. 
+            <br>
+            Atypical PD patients had ACE, PD patients had MoCA 
+            from which the ACE was imputed. 
+            PD, PSP and CBS patients had UPDRS-I nonmotor features, 
+            and patients with MSA had UPDRS imputed from CBI. 
+        </div>
+    </div>        
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom JS -->
+<script>
+predictors = [
+// name          min max  mean std   
+["ACE Attention",0,18.0,16.474220072699882,16.474220072699882,],
+["ACE Memory",0.0,26.0,20.545382582516797,20.545382582516797,],
+["ACE Fluency",0.0,14.0,8.182701166933597,8.182701166933597,],
+["ACE Language",0,26.0,21.264170934207296,21.264170934207296,],
+["ACE Visuospatial",0.0,16.0,13.368056829967017,13.368056829967017,],
+["UPDRS Psychosis",0.0,4.0,0.17931167979437204,-0.17931167979437204,],
+["UPDRS Apathy",0.0,4.0,0.5193974296398634,-0.5193974296398634,],
+["UPDRS Depression",0.0,4.0,0.4764204815575306,-0.4764204815575306,],
+["UPDRS Dop dysreg",0.0,4.0,0.06422307437399652,-0.06422307437399652,],
+
+    ]
+
+    groups = ['PD','PSP','CBS', 'MSA']
+    classifiers = {
+        // left_right : [ intercept, pred1, pred2... ]
+'PSP_CBS':[-0.14516970187988237,0.04446398536348567,-0.1483071645738096,-1.0130321037921304,0.5767982154162553,0.6987957736510229,0.5795266771879709,-0.6404420153080699,0.45652782636685574,-0.5543334314129628],
+'PSP_MSA':[-0.9749608128507408,-0.4359335763446909,0.04235312008486374,-1.3131478206862985,0.9250320953338499,-0.2536454605943309,3.1075105271421526,-0.5539869577530104,0.2962012539515243,-1.814388745471436],
+'PSP_PD':[-0.7614130905121322,-0.39049455348186446,0.47258544912711503,-0.5953097134649715,0.9570528527557628,-0.36629021794789035,0.8135488752246798,-1.0301594462177572,0.014458809920318774,0.12460669427894477],
+'MSA_PD':[-0.7399702001438964,0.3361200868729942,-0.17259563921401597,0.5683806989012196,0.6138293108093079,-0.2879541900754301,0.3190711388142122,-1.7644749899509335,-0.2365735827664982,0.6241983583492173],
+'CBS_PD':[-0.5106507784044141,-0.3295164631937991,0.3672301322280288,0.6729132368724571,-0.15401213555928317,-0.853345169732626,0.3327167158620646,-0.43230249159506073,-0.2473110037131772,0.6436231674398424],
+'CBS_MSA':[-0.16646573279776902,-0.7163935830456579,0.45684654875176334,0.030089509685542023,-0.17780826158029975,-0.5622364807549924,-0.1310544583683117,0.6856538069501648,-0.3592571342666592,0.7741560815686995]
+    }
+
+
+
+
+    predictors = [
+// name          min max  mean std   
+["ACE Attention",0,18.0,16.474220072699882,16.474220072699882,],
+["ACE Memory",0.0,26.0,20.545382582516797,20.545382582516797,],
+["ACE Fluency",0.0,14.0,8.182701166933597,8.182701166933597,],
+["ACE Language",0,26.0,21.264170934207296,21.264170934207296,],
+["ACE Visuospatial",0.0,16.0,13.368056829967017,13.368056829967017,],
+]
+
+classifiers = {
+
+'PSP_CBS':[0.1067970828471085,-0.003262307660464873,-0.11311615019928095,-1.0333053938167263,0.4398076311046235,0.7098743035915875],
+'PSP_MSA':[-0.2159536177687841,0.06863229948242368,0.25376525349391005,-1.0826262703573108,0.8751899392261376,-0.1149625658116847],
+'PSP_PD':[-0.2760438616192253,-0.3168924269165945,0.45305171750776074,-0.6814940747766951,0.6390927394723265,-0.09376019738146188],
+'MSA_PD':[-0.11987090850289518,-0.3079424537622981,-0.12836156447537317,0.5863844440328416,-0.12945782653331275,-0.020623021687214742],
+'CBS_PD':[-0.2923454551398787,-0.15355003464778527,0.3372755784582461,0.700134417217486,-0.12791106456352402,-0.7559484628498523],
+'CBS_MSA':[-0.21685767865050892,0.0576269028820412,0.36403325636270456,0.2502142766569327,-0.08733469411686982,-0.5845374832992661],
+}
+
+$(document).ready(function(){
+    /// WHEN LOADED
+    create_predictor_controls(predictors);
+    create_classifier_controls(groups);
+
+    $('.hidden').hide()
+    $('.reveal').click(function(){
+        $($(this).data('reveal')).toggle();
+    });
+    $('.reveal').css('cursor', 'pointer');
+});
+
+
+function create_predictor_controls(predictors){
+    for (let i = 0; i < predictors.length; i++) {
+        var predictor = predictors[i];
+        var name = predictor[0];
+        var min = predictor[1];
+        var max = predictor[2];
+        var mean = predictor[3];
+        var std = predictor[4];
+        var control = '<div class="form-group row">';
+        // include min value at left, max value at right of slider
+        // and add the numeric value on the right.
+        svgname = name.replace(' ','_').toLowerCase() + '.svg';
+
+        control += '<span class="col-sm-4 predictor-label">'+name+'</span>';
+        control += '<div class="predictor-div"><span class="range-value-text">'+min+'</span>';
+        control += '<input type="range" class="form-control-range-not" id="predictor'+i+'" min="'+min+'" max="'+max+'" value="'+mean+'" step="1" oninput="update_predictor('+i+')" >';
+        control += '<span class="range-value-text">'+max+'</span>';
+        control += '<output id="predictor'+i+'value">?</output>';
+        control += '</div>';
+        control = $(control);
+        $('#left-column').append(control);
+        out = $(control).find('output');
+        out.click(function(){ // click to reset to zero
+            $(this).text('?');
+            $(this).css('color', 'black');
+            run_classifier();
+        });
+        out.css('cursor', 'pointer');
+        div = $(control).find('div.predictor-div');
+        //div.css('background-image', 'url('+svgname+')');
+        //div.css('background-size', '80%');
+    }
+}
+buttons = []
+function create_classifier_controls(groups){
+    left_buttons = []
+    for (var i = 0; i < groups.length; i++) {
+        var group = groups[i];
+        var control = '<div class="predictor-row form-group row">';
+        control += '<button type="button" class="btn btn-primary" id="classifierleft'+i+
+          '" onclick="update_classifier(0,'+i+')">'+groups[i]+'</button>';
+        control += '</div>';
+        btn = $(control);
+        $('#left-classifier-column').append(btn);
+        left_buttons.push(btn);
+    }
+    right_buttons = []
+    for (var i = 0; i < groups.length; i++) {
+        var group = groups[i];
+        var control = '<div class="predictor-row form-group row">';
+        // call update_classifier(1,i)
+        control += '<button type="button" class="btn btn-primary" id="classifierleft'+i+
+          '" onclick="update_classifier(1,'+i+')">'+groups[i]+'</button>';
+        control += '</div>';
+        btn = $(control);
+        $('#right-classifier-column').append(btn);
+        right_buttons.push(btn);
+    }
+    buttons = [left_buttons, right_buttons];
+    update_classifier(0,0); // select PD on left
+    update_classifier(1,1); // select PSP  on right
+}
+function update_predictor(i){
+    var value = $('#predictor'+i).val();
+    $('#predictor'+i+'value').text(value);
+    var min = $('#predictor'+i).attr('min');
+    var max = $('#predictor'+i).attr('max');
+    // set the colour from red to blue
+    var hue =  360- 120 * (value - min) / (max - min);
+    if(predictors[i][0].startsWith('UPDRS')){
+        hue = 360+ 240 -hue ;
+    }
+    $('#predictor'+i+'value').css('color', 'hsl(' + hue + ', 100%, 50%)');
+    run_classifier();
+}
+current_classifier = [0,1];
+function update_classifier(side, group){
+    // called when the classifier buttons are clicked
+    current_classifier[side] = group;
+    // first change the colour of the button corresponding to side and group
+    // and revert the colours of the other buttons on this side
+    for (var i = 0; i < buttons[side].length; i++) {
+        if(i!=group){
+            buttons[side][i].children().css('background-color', 'blue');
+        }
+        else{
+            buttons[side][i].children().css('background-color', 'red');
+        }
+    }
+    // enable all buttons
+    for (var i = 0; i < buttons[1-side].length; i++) {
+        buttons[1-side][i].children().prop('disabled', false);
+    }
+    // and disable the button corresponding to the current one but on the opposite side
+    buttons[1-side][group].children().prop('disabled', true);
+    run_classifier();
+}
+function run_classifier(){
+    // 1. get the values of the predictors from the sliders
+    //    and z-score them using mean and std.
+    var values = []
+    for (var i = 0; i < predictors.length; i++) {
+        var x = $('#predictor'+i).val();
+        x = (x - predictors[i][3]) / predictors[i][4];
+        values.push(x)
+    }
+
+    // 2. normalise values by subtracting the mean
+    var mean_values = 0;     // calculate the mean
+    for (var i = 0; i < predictors.length; i++) {
+        mean_values += values[i];
+    }
+    mean_values /= predictors.length;
+    for (var i = 0; i < predictors.length; i++) {
+        values[i] -= mean_values;
+    }
+
+    // 3. get the classifier coefficients based on the buttons
+    direction = +1;
+    left = current_classifier[0];
+    right = current_classifier[1];
+    var classifier = classifiers[groups[left]+'_'+groups[right]];
+    if (classifier === undefined){
+        classifier = classifiers[groups[right]+'_'+groups[left]];
+        direction = -1;
+    }
+
+    // 4. calculate the logits using the coefficients
+    var logits = classifier[0];
+    logits = 0; // ignore the intercept because it relates to correlations between features.
+    num_predictors = 0;
+    for (var i = 0; i < predictors.length; i++) {
+        // check if it is ?
+        if( $('#predictor'+i+'value').text() == '?'){
+            continue; // treat it as zero contribution
+        }
+        logits += classifier[i+1] * values[i];
+        num_predictors += 1;
+    }
+    // No output if <3 predictors
+    if(num_predictors<3){
+        logits = NaN;
+    }
+
+    // 5. Flip sign if necessary
+    logits = -logits * direction;
+
+    // 6. Fill out the logits and odds ratio
+    if (isNaN(logits)){
+        $('#logits-value').text('?');
+    }else{
+        $('#logits-value').text(logits.toFixed(2));
+        // move slider 
+        $('#logits_slider').val(logits);
+    }
+    var odds = Math.exp(logits);
+    $('#oddsratio-value').text(odds.toFixed(2));
+}
+</script>
+</body>
+</html>

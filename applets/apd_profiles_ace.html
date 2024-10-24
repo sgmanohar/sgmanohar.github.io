@@ -409,7 +409,7 @@ function run_classifier(){
         // move slider 
         $('#logits_slider').val(logits);
     }
-    var odds = abs(Math.exp(logits));
+    var odds = Math.abs(Math.exp(logits));
     $('#oddsratio-value').text(odds.toFixed(2));
 }
 </script>

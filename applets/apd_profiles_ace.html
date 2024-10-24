@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cognitive Profiles in Atypical Parkinsonian Syndromes</title>
+    <title>Cognitive and Neuropsychiatric Profiles in Atypical Parkinsonian Syndromes</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -58,6 +58,9 @@
         button.btn{
             padding: 0.4em 0.1em;
         }
+        .form-control-range-predictor{
+            width: 50%;
+        }
 
     </style>
 </head>
@@ -78,7 +81,7 @@
                 <div id="middle-classifier-column" >
                     <!-- a slider with values from -1 to +1 -->
                     <div class="form-group row">
-                        <h2 style="text-align:center">Evidence (Logits)</h2>
+                        <h2 style="text-align:center;width:100%">Evidence (Logits)</h2>
                         <div class="" style="width:100%">
                             <input type="range" class="form-control-range-not" 
                             id="logits_slider" min="-1" max="1" value="0" disabled="true" step="0.01" 
@@ -109,7 +112,14 @@
             <div id="right-classifier-column" class="classifier-column">
             </div>
         </div>
-        <div class="col-sm-8"><p>            
+        <div class="col-sm-8"><p>    
+
+            This tool is not a clinical diagnostic device. It is a tool for research use,
+            to explore the relative patterns of cognitive features in different
+            atypical parkinsonian syndromes.
+
+            </p><p>
+
             The algorithm z-scores each predictor, then subtracts the mean of the features, 
             before running a simple logistic classifier.
             This means that the classifier focuses on the <em> relative  pattern </em>
@@ -132,6 +142,10 @@
             from which the ACE was imputed. 
             PD, PSP and CBS patients had UPDRS-I nonmotor features, 
             and patients with MSA had UPDRS imputed from CBI. 
+            <br>
+            Missing features are treated as having zero evidence contribution.
+            Note that this is not the optimal classifier for missing data, since the features 
+            are typically correlated.
         </div>
     </div>        
     </div>
@@ -142,6 +156,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- Custom JS -->
 <script>
+
+groups = ['PD','PSP','CBS', 'MSA']
+
+PREDICTION = 'ACE';//***********  NEUROPSYCH AND ACE TOGETHER
+if (PREDICTION=='ACE_NPSY'){ 
 predictors = [
 // name          min max  mean std   
 ["ACE Attention",0,18.0,16.474220072699882,16.474220072699882,],
@@ -156,8 +175,7 @@ predictors = [
 
     ]
 
-    groups = ['PD','PSP','CBS', 'MSA']
-    classifiers = {
+classifiers = {
         // left_right : [ intercept, pred1, pred2... ]
 'PSP_CBS':[-0.14516970187988237,0.04446398536348567,-0.1483071645738096,-1.0130321037921304,0.5767982154162553,0.6987957736510229,0.5795266771879709,-0.6404420153080699,0.45652782636685574,-0.5543334314129628],
 'PSP_MSA':[-0.9749608128507408,-0.4359335763446909,0.04235312008486374,-1.3131478206862985,0.9250320953338499,-0.2536454605943309,3.1075105271421526,-0.5539869577530104,0.2962012539515243,-1.814388745471436],
@@ -167,16 +185,26 @@ predictors = [
 'CBS_MSA':[-0.16646573279776902,-0.7163935830456579,0.45684654875176334,0.030089509685542023,-0.17780826158029975,-0.5622364807549924,-0.1310544583683117,0.6856538069501648,-0.3592571342666592,0.7741560815686995]
     }
 
+classifier_aucs = {
+    'PSP_CBS':    0.689,
+'PSP_MSA'  :  0.712,
+'PSP_PD'   :  0.826,
+'MSA_PD'   :  0.808,
+'CBS_PD'   :  0.717,
+'CBS_MSA'  :  0.573
+}
+
+} else if(PREDICTION=='ACE'){
 
 
-
-    predictors = [
+//***********  ACE ALONE
+predictors = [
 // name          min max  mean std   
-["ACE Attention",0,18.0,16.474220072699882,16.474220072699882,],
-["ACE Memory",0.0,26.0,20.545382582516797,20.545382582516797,],
-["ACE Fluency",0.0,14.0,8.182701166933597,8.182701166933597,],
-["ACE Language",0,26.0,21.264170934207296,21.264170934207296,],
-["ACE Visuospatial",0.0,16.0,13.368056829967017,13.368056829967017,],
+["ace_attn",0,18.0,16.474220072699882,2.026133221788204],
+["ace_mem",0.0,26.0,20.545382582516797,3.4835171161207374],
+["ace_flu",0.0,14.0,8.182701166933597,2.7179820604324054],
+["ace_lang",0,23.0,21.264170934207296,2.2308664560779117],
+["ace_vs",0.0,16.0,13.368056829967017,2.459370056001645]
 ]
 
 classifiers = {
@@ -187,6 +215,15 @@ classifiers = {
 'MSA_PD':[-0.11987090850289518,-0.3079424537622981,-0.12836156447537317,0.5863844440328416,-0.12945782653331275,-0.020623021687214742],
 'CBS_PD':[-0.2923454551398787,-0.15355003464778527,0.3372755784582461,0.700134417217486,-0.12791106456352402,-0.7559484628498523],
 'CBS_MSA':[-0.21685767865050892,0.0576269028820412,0.36403325636270456,0.2502142766569327,-0.08733469411686982,-0.5845374832992661],
+}
+classifier_aucs = {
+'PSP_CBS':    0.740,
+'PSP_MSA' :   0.677,
+'PSP_PD'   :  0.712,
+'MSA_PD'   :  0.561,
+'CBS_PD'   :  0.667,
+'CBS_MSA'  :  0.547
+} 
 }
 
 $(document).ready(function(){
@@ -217,7 +254,7 @@ function create_predictor_controls(predictors){
 
         control += '<span class="col-sm-4 predictor-label">'+name+'</span>';
         control += '<div class="predictor-div"><span class="range-value-text">'+min+'</span>';
-        control += '<input type="range" class="form-control-range-not" id="predictor'+i+'" min="'+min+'" max="'+max+'" value="'+mean+'" step="1" oninput="update_predictor('+i+')" >';
+        control += '<input type="range" class="form-control-range-predictor" id="predictor'+i+'" min="'+min+'" max="'+max+'" value="'+mean+'" step="1" oninput="update_predictor('+i+')" >';
         control += '<span class="range-value-text">'+max+'</span>';
         control += '<output id="predictor'+i+'value">?</output>';
         control += '</div>';
@@ -301,20 +338,28 @@ function update_classifier(side, group){
 }
 function run_classifier(){
     // 1. get the values of the predictors from the sliders
-    //    and z-score them using mean and std.
+    //    and z-score them using population mean and std.
     var values = []
     for (var i = 0; i < predictors.length; i++) {
         var x = $('#predictor'+i).val();
         x = (x - predictors[i][3]) / predictors[i][4];
+        if ($('#predictor'+i+'value').text() == '?'){
+            x = NaN;
+        }
         values.push(x)
     }
 
     // 2. normalise values by subtracting the mean
     var mean_values = 0;     // calculate the mean
+    var num_predictors = 0;
     for (var i = 0; i < predictors.length; i++) {
+        if (isNaN(values[i])){
+            continue;
+        }
         mean_values += values[i];
+        num_predictors += 1;
     }
-    mean_values /= predictors.length;
+    mean_values /= num_predictors;
     for (var i = 0; i < predictors.length; i++) {
         values[i] -= mean_values;
     }
@@ -327,6 +372,10 @@ function run_classifier(){
     if (classifier === undefined){
         classifier = classifiers[groups[right]+'_'+groups[left]];
         direction = -1;
+    }
+    auc = classifier_aucs[groups[left]+'_'+groups[right]]; // get AUC
+    if (auc === undefined){
+        auc = classifier_aucs[groups[right]+'_'+groups[left]];
     }
 
     // 4. calculate the logits using the coefficients
@@ -346,8 +395,9 @@ function run_classifier(){
         logits = NaN;
     }
 
-    // 5. Flip sign if necessary
+    // 5. Flip sign if necessary and downweight by AUC
     logits = -logits * direction;
+    logits = logits * (auc - 0.5)
 
     // 6. Fill out the logits and odds ratio
     if (isNaN(logits)){

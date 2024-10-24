@@ -125,27 +125,29 @@
             This means that the classifier focuses on the <em> relative  pattern </em>
             of features. This minimises the possibility
             that the classifier is picking up on just disease severity. 
-            
+            <br>
             <a class='reveal', data-reveal='#reveal1'> More info...  </a>
             </p>
         <div id='reveal1' class="hidden">
+            <p>
             These classifiers are trained on N=935 PD, 100 PSP, 50 CBS, 53 MSA. 
-
+            <br>
             Features were z-scored across people, and then each person's mean across all features
             was subtracted from each of their feature values, 
             so that the classifier only detects the relative profile across features,
             ignoring overall severity of symptoms. 
             The classifier is not corrected for motor symptoms, which correlate 
             with some of the features more than others. 
-            <br>
+            </p><p>
             Atypical PD patients had ACE, PD patients had MoCA 
             from which the ACE was imputed. 
             PD, PSP and CBS patients had UPDRS-I nonmotor features, 
             and patients with MSA had UPDRS imputed from CBI. 
-            <br>
+            </p><p>
             Missing features are treated as having zero evidence contribution.
             Note that this is not the optimal classifier for missing data, since the features 
             are typically correlated.
+            </p>
         </div>
     </div>        
     </div>
@@ -407,7 +409,7 @@ function run_classifier(){
         // move slider 
         $('#logits_slider').val(logits);
     }
-    var odds = Math.exp(logits);
+    var odds = abs(Math.exp(logits));
     $('#oddsratio-value').text(odds.toFixed(2));
 }
 </script>

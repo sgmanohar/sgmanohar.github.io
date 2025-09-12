@@ -36,6 +36,12 @@ Inline Code Attributes:
 |---|---|---|
 
 
+
+
+| Ⓜ️  `sin(x)` |  🅿️ `math.sin(x)`  |  ®️ `sin(x)`  |
+|---|---|---|
+
+
 ![](test.png)
 
 [integrated development enviromnent (IDE)](glossary.md#ide)

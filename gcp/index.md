@@ -44,4 +44,5 @@ Inline Code Attributes:
 
 ![](test.png)
 
+[API](glossary.md#api)
 [integrated development enviromnent (IDE)](glossary.md#ide)

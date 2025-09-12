@@ -45,4 +45,5 @@ Inline Code Attributes:
 ![](test.png)
 
 [API](glossary.md#api)
+look in the [binary](glossary.md#binary) text
 [integrated development enviromnent (IDE)](glossary.md#ide)

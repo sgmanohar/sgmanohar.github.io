@@ -49,12 +49,46 @@ These above arguments are supposed to convince you that we are essentially being
 Why is this important? It means we are only indirectly connected to the past. We can only know that we have a past through memory, which could be fallible. We should assume our memory is correct, though. We have a strong informational connection to our past, which is what makes us feel like we are the same person as we were before. 
 
 
+The lonely consciousness
+One possible view arising here is that there are millions of disconnected consciousnesses. One at every moment of time in your life, and this for every person who has existed. This view is consistent with the fact we cannot know for sure that we have a past, and we cannot know for sure what another person’s consciousness is like. We are ultimately extremely lonely. Lonelier than any solipsist has ever imagined: we are alone in the very instant in which we think. We cannot even talk to ourself. Any past or future we have, we are isolated from, except for information we extrapolate from memory or planning. 
+
+However would argue that this view is untenable. First, we can place some confidence in the existence of a past self, even if we have only indirect knowledge. There’s nothing terribly wrong about indirect knowledge. Second, it leads to a fundamental problem of knowing when a consciousness is multiple vs the singular. Imagine there are two people. If we connect their brains partially, when do they become one consciousness? Or if parts of my brain become gradually less disconnected, when do they split into multiple consciousnesses? Third, it does result in a huge multiplication of the number of entities. And fourth, there is some kind of symmetry between our separation from other people, and our concordance with our past selves.  You may want to say people are separate because of the spatial information barriers between them. But then shouldn’t you also say that I am not my past self, because of the temporal information barriers between my present and past?#
+
+On this last point about space and time symmetry, you could actually take both horns of this dilemma, as long as you don’t mind stipulating informational cutoffs. Clearly, my brain has a lot more information about my past brain than it does about someone else’s current brain. But this could be seen as a quantitative difference. 
+The scotoma for other people
+A key thing to notice throughout this argument is that I simply don’t have the brain cells to allow me to know certain things. In visual perception, if you damage a section of your retina, you will see a dark spot. You will notice that you cannot see in a certain part of the world. However, if you damage the corresponding part of your visual cortex, you do not see any dark spot. Patients simply do not realise they have a visual problem, until they realise they are bumping into things more. It works similarly to our blind spot. There is a region of vision in each eye where we cannot see anything, because there are no receptors in the eye there. For decades the neuroscientific metaphor is that we “fill in” the contents of the blind spot-- hence we do not notice it. But more accurately, we simply have no concept of what it would look like to see something in that space, because we have never had the neural hardware that would serve that function. On a similar vein, we have four types of photoreceptor, and in principle this could allow us to see four dimensions of colour. In the visual cortex we have neurons that compare (subtract) the light coming from pairs of photoreceptor types, but they only perform comparisons between three of the types. In fact, the fourth type are combined into a net signal that is never compared across receptor types. So we can only see three-dimensional colour, not four.
+
+The argument from scotoma is simply that, if we don’t have the cells to perform certain comparisons, then certain kinds of thing do not exist in our experience. For example, since I have no neurons that directly compare events in your brain to those in mine, I do not experience anything about your consciousness. I have a scotoma for other people. That does not mean entail I am not experiencing your thoughts. It only means that the experience I am having related to the events in my brain could not possibly know about it, even if it was also having experiences related to events in your brain. 
+
+This is a subtle argument, but I think it is powerful. The lack of mechanism for generating certain kinds of comparative, or relational thought, can generate an impassable rift. If I were experiencing your thoughts, I could not possibly know that it was the same “me”. 
+
+
+There is a corollary in the time domain. 
+
+subjective moments are not cognitively ordered.
 
 
 
+# The fused consciousness
+We are likely a single consciousness.
+
+We are elongated in time.
+
+# What is death?
+
+What have we concluded so far? We commented that our consciousness feels tied to a single person, and extended and ordered in time. Despite this, there are reasons to think that our conscious experience generates its isolation and connection in line with the computations that produce it. Consequently consciousness may span individuals as well as time, without hard edges, but conscious events likely have no specific ordering in time. We also commented that it may be sensible to say that my consciousness is everyone’s consciousness, and transcends time. 
+
+Now all this sounds both obfuscated and bombastic. How can this be interpreted? How can it be useful when we know that each of us is condemned to experiencing only a flow of time of their own? I argue that it carries a number of important consequences.   
+
+First, we can understand the incommensurability of different peoples’ experience. [[ Value function incomparability and the rights of individuals ]]
+Second, it tells us that while lives may begin and end, the subjective experience does not really have beginnings or ends. Death is a boundary - you might visualise it as a surface that encloses a volume. 
 
 
-# Panpsychism
+
+# Panpsychism, Buddhism, and 
 
 The perspective can be taken in different directions: at one extreme it leads to a kind of panpsychism. The panpsychism here is not that there is consciousness everywhere, but rather, that I am everywhere. At another extreme, there is some threshold of connectedness that leads to personhood - below which the individual may split or vanish. 
 
+Another direction is to consider the possibility that the degree of computational connection between individuals is not fixed, and is physically determined. This gives us the possibility of transcending our solitude. While some religions propose this can be done through thought alone, I think it does require some real re-wiring. 
+
+But ultimately, we are discussing the future of the universe, and its relation to conscious beings that apprehend it. In this context, we do not 

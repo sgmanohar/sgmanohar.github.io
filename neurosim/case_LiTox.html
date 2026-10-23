@@ -1,0 +1,229 @@
+<html>
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+            <meta content="utf-8" http-equiv="encoding">
+                
+                <!--
+                 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+                 <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+                 <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>    -->
+                
+                
+                <script src="jquery-1.12.1.min.js"></script>
+                <script src="jquery-ui-1.12.0/jquery-ui.min.js"></script>
+                <script src="svg-pan-zoom.js"></script>
+                <script src="neurosim.js"></script>
+                <script src="jquery-svg/jquery.svg.min.js"></script>
+                <script src="hammer.min.js"></script>
+                
+                <!-- Bootstrap bits -->
+                <script src="tether/js/tether.min.js"></script>
+                <script src="bootstrap/js/bootstrap.min.js"></script>
+                <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
+                    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+                        <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+                            <link rel="stylesheet" href="tether/css/tether.min.css">
+                                <script src="bootbox.min.js"></script>
+                                
+                                <link rel="stylesheet" href="jquery-ui-1.12.0/jquery-ui.css">
+                                    <link rel="stylesheet" href="neurosim.css">
+                                        
+                                        <!--
+                                         <script src="slick-1.6.0/slick/slick.min.js"></script>
+                                         <link rel="stylesheet" href="slick-1.6.0/slick/slick.css">
+                                         <link rel="stylesheet" type="text/css" href="slick-1.6.0/slick/slick-theme.css"/>
+                                         -->
+                                        
+                                        <!-- Three js for matrices and 3D visualisation -->
+                                        <script src="three.min.js"></script>
+                                        <script src="controls/TrackballControls.js"></script>
+                                        <script src="three_animate.js"></script>
+                                        
+                                        
+                                        </head>
+    
+    <body >
+        
+        <div class="neurosim-column col-lg-8 offset-lg-2">
+            
+            <!--  Case name can be specified in <h1 data-case=''>
+             and is looked up from cases.json
+             -->
+            <h1 data-case="Lithium toxicity;
+                           sympathetic-nucleus:-0.3;
+                           cerebellar-flocculonodular-lobe-left:0.8"
+                           
+                >
+                
+                Case 14: Mrs Patel
+            </h1>
+            
+            <ol class="exam-section" >
+                <li>
+                    <h3> <a href="#">History</a></h3>
+                    <div class="neurosim-history">
+                        <ul>
+                            <li>
+                                A 65-year old woman is brought into A+E by her husband with a coarse tremor, nausea and diarrhoea.
+                                
+                            </li>
+                        </ul>
+                        <ul class="neurosim-history-free neurosim-history-all">
+                        </ul>
+                    </div>
+                </li>
+
+  <li>
+      <h3><a href="#"> Mental state examination </a></h3>
+      <div class="neurosim-exam-observations"></div>
+  </li>
+
+  <li>
+    <h3><a href="#"> Face examination </a></h3>
+    <div class="neurosim-exam neurosim-exam-face"></div>
+  </li>
+  
+  <li >
+      <h3><a href="#"> Reflexes </a></h3>
+      <div class="neurosim-exam neurosim-exam-reflexes image-allow-hover image-show-regions image-show-tooltips image-show-selection" data-region="all"></div>
+  </li>
+
+  <li>
+    <h3><a href="#"> Electrocardiogram </a></h3>
+    An ECG was performed in the emergency department.
+    <div>
+      <img src="resources/ecg-litox-T-wave-inversion.png" alt="Li-tox-T-wave-inversion">
+      <img src="resources/ecg-litox-SA-dysfunction.png" alt="Li-tox-SA-dysfunction">
+    </div>
+  </li>
+
+
+  <li>
+      <h3> <a href="#"> Diagnosis </a></h3>
+      <div>
+          <p>
+          What is the probably diagnosis?
+          </p>
+          <ul class="neurosim-pick-list stophere">
+              <li data-action="quiz-wrong">          Serotonin Syndrome </li>
+              <li data-action="quiz-correct"  >  Lithium Toxicity  </li>
+              <li data-action="quiz-wrong"  >  Manic Episode </li>
+              <li data-action="quiz-wrong">   Depressive Episode </li>
+              <li data-action="quiz-wrong"  >   Gastroenteritis </li> <!--  sx of nausea, vom, diarrhe -->
+              <li data-action="quiz-wrong"  >   Diabetes Mellitus </li> <!-- sx of polyuria, polydipsia -->
+          </ul>
+      </div>
+  </li>
+  
+  <li>
+      <h3> <a href="#"> Precipitating Factors </a></h3>
+      <div>
+          <p>
+          Which THREE of the following are common precipitants of this patient's conditions?
+          </p>
+          <ul class="neurosim-pick-list stophere">
+              <li data-action="quiz-wrong"  > Hypoglycemia </li>
+              <li data-action="quiz-correct"> Increased Medication Dose/ Overdose  </li>  <!-- Patient Should be only on lithium? -->
+              <li data-action="quiz-correct"  > Dehydration </li>
+              <li data-action="quiz-correct"> Renal Impairment </li>
+              <li data-action="quiz-wrong"  > Cardiac Arrhythmia </li>
+              <li data-action="quiz-wrong"  > Upper Respiratory Tract Infection </li>
+              
+          </ul>
+      </div>
+  </li>
+  
+  <li>
+      <h3> <a href="#"> Predisposing Medications </a></h3>
+      <div>
+          <p>
+          Which THREE of the following medications can precipitate this patient's condition?
+          </p>
+          <ul class="neurosim-pick-list stophere">
+              <li data-action="quiz-correct"  > ACE inhibitors </li>
+              <li data-action="quiz-wrong"> Statins  </li>
+              <li data-action="quiz-wrong"  > Calcium Channel Blockers </li>
+              <li data-action="quiz-correct"> Thiazide Diurectics </li>
+              <li data-action="quiz-wrong"  > Oral Contraceptive Pill </li>
+              <li data-action="quiz-correct"  > NSAIDs </li>
+              
+          </ul>
+      </div>
+  </li>
+  
+  <li>
+      <h3> <a href="#"> Associated Risks </a></h3>
+      <div>
+          <p>
+          If this patient were to become pregnant, of what malformation would the fetus be at risk?
+          </p>
+          <ul class="neurosim-pick-list stophere multiple">
+              <li data-action="quiz-wrong"> Ventricular Septal Defect </li>
+              <li data-action="quiz-wrong"> Patent Ductus Arteriosus </li>
+              <li data-action="quiz-wrong"  > Tetralogy of Fallot </li>
+              <li data-action="quiz-wrong"  > Atrioventricular Septal Defect </li>
+              <li data-action="quiz-correct"> Ebstein's anomaly </li>
+          </ul>
+      </div>
+  </li>
+  
+  <li>
+      <h3> <a href="#"> Investigations </a></h3>
+      <div>
+          <p>
+          Which investigations would be appropriate to perform in this patient? Select all THREE that apply
+          </p>
+          <ul class="neurosim-pick-list stophere multiple">
+              <li data-action="quiz-correct"> Lithium Levels </li>
+              <li data-action="quiz-correct"> Pregnancy Test </li> <!-- Patient Should be woman of childbearing age -->
+              <li data-action="quiz-wrong"  > Blood Cultures </li> <!-- As long as patient is afebrile in hx, should not take blood cultures -->
+              <li data-action="quiz-correct" > U+E's </li> <!-- Lithium cleared exclusively through kidneys, so renal impairment = common cause of tox -->
+              <li data-action="quiz-wrong"> CT Scan </li>
+          </ul>
+      </div>
+  </li>
+  
+  <li>
+      <h3> <a href="#"> Management </a></h3>
+      <div>
+          <p>
+          After stopping their medication, in what TWO other ways might this patient be managed?  <!-- Mild Tox mx w/ IV 0.9% normal saline. if concn > 5 mEq/L patient on hemodialysis. Check if including lab results. Treat underlying cause -->
+          </p>
+          <ul class="neurosim-pick-list stophere neurosim-reveal-all-lesions">
+              <li data-action="quiz-wrong"  > Fluid Resuscitation with 5% Glucose </li>
+              <li data-action="quiz-correct"> Hemodialysis  </li>
+              <li data-action="quiz-wrong"  > Activated Charcoal  </li>
+              <li data-action="quiz-wrong"  > Oral Amoxicillin </li> <!-- For Gastroenteritis -->
+              <li data-action="quiz-correct"  > Fluid Resuscitation with 0.9% Normal Saline </li>
+          </ul>
+      </div>
+  </li>
+  <li>
+    <h3> <a href="#"> Post-treatment ECG </a></h3>
+    <img src="resources/ecg-litox-baseline-post-treatment.png" alt="Li-tox-baseline-post-treatment">
+    <p>Flattened T-waves, prolonged QT, sinoatrial block, PR prolongation.</p>
+  </li>
+  <li>
+      <h3> <a href="#"> Diagnosis </a></h3>
+      <div>
+          <p>
+          Which THREE of the following are indications for prescription of Lithium?
+          </p>
+          <ul class="neurosim-pick-list stophere">
+              <li data-action="quiz-wrong">      Management of Emotionally-Unstable Personality Disorder </li>
+              <li data-action="quiz-wrong"  >  Maintenance Therapy for Schizophrenia  </li>
+              <li data-action="quiz-wrong"  >  1st Line Therapy for Depressive Episode </li>
+              <li data-action="quiz-correct">   Reduction of Suicidality in Depression </li>
+              <li data-action="quiz-correct"  >   Mood Stabilization in Acute Mania  </li>
+              <li data-action="quiz-correct"  >  Maintenance Therapy in Bipolar Disorder </li>
+          </ul>
+      </div>
+  </li>
+  
+
+            </ol>
+            
+        </div>
+        
+    </body>
+</html>

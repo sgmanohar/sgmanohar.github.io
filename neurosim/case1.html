@@ -1,0 +1,285 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <!--
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>    -->
+    
+    
+    <script src="jquery-1.12.1.min.js"></script>
+    <script src="jquery-ui-1.12.0/jquery-ui.min.js"></script>
+    <script src="svg-pan-zoom.js"></script>
+    <script src="neurosim.js"></script>
+    <script src="jquery-svg/jquery.svg.min.js"></script>
+    <script src="hammer.min.js"></script>
+    
+    <!-- Bootstrap bits -->
+    <script src="tether/js/tether.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="tether/css/tether.min.css">
+    <script src="bootbox.min.js"></script>
+    
+    <link rel="stylesheet" href="jquery-ui-1.12.0/jquery-ui.css">
+    <link rel="stylesheet" href="neurosim.css">
+    
+    <!--
+    <script src="slick-1.6.0/slick/slick.min.js"></script>
+    <link rel="stylesheet" href="slick-1.6.0/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="slick-1.6.0/slick/slick-theme.css"/>
+    -->    
+
+    <!-- Three js for matrices and 3D visualisation -->
+    <script src="three.min.js"></script>
+    <script src="controls/TrackballControls.js"></script>
+    <script src="three_animate.js"></script>
+
+    
+  </head>
+    
+<body>
+  <div class="col-lg-8 col-lg-offset-2">
+
+  <!--  Case name can be specified in <h1 data-case=''>
+        and is looked up from cases.json.
+        First, an exact match in "diseases" is sought, and the "effects" 
+           in this disease are applied, looked up in "syndromes".
+        Second, an exact match in "syndromes" is sought.
+        If not, then treat this as a list of lesions
+        "parietal-cortex-left:1;" will lesion parietal cortex.
+  -->  
+  <h1 data-case='parietal-cortex-left:1; 
+                 parietal-corona-radiata-left:1;
+                 motor-cortex-left:1;
+                 superior-temporal-gyrus-left:1;
+                 primary-sensory-cortex-left:1;
+                 inferior-frontal-gyrus-left:1;
+                 middle-frontal-gyrus-left:1;
+                 frontal-eye-field-left:1,
+                 internal-capsule-posterior-limb-sensory-left:1;
+                 internal-capsule-posterior-limb-motor-left:1;
+                 frontal-corona-radiata-left:1;
+                 insula-left:1;
+                 putamen-left:1;
+                 uncinate-fasciculus-left:0.5;
+                 precuneus-left:0,
+                 posterior-cingulate-gyrus-left:0,
+                 anterior-cingulate-gyrus-left:0'
+      data-casename="stroke-01-left-mca">
+    Case 1: Mr Langton
+  </h1>
+  <ol class="exam-section" >
+    <li>
+      <h3> <a href="#">History</a></h3>
+      <div class='neurosim-history'>
+        <ul>
+          <li>
+            A 63-year-old left handed man who works as an architect was sanding down a door in his living room. His wife last saw him at 14:15 when she went to make a cup of tea returning to find him at 14:20 on the floor. 
+          </li><li>
+            He was not moving his right side. He was making sounds, but nothing she could understand. He couldn’t understand or follow simple commands. His eyes were deviated to the left. He was taken to ED arriving at 15:10.
+          </li><li>
+            He was found to be in atrial fibrillation on the ECG. National Institutes of Health Stroke Scale (NIHSS) = 18.
+          </li>
+        </ul>
+        <!-- free history quesions?
+          <ul class="neurosim-history-free neurosim-history-all">
+          </ul>
+        -->
+      </div>
+    </li>
+    
+  
+<!--   
+   IMAGE-SLICE element:
+   Useful Classes: 
+      image-slice              : required to create the svg from data-slice attribute
+      image-allow-hover        : mouse causes regions to light up (see css .image-selected-region)
+      image-allow-panzoom      : add zoom control, drag to pan, wheel to zoom
+      image-show-selection     : selected region lights up
+      image-show-image         : without this, hides the background svg image
+      image-show-regions       : all regions visible and overalaid 
+      image-show-lesions       : lesioned regions shown in colour
+      image-show-nonfunctional : without this, regions that are not in the model are hidden
+      image-show-tooltips      : mouse movement shows name of region in bubble
+      image-show-3dcursor      : vert/horz lines at mouse cursor, and MNI values in corner
+      neurosim-resizeable      : add drag handles at bottom/right 
+      image-nav-goto-selection : when selection changes, try find a slice in current series.
+      image-nav-draw-line      : when a slice is changed in another image, show the line for that slice here
+      image-nav-draw-alllines  : when a series is changed in another image, show all lines for that series here
+-->
+  
+
+  
+  
+    
+
+  
+
+
+  <li>
+    <h3><a href="#"> Visual fields </a></h3>
+    <div class="neurosim-exam neurosim-exam-visualfields  image-show-regions 
+            image-show-lesions image-click-to-test"> </div>  
+  </li>
+  <li>
+    <h3><a href="#"> Face examination </a></h3>
+    <div class="neurosim-exam neurosim-exam-face"></div>
+  </li>
+  <li >
+    <h3><a href="#"> Motor examination </a></h3>
+    <div class="neurosim-exam neurosim-exam-motor image-allow-hover image-show-regions image-show-tooltips image-show-selection" data-region="all"></div>
+  </li>
+  <li >
+    <h3><a href="#"> Reflexes </a></h3>
+    <div class="neurosim-exam neurosim-exam-reflexes image-allow-hover image-show-regions image-show-tooltips image-show-selection" data-region="all"></div>
+  </li>
+  <li>
+    <h3><a href="#"> Dermatomes </a></h3>
+    <div class="neurosim-exam neurosim-exam-dermatomes image-allow-hover image-show-regions image-show-tooltips image-show-selection  image-show-nonfunctional image-allow-panzoom 
+                image-click-to-test"></div>
+  </li>
+  
+  
+  
+<!--  3D SECTION! ->
+    <div class="viewport3d"></div>
+
+  <div class="exam-section">
+    <h3><a href="#"> Body </a></h3>
+  </div>    
+
+  
+  <div class="exam-section">
+    <h3><a href="#"> Body controls </a></h3>
+    <div>
+      <ul class="bonemenu"></ul>  
+      <ul class="axismenu">
+        <li>x</li><li>y</li><li>z</li>
+      </ul>
+      <ul class="posturemenu"></ul>
+    </div>
+  </div>
+  
+
+
+<!-- END 3D SECTION -->
+  <li>
+    <h3> <a href="#"> Location </a></h3>
+    <div>
+      <p>
+      Which part of the brain is mostly affected?
+      </p>
+      <ul class="neurosim-pick-list stophere">
+        <li data-action="quiz-correct"> Lateral frontoparietal cortex </li>
+        <li data-action="quiz-wrong"  > Medial frontoparietal cortex  </li>
+        <li data-action="quiz-wrong"  > Lateral temporal cortex </li>
+        <li data-action="quiz-wrong"  > Medial temporal cortex </li>
+        <li data-action="quiz-wrong"  > Lateral occipital cortex </li>
+        <li data-action="quiz-wrong"  > Medial occipital cortex </li>
+        <li data-action="quiz-wrong"  > Anteroventral thalamus  </li>
+        <li data-action="quiz-wrong"  > Pons with involvement of the medial longitudinal fasciculus   </li>
+      </ul>
+    </div>
+  </li>
+
+  <li>
+    <h3> <a href="#"> Syndrome </a></h3>
+    <div>
+      <p>
+      Which vascular territory is most likely affected? </p>
+      <ul class="neurosim-pick-list stophere">
+        <li data-action="quiz-correct"> Left middle cerebral artery </li>
+        <li data-action="quiz-wrong"  > Left anterior choroidal artery  </li>
+        <li data-action="quiz-wrong"  > Left anterior cerebral artery </li>
+        <li data-action="quiz-wrong"  > Left internal cerebral vein </li>
+      </ul>
+    </div>
+  </li>
+  
+  <li>
+    <h3> <a href="#"> Management </a></h3>
+    <div>
+      <p>
+      What should be considered within 4.5 hours of symptom onset? </p>
+      <ul class="neurosim-pick-list stophere">
+        <li data-action="quiz-wrong"  > Posterior fossa decompression </li>
+        <li data-action="quiz-correct"> Thrombolysis  </li>
+        <li data-action="quiz-wrong"  > Burr hole </li>
+        <li data-action="quiz-wrong"  > Hemicraniectomy </li>
+      </ul>
+    </div>
+  </li>
+
+  <li>
+    <h3> <a href="#"> Management </a></h3>
+    <div>
+      <p>
+      What is the Gold standard of treatment according to NICE Guidelines? </p>
+      <ul class="neurosim-pick-list stophere">
+        <li data-action="quiz-wrong"  > Clopidogrel </li>
+        <li data-action="quiz-correct"> Thrombolysis and mechanical thrombectomy  </li>
+        <li data-action="quiz-wrong"  > Aspirin </li>
+        <li data-action="quiz-wrong"  > Warfarin </li>
+      </ul>
+    </div>
+  </li>
+
+    
+    <li>
+    <h3> <a href="#">  Imaging  </a></h3>
+    <div>
+      
+          <div class="image-slice image-allow-hover image-show-selection
+                      image-show-lesions image-allow-panzoom 
+                      image-show-nonfunctional image-show-tooltips
+                      image-show-image image-nav-goto-selection  neurosim-resizeable
+                      image-lod-3" 
+               id="slice1" data-slice="slices/mri/t1/axi/t1_axi_074.svg"
+               data-options='{
+                 "foo":"bar"
+               }'>
+
+
+            <div class="image-svg" ></div>
+
+            <div class="neurosim-snippet" data-action="snippet-image-buttons">
+            </div>
+
+            <!-- <div class="neurosim-snippet" data-action="snippet-image-menu"></div> 
+            -->
+
+            <div class="image-buttons image-buttons-bottomleft">
+            <button type="button" class="btn " data-action="About this region">      
+              <span class="image-selection-name"></span>
+            </button>
+            </div>
+
+          </div>
+    </div>
+        
+    <div>
+      <div class="neurosim-popup-box modal fade" id="selection-info-box">
+        <div class="modal-dialog"><div class="modal-content">
+          <div class="neurosim-snippet" data-action="snippet-selection-info-list">
+          </div>
+          
+          <div class="ui-widget">
+            <label>Region:</label><input class="neurosim-region-completion neurosim-selection-input">
+          </div>
+          <div class="neurosim-lesion-slider"></div>
+
+        </div></div>
+      </div>
+    </div>
+    
+  </li>
+</ol>
+
+  </div>  
+</body>
+</html>

@@ -1,0 +1,142 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <!--<script src="CustomElements.min.js"></script>-->
+    <script src="MutationObserver.min.js"></script>
+    <script src="jquery-1.12.1.min.js"></script>
+    <script src="jquery-ui-1.12.0/jquery-ui.min.js"></script>
+    <script src="svg-pan-zoom.js"></script>
+    <script src="neurosim.js"></script>
+    <script src="jquery-svg/jquery.svg.min.js"></script>
+    
+    <!-- Bootstrap bits -->
+    <script src="tether/js/tether.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="tether/css/tether.min.css">
+    <script src="bootbox.min.js"></script>
+    
+    <link rel="stylesheet" href="jquery-ui-1.12.0/jquery-ui.css">
+    <link rel="stylesheet" href="neurosim.css">
+    
+    <!-- Three js for matrices and 3D visualisation -->
+    <script src="three.min.js"></script>
+    <script src="controls/TrackballControls.js"></script>
+    <script src="three_animate.js"></script>
+
+    <!-- slick carousel -->
+    <script src="slick-1.6.0/slick/slick.min.js"></script>
+    <link rel="stylesheet" href="slick-1.6.0/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="slick-1.6.0/slick/slick-theme.css"/>
+    <script src="hammer.min.js"></script>
+
+
+  </head>
+    
+
+
+<!--   
+   IMAGE-SLICE element:
+   Useful Classes: 
+      image-slice              : required to create the svg from data-slice attribute
+      image-allow-hover        : mouse causes regions to light up (see css .image-selected-region)
+      image-allow-panzoom      : add zoom control, drag to pan, wheel to zoom
+      image-show-selection     : selected region lights up
+      image-show-image         : without this, hides the background svg image
+      image-show-regions       : all regions visible and overalaid 
+      image-show-lesions       : lesioned regions shown in colour
+      image-show-nonfunctional : without this, regions that are not in the model are hidden
+      image-show-tooltips      : mouse movement shows name of region in bubble
+      image-show-3dcursor      : vert/horz lines at mouse cursor, and MNI values in corner
+      neurosim-resizeable      : add drag handles at bottom/right 
+      image-nav-goto-selection : when selection changes, try find a slice in current series.
+      image-nav-draw-line      : when a slice is changed in another image, show the line for that slice here
+      image-nav-draw-alllines  : when a series is changed in another image, show all lines for that series here
+      neurosim-quiz-question / answer : this image functions as part of a quiz
+      image-lod-5              : set the initial level of detail for elements in this slice
+      image-forbid-selection   : cannot click to select (useful for quizzes)
+-->
+  
+<div class="row row-eq-height">
+  <div class="col-md-12 col-sm-12 col-lg-12">  
+    <div class="image-slice image-show-selection
+              image-allow-panzoom 
+              image-show-nonfunctional 
+              image-show-image neurosim-quiz-question
+              image-lod-3
+              image-forbid-selection" 
+       id="slice1" data-slice="slices/vhp/cryo/axi/0950.01.svg"
+       data-options='{
+         "foo":"bar"
+       }'>
+    
+    
+    <div class="image-svg" ></div>
+
+    <div class="image-buttons btn-group">
+
+      <a class="btn " data-action="Next" title="Next" tabindex>  <i class="fa fa-arrow-circle-o-down fa-lg"></i> </a>
+      <a class="btn " data-action="Previous" title="Previous"  tabindex> <i class="fa fa-arrow-circle-o-up fa-lg"></i></a>
+
+      <span class="btn  dropdown" tabindex>
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-cubes fa-lg"></i><b class="caret"></b></a>
+        <ul class="dropdown-menu" id="menu1">
+          <li class="icon-plane">
+            <object type="image/svg+xml" data="axis-icons.svg"> </object>
+
+          </li>
+        </ul>
+      </span>
+
+      <span class="btn  dropdown" tabindex>
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-recycle fa-lg"></i><b class="caret"></b></a>
+        <ul class="dropdown-menu" id="menu2">
+          <li class="icon-modality">
+            <object type="image/svg+xml" data="modality-icons.svg"> </object>
+
+          </li>
+        </ul>
+      </span>
+
+      <a class="btn  " data-action="Recolour" title="Recolour" tabindex>  <i class="fa fa-paw fa-lg"></i> </a>
+
+      <a class="btn  btn-sm" data-action="Show regions" title="Show regions" tabindex> <span class="fa-stack">
+        <i class="fa fa-eye fa-stack-1x corner-icon"></i><i class="fa fa-square-o fa-stack-1x"></i></span></a>
+
+
+      <a class="btn  btn-sm" data-action="Show image" title="Show image" tabindex> <span class="fa-stack">
+        <i class="fa fa-eye fa-stack-1x corner-icon"></i><i class="fa fa-image fa-stack-1x"></i></span></a>
+
+
+
+    </div>
+
+  
+
+  </div>
+</div> </div> 
+  
+
+  <ul class="exam-section">
+    <li>
+      <h3><a href="#"> Name the highlighted region </a></h3>
+      <div>
+        <!--
+                  Quiz - acceptable properties for neurosim-pick-list neurosim-quiz-answer
+                           neurosim-quiz-error-repeat: keep asking until correct answer chosen. 
+        -->
+        <ul class="neurosim-pick-list neurosim-quiz-answer neurosim-quiz-error-repeat">
+          <li data-action="quiz-correct">  Medulla  </li>
+          <li data-action="quiz-wrong">  Pons  </li>
+          <li data-action="quiz-wrong">  Midbrain  </li>
+          <li data-action="quiz-wrong">  Cerebellum  </li>
+          <li data-action="quiz-wrong">  Thalamus  </li>
+        </ul>
+      </div>  
+    </li>
+  </ul>
+  
+  
+</html>

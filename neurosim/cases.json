@@ -1,0 +1,4396 @@
+{
+  "comment": [
+    "*  cases.json",
+    "* affect: 'all' (default) - select all effects",
+    "*         'any' - selects one",
+    "*         p - select one, and also each other with a probability p",
+    "* extent: default = 1",
+    "*         value - create a lesion of degree 'value' - ",
+    "*             random between 0 and 1 but centred on the value.",
+    "* history: contains possible answers to history questions.",
+    "*    answers are [option1, option2, ...], where each option is",
+    "*    [ part1, part2, part3 ] which are concatenated together, and each part is",
+    "*    either a string, or another [ option1, option2 ... ] list of options."
+  ],
+  "diseases": {
+    "alzheimers": {
+      "lesion": [
+        "parietal-lobe-left",
+        "parietal-lobe-right"
+      ],
+      "extent": 0.5,
+      "observations": {
+        "appearance":[
+          [
+            "The buttons on the patient's shirt are mismatched"
+          ],
+          [
+            "The patient has worn her jumper inside-out"
+          ],
+          [
+            "Patient has worn mis-matching shoes"
+          ],
+          [
+            "The patient has a few stains across her top"
+          ],
+          [
+            "The patient has a pungent odor"
+          ]
+        ],
+        "behaviour":[
+          ["She engages well with the conversation."],
+          ["She looks to her husband for some of the questions."]
+        ],
+        "affect":[
+          ["She has a relatively sad expression"],
+          ["Her affect doesn't change throughout the interview"],
+          ["She doesn't react emotionally to her partner's comments"]
+        ],
+        "thought":[
+          ["Her thoughts had a normal speed and form"],
+          ["There are moments where she is tangential"],
+          ["She was somewhat nonspecific when talking about recent events"]
+        ]
+      },
+      "history": {
+        "memory": {
+          "question": "How is your memory?",
+          "keywords": [
+            "forget.+things",
+            "forgetful",
+            "memory",
+            "trouble.+remember",
+            "problems.+remember"
+          ],
+          "answer": [
+            [
+              "I'm so sorry to trouble you over this, but my partner has asked me to come in. He thinks I’ve become more forgetful recently."
+            ],
+            [
+              "My partner says I keep misplacing things and complains that I can never find my keys, but all that is quite common as one ages."
+            ],
+            [
+              "My husband has dragged me here because he thinks my memory is getting worse- and I'll admit I have had a few slip ups- but I don't want to waste your time talking about silly problems. I'm sure you're very busy."
+            ]
+          ]
+        },
+        "smell": {
+          "question": "Has your sense of smell changed?",
+          "keywords": [
+            "smell",
+            "taste"
+          ],
+          "answer": [
+            [
+              "I noticed I don't really smell food or enjoy the taste as much as I",
+              [
+                "did in the past.",
+                "used to."
+              ]
+            ]
+          ]
+        },
+        "spatial-disorientation": {
+          "question": "Do you ever get lost in familiar places?",
+          "keywords": [
+            "get lost",
+            "disorientat",
+            "familiar places",
+            "been lost",
+            "gotten lost",
+            "navig"
+          ],
+          "answer": [
+            [
+              "No I can't recall getting lost around here at least. We've lived in this area for decades so I know my way around"
+            ],
+            [
+              "I've never been one to use the GPS or stop to read a map when out and about. I'm a pretty good navigator. Besides, we've lived in this town for ages."
+            ],
+            [
+              "The last time I got lost was when we went abroad on holiday a few years ago. But around here -this whole city is familiar to me, my husband and I grew up here, so I know it like the back of my hand."
+            ]
+          ]
+        },
+        "language": {
+          "question": "Have you had any problems with speech or language?",
+          "keywords": [
+            "speech",
+            "conversation",
+            "language"
+          ],
+          "answer": [
+            [
+              "Sometimes I can't find the right word, even though I can see whatever it is in my mind."
+            ],
+            [
+              "At times I can't seem to ummm.. find the right... umm... talk? No, that's not what I mean ... um... ah, word! That's it. Sometimes I can't find the right word."
+            ]
+          ]
+        },
+        "tired": {
+          "question": "Do you feel tired?",
+          "keywords": [
+            "tired",   "exhausted", "fatigue", "energy"
+          ],
+          "answer": [            [
+              "Oh, I've been getting really tired through the day. I used to have so much energy, but now I have to have a nap every day after lunch. That's just not me!"
+            ]
+          ]
+        },  
+        "recognition-of-people": {
+          "question": "Have you ever failed to recognize friends or family?",
+          "keywords": [
+            "forget people",
+            "forget friends",
+            "forget family",
+            "recognize friends",
+            "recognize family",
+            "recognize people"
+          ],
+          "answer": [
+            [
+              "Not as far as I'm aware."
+            ],
+            [
+              "My husband did say once that I called him by my son's name, but it's just a little slip up. I'm sure it happens in every family."
+            ],
+            [
+              "I find it hard to recall people's names sometimes."
+            ],
+            [
+              "No no, but I do sometimes struggle with strangers. What was your name, again, doctore?"
+            ]
+          ]
+        },
+        "planning": {
+          "question": "Are you still able to organize your affairs as usual or plan ahead?",
+          "keywords": [
+            "organis",
+            "plan",
+            "daily tasks",
+            "everyday tasks",
+            "normal activities",
+            "daily activities"
+          ],
+          "answer": [
+            [
+              "I used to do the family finances and keep track of all our appointments in the diary. I made one tiny mistake with paying the bills and my partner thinks I can't be responsible for all that now."
+            ],
+            [
+              "My partner has taken over all the planning and management of our calendar. For some reason, he thinks I can't handle it anymore, it drives me crazy!"
+            ],
+            [
+              "Yes I am still able to plan things, if my partner would let me! He's intent on micromanaging my entire life in his retirement."
+            ]
+          ]
+        },
+        "emotional-lability": {
+          "question": "Are you more emotional than in the past?",
+          "keywords": [
+            "emotion",
+            "mood swing",
+            "agitat",
+            "change.+mood"
+          ],
+          "answer": [
+            [
+              "I wouldn't say I'm more easily agitated, but that people aren't as courteous as they used to be."
+            ],
+            [
+              "If I'm any more irritable, it's because my partner is meddling in everything I do. He won't leave me in peace anymore. He hardly lets me use the toaster by myself."
+            ],
+            [
+              "I wouldn't say so. I'm quite reasonable in how I handle my emotions."
+            ]
+          ]
+        },
+        "driving": {
+          "question": "Are you still driving?",
+          "keywords": [
+            "driv"
+          ],
+          "answer": [
+            [
+              "I stopped driving by myself earlier this year. I kept bumping other cars while I was trying to park"
+            ],
+            [
+              "My family have forbidden me from driving as I've been in a few accidents this past year. It has really impacted my independence."
+            ]
+          ]
+        },
+        "gas": {
+          "question": "Do you have a gas hob and have you ever left it on?",
+          "keywords": [
+            "gas "
+          ],
+          "answer": [
+            [
+              "Our gas hob has been left on, but whether it was me or my partner, who's to say?"
+            ],
+            [
+              "I have left on the gas hob, just once though. It was a simple mistake really."
+            ],
+            [
+              "No, I've never left the gas on. I have always been very careful with that sort of thing."
+            ]
+          ]
+        },
+        "insight": {
+          "question": "Do you feel like there is something medically wrong?",
+          "keywords": [
+            "concerns",
+            "ideas",
+            "expectations",
+            "something wrong",
+            "worrie"
+          ],
+          "answer": [
+            [
+              "I'm just here to put my family members' minds at ease. I feel as though these complaints are all just the troubles of getting older"
+            ],
+            [
+              "Look I know I've forgotten a couple things here and there, but it's all a part of normal aging isn't it"
+            ]
+          ]
+        },
+        "mood": {
+          "question": "How is your mood?",
+          "keywords": [
+            "mood",
+            "depress",
+            "sad"
+          ],
+          "answer": [
+            [
+              [
+                "I've never been diagnosed with depression, but"
+              ],
+              [
+                "Some days are better than others",
+                "my friends have said I'm not as cheery as I used to be",
+                "what's there to be so happy about anyway?"
+              ]
+            ]
+          ]
+        },
+        "feelings-toward-future": {
+          "question": "How do you feel about the future?",
+          "keywords": [
+            "future"
+          ],
+          "answer": [
+            [
+              "To be honest, I don't feel like the future holds much for me"
+            ],
+            [
+              "I've got nothing to look forward to in life",
+              [
+                "my kids have moved away and lost touch",
+                "all my friends have died"
+              ]
+            ]
+          ]
+        },
+        "feelings-of-failure": {
+          "question": "Do you feel like a failure?",
+          "keywords": [
+            "fail"
+          ],
+          "answer": [
+            [
+              "I've had more than my fair share of failures in life"
+            ],
+            [
+              "I feel like a total failure as a person"
+            ],
+            [
+              "Whenever I look back on my life, I can only see the numerous times I've failed myself and others around me"
+            ]
+          ]
+        },
+        "life-satisfaction": {
+          "question": "Do you still enjoy doing things?",
+          "keywords": [
+            "enjoy",
+            "satisfact"
+          ],
+          "answer": [
+            [
+              [
+                "I find I don't enjoy things as much as I used to.",
+                "I don't get any satisfaction out of things anymore."
+              ],
+              [
+                "I used to love walking the dog or going for a pint, but now it's all so boring"
+              ]
+            ]
+          ]
+        },
+        "feelings-of-guilt": {
+          "question": "Do you ever feel guilty about anything?",
+          "keywords": [
+            "guilt"
+          ],
+          "answer": [
+            [
+              "I can't help but feel guilty for everythings that's gone wrong in my life"
+            ],
+            [
+              "Sometimes I'm can't help but feel guilty for all the problems I've caused in my life and the lives of my loved ones"
+            ]
+          ]
+        },
+        "feelings-of-being-punished": {
+          "question": "Do you ever feel like you're being punished?",
+          "keywords": [
+            "punish"
+          ],
+          "answer": [
+            [
+              "I do feel like the world is out to get me now"
+            ],
+            [
+              "For all the things I've done in life, I deserve to be punished"
+            ],
+            [
+              "I expect it's about time that I am punished for my actions"
+            ]
+          ]
+        },
+        "perception-of-self": {
+          "question": "How do you feel about yourself?",
+          "keywords": [
+            "fault",
+            "weakness",
+            "blame",
+            "feel about yourself"
+          ],
+          "answer": [
+            [
+              "I am disgusted with myself for all that I've done in life"
+            ],
+            [
+              "Honestly, there's not much about myself that I like"
+            ],
+            [
+              "There are many things about myself that I dislike, but it's too late to change"
+            ]
+          ]
+        },
+        "deliberate-self-harm": {
+          "question": "Have you ever thought of harming yourself before?",
+          "keywords": [
+            "harming yourself",
+            "harm yourself",
+            "hurt yourself",
+            "self harm",
+            "self-harm",
+            "harm\\w* yourself"
+          ],
+          "answer": [
+            [
+              "I took an overdose in the past. I had taken paracetamol and alcohol. That was a few years ago now"
+            ],
+            [
+              "Occasionally, I'll cut my arms or my legs when I'm feeling really upset"
+            ],
+            [
+              "I've been feeling quite down lately, and on most days I'll burn myself with my lighter"
+            ]
+          ]
+        },
+        "suicidal-thoughts": {
+          "question": "Have you ever thought of killing yourself?",
+          "keywords": [
+            "suicid",
+            "kill"
+          ],
+          "answer": [
+            [
+              "I have thought about committing suicide, but I could never bring myself to do it"
+            ],
+            [
+              "Most days I just want to end it all"
+            ],
+            [
+              "Honestly if I could get the chance I would kill myself"
+            ]
+          ]
+        },
+        "crying": {
+          "question": "How often do you cry",
+          "keywords": [
+            "\\bcry\\b",
+            "tearful"
+          ],
+          "answer": [
+            [
+              "I find myself crying far more than I ever used to"
+            ],
+            [
+              "Most days I find myself sobbing over the state of my life"
+            ],
+            [
+              "I used to cry, but now I simply don't have energy to do even that"
+            ]
+          ]
+        },
+        "easily-irritated": {
+          "question": "Are you easily irritated by things?",
+          "keywords": [
+            "irrita",
+            "annoy",
+            "temper"
+          ],
+          "answer": [
+            [
+              "Well, the kids these days on my bus are definitely not as courteous as they used to be in my day"
+            ],
+            [
+              "My",
+              [
+                "wife",
+                "husband",
+                "partner",
+                "daughter",
+                "son",
+                "family"
+              ],
+              "won't stop trying to micromanage me these days"
+            ]
+          ]
+        },
+        "interest-in-others": {
+          "question": "Have you lost interest in other people around you?",
+          "keywords": [
+            "interest in"
+          ],
+          "answer": [
+            [
+              "I'm much less interested in the neighborhood gossip than I used to be. I can't be bothered with that nonsense anymore"
+            ],
+            [
+              "I don't care to hear about the lives of my friends anymore, none of that really matters"
+            ],
+            [
+              "I hardly manage to take an interest in my own life, let alone the lives of other people"
+            ]
+          ]
+        },
+        "decision-making": {
+          "question": "Do you have trouble making decisions?",
+          "keywords": [
+            "decision",
+            "decid",
+            "choos",
+            "make choices",
+            "decisive"
+          ],
+          "answer": [
+            [
+              "I never used to be as indecisive as I am now, it takes me ages to decide even something as simple as what to have for breakfast or which pair of socks to wear"
+            ],
+            [
+              "I try to put off making decisions for as long as I can"
+            ],
+            [
+              "I'm not sure"
+            ]
+          ]
+        },
+        "appearance": {
+          "question": "How do you feel about your appearance?",
+          "keywords": [
+            "appearance",
+            "ugly",
+            "attractive"
+          ],
+          "answer": [
+            [
+              "I know I'm beginning to look old and ugly"
+            ],
+            [
+              "I know that I'm not attractive to anyone anymore"
+            ],
+            [
+              "I can't stand to look at myself in the mirror and see that hideous reflection staring back at me"
+            ]
+          ]
+        },
+        "sleep": {
+          "question": "How is your sleep?",
+          "keywords": [
+            "sleep"
+          ],
+          "answer": [
+            [
+              "I'm not sleeping nearly as much as I used to"
+            ],
+            [
+              "I wake up a few hours earlier than usual and find it hard to fall asleep again"
+            ],
+            [
+              "I'm waking up in the early hours of the morning and cannot get back to sleep"
+            ]
+          ]
+        },
+        "tiredness": {
+          "question": "Do you tire easily",
+          "keywords": [
+            "tired",
+            "fatigu",
+            "letharg",
+            "energ"
+          ],
+          "answer": [
+            [
+              "I get tired quite easily these days. Just the thought of getting out of bed makes me feel exhausted"
+            ],
+            [
+              "No matter how much sleep I get, I always feel tired"
+            ],
+            [
+              "Some days I'm too tired to do anything, even eat"
+            ]
+          ]
+        },
+        "appetite": {
+          "question": "How is your appetite?",
+          "keywords": [
+            "appetite",
+            "food intake",
+            "eating",
+            "diet"
+          ],
+          "answer": [
+            [
+              "I'm not eating as much as I used to"
+            ],
+            [
+              "I'll have some tea and toast in the morning and that's me done for the day"
+            ],
+            [
+              "I haven't got any appetite for anything anymore"
+            ]
+          ]
+        },
+        "weight-loss": {
+          "question": "Have you lost any weight?",
+          "keywords": [
+            "weight"
+          ],
+          "answer": [
+            [
+              "I've lost about",
+              [
+                "seven",
+                "ten",
+                "fifteen"
+              ],
+              "pounds"
+            ]
+          ]
+        },
+        "physical-health-worries": {
+          "question": "Are you worried about your physical health?",
+          "keywords": [
+            "physical health",
+            "physical problems"
+          ],
+          "answer": [
+            [
+              "Many of my physical health problems like my irritable bowel syndrome have started to trouble me recently"
+            ],
+            [
+              "I'm very worried about my physical health. It's hard for me to think about anything else"
+            ],
+            [
+              "My physical health is a big problem. I'm in a great deal of pain nearly all the time because of my fibromyalgia. It consumes my mind so much that I can't think of anything else"
+            ]
+          ]
+        },
+        "interest-in-sex": {
+          "question": "Have you noticed any changes in your interest in sex",
+          "keywords": [
+            "sex",
+            "libido"
+          ],
+          "answer": [
+            [
+              "Now that you mention it, I've been having some problems with my partner because I'm just not interested in sex anymore. But who is when you're my age"
+            ],
+            [
+              "My libido has definitely decreased, but it's just one of those problems of getting older"
+            ],
+            [
+              "I can't say that I've been interested in having sex lately, I'm just not up to it anymore"
+            ]
+          ]
+        },
+        "confused": {
+          "question": "Are you ever confused?",
+          "keywords": [
+            "confus"
+          ],
+          "answer": [
+            [
+              "No, I've not been confused, at least that I know of!"
+            ],
+            [
+              "Well I've always been a bit scatty, that's just how I've always been."
+            ]
+          ]
+        },
+        "age": {
+          "question": "How old are you?",
+          "keywords": [
+            "how old",
+            "your age"
+          ],
+          "answer": [
+            [
+              "I'm sixty - um... no, seventy something. Maybe seventy-four I think? You must have it on your records."
+            ]
+          ]
+        },
+        "mmse-orientation-season": {
+          "question": "What season are we in?",
+          "keywords": [
+            "season"
+          ],
+          "answer": [
+            [
+              "`['Well it is not snowing these days - it must be Spring.','It looks warm out there - it must be Summer','It is getting cooler out there - it must be Autumn.','It is quite chilly outside - it must be Winter.'][Math.floor( ((new Date().getMonth() + 10) % 12)/3 )]`"
+            ]
+          ]
+        },
+        "mmse-orientation-weekday": {
+          "question": "What day of the week is it?",
+          "keywords": [
+            "weekday"
+          ],
+          "answer": [
+            [
+              "Umm, I think it's `x=new Date();x.setDate(x.getDate()-1);x.toLocaleString('default',{'weekday':'long'})`?"
+            ]
+          ]
+        },
+        "mmse-orientation-date": {
+          "question": "What is the date?",
+          "keywords": [
+            "date"
+          ],
+          "answer": [
+            [
+              "It's the `x=new Date();x.setDate(x.getDate()-1); ordinal_suffix_of( x.getDate() )` I think, is that right?"
+            ]
+          ]
+        },
+        "mmse-orientation-place": {
+          "question": "Where are we?",
+          "keywords": [
+            "We're in the hospital, aren't we?"
+          ],
+          "answer": [
+            [
+              "It's the `x=new Date();x.setDate(x.getDate()-1); ordinal_suffix_of( x.getDate() )` I think, is that right?"
+            ]
+          ]
+        }
+      },
+      "matchers": [
+        "alzheimer",
+        "^ad"
+      ],
+      "collateral": {
+        "memory": {
+          "question": "How is your partner's memory?",
+          "keywords": [
+            "forget things",
+            "forgetting things",
+            "forgetful",
+            "memory"
+          ],
+          "answer": [
+            [
+              "My partner's memory has become",
+              [
+                "quite bad",
+                "much worse than it used to be",
+                "dreadful"
+              ],
+              ".",
+              [
+                [
+                  ".For example, she keeps misplacing things. She can never find her",
+                  [
+                    "keys",
+                    "shoes",
+                    "phone",
+                    "wallet"
+                  ],
+                  "."
+                ],
+                [
+                  "Sometimes she'll walk into a room and forget why she entered in the first place."
+                ],
+                [
+                  "The other day she put the oven on to pre-heat and forgot about it. She could've started a fire and burned the house down. It had me very concerned."
+                ],
+                [
+                  "She forgot to call our son on his birthday this year. That's never happened before so it worried my family."
+                ]
+              ]
+            ]
+          ]
+        },
+        "spatial-disorientation": {
+          "question": "Does your partner ever get lost in familiar places?",
+          "keywords": [
+            "get lost",
+            "disorientat"
+          ],
+          "answer": [
+            [
+              "The other day our friend found my wife wandering around town, looking lost. Luckily, the friend dropped her off home safely."
+            ],
+            [
+              "Last week, my wife got lost in the supermarket. The manager had changed the layout without any warning, and it really seemed to throw her."
+            ],
+            [
+              "This is a bit embarrassing, so don't tell my wife that I've told you, doctor. Sometimes in the middle of the night, my wife will have an accident- she'll wet herself. I've seen her get up and wander into different rooms, looking for the bathroom. We've lived in the same house for 35 years. She can't be possibly be getting lost, can she?"
+            ]
+          ]
+        },
+        "language": {
+          "question": "Has your partner had any problems with speech or language?",
+          "keywords": [
+            "speech",
+            "conversation",
+            "language"
+          ],
+          "answer": [
+            [
+              "My wife often has trouble remembering the names of everyday sort of objects, like the",
+              [
+                "toaster",
+                "telephone",
+                "refrigerator",
+                "car"
+              ]
+            ],
+            [
+              [
+                "and I'll have to guess what she means from context."
+              ],
+              [
+                ". She'll describe what the object is instead of naming it outright."
+              ]
+            ]
+          ]
+        },
+        "recognition-of-people": {
+          "question": "Has your partner ever failed to recognize friends or family?",
+          "keywords": [
+            "forget people",
+            "forget friends",
+            "forget family",
+            "recognize friends",
+            "recognize family"
+          ],
+          "answer": [
+            [
+              "Last week our son dropped our grandson off at our house. When my wife opened the door to greet him, she couldn't recall his name. It was so strange, and very worrying."
+            ],
+            [
+              "Occasionally, when when she first wakes up in the morning, she'll call my by the wrong name, usually our son's name."
+            ],
+            [
+              "She often forgets the names of our friends. It's quite embarrassing."
+            ]
+          ]
+        },
+        "planning": {
+          "question": "Is your partner still able to organize affairs as usual or plan ahead?",
+          "keywords": [
+            "organis",
+            "plan"
+          ],
+          "answer": [
+            [
+              "She can't handle organizing complex tasks like she used to do in the past. Year before last, she forgot to pay the bills and our electricity got switched off. I take care of all of that now."
+            ],
+            [
+              "Managing our social calendar used to be a joint effort. But now, planning get-togethers with the family or friends, or making various appointments is all down to me because she can't seem to put them all together into a schedule."
+            ],
+            [
+              "She used to love planning elaborate holidays with hour-by-hour itineraries, but now trying to prepare for each coming day is a struggle."
+            ]
+          ]
+        },
+        "emotional-lability": {
+          "question": "Is your partner more emotional than in the past?",
+          "keywords": [
+            "emotion",
+            "mood swing",
+            "agitat"
+          ],
+          "answer": [
+            [
+              "One minute she's totally calm, and the slightest thing can send her into a rage or cause her to start sobbing."
+            ],
+            [
+              "Her temper is much shorter than it used to. She becomes irritated whenever I try to help her with anything."
+            ],
+            [
+              "She never used to be an emotional person. Recently she's become much more sensitive, even tearing up during TV programmes or films."
+            ]
+          ]
+        },
+        "confused": {
+          "question": "Is your partner ever confused?",
+          "keywords": [
+            "confus"
+          ],
+          "answer": [
+            [
+              "I wouldn't say she's actually confused. Maybe just not quite as on top of things."
+            ],
+            [
+              "Maybe once in a while, when she wakes up, she's not sure what day it is. But that's all."
+            ],
+            [
+              "Well, she woke up once in the night, quite distressed. I though she had a bad dream. She soon got back to sleep. "
+            ]
+          ]
+        },
+        "driving": {
+          "question": "Is your partner still driving?",
+          "keywords": [
+            "driv"
+          ],
+          "answer": [
+            [
+              "I've had to confiscate the keys to the car. She's had too many accidents over the past few years."
+            ],
+            [
+              "She had her license revoked by the police earlier this year."
+            ],
+            [
+              "Now can only drive when I'm in the car with her. I give her the directions, and make sure she is careful and knows what she's doing."
+            ]
+          ]
+        },
+        "gas": {
+          "question": "Do you have a gas hob at home and has your partner ever left it on?",
+          "keywords": [
+            "gas"
+          ],
+          "answer": [
+            [
+              "I'm always very vigilant with the gas, by my partner has left it on a few times now actually"
+            ],
+            [
+              "I make sure I'm in the kitchen with her when she's cooking so I can check that the gas has been switched off"
+            ],
+            [
+              "I've taken over all the cooking because I can no longer trust her to remember to switch off the gas."
+            ]
+          ]
+        },
+        "insight": {
+          "question": "Do you feel like there is something medically wrong with your partner?",
+          "keywords": [
+            "concerns",
+            "ideas",
+            "expectations",
+            "something wrong",
+            "worrie"
+          ],
+          "answer": [
+            [
+              "You are the doctor here, but I definitely feel as though what's happening to my partner is worse than what happens with normal aging."
+            ],
+            [
+              "I think my partner's memory is deteriorating at a rate that's not normal and I am worried for her."
+            ],
+            [
+              "I don't know what, but I think something is wrong, I mean medically-speaking, with my partner. It just doesn't seem like the forgetfulness of getting older."
+            ]
+          ]
+        },
+        "mood": {
+          "question": "How is your partner's mood?",
+          "keywords": [
+            "mood",
+            "depress",
+            "sad"
+          ],
+          "answer": [
+            [
+              "She hasn't been her usual upbeat self this past year"
+            ],
+            [
+              "Perhaps she has been a bit gloomier recently"
+            ],
+            [
+              "I suppose her demeanor has been more melancholy over the past couple of years"
+            ]
+          ]
+        },
+        "delirium": {
+          "question": "Do your partner's memory problems fluctuate, or have they gotten progressively worse?",
+          "keywords": [
+            "fluctuat",
+            "progressively worse",
+            "vary",
+            "confusion"
+          ],
+          "answer": [
+            [
+              "My wife's memory problems have been getting gradually worse over the past few years"
+            ],
+            [
+              "My partner's confusion isn't fluctuating during the day, it's been more of a constant worsening of her memory"
+            ]
+          ]
+        }
+      },
+      "crying": {
+        "question": "How often does your partner cry?",
+        "keywords": [
+          "cry",
+          "tearf"
+        ],
+        "answer": [
+          [
+            "My partner does cry almost every day"
+          ],
+          [
+            "My partner cries much more than before. It's really getting us down."
+          ],
+          [
+            "Not every day. But even when not crying, my partner seems very down all the time."
+          ]
+        ]
+      },
+      "easily-irritated": {
+        "question": "Is your partner easily irritated by things?",
+        "keywords": [
+          "irrita",
+          "annoy"
+        ],
+        "answer": [
+          [
+            "Yes, absolutely more upset by even little things"
+          ],
+          [
+            "My partner was the most tolerant person in the world. But now, almost anything seems to annoy them."
+          ]
+        ]
+      },
+      "interest-in-others": {
+        "question": "Has your partner lost interest in other people around them?",
+        "keywords": [
+          "interest in other"
+        ],
+        "answer": [
+          [
+            "Yes, my partner doesn't even know when the children are upset about something any more"
+          ],
+          [
+            "My partner used to be so",
+            [
+              "caring",
+              "kind"
+            ],
+            "and loving. But that changed last year. When I lost my",
+            [
+              "mother",
+              "father",
+              "sister"
+            ],
+            ", he didn't even seem to care."
+          ]
+        ]
+      },
+      "decision-making": {
+        "question": "Does your partner have trouble making decisions?",
+        "keywords": [
+          "decision",
+          "decid",
+          "choos",
+          "make choices",
+          "decisive"
+        ],
+        "answer": [
+          [
+            "My partner has always been indecisive, but that has got much worse recently."
+          ],
+          [
+            "Oh yes, spends ages looking at the menu in a restaurant, and sometimes I have to decide for them."
+          ]
+        ]
+      }
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    "Frontotemporal dementia": {
+      "observations": {
+        "appearance": [
+          [
+            "The patient greets you with a hug upon entering the room"
+          ]
+        ],
+        "behaviour":[
+          ["The patient leans in quite close to you during the interview"   ],
+          ["The patient was pleasant, agreeable, and laughing during the consultation." ] 
+        ],
+        "affect":[
+          ["The patient has a positive affect"]
+        ],
+        "speech":[
+          ["Speech was somewhat pressured, without much gap between sentences"]
+        ],
+        "thought":[
+          ["The flow of thought was approriate"],
+          ["There was no flight of ideas"]
+
+        ]
+      },
+      "effects": [
+      ],
+      "affect": "all",
+      "extent": 0.1,
+      "history": {
+
+        "employment": {
+          "question": "Are you employed?",
+          "keywords": [
+            "job",
+            "employ",
+            "retire",
+            "profession",
+            "work.?$"
+          ],
+          "answer": [
+            [
+              "I was a chef until 2 years ago. I made fantastic food, but these idiot customers complained. I made one little mistake and my pansy boss got rid of me, instead of them!"
+            ],
+            [
+              "I used to work as an accountant for a big retailer. I got let go when the boss found out I'd given myself a hefty bonus from company funds. I deserved that pay rise I'll have you know. They'll regret letting me go"
+            ]
+          ]
+        },
+        "presenting-complaint": {
+          "question": "What has brought you in today?",
+          "keywords": [
+            "how are you",
+            "going on","what.*problem",
+            "brought you","what happened","what brought"
+          ],
+          "answer": [
+            [
+              "I'm feeling great. It's only my partner that's made me come in today. Says I'm a totally different person. Almost like they didn't know what they signed up for when they married me hahaha!"
+            ],
+            [
+              "Forget about me pal, I'm grand. How are you feeling?"
+            ],
+            [
+              "I've never been better, Doc. It's my family that has made me come in for the checkup. Hahaha! They don't like my new lease on life now that I'm retired."
+            ]
+          ]
+        },
+        "behavior-change": {
+          "question": "How has your behavior changed?",
+          "keywords": [
+            "behavior change",
+            "personality change",
+            "different person"
+          ],
+          "answer": [
+            [
+              "It hasn't. But the ball and chain is always banging on about how rude I am. She's started complaining because I keep challening the neighbors on all their BS and it's led to one or two fights."
+            ],
+            [
+              "Look the real reason I'm here is because I got involved with some gambling for the first time. I jumped into a poker game last month on a whim and, truthfully, I lost a fair bit of money. My wife found out. That's our business though, there was no need to involve the doctor."
+            ],
+            [
+              "I've been seeing a couple of ladies on the side, and my wife",
+              [
+                "found out.",
+                "caught me red-handed."
+              ]
+            ],
+            [
+              "My wife's had to pick me up from the police station a few times for nicking a couple of little things from the shops. No harm in it, not valuable stuff, just some trinkets. I bet you treat yourself to some prescription drugs on occasion, and who can blame you?"
+            ]
+          ]
+        },
+        "memory": {
+          "question": "How is your memory?",
+          "keywords": [
+            "memory",
+            "forget"
+          ],
+          "answer": [
+            [
+              "Nada problemos with the memory. It's like an elephant's hahaha!"
+            ],
+            [
+              "I would bet you 20 pounds my memory is better than yours"
+            ],
+            [
+              "My memory is fine. All of me is fine. I don't know why I've been dragged here."
+            ]
+          ]
+        },
+        "spatial-disorientation": {
+          "question": "Do you ever get lost in familiar places?",
+          "keywords": [
+            "get lost",
+            "been lost",
+            "got lost",
+            "gotten lost"
+          ],
+          "answer": [
+            [
+              "I like to venture out of the house when I can. I hop on a train or get in a cab to wherever I fancy. Everyone treats me like I'm lost"
+            ],
+            [
+              "Nah, never lost, Doc. Though I will admit to sneaking out of the house. Who can blame a person for wanting to explore the town. I can't for the life of me figure out why everyone gets so worked up about it."
+            ]
+          ]
+        },
+        "language": {
+          "question": "Have you had any problems with speech or language?",
+          "keywords": [
+            "speech",
+            "conversation",
+            "language"
+          ],
+          "answer": [
+            [
+              "Nah, but my partner complains that I don't have real conversations anymore. I just say what I need to say and that's it"
+            ],
+            [
+              "Don't have the patience for long conversations anymore. I get straight to the point"
+            ],
+            [
+              "I can be blunt these days, hahaha!. I won't apologize for it. It's the way I am"
+            ]
+          ]
+        },
+        "planning": {
+          "question": "Are you still able to organize your affairs as usual or plan ahead?",
+          "keywords": [
+            "organis",
+            "plan"
+          ],
+          "answer": [
+            [
+              " Hahaha! I don't plan. Doing something is just as good as thinking about it."
+            ],
+            [
+              "Why plan? Life is so short and organising plans is boring."
+            ]
+          ]
+        },
+        "mood": {
+          "question": "How is your mood?",
+          "keywords": [
+            "mood",
+            "depress",
+            "irrita",
+            "agitated"
+          ],
+          "answer": [
+            [
+              "Hahaha! Well, I'm the same as ever, but it seems people are intent on testing my patience these days."
+            ],
+            [
+              "Everyone loves gets on my nerves these days. If I end up taking a swing at you, you probably deserve it."
+            ]
+          ]
+        },
+        "driving": {
+          "question": "Are you still driving?",
+          "keywords": [
+            "driv"
+          ],
+          "answer": [
+            [
+              "Jerk policeman took my license away for supposedly running red lights."
+            ],
+            [
+              "Can you believe the police confiscated my driving license? Who do they think they are?"
+            ],
+            [
+              "Hahaha Doc, I can't drive anymore. They're refusing to insure me for so-called reckless driving. By the way, are you free to give me a lift this weekend"
+            ]
+          ]
+        },
+        "gas": {
+          "question": "Do you have a gas hob and have you ever left it on?",
+          "keywords": [
+            "gas"
+          ],
+          "answer": [
+            [
+              "Our gas hob has been left on a few times, but no way it was me. Ask my partner what happened?"
+            ],
+            [
+              "I have left on the gas hob, just once though. It was just a simple mistake really."
+            ]
+          ]
+        },
+        "insight": {
+          "question": "Do you feel like there is something medically wrong?",
+          "keywords": [
+            "concerns",
+            "ideas",
+            "expectations",
+            "something wrong",
+            "worrie"
+          ],
+          "answer": [
+            [
+              "Look I'm dandy. I'm only here because the family kept nagging me. Hahaha"
+            ],
+            [
+              "Hey Doc, I've never been better. I only came to shut my family up about me needing some professional help."
+            ]
+          ]
+        },
+        "past-psychiatric-history": {
+          "question": "Have you had any psychiatric problems in the past?",
+          "keywords": [
+            "psychiatric",
+            "mental illness",
+            "mentally ill",
+            "mental health",
+            "section"
+          ],
+          "answer": [
+            [
+              "Hahaha! Nope, the doctors never sent me to get psychiatric help."
+            ],
+            [
+              "No, I've never had any mental health problems in the past"
+            ],
+            [
+              "If anyone needs psychiatric evaluation it's my partner, for dragging me to this appointment when there's nothing wrong with me"
+            ]
+          ]
+        },
+        "recreational-drugs": {
+          "question": "Do you use recreational drugs?",
+          "keywords": [
+            "recreation",
+            "not prescribed"
+          ],
+          "answer": [
+            [
+              "Haha! Only if you'll sell them to me"
+            ],
+            [
+              "Why have I got some white stuff on my nose again? It's the doughnuts I swear"
+            ],
+            [
+              "What's with the third degree? I never touch the stuff"
+            ]
+          ]
+        },
+        "eating-habits": {
+          "question": "Have you been binge eating, or gained any weight recently?",
+          "keywords": [
+            "binge",
+            "food",
+            " eat",
+            "weight gain",
+            "gain.+weight"
+          ],
+          "answer": [
+            [
+              "Well I do like my sweets. Yum. "
+            ],
+            [
+              "I might have gained a pound or two recently."
+            ],
+            [
+              "I like eating. That's not a crime, is it doctor."
+            ]
+          ]
+        },
+        "gambling":{
+          "question":"Do you gamble?",
+          "keywords":["gambl","bookie","lottery"],
+          "answer":[
+            ["Oh, I do gamble a little. It's not really a problem. I'm afraid my wife might not agree with that, but once in a while I need some fun!"]
+          ]
+        }
+
+
+      },
+
+
+
+      "matchers": [
+        "^ftd",
+        "fronto.+temporal"
+      ],
+      "collateral": {
+        "presenting-complaint": {
+          "question": "Why has your partner come in today?",
+          "keywords": [
+            "how is",
+            "how are",
+            "going on",
+            "what.*happen"
+          ],
+          "answer": [
+            [
+              "My husband has become a totally different person. It's almost has if his personality has changed significantly over the past few years. He ",
+              [
+                "is far more rude than he used to be.",
+                "makes innappropriate jokes all the time. It's so embarrassing.",
+                "is much more irritable, and less caring than before. I don't know what's happening."
+              ]
+            ],
+            [
+              "Our family is concerned that my partner has been acting strangely over the past year or so. His personality has changed a lot since he's retired."
+            ]
+          ]
+        },
+        "behavior-change": {
+          "question": "How has your partner's behavior changed?",
+          "keywords": [
+            "behav.*",
+            "personality",
+            "different person"
+          ],
+          "answer": [
+            [
+              "My partner has become so rude and aggressive over this past year. He's constantly insulting the neighbors to their faces, and has nearly come to blows with some of them a few times. We had always gotten along well with our neighbors in the past."
+            ],
+            [
+              "My partner has never been a betting man, but 2 weeks ago he joined in a poker night at the local casino, on the way to going grocery shopping. He lost so much money in the casino that he then couldn't pay for the groceries, and I had to pick him up. I remember thinking at the time that the man I married would never do this."
+            ],
+            [
+              "I've always had a good relationship with my partner, but I recently found out he's been seeing other women. It's like he can't control himself."
+            ],
+            [
+              "My partner seems unable to stop himself from stealing things, or taking what he calls souvenirs from places. Last month, he was caught stealing from the local department store. I had to pick him up from the police station, I was so ashamed for him. Luckily the store owner knows us well and didn't press charges."
+            ]
+          ]
+        },
+        "memory": {
+          "question": "How is your partner's memory?",
+          "keywords": [
+            "memory",
+            "forget"
+          ],
+          "answer": [
+            [
+              "My partner's memory is remarkably good, probably better than mine"
+            ],
+            [
+              "My partner hasn't had any memory problems, actually"
+            ]
+          ]
+        },
+        "spatial-disorientation": {
+          "question": "Do your partner ever get lost in familiar places?",
+          "keywords": [
+            "get lost",
+            "been lost",
+            "got lost",
+            "gotten lost"
+          ],
+          "answer": [
+            [
+              "My partner doesn't really get lost, per-se, but he goes out wandering with no real plan and without telling me, or anyone, where he is."
+            ],
+            [
+              "My partner hasn't gotten lost exactly, but he does have a tendency to take off without letting anyone know where he is going. I've had to report him as a missing person before, because he took a spontaneous road trip without telling me."
+            ]
+          ]
+        },
+        "language": {
+          "question": "Has your partner had any problems with speech or language?",
+          "keywords": [
+            "speech",
+            "conversation",
+            "language"
+          ],
+          "answer": [
+            [
+              "I can't have long conversations with my husband anymore. We used to love talking about",
+              [
+                "philosophy",
+                "politics",
+                "current affairs"
+              ],
+              "but now he can't be bothered with that."
+            ],
+            [
+              "My partner doesn't have the patience for long conversations anymore, and when he does communicate, he is very blunt."
+            ],
+            [
+              "My partner won't have any conversations longer than a few sentences these days. He also used to love reading, but now he hardly manages a magazine, let alone a book. It seems he just doesn't have the patience for these things anymore."
+            ]
+          ]
+        },
+        "planning": {
+          "question": "Is your partner still able to organize affairs as usual or plan ahead?",
+          "keywords": [
+            "organi",
+            "plan"
+          ],
+          "answer": [
+            [
+              "My partner doesn't plan anything anymore. He seems to take things minute by minute, going along with his life as he pleases."
+            ],
+            [
+              "My partner used to love planning these lovely vacations or organizing social gatherings with friends, but now I've taken over all of those things. He doesn't have the discipline to sit down and plan things out."
+            ],
+            [
+              "My husband used to thrive on having the details of each day planned out. Now he's more",
+              [
+                "impulsive",
+                "spontaneous"
+              ],
+              " than ever before."
+            ]
+          ]
+        },
+        "mood": {
+          "question": "How is your partner's mood?",
+          "keywords": [
+            "mood",
+            "feel",
+            "depress",
+            "irrita",
+            "agitated", "temper", "anger","angry"
+          ],
+          "answer": [
+            [
+              "My partner loses his",
+              [
+                "cool",
+                "temper"
+              ],
+              "with me",
+              [
+                "quite often",
+                "more frequently than in the past"
+              ],
+              "and I'm not sure why this is the case. I am only trying to help him."
+            ],
+            [
+              "My partner is easily irritated these days. The smallest things like",
+              [
+                " running out of milk",
+                "the neighbor's dog barking",
+                "not being able to find his phone straight away"
+              ],
+              "will make him agitated very quickly."
+            ]
+          ]
+        },
+        "driving": {
+          "question": "Is your partner still driving?",
+          "keywords": [
+            "^driv"
+          ],
+          "answer": [
+            [
+              "My partner had a few car accidents earlier this year, and the police have taken away his license. Now I drive him everywhere or he'll take a cab."
+            ]
+          ]
+        },
+        "gas": {
+          "question": "Do you have a gas hob in the house and has your partner ever left it on?",
+          "keywords": [
+            "^gas"
+          ],
+          "answer": [
+            [
+              "My partner has left the gas stove on once or twice. He got distracted with other things and forgot about it."
+            ]
+          ]
+        },
+        "insight": {
+          "question": "Do you feel like there is something medically wrong with your partner?",
+          "keywords": [
+            "concerns",
+            "ideas",
+            "expectations",
+            "something wrong",
+            "worrie"
+          ],
+          "answer": [
+            [
+              "I think my husband is not the same as he used to be, and his behavior isn't normal. I need some support in trying to manage him, doctor."
+            ],
+            [
+              "I thought that with all the changes in my partner's behavior over the past year, maybe he needed some psychiatric help. Or at least you could tell me how I can best manage him, because I'm at the point where I'm struggling to cope with his behavior."
+            ]
+          ]
+        },
+        "past-psychiatric-history": {
+          "question": "Has your partner had any psychiatric problems in the past?",
+          "keywords": [
+            "psychiatr*",
+            "mental.+(ill|unwell)",
+            "mental health",
+            "section"
+          ],
+          "answer": [
+            [
+              "My partner has never had any",
+              [
+                "psychiatric problems",
+                "mental illnesses",
+                "mental health problems"
+              ],
+              "in the past."
+            ]
+          ]
+        },
+        "recreational-drugs": {
+          "question": "Do you know if your partner uses recreational drugs?",
+          "keywords": [
+            "recreation",
+            "not prescribed",
+            "prescription"
+          ],
+          "answer": [
+            [
+              "My partner does not use any recreational drugs. If there is any white powder on his nose it really is doughnuts."
+            ]
+          ]
+        },
+        "appetite": {
+          "question": "Have you noticed any change in their appetite?",
+          "keywords": [
+            "appetite",
+            "food",
+            " eat*"
+          ],
+          "answer": [
+            [
+              "My partner used to love a three course meal, but now he just eats a lot of junk food."
+            ],
+            [
+              "My partner doesn't eat proper meals any more, but just prefers to snack on sweets."
+            ]
+          ]
+        },
+        "gambling":{
+          "question":"Does your partner gamble?",
+          "keywords":["bet","gambl","bookie","lottery"],
+          "answer":[
+            ["Where do I start. He was never a betting man. But this last year he's almost addicted to the lottery. He buys handfuls of tickets every day. It has cost us thousands of pounds."]
+          ]
+        },
+        "shopping":{
+          "question":"Does your partner do the shopping?",
+          "keywords":["shop", "buy"],
+          "answer":[
+            ["I don't let him go these days - he comes home with all kinds of things we don't need. He's very gullible when there's a sale on. He'll buy whatever is being offered."]
+          ]
+        }
+      }
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    "Wernicke-Korsakoff Syndrome": {
+      "observations": {
+        "appearance":[
+          
+            [ [["The patient smells of alcohol.",
+              "He smells of beer."]]
+            ],
+            [ ["His clothes are torn with food stains on."],    
+              ["The patient is dressed in dirty clothing."] ,
+              ["The patient has an unkempt beard and torn clothes."] 
+            ],
+            ["He is obviously diaphoretic and has a fine limb tremor"],
+            ["There is a large cut on the patient's left arm."]
+          
+        ],
+        "behaviour":[
+          ["He cannot seem to focus on your conversation with him."],
+          [ ["He often glances suddenly around the room. When you turn to see what he is looking at, there is nothing remarkable."],
+            ["His attention is split between speaking to you, and glancing intermittently around the room, though you can see nothing of note around you."]
+          ]
+        ],
+        "speech":[
+          ["The speech is slow and a little slurred."],
+          [ "He talks quite loudly"],
+          [ "The speech is otherwise fluent"  ]          
+        ],
+        "affect":[
+          [ ["The patient is quite variable, sometimes agitated, othertimes a little sleepy."],
+            ["He agitated and anxious at times"]
+          ],
+          ["He is not objectively low or high."]
+        ],
+        "thought":[
+          [ "His conversations were rambling and tangential." ],
+          [ "The content of his speech was disconnected from the facts." ]
+        ]
+      },
+      "effects": [
+        "WKS"
+      ],
+      "affect": "all",
+      "extent": 1,
+      "history": {
+        "presenting-complaint": {
+          "question": "What has brought you in today?",
+          "keywords": [
+            "how are you",
+            "what.+going on",
+            "brought you",
+            "why are you here",
+            "did you come in",
+            "presenting complaint"
+          ],
+          "answer": [
+            [
+              "I keep falling over. I cut my arm"
+            ]
+          ]
+        },
+        "falls-duration": {
+          "question": "How long have you been falling over?",
+          "keywords": [
+            "(how long|when).*fall"
+          ],
+          "answer": [
+            [
+              ["A few days",
+              "A couple of days",
+              "Not sure, maybe less than a week"]
+            ]
+          ]
+        },
+        "falls-why": {
+          "question": "Why are you falling",
+          "keywords": [
+            "why.*fall",
+            "caus.*fall",
+            "makes you fall"
+          ],
+          "answer": [
+            [
+              [
+                "My feet won't balance",
+                "The lions were going to get me. I had to run."
+              ]
+            ]
+          ]
+        },
+        "falls-history": {
+          "question": "Where did you fall?",
+          "keywords": [
+            "fall on",
+            "how.+fall",
+            "how.+cut",
+            "where.+fall",
+            "before.+fall",
+            "during.+fall"
+          ],
+          "answer": [
+            [
+              "My balance was off. I fell on some glass. I was running away from the cats. They followed me."
+            ],
+            [
+              "They cut me with glass. My feet went clumsy- I tried to run away so the",
+              [
+                "red",
+                "blue",
+                "purple",
+                "orange"
+              ],
+              [
+                "people",
+                "wizards",
+                "birds",
+                "mice",
+                "ovens"
+              ],
+              "couldn't find me"
+            ]
+          ]
+        },
+        "after-fall": {
+          "question": "What happened after you fell?",
+          "keywords": [
+            "after.+fall",
+            "after.+fell"
+          ],
+          "answer": [
+            [
+              "They came after me.",
+              "I got here just in time.",
+              "I hid away under the dumpster.",
+              "The",
+              [
+                "sky",
+                "ground",
+                "earth"
+              ],
+              "was closing in on me. I had to",
+              [
+                "run",
+                "get away"
+              ]
+            ]
+          ]
+        },
+        "head-trauma": {
+          "question": "Did you hit your head when you fell?",
+          "keywords": [
+            "(hit|bang|hurt|inj).+head",
+            "head (inj|hit)"
+          ],
+          "answer": [
+            [
+              "I did not",
+              [
+                "hit",
+                "knock",
+                "bump"
+              ],
+              " my head. I just cut my arm."
+            ]
+          ]
+        },
+        "LOC": {
+          "question": "Did you lose consciousness?",
+          "keywords": [
+            "pass out","conscious","aware","black out",
+            "do you remember","memory (of|for)","recall"
+          ],
+          "answer": [
+            [
+              "I didn't pass out. I remember everything. I only",
+              [
+                "fell over",
+                "tripped",
+                "stumbled"
+              ],
+              ". I didn't",
+              [
+                "hit",
+                "knock",
+                "bump"
+              ],
+              "my head. And I cut my arm. They cut my arm. Did you see them?"
+            ]
+          ]
+        },
+        "palpitations": {
+          "question": "Did you notice any palpitations?",
+          "keywords": [
+            "palpitations",
+            "heart beat",
+            "heart racing"
+          ],
+          "answer": [
+            [
+              "No, it wasn't my heart that was funny. It's my balance. I couldn't keep up with the",
+              [
+                "bears",
+                "cars",
+                "plane",
+                "loops"
+              ],
+              ". They were everywhere"
+            ]
+          ]
+        },
+        "dizziness": {
+          "question": "Did you feel dizzy before you fell?",
+          "keywords": [
+            "dizz",
+            "vertigo"
+          ],
+          "answer": [
+            [
+              "It's not dizziness, I just can't balance when",
+              [
+                "I stand.",
+                "I walk."
+              ]
+            ]
+          ]
+        },
+        "weakness": {
+          "question": "Did you have any weakness in your limbs?",
+          "keywords": [
+            "limb.+weak",
+            "weak.+arm",
+            "weak.+leg",
+            "arm.+weak",
+            "leg.+weak"
+          ],
+          "answer": [
+            [
+              "I can still move my arms and legs, but it's all",
+              [
+                "over the place.",
+                "clumsy."
+              ]
+            ]
+          ]
+        },
+        "pain": {
+          "question": "Are you in any pain from the fall?",
+          "keywords": [
+            "pain",
+            "hurt"
+          ],
+          "answer": [
+            [
+              "My arm hurts",
+              [
+                ". Can you fix it before they come for me?",
+                ". They cut me, you see.",
+                ", but not that bad, let me out of here?",
+                ". I need to get back to my friends though.",
+                ". Can you take me to a doctor?"
+              ]
+            ]
+          ]
+        },
+        "hallucinations": {
+          "question": "Do you ever see or hear things that other people don't?",
+          "keywords": [
+            "other people don't",
+            "other people can't",
+            "see things",
+            "hear things"
+          ],
+          "answer": [
+            [
+              "I often see",
+              [
+                "children",
+                "animals",
+                "insects"
+              ],
+              "running across the room. My partner never sees nor hears them.",
+              "Same with the voices. In the past, I used to hear",
+              [
+                "things",
+                "terrible voices",
+                "horrible people"
+              ],
+              [
+                "snarling at",
+                "shouting at",
+                "insulting",
+                "talking to"
+              ],
+              "me, but my partner says they don't exist"
+            ]
+          ]
+        },
+        "well-or-unwell": {
+          "question": "Do you feel well in yourself",
+          "keywords": [
+            "well in yourself",
+            "feel ill",
+            "feel generally"
+          ],
+          "answer": [
+            [
+              "My arm hurts, can you stop the bleeding"
+            ],
+            [
+              "The cut on my arm hurts and I can't see so well. I can see two of everything. Also, I'm afraid of the voices. They're following me"
+            ]
+          ]
+        },
+        "age": {
+          "question": "How old are you?",
+          "keywords": [
+            "how old",
+            "your age"
+          ],
+          "answer": [
+            [
+              "I've no idea."
+            ]
+          ]
+        },
+        
+
+        "mmse-orientation-year": {
+          "question": "What year is it?",
+          "keywords": [            "year"          ],
+          "answer": [ ["It's `(new Date()).getFullYear()+1`"]]
+        },
+        "mmse-orientation-season": {
+          "question": "What season are we in?",
+          "keywords": [
+            "season"
+          ],
+          "answer": [
+            [
+              "It's `['Spring','Summer','Autumn','Winter'][Math.floor( ((new Date().getMonth() + 10 + 4) % 12)/3 )]`"
+            ]
+          ]
+        },
+        "mmse-orientation-month": {
+          "question": "What month are we in?",
+          "keywords": [
+            "month"
+          ],
+          "answer": [            [              "I really don't care."            ]          ]
+        },
+        "mmse-orientation-weekday": {
+          "question": "What day of the week is it?",
+          "keywords": [            "weekday"          ],
+          "answer": [
+            [
+              "It's the last day of the week. Or is it the first?"
+            ]
+          ]
+        },
+        "mmse-orientation-date": {
+          "question": "What is the date?",
+          "keywords": [            "date"          ],
+          "answer": [            [
+              "It's the `ordinal_suffix_of( (new Date()).getDate()+5 )`, I think"
+            ]
+          ]
+        },
+        "mmse-orientation-time": {
+          "question": "What time is it?",
+          "keywords": [            "time"          ],
+          "answer": [            [  
+                        "It's dawn I think - or is it the evening?" ,  
+                        "How should I know? You've kept me here for ages, what's going on here?"
+          ]          ]
+        },
+        "mmse-orientation-place": {
+          "question": "Where are we?",
+          "keywords": [
+            "^where are (you|we)", "^what place (are|is)", "this place", "where (you|we) are"
+          ],
+          "answer": [           
+            [
+              [
+                "The police were going to arrest me",
+                "Where am I?",
+                "Who are you?",
+                "I was running away from the tigers...but now I'm not sure"
+              ]
+            ]         
+          ]
+        },
+        "mmse-orientation-country": {
+          "question": "What country are we in?",
+          "keywords": [
+            "country"
+          ],
+          "answer": [      [    "I'm in Jamaica, of course! I don't know about you, though?"   ]   ]
+        },
+
+        "mmse-serial-sevens": {
+          "question": "Can you subtract 7 from 100 and then repeat from that result?",
+          "keywords": [
+            "subtract 7",
+            "subtract seven"
+          ],
+          "answer": [
+            [
+              "100, 93. Oh. 86. "
+            ]
+          ]
+        },
+        "mmse-recall": {
+          "question": "Which 3 objects did I ask you to repeat earlier?",
+          "keywords": [
+            "objects learned earlier",
+            "objects repeated earlier"
+          ],
+          "answer": [
+            [
+              "What objects do you mean?"
+            ]
+          ]
+        },
+
+
+        "mmse-written-command": {
+          "question": "Please do as instructed by the writing on this piece of paper",
+          "keywords": [
+            "written command"
+          ],
+          "answer": [
+            [
+              "<b>[closes eyes]</b>"
+            ]
+          ]
+        },
+        "mmse-writing": {
+          "question": "Please write down a full sentence",
+          "keywords": [
+            "write full sentence"
+          ],
+          "answer": [
+            [
+              "<b>[writes: 'My arm hurts.']</b>"
+            ]
+          ]
+        },
+
+        "social-situation": {
+          "question": "Where and with whom do you live?",
+          "keywords": [
+            "where.+live",
+            "who do you live with",
+            "with whom do you live",
+            "reside",
+            "where.+home",
+            "who.* at home", "who lives", "anyone.*at home", "anyone.*live with"
+          ],
+          "answer": [
+            [
+              "I live",
+              [
+                "most nights on the street",
+                "in the local hostel"
+              ]
+            ],
+            [
+              "Why do you want to know",
+              "Who's asking? Are you going to tell the others?"
+            ]
+          ]
+        },
+        "memory": {
+          "question": "How is your memory?",
+          "keywords": [
+            "memory",
+            "forget things",
+            "forgetful",
+            "remember"
+          ],
+          "answer": [
+            [
+              [
+                "I don't know",
+                "Fine",
+                "Who are you",
+                "Where am I",
+                "I need to get out of here, they're going to catch me"
+              ]
+            ]
+          ]
+        },
+        "alcohol": {
+          "question": "Do you drink?",
+          "keywords": [
+            "^do you drink"
+          ],
+          "answer": [
+            [
+              "I like",
+              [
+                "vodka",
+                "beer",
+                "rum",
+                "cider",
+                "whiskey"
+              ],
+              " and I probably drink more than I should."
+            ],
+            [
+              "I drink whatever's about, whenever I can"
+            ]
+          ]
+        },
+        "alcohol-quantity": {
+          "question": "How much you drink?",
+          "keywords": [
+            "how much do you drink",
+            "how much alcohol"
+          ],
+          "answer": [
+            [
+              "Any alcohol will do, but I'd have",
+              [
+                "a litre bottle of vodka",
+                "some of the big cider bottles",
+                "a bottle of rum",
+                "a bottle of whiskey"
+              ],
+              "every day if I can get a hold of some. Been this way for a year or so"
+            ]
+          ]
+        }
+
+
+
+      },
+      "matchers": [
+        "wernicke",
+        "b1 deficiency",
+        "thiamine deficiency"
+      ]
+
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    "HSV Encephalitis": {
+      "observations": {
+        "appearance":[
+          [ "The patient appears drowsy, and is difficult to engage at first."],
+          [ "The patient is hunched over, holding her head in her hands."],
+          [ "She is obviously diaphoretic." ]
+        ],
+        "behaviour":[
+          ["The patient stared at you intently throughout the consultation."]
+        ],
+        "speech":[
+          ["She appeared not to understand much of what was being said."],
+          ["Output was restricted to short few-word sentences."],
+          ["The sentences themselves were normally formed and fluent."]
+        ],
+        "affect":[
+          ["The patient's expression was blank."]
+        ],
+        "thought":[
+          ["Thought processes were slow."],
+          ["The content of her speech was incoherent."]
+        ]
+       },
+      "history": {
+        "presenting-complaint": {
+          "question": "Any",
+          "keywords": [
+            "[a-z]"
+          ],
+          "answer": [
+            [
+              "I was trying to go to the shops"
+            ],
+            [
+              "I don't know"
+            ],
+            [
+              "Where have you taken me?"
+            ],
+            [
+              "Where are we going?"
+            ],
+            [
+              "When can I get some food again?"
+            ],
+            [
+              "Can I go home?"
+            ],
+            [
+              "Let me check my diary"
+            ],
+            [
+              "My head is really sore"
+            ],
+            [
+              "Where am I"
+            ],
+            [
+              "When can I see my sister?"
+            ],
+            [
+              "I haven't been to",
+              [
+                "Spain, Portugal, France",
+                "Egypt",
+                "Cameroon"
+              ],
+              "in a",
+              [
+                "long time",
+                "while"
+              ],
+              "I would like to go"
+            ],
+            [
+              "Have you found my",
+              [
+                "hair",
+                "book",
+                "dog",
+                "water"
+              ],
+              "yet?"
+            ],
+            [
+              "I would like to leave here please"
+            ],
+            [
+              "I need to go back to Poland"
+            ],
+            [
+              "Where is this? I do not want to stay here"
+            ],
+            [
+              "Who are you?"
+            ],
+            [
+              "When can I see my mother?"
+            ]
+          ]
+        }
+      },
+      "matchers": [
+        "^hsv",
+        "herpes simplex",
+        "encephalitis"
+      ],
+    
+      "collateral": {
+        "presenting-complaint": {
+          "question": "What has brought your sister in today?",
+          "keywords": [
+            "how is your",
+            "going on",
+            "brought them",
+            "brought her",
+            "what.*happen.*"
+          ],
+          "answer": [
+            [
+              "She has been feeling unwell for a couple of days- she's been complaining of a headache, and sweating profusely"
+            ]
+          ]
+        },
+        "headache": {
+          "question": "What is her headache like?",
+          "keywords": [
+            "headache"
+          ],
+          "answer": [
+            [
+              "It's gradually worsened over",
+              [
+                "the course of today.",
+                "the past couple of days."
+              ],
+              " She initially said it was a throbbing pain all over her head, that was worse with movement. That's all I know about it."
+            ]
+          ]
+        },
+        "fever": {
+          "question": "Has she had a fever?",
+          "keywords": [
+            "fever",
+            "febrile",
+            "sweating"
+          ],
+          "answer": [
+            [
+              "It was 38 degrees when I took it last night"
+            ],
+            [
+              "I haven't taken her temperature, but she has been sweating all day so I think so."
+            ]
+          ]
+        },
+        "vomiting": {
+          "question": "Have she been vomiting?",
+          "keywords": [
+            "nausea",
+            "vomit"
+          ],
+          "answer": [
+            [
+              "Yes, she vomited",
+              [
+                "once",
+                "a few times"
+              ],
+              "earlier today"
+            ],
+            [
+              "She hasn't been able to hold down any food or drink today"
+            ]
+          ]
+        },
+        "cold-sores": {
+          "question": "Do you know if she has had any recent cold sores?",
+          "keywords": [
+            "cold sore",
+            "ulcer"
+          ],
+          "answer": [
+            [
+              "I'm not sure, but I have never seen her with one"
+            ],
+            [
+              "When we were chatting last week, she did complain of a sore on her lip now that you mention it"
+            ],
+            [
+              "She had some as a child, but not recently as far as I'm aware"
+            ]
+          ]
+        },
+        "seizures": {
+          "question": "Has she had any fits, faints, or funny turns?",
+          "keywords": [
+            "seizure",
+            "fit",
+            "faint",
+            "funny turn"
+          ],
+          "answer": [
+            [
+              "Today, my sister stared off into space and it seemed like she was",
+              [
+                "chewing something",
+                "smacking her lips"
+              ],
+              ". When I asked her about it, she couldn't recall this happening, though"
+            ]
+          ]
+        },
+        "personality-change": {
+          "question": "Has she been herself lately??",
+          "keywords": [
+            "personality change",
+            "been yourself",
+            "behavior change"
+          ],
+          "answer": [
+            [
+              [
+                "My sister has definitely not been herself since this came on. She is very confused.",
+                [
+                  "She doesn't recognize me",
+                  "She doesn't seem to know her own name sometimes",
+                  "When the paramedics asked her she got her birthdate wrong",
+                  "She has said a few times that she's from Poland and I don't know where that's come from"
+                ]
+              ]
+            ]
+          ]
+        },
+        "memory": {
+          "question": "How is your sister's memory?",
+          "keywords": [
+            "memory",
+            "forget things",
+            "forgetting things",
+            "forgetful",
+            "remember"
+          ],
+          "answer": [
+            [
+              [
+                "Since this headache came on it has been awful"
+              ],
+              [
+                "She can't seem to remember much of anything. She doesn't even know",
+                [
+                  "the day",
+                  "the date",
+                  "the month we are in",
+                  "the year we are in",
+                  "that she is in hospital",
+                  "who I am sometimes"
+                ],
+                "."
+              ]
+            ]
+          ]
+        },
+        "timing":{
+          "question":"When did it start?",
+          "keywords":["when.*start","how long","going on"],
+          "answer":[
+            ["She was completely fine", ["four","five"], "days ago. It has all come on quite", ["quickly","recently","suddenly."]]
+          ]
+        }
+      }
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    "Non-epileptic seizure": {
+      "observations": {
+        "appearance":[
+          ["The patient is accompanied with her sister"],
+          ["The patient appears anxious throughout the consultation"]
+       ]
+      },
+      "history": {
+        "presenting-complaint": {
+          "question": "Do you know why your are here today?",
+          "keywords": [
+            "how are you",
+            "going on",
+            "brought you",
+            "why.+here",
+            "what happened"
+          ],
+          "answer": [
+            [  [
+              "I had a seizure and collapsed in the middle of the street. I've never had one before!"
+               ],
+              [
+              "Do you think I need a brain scan for this seizure, doctor?"
+            ]
+          ] ]
+        },
+        "injury": {
+          "question": "Did you hurt yourself?",
+          "keywords": [
+            "injury",
+            "hurt",
+            "pain"
+          ],
+          "answer": [
+            [
+              "No, I didn't hurt myself, doctor"
+            ],
+            [
+              "I'm not injured, thankfully"
+            ],
+            [
+              "I fell quite gently, so I didn't get injured, luckily"
+            ]
+          ]
+        },
+        "tongue": {
+          "question": "Did you bite your tongue?",
+          "keywords": [
+            "bite",
+            "tongue"
+          ],
+          "answer": [
+            [
+              "No, my tongue is fine"
+            ],
+            [
+              "I didn't bite my tongue"
+            ]
+          ]
+        },
+        "urination": {
+          "question": "Did you urinate yourself?",
+          "keywords": [
+            "urine",
+            "(pee|wee|wet).+yourself",
+            "incontinen",
+            "bladder"
+          ],
+          "answer": [
+            [
+              "No, I'm pretty sure I didn't wet myself"
+            ],
+            [
+              "I did not urinate during the seizure. "
+            ]
+          ]
+        },
+        "duration": {
+          "question": "How long did the seizure last?",
+          "keywords": [
+            "how long",
+            "duration"
+          ],
+          "answer": [
+            [
+              "It was really bad. It was at least half an hour, maybe even longer"
+            ],
+            [
+              "It lasted a long time... it must have been at least",
+              [
+                "45 minutes",
+                "an hour"
+              ]
+            ]
+          ]
+        },
+        "eyes open": {
+          "question": "Were your eyes open?",
+          "keywords": [
+            "eye.+open",
+            "eye.+close"
+          ],
+          "answer": [
+            [
+              "I can't remember, doctor, but my sister might know."
+            ]
+          ]
+        },
+        "LOC": {
+          "question": "Did you lose consciousness?",
+          "keywords": [
+            "pass out","conscious","black out",
+            "aware","do you remember","memory (of|for)","recall"
+          ],
+          "answer": [
+            ["It's a complete blur, doctor. The last thing I remember clearly was feeling terrible, and collapsing to the ground."]
+          ]
+        },
+        "afterwards": {
+          "question": "How did you feel afterwards?",
+          "keywords": [
+            "after","following","recover"
+          ],
+          "answer": [
+            [
+              "I felt very upset afterwards. Having the seizure was a very stressful experience"
+            ],
+            [
+              "I was very emotional afterwards. I cried a lot"
+            ],
+            [
+              "I felt very overwhelmed by the situation, as you might imagine. I can't belive something like this happened to me. I really hope you can find out what's wrong with me"
+            ]
+          ]
+        },
+        "before": {
+          "question": "What were you doing before the seizure?",
+          "keywords": [
+            "before",
+            "build.+up",
+            "earlier"
+          ],
+          "answer": [
+            [
+              "I was walking back from the shops with my sister"
+            ],
+            [
+              "I was on the way home from the shops. My sister was with me and we were having an arguement about something, I think"
+            ]
+          ]
+        },
+        "during": {
+          "question": "What happened during the seizure?",
+          "keywords": [
+            "during", "what.*at the time", "remember what"
+          ],
+          "answer": [
+            [ 
+              "My",
+              [
+                "arms",
+                "legs",
+                "limbs"
+              ],
+              "were",
+              [
+                "flailing",
+                "shaking"
+              ],
+              "all over the place. I had no control over my body!"
+            ],
+            [
+              "I was lying on my back and I couldn't control my",
+              [
+                "limbs",
+                "movements"
+              ],
+              ". I really thought I was going to die."
+            ]
+          ]
+        },
+        "location": {
+          "question": "Where did this happen?",
+          "keywords": [
+            "where",
+            "location"
+          ],
+          "answer": [
+            [
+              "It happened on the pavement"
+            ],
+            [
+              "Just outside tesco"
+            ],
+            [
+              "On the way back home from the shops"
+            ],
+            [
+              "Just on the side of the street. Thank god I wasn't crossing the road when it happened"
+            ]
+          ]
+        },
+        "aura":{
+          "question":"Did you get any warning something was going to happen?",
+          "keywords":["aura", "premonit","warning","(any|symptom|unusu|notice).*before"],
+          "answer":[
+            ["Yes. Just a few seconds before, I got a feeling that something awful was going to happen, and then",
+                [ "I felt the world closing in on me","everything went dark","my whole body went numb"],". And then I just collapsed." ]
+          ]
+        },
+        "mood": {
+          "question": "How is your mood?",
+          "keywords": [
+            "mood",
+            "depress",
+            "anxi"
+          ],
+          "answer": [
+            [
+              "My mood is up and down these days, to be honest. Nothing to worry about though."
+            ],
+            [
+              "I've been a bit anxious recently, but you know how life is."
+            ]
+          ]
+        },
+        "stress": {
+          "question": "Have you felt stressed recently?",
+          "keywords": [
+            "stress",
+            "irrita",
+            "agitat"
+          ],
+          "answer": [
+            [
+              "Yeah, I've felt a bit stressed lately. I am not great with stress."
+            ],
+            [
+              "I'm always feeling a little bit stressed nowadays. Everyone gets stressed now and again, so it's fine"
+            ],
+            [
+              "I feel on edge quite often. I think I'm always like that. "
+            ]
+          ]
+        },
+        "adverse-life-events": {
+          "question": "Have any major changes happened in your life recently?",
+          "keywords": [
+            "life.+event",
+            "adverse.+event",
+            "life.+change",
+            "change.+life",
+            "negative.+event",
+            "negative.+happen",
+            "husband",
+            "partner"
+          ],
+          "answer": [
+            [
+              "My husband passed away last year which threw my life into disarray at the time, but I've just tried to ignore it and move on, so it's okay"
+            ],
+            [
+              "My husband died quite suddenly from cancer 6 months ago. It came out of nowhere and it was a lot to process, in all honesty"
+            ]
+          ]
+        },
+        "home-life": {
+          "question": "How is your home life?",
+          "keywords": [
+            "home",
+            "living.+situation",
+            "family.+life"
+          ],
+          "answer": [
+            [
+              "I live at home with my parents and my sister"
+            ],
+            [
+              "I moved back home to my parent's place after my husband passed away"
+            ]
+          ]
+        },
+        "psychiatric-history": {
+          "question": "Do you have any psychiatric disorders?",
+          "keywords": [
+            "psych",
+            "mental.+health",
+            "mental.+ill"
+          ],
+          "answer": [
+            [
+              "No, I don't have any psychiatric problems"
+            ],
+            [
+              "There's nothing wrong with my mind, doctor, I had a seizure"
+            ],
+            [
+              "Mentally I'm fine, okay?!"
+            ],
+            [
+              "I need a brain scan, not a psychiatrist"
+            ]
+          ]
+        }
+      },
+      "matchers": [
+        "non-epileptic",
+        "^nes",
+        "dissociative seizure"
+      ],
+
+      "collateral": {
+        "presenting-complaint": {
+          "question": "Do you know why your are here today?",
+          "keywords": [
+            "how is your",
+            "going on",
+            "brought them",
+            "brought him",
+            "brought her",
+            "what happened",
+            "why.+here",
+            "the problem"
+          ],
+          "answer": [
+            [
+              "My sister had a seizure, doctor. She fell to the ground and started shaking uncontrollably"
+            ]
+          ]
+        },
+        "urination": {
+          "question": "Did she urinate yourself?",
+          "keywords": [
+            "urinate",
+            "relieve.+her",
+            "urine",
+            "pee.+her",
+            "wet.+her"
+          ],
+          "answer": [
+            [
+              "No, she didn't wet herself"
+            ]
+          ]
+        },
+        "duration": {
+          "question": "How long did the seizure last?",
+          "keywords": [
+            "how.+long",
+            "duration"
+          ],
+          "answer": [
+            [
+              "I think about",
+              [
+                "10 minutes",
+                "15 minutes",
+                "20 minutes"
+              ]
+            ]
+          ]
+        },
+        "eyes-open": {
+          "question": "Were her eyes open?",
+          "keywords": [
+            "eye.+open"
+          ],
+          "answer": [
+            [
+              "No, they were closed really tight shut."
+            ],
+            [
+              "Yes, they were open - she was staring straight ahead"
+            ],
+            [
+              "I'm not sure"
+            ]
+          ]
+        },
+        "postictal-confusion": {
+          "question": "How did she feel afterwards?",
+          "keywords": [
+            "after",
+            "confus",
+            "following"
+          ],
+          "answer": [
+            [
+              "After the seizure, she was very upset and tearful. I asked her if she was okay, and she said that she thought she had just had a seizure. She seemed to know what was going on and where she was, which was a relief"
+            ]
+          ]
+        },
+        "before": {
+          "question": "What were you doing before the seizure?",
+          "keywords": [
+            "before",
+            "build.+up",
+            "earlier"
+          ],
+          "answer": [
+            [
+              "We were walking back from the shops. She had just spoken to a friend on the phone."
+            ]
+          ]
+        },
+        "during": {
+          "question": "What happened during the seizure?",
+          "keywords": [
+            "during"
+          ],
+          "answer": [
+            [
+              "She was on the ground, shaking uncontrollably"
+            ],
+            [
+              "Her arms and legs were flailing everywhere. I tried calling out to her but she wouldnt respond"
+            ]
+          ]
+        },
+        "location": {
+          "question": "Where did this happen?",
+          "keywords": [
+            "where",
+            "location"
+          ],
+          "answer": [
+            [
+              "It happened on the pavement"
+            ],
+            [
+              "Just outside tesco"
+            ],
+            [
+              "On the way back home from the shops"
+            ]
+          ]
+        },
+        "help": {
+          "question": "Did you try and help her?",
+          "keywords": [
+            "help",
+            "aid",
+            "support"
+          ],
+          "answer": [
+            [
+              "I tried to pull her further away from the road, but she kept resisting me and I didn't want to hurt her"
+            ],
+            [
+              "Whenever I tried to get close to her, she kept pushing me away, so there wasn't much I could do"
+            ]
+          ]
+        },
+        "adverse-life-events": {
+          "question": "Have any major changes happened in her life recently?",
+          "keywords": [
+            "life.+event",
+            "adverse.+event",
+            "life.+change",
+            "change.+life",
+            "negative.+event",
+            "negative.+happen",
+            "husband",
+            "partner"
+          ],
+          "answer": [
+            [
+              "Her husband passed away quite recently... maybe 6 months ago. Since then she's moved back into the house with me and my parents"
+            ]
+          ]
+        },
+        "mood": {
+          "question": "Have you noticed any changes in your sister's mood?",
+          "keywords": [
+            "mood",
+            "depress",
+            "anxi",
+            "stress",
+            "agitat"
+          ],
+          "answer": [
+            [
+              "My sister has been pretty down ever since her husband passed away. It was very hard for her to deal with, and even now she doesn't really talk about it. She used to be so cheerful, but she never is anymore"
+            ],
+            [
+              "She's seemed a bit stressed lately, although she always says she's fine when I ask her how she is"
+            ]
+          ]
+        }
+      }
+    },
+
+
+
+
+
+
+
+
+
+
+
+    "Lithium toxicity": {
+      "observations":{"appearance": [
+        [ "The patient arrives with her husband." ],
+        [ "Her skin is pale" ],
+        [ "Her mouth looks dry"] 
+      ],
+      "affect":[
+        [ "She looks a little anxious" ],
+        [ "Other than this she has congruent affect" ]
+      ],
+      "speech":[
+        ["Her speech is a little hesitant"],
+        ["The rate of speech is normal"],
+        ["Her voice is a bit shaky"]
+      ]},
+      "history": {
+        "presenting-complaint": {
+          "question": "Do you know why your are here today?",
+          "keywords": [
+            "how are you",
+            "going on",
+            "brought you",
+            "why.here",
+            "happen"
+          ],
+          "answer": [
+            [
+              "My hands started shaking this morning, and I've felt very nauseous"
+            ],
+            [
+              "I've started getting tremors. Also, I've been struggling with diarrhoea, and I have been feeling a bit sick"
+            ],
+            [
+              "I have been vomiting all morning and I can't stop shaking"
+            ]
+          ]
+        },
+        "feeling": {
+          "question": "Do you feel well?",
+          "keywords": [
+            "how.*feeling","well","ill","feeling.*ok","you ok","how are you"
+          ],
+          "answer": [
+            [ "I'm not feeling well at all, at the moment. I'm shaky and sick." ]
+          ]
+        },  
+        "pmh": {
+          "question": "Have you had any previous medical problems?",
+          "keywords": [
+            "previous medical",
+            "past medical",
+            "previous illness",
+            "medical problems",
+            "in the past",
+            "seen.*doctor"
+          ],
+          "answer": [
+            [
+              "I have bipolar disorder"
+            ],
+            [
+              "I am bipolar"
+            ]
+          ]
+        },
+        "past-psychiatric-history": {
+          "question": "Have you had any psychiatric problems in the past?",
+          "keywords": [
+            "psychiatri",
+            "mental.*ill",
+            "mental health",
+            "section"
+          ],
+          "answer": [
+            [
+              "I do have bipolar disorder but that has been under control for years, since they put me on lithium. It's a wonder drug, and things have been pretty stable."
+            ]
+          ]
+        },
+        "medication": {
+          "question": "Are you on any medication?",
+          "keywords": [
+            "medication","drugs","medicine","medication","tablet"
+          ],
+          "answer": [
+            [
+              "I take lithium and a blood pressure tablet every day"
+            ]
+          ]
+        },
+        "lithium": {
+          "question": "So you are on lithium?",
+          "keywords": [
+            "lithium"
+          ],
+          "answer": [
+            [ "Yes I've been on lithium for years now. It's great - it keeps me going." ]
+          ]
+        },
+        "levels": {
+          "question": "Have you had your lithium levels checked?",
+          "keywords": [
+            "levels","lithium.*blood","blood.*lithium"
+          ],
+          "answer": [
+            [ "I've haven't had my lithium levels checked for... Oh, Maybe a year." ]
+          ]
+        },  
+        "overdose": {
+          "question": "Have you taken too much medication?",
+          "keywords": [
+            "overdose",
+            "too.+much.+medic",
+            "more.+medic",
+            "take.*regular","miss.*(dose|tablet)","complian"
+          ],
+          "answer": [
+            [
+              "I'm not sure, doctor. Maybe I took one too many tablets yesterday"
+            ],
+            [
+              "I might have taken too many, actually. Yesterday, I could not remember if I had already taken my medicine, so I took an extra one just in case."
+            ]
+          ]
+        },
+        "GI-symptoms": {
+          "question": "Have you had any problems with your stomach?",
+          "keywords": [
+            "diarrhoea",
+            "vomit",
+            "stomach",
+            "throw.+up","nause"
+          ],
+          "answer": [
+            [
+              "I've had diarrhoea all day, and I have felt very nauseous"
+            ],
+            [
+              "I have been experiencing stomach pains and diarrhoea. I've just felt very sick all day"
+            ]
+          ]
+        },
+        "appetite": {
+          "question": "How is your appetite?",
+          "keywords": [
+            "food",
+            "eating",
+            "eat.+today",
+            "appetite"
+          ],
+          "answer": [
+            [
+              "I've lost my appetite, doctor. The idea of eating anything hasn't seemed appealing at all."
+            ],
+            [
+              "I haven't eaten anything all day. Even though I've not been hungry, I tried to eat a banana earlier but I just vomited it up"
+            ],
+            [
+              "My husband tried to get me to eat something, but I am just not hungry in the slightest"
+            ]
+          ]
+        },
+        "tremor": {
+          "question": "Have you got a tremor?",
+          "keywords": [
+            "tremor",
+            "movement",
+            "shake"
+          ],
+          "answer": [
+            [
+              "I've had a little shake in my left hand. It seems to come on when I'm relaxing."
+            ],
+            [
+              "My partner has noticed a little shaking in my left hand. Maybe it comes on when I am anxious."
+            ]
+          ]
+        },
+        "drowsiness": {
+          "question": "Do you feel drowsy?",
+          "keywords": [
+            "drows",
+            "tired",
+            "energy"
+          ],
+          "answer": [
+            [
+              "I've felt a bit drowsy all day"
+            ],
+            [
+              "I feel very tired, doctor"
+            ],
+            [
+              "I haven't had any energy today"
+            ]
+          ]
+        },
+        "weakness": {
+          "question": "Do you have any muscle weakness?",
+          "keywords": [
+            "weak",
+            "muscle",
+            "strength", "energy"
+          ],
+          "answer": [
+            [
+              "I've felt very weak today. I just don't have the energy"
+            ]
+          ]
+        },
+        "symptoms-onset": {
+          "question": "When did these symptoms start?",
+          "keywords": [
+            "how long",
+            "when.+first",
+            "start.+symptoms"
+          ],
+          "answer": [
+            [
+              "The symptoms started this morning"
+            ],
+            [
+              "I woke up early this morning feeling awful"
+            ]
+          ]
+        },
+        "urine": {
+          "question": "Any change with passing urine?",
+          "keywords": [
+            "urin", "toilet", "wee"
+          ],
+          "answer": [
+            [
+              "I have urinated more often than normal today"
+            ],
+            [
+              "I've been to the toilet quite a few times today. More than usual, certainly"
+            ]
+          ]
+        },
+        "bowels": {
+          "question": "Any change in the bowels?",
+          "keywords": ["bowels","stools"," poo","toilet","diarrhoea","loose"],
+          "answer": [ "It was very watery when I was on the toilet. Defintely diarrhoea."]
+        }
+      },
+      "matchers": [
+        "lithium tox",
+        "li tox"
+      ],
+    
+      "collateral": {
+        "presenting complaint": {
+          "question": "Do you know why your are here today?",
+          "keywords": [
+            "how is your",
+            "going on",
+            "brought them",
+            "brought him",
+            "brought her",
+            "what happened",
+            "why.+here"
+          ],
+          "answer": [
+            [
+              "My wife has been feeling ill all day, and she has been tremoring uncontrollably"
+            ],
+            [
+              "My wife's hands have been shaking uncontrollably and she's been suffering with vomiting and diarrhoea. She's been in a lot of discomfort"
+            ]
+          ]
+        },
+        "pmh": {
+          "question": "Does she have any previous medical problems?",
+          "keywords": [
+            "previous medical",
+            "past medical",
+            "previous illness",
+            "medical problems",
+            "in the past"
+          ],
+          "answer": [
+            [
+              "She has bipolar disorder"
+            ]
+          ]
+        },
+        "medication": {
+          "question": "Is she on any medication?",
+          "keywords": [
+            "medication",
+            "on any drugs",
+            "medicine",
+            "tablet"
+          ],
+          "answer": [
+            [
+              "She takes priadel, and a blood pressure tablet daily"
+            ]
+          ]
+        },
+        "overdose": {
+          "question": "Has she taken too much medication?",
+          "keywords": [
+            "overdose",
+            "too.+much.+medic",
+            "more.+medic"
+          ],
+          "answer": [
+            [
+              "I don't know, doctor. She takes the tablets herself"
+            ]
+          ]
+        },
+        "gastro symptoms": {
+          "question": "Has she had any problems with her stomach?",
+          "keywords": [
+            "diarrhoea",
+            "vomit",
+            "stomach",
+            "throw.+up"
+          ],
+          "answer": [
+            [
+              "She's complained about feeling sick all day, and has been vomiting and had diarrhoea"
+            ]
+          ]
+        },
+        "appetite": {
+          "question": "How is her appetite?",
+          "keywords": [
+            "food",
+            "eating",
+            "eat.+today",
+            "appetite"
+          ],
+          "answer": [
+            [
+              "I've tried to make her eat something, but she's lost all her appetite"
+            ]
+          ]
+        },
+        "tremor": {
+          "question": "Has she got a tremor?",
+          "keywords": [
+            "tremor",
+            "movements",
+            "shake"
+          ],
+          "answer": [
+            [
+              "She's had a tremor all day"
+            ],
+            [
+              "Her hands have been shaking all day, doctor"
+            ]
+          ]
+        },
+        "symptoms-onset": {
+          "question": "When did the symptoms start?",
+          "keywords": [
+            "how long",
+            "when.+first",
+            "start.+symptoms",
+            "symptoms.+start"
+          ],
+          "answer": [
+            [
+              "She woke me up this morning and told me that she was feeling really ill"
+            ]
+          ]
+        },
+        "drowsiness": {
+          "question": "Has she seemed drowsy?",
+          "keywords": [
+            "drows",
+            "tired",
+            "energy"
+          ],
+          "answer": [
+            [
+              "She's had no energy all day. She just seems really ill"
+            ]
+          ]
+        }
+      }
+    },
+
+
+
+
+
+
+
+
+    "Extra pyramidal side effects": {
+      "observations": {
+        "appearance":[
+          ["The patient appears to be very restless"]
+        ],
+        "affect":[
+          ["He is inappropriately angry"],
+          ["When a nurse entered the room, he got suddenly irritated"],
+          ["He was making frequent odd facial expressions during the consultation"]
+        ],
+        "behaviour":[
+          ["The patient was highly agitated and erratic"],
+          ["He kept gradually twisting his neck to look behind him, during conversation, but nobody was there"]
+        ],
+        "speech":[
+          ["Throughout the consultation, the patient responds with a loud voice despite being in a quiet room"]
+        ],
+        "thought":[
+          ["Thoughts were fast but with normal form"]
+        ]
+      },
+      "history": {
+        "presenting-complaint": {
+          "question": "Do you know why your are here today?",
+          "keywords": [
+            "how did.*",
+            "going on",
+            "brought you",
+            "why"
+          ],
+          "answer": [
+            [
+              "The police brought me here!",
+              [
+                "I don't know why",
+                "I did nothing wrong!"
+              ]
+            ],
+            [
+              "You doctors forced me to take drugs and now terrible things are happeneing to me. It's all your fault!"
+            ],
+            [
+              "You're using drugs to control my body, aren't you!"
+            ],
+            [
+              "I'm gonna sue you! You've done something to me, haven't you?!"
+            ]
+          ]
+        },
+        "onset":{
+          "question": "When did this start?",
+          "keywords": ["when.*(start|begin|come)","how long"],
+          "answer":[ 
+            ["It started this morning - I've never had anything like this before."]
+          ]
+        },
+        "feel-well":{
+          "question": "How are you feeling?",
+          "keywords": ["feeling", "how are you"," well","unwell", " ill"],
+          "answer":[
+            ["Do I look well to you? What is happening to me? What is happening to my head? It feels like it's gonna fall off!"]
+          ]
+        },
+        "yesterday":{
+          "question":"Tell me about What happened yesterday",
+          "keywords":["yesterday","happened"],
+          "answer":[
+            ["I was minding my own business, and the doctors were giving me grief. I should have knocked them before they jabbed me. I knew it."]
+          ]
+        },
+        "medication": {
+          "question": "Are you on any medication?",
+          "keywords": [
+            "medication",
+            "drugs",
+            "medicine",
+            "tablets"
+          ],
+          "answer": [
+            [
+              [
+                "I dont take any medication!",
+                "I don't have a prescription!",
+                "I don't do drugs!"
+              ],
+              "But these guys have",
+              [
+                "drugged me up!",
+                "given me something I didn't want!",
+                "jabbed something into my arm!"
+              ]
+            ],
+            [
+              "The only drugs I've had are the ones these doctors have pumped into me!"
+            ]
+          ]
+        },
+        "tardive-dyskinesia-dystonia": {
+          "question": "Do you have movements that you can't control?",
+          "keywords": [
+            "move",
+            "control",
+            "twist",
+            "arm",
+            "limb"
+          ],
+          "answer": [
+            [
+              [
+                "My teeth are sticking together!"
+              ],
+              [
+                [
+                  "A demon",
+                  "A spirit",
+                  "My neighbour"
+                ],
+                "is controlling my mouth"
+              ]
+            ],
+            [
+              [
+                "Something is stopping me from moving my arm!"
+              ],
+              [
+                "My",
+                [
+                  "arm",
+                  "waist",
+                  "neck"
+                ],
+                "is twisting",
+                [
+                  "against my will!",
+                  "even though I don't want it to!",
+                  "because someone is controlling me!"
+                ]
+              ]
+            ]
+          ]
+        },
+        "rigidity": {
+          "questions": "Do you feel rigid?",
+          "keywords": [
+            "rigid","stiff","muscle","tight"
+          ],
+          "answer": [
+            [
+              "My muscles feel really tight"
+            ],
+            [
+              [
+                "Something",
+                "Someone"
+              ],
+              "is stopping my",
+              [
+                "arms",
+                "legs",
+                "muscles"
+              ],
+              "from moving!"
+            ]
+          ]
+        }
+      },
+      "matchers": [
+        "extra pyramidal",
+        "^epse"
+      ],
+    
+      "collateral": {
+        "medication": {
+          "question": "Has the patient been given any medication?",
+          "keywords": [
+            "drug",
+            "medication",
+            "medicine",
+            "treatment"
+          ],
+          "answer": [
+            [
+              "The patient refused oral medication, so was given intramuscular haloperidol"
+            ]
+          ]
+        },
+        "tardive-dyskinesia-dystonia": {
+          "question": "What problems has the patient had with their movement?",
+          "keywords": [
+            "movement",
+            "twist",
+            "what.+happen",
+            "going.+on",
+            "why.here",
+            "brought him",
+            "brought them",
+            "brought patient"
+          ],
+          "answer": [
+            [
+              "The patient started twisting his",
+              [
+                "neck",
+                "arms"
+              ],
+              "around himself, and began puckering his lips"
+            ],
+            [
+              "The pateint started making abnormal facial movements whilst twisting at the waist"
+            ],
+            [
+              "The patient has been twisting his limbs around his body. He has been blinking excessively... he looks like he's been possessed"
+            ]
+          ]
+        },        
+        "behaviour": {
+          "question":"Has the patient said or done anything abnormal?",
+          "keywords":["behav","odd","done ","act","strange","talk","speak","speech"],
+          "answer":[
+            ["He has been poking his tongue out at people, and his voice sounds strangled. He has been pulling faces at everyone. "]
+          ]
+        },
+        "restlessness": {
+          "question": "Has the patient appeared restless?",
+          "keywords": [
+            "restless",
+            "agitat"
+          ],
+          "answer": [
+            [
+              "The patient has appeared restless and erratic, and he shouts suddenly while talking."
+            ]
+          ]
+        }
+      }
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    "Dementia with Lewy bodies": {
+      "effects": [
+        "Parkinsonism"
+      ],
+      "affect": "all",
+      "extent": 0.3,
+      "observations":{
+        "appearance": [
+          [ "As the patient enters the room, you notice that she is having difficulty walking and requires assistance from her husband"],
+          [ "The patient appears drowsy throughout the consultation and talks very slowly" ],
+          [ "The patient has a cast on her left arm. She struggles to answer questions throughout the consultation" ]
+        ],
+        "affect":[ ["Facial expressions were neutral throughout."] ],
+        "behaviour":[ [  "The patient occasionally zoned out during the conversation"],
+                      [  "There was no inappropriate behaviour"] ],
+        "speech":[["Speech was slow and reduced in quantity"],
+                  ["The speech was otherwise normal"]]
+      },
+      "history": {
+        "presenting-complaint": {
+          "question": "What has brought you in today?",
+          "keywords": [
+            "how are you",
+            "going on",
+            "brought you",
+            "why.here", "happened"
+          ],
+          "answer": [
+            [
+              "I keep falling over, doctor"
+            ],
+            [
+              "I'm always very unsteady on my feet, doctor"
+            ],
+            [
+              "I keep falling over. I even broke my",
+              [
+                "arm",
+                "wrist"
+              ]
+            ]
+          ]
+        },
+        "where-fall": {
+          "question": "Where did you fall?",
+          "keywords": [
+            "where.*fall","where.*fell","where.*trip"
+          ],
+          "answer": [
+            [
+              "I just fell over at home in the kitchen"
+            ]
+          ]
+        },
+        "why-fall": {
+          "question": "Why did you fall?",
+          "keywords": [
+            "(why|how|cause|made you).*(fall|fell)"
+          ],
+          "answer": [
+            [
+              "I just felt very unsteady. My body doesn't move the way I want it to"
+            ]
+          ]
+        },
+        "attention": {
+          "question": "Do you struggle to maintain attention",
+          "keywords": [
+            "attention",
+            "alert",
+            "attentiveness",
+            "zone.+out",
+            "stare.+blank","concentrat"," focus"
+          ],
+          "answer": [
+            [
+              "My",
+              [
+                "husband",
+                "partner"
+              ],
+              "says that some days I'm not very alert"
+            ],
+            [
+              "Sometimes",
+              [
+                "1 hour",
+                "2 hours",
+                "3 hours"
+              ],
+              "can pass without me realizing"
+            ],
+            [
+              "I often find myself staring blankly at the wall"
+            ]
+          ]
+        },
+        "hallucinations": {
+          "question": "Do you ever hallucinate?",
+          "keywords": [
+            "hallucina",
+            "see.+not real",
+            "illusion",
+            "that others don't",
+            "that others can't",
+            "that others cannot",
+            "not there"
+          ],
+          "answer": [
+            [
+              "Sometimes, I see",
+              [
+                "men",
+                "dogs",
+                "cats",
+                "animals"
+              ],
+              [
+                "in my",
+                "walking about my"
+              ],
+              [
+                "flat.",
+                "house."
+              ],
+              "I",
+              [
+                "do know",
+                "sort of know"
+              ],
+              "that",
+              [
+                "they're not real",
+                "they're just in my head"
+              ],
+              " and they don't bother me that much"
+            ],
+            [
+              "I occasionally can see ",
+              [
+                "people",
+                "small animals",
+                "dogs",
+                "parrots"
+              ],
+              ", that sometimes come out. It usually happens late in the evenings. Doesn't worry me too much though."
+            ]
+          ]
+        },
+        "sleep": {
+          "question": "How well do you sleep?",
+          "keywords": [
+            "sleep",
+            "bed"
+          ],
+          "answer": [
+            [
+              "My",
+              [
+                "husband",
+                "partner"
+              ],
+              "tells me that I",
+              [
+                "shout",
+                "scream",
+                "flail",
+                "punch",
+                "kick"
+              ],
+              "in my sleep, even though I'm unaware of this happening"
+            ],
+            [
+              "I usually nap a lot during the day, and can spend",
+              [
+                "3 hours",
+                "4 hours",
+                "5 hours",
+                "6 hours"
+              ],
+              [
+                "sleeping",
+                "napping"
+              ],
+              "during the day"
+            ]
+          ]
+        },
+        "speech": {
+          "question": "How is your speech?",
+          "keywords": [
+            "speech",
+            "speak",
+            "talk",
+            "conversation"
+          ],
+          "answer": [
+            [
+              "Sometimes I struggle to speak properly"
+            ],
+            [
+              "The words don't always come out my mouth properly when I'm tired"
+            ]
+          ]
+        },
+        "bradykinesia": {
+          "question": "Are your movements slow?",
+          "keywords": [
+            "movement",
+            "slow.+arm",
+            "move.+arm",
+            "slow.+leg",
+            "move.+leg"
+          ],
+          "answer": [
+            [ "I can only move my", [
+                "arms",    "legs"
+              ],  "slowly"
+            ], [
+              "My right leg does feel quite stiff and slow. I find it hard to get moving in the mornings"
+            ], [
+              "I",   [       "stuggle",       "find it difficult"
+              ],       "to get going sometimes. I've put it down to a touch of arthritis in my leg."
+            ],            [
+              "I sometimes feel my leg doesn't always do what I want it to. It feels a bit stiff."
+            ]
+          ]
+        },
+        "walking": {
+          "question": "Do you struggle to walk?",
+          "keywords": [
+            "walk"
+          ],
+          "answer": [
+            [
+              "Walking is much more difficult than it used to be. I move around the house very slowly and it takes a bit of time to get going."
+            ],
+            [
+              "My feet occasionally stick to the floor. It becomes easier to walk once I've started to move"
+            ]
+          ]
+        },
+        "symptoms-onset": {
+          "question": "How long have you been having these symptoms?",
+          "keywords": [
+            "how long",
+            "when.+first",
+            "start.+symptoms",
+            "symptom.+begin",
+            "fall.+begin"
+          ],
+          "answer": [
+            [
+              "I've been this way for maybe a year now. My ability to move has deteriorated quite slowly so it is difficult to say when it started exactly"
+            ],
+            [
+              "We first noticed problems with my sleep about a year ago, and I started feeling unsteady on my feet at about the same time"
+            ]
+          ]
+        },
+        "insight": {
+          "question": "Do you feel like there is something medically wrong?",
+          "keywords": [
+            "concerns",
+            "ideas",
+            "expectations",
+            "something wrong",
+            "worrie"
+          ],
+          "answer": [
+            [
+              "I don't feel right. I feel as though something is wrong in my legs. It's odd that I keep tripping up so often"
+            ],
+            [
+              "Clearly something is happeneing to me... so much has changed over the last year"
+            ]
+          ]
+        },
+        "tired": {
+          "question": "Do you feel tired?",
+          "keywords": [
+            "tired",   "exhausted", "fatigue", "energy"
+          ],
+          "answer": [            [
+              "Oh, I've been getting really tired through the day. I used to have so much energy, but now I have to have a nap every day after lunch. That's just not me!"
+            ]
+          ]
+        },  
+        "mmse-recall": {
+          "question": "Which 3 objects did I ask you to repeat earlier?",
+          "keywords": [            "objects learned earlier", "objects repeated earlier"          ],
+          "answer": [  [    "Lemon,  Ball, and, er, um. was it a cup?"            ]   ]
+        },
+        "mmse-serial-sevens": {
+          "question": "Can you subtract 7 from 100 and then repeat from that result?",
+          "keywords": ["subtract","take 7", "take away 7", "take seven" , "subtract"          ],
+          "answer": [
+            [
+              "100, 93, ,Uh..., 85, 78, 71, 64"
+            ]
+          ]
+        }
+      },
+      "matchers": [
+        "lewy bodies",
+        "dlb"
+      ],
+    
+      "collateral": {
+        "presenting-complaint": {
+          "question": "What has brought you in today?",
+          "keywords": [
+            "how is your",
+            "going on",
+            "brought them",
+            "brought him",
+            "brought her",
+            "what happened",
+            "why.+here"
+          ],
+          "answer": [
+            [
+              "My wife keeps falling over, doctor, and now she's broken her arm. Over the last 6 months, her movements have gotten slower and slower, and she always seems unsteady"
+            ],
+            [
+              "My wife often seems confused nowadays, and she sometimes has hallucinations. She struggles to talk to me sometimes, which worries me because we always used to have such long, quick-witted conversations"
+            ]
+          ]
+        },
+        "attention": {
+          "question": "How is her concentration?",
+          "keywords": [
+            "attention",
+            "alert",
+            "attentiveness",
+            "zone.+out",
+            "stare.+blank",
+            "concentrat"
+          ],
+          "answer": [
+            [
+              "She seems to constantly zone out of conversations. In the evening she finds it hard to hold a conversation."
+            ],
+            [
+              "I notice that she spends a lot of time staring blankly at the wall"
+            ],
+            [
+              "She doesn't seem to have the same attention for TV shows or conversations or anything really anymore"
+            ]
+          ]
+        },
+        "hallucinations": {
+          "question": "Does she ever hallucinate?",
+          "keywords": [
+            "hallucina",
+            "see.+not real",
+            "illusion",
+            "that others don't",
+            "that others can't",
+            "that others cannot"
+          ],
+          "answer": [
+            [
+              "She keeps saying that she see animals running around our house, but we don't have any pets. At first I thought she was joking but she is adamant that she can see them"
+            ]
+          ]
+        },
+        "delusions": {
+          "question": "Has she developed any unusual beliefs?",
+          "keywords": [
+            "delusion", "belief","believe", "(odd|strange).*thought"
+          ],
+          "answer": [      [
+              "Well, once she saw a coat hanging on the wall, and she was sure there was a man standing there."
+          ]  ]
+        },
+        "sleep": {
+          "question": "How well does she sleep?",
+          "keywords": [
+            "sleep",
+            "bed",
+            "napping"
+          ],
+          "answer": [
+            [
+              "She can spend half the day napping on the sofa"
+            ],
+            [
+              "I often wake up to find her flailing and shouting while she sleeps"
+            ]
+          ]
+        },
+        "speech": {
+          "question": "How is her speech?",
+          "keywords": [
+            "speech",
+            "speak",
+            "talk",
+            "conversation"
+          ],
+          "answer": [
+            [
+              "Nowadays, she often speaks very slowly, which is odd because she has always been so quick-witted"
+            ],
+            [
+              "Sometimes she can't speak properly when were having conversations, especially later at night or in the morning"
+            ]
+          ]
+        },
+        "bradykinesia": {
+          "question": "Are her movements slow?",
+          "keywords": [
+            "movement",
+            "slow.+move",
+            "move.+arm",
+            "move.+leg",
+            "slow.+arm",
+            "slow.+leg",
+            "walk"
+          ],
+          "answer": [
+            [
+              "She moves much more slowly than she used to. I have to help her get out of bed in the morning and she moves very slowly around the house"
+            ]
+          ]
+        },
+        "symptoms-onset": {
+          "question": "When did you fist notice these symptoms?",
+          "keywords": [
+            "how long",
+            "when.+(first|notice|start|come)",
+            "start.+symptoms",
+            "symptom.+begin",
+            "fall.+begin"
+          ],
+          "answer": [
+            [
+              "She's been falling over for about a year now. It's amazing that she hasn't gotten hurt until now"
+            ],
+            [
+              "Things started to change maybe 1 year ago. That's when she started having difficulty being steady, and also began to have probems with her sleep about then"
+            ]
+          ]
+        },
+        "insight": {
+          "question": "Do you feel like there is something medically wrong with your partner?",
+          "keywords": [
+            "concerns",
+            "ideas",
+            "expectations",
+            "something wrong",
+            "worrie"
+          ],
+          "answer": [
+            [
+              "Something has to be wrong, I've been trying to get her to see a doctor for a while now"
+            ],
+            [
+              "We have lots of friends our age and none of them have changed the way my wife has. It doesn't seem to me like these are just some normal effects of aging"
+            ]
+          ]
+        }
+
+      }
+    },
+
+
+
+
+
+
+
+
+
+
+
+    "Multiple sclerosis": {
+      "effects": [
+        "Internuclear ophthalmoplegia left",
+        "Internuclear ophthalmoplegia right",
+        "middle-cerebellar-peduncle-left",
+        "middle-cerebellar-peduncle-right",
+        "Optic neuritis left",
+        "Optic neuritis right"
+      ],
+      "affect": "any",
+      "extent": 0.3,
+      "history": {
+        "onset": {
+          "question": "When did it come on?",
+          "keywords": [
+            "when did",
+            "how long",
+            "for long"
+          ],
+          "answer": [
+            [
+              [
+                "It came on ",
+                "It started"
+              ],
+              [
+                "2 days",
+                "3 days",
+                "4 days",
+                "5 days",
+                "6 days",
+                "1 week",
+                "2 weeks"
+              ],
+              "ago"
+            ],
+            [
+              "I",
+              [
+                "think I",
+                ""
+              ],
+              "noticed it",
+              [
+                "around a week",
+                "about a week",
+                "maybe a couple of days"
+              ],
+              "ago"
+            ],
+            [
+              "It's been gradually coming on for",
+              [
+                "a few days",
+                "a few weeks"
+              ]
+            ]
+          ]
+        }
+      },
+      "matchers": [
+        "multiple sclerosis",
+        "^ms",
+        "demyelinat"
+      ]
+    },
+    "Spinal cord compression": {
+      "effects": [
+        "Thoracic cord transection",
+        "Thoracic Brown Sequard syndrome left"
+      ],
+      "affect": "any",
+      "extent": 0.5,
+      "matchers": [
+        "brown seq",
+        "thoracic",
+        "hemicord"
+      ]
+    },
+    "Brachial plexus injury": {
+      "effects": [
+        "Erb palsy",
+        "Klumpke palsy"
+      ],
+      "affect": "any",
+      "matchers": "brachial plexus"
+    },
+    "Ischaemic stroke": {
+      "effects": [
+        "Middle cerebral artery infarct left",
+        "Cerebellar infarct",
+        "Wallenberg syndrome left"
+      ],
+      "affect": "any",
+      "matchers": [
+        "stroke",
+        "cva",
+        "vascular",
+        "ischaemic",
+        "infarct"
+      ]
+    }
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "syndromes": {
+    "Parkinsonism": {
+      "lesion": [
+        "substantia-nigra-left",
+        "substantia-nigra-right"
+      ],
+      "matchers": [
+        "sn","Lewy bod"
+      ]
+    },
+    "WKS": {
+      "lesion": [
+        "abducens-nucleus-left",
+        "abducens-nucleus-right",
+        "cerebellar-vermis",
+        "vestibular-organ-right",
+        "vestibular-organ-left",
+        "cerebellar-anterior-hemisphere-left",
+        "cerebellar-anterior-hemisphere-right",
+        "medial-longitudinal-fasciculus-left",
+        "medial-longitudinal-fasciculus-right"
+      ],
+      "matchers": [
+        "Wernicke"
+      ]
+    },
+    "Internuclear ophthalmoplegia left": {
+      "lesion": [
+        "medial-longitudinal-fasciculus-left"
+      ],
+      "matchers": [
+        "^ino.*",
+        "^internuclear op.*",
+        "mlf"
+      ]
+    },
+    "Internuclear ophthalmoplegia right": {
+      "lesion": [
+        "medial-longitudinal-fasciculus-right"
+      ],
+      "matchers": [
+        "^ino.*",
+        "^internuclear op.*",
+        "mlf"
+      ]
+    },
+    "Wallenberg syndrome left": {
+      "lesion": [
+        "pontine-spinothalamic-tract-left",
+        "pontine-corticospinal-tract-left",
+        "medial-lemniscus-left",
+        "trigeminal-pain-nucleus-left",
+        "vagus-nucleus-left",
+        "glossopharyngeal-nucleus-left",
+        "inferior-cerebellar-peduncle-left",
+        "cochlear-nucleus-left",
+        "vestibular-nucleus-left",
+        "medullary-reticular-formation"
+      ],
+      "matchers": [
+        "wallenberg",
+        "lateral medullary"
+      ]
+    },
+    "Cerebellopontine angle syndrome left": {
+      "lesion": [
+        "facial-nerve-left",
+        "vestibulocochlear-nerve-left",
+        "flocculus-left",
+        "trigeminal-nucleus-left"
+      ],
+      "matchers": [
+        "^cpa",
+        "cerebellopontine",
+        "vestibular schw",
+        "acoustic neuroma"
+      ]
+    },
+    "Thoracic Brown Sequard syndrome left": {
+      "lesion": [
+        "t6-corticospinal-tract-left",
+        "t6-spinothalamic-tract-left",
+        "t6-gracile-fasciculus-left",
+        "t6-spinocerebellar-tract-left",
+        "t6-vestibulospinal-tract-left",
+        "t6-rubrospinal-tract-left",
+        "t6-reticulospinal-tract-left",
+        "t6-anterior-horn-left",
+        "t6-dorsal-horn-left"
+      ],
+      "affect": "all"
+    },
+    "Thoracic cord transection": {
+      "lesion": [
+        "t6"
+      ],
+      "matchers": [
+        "thoracic cord",
+        "spastic paraparesis",
+        "spastic paraplegia",
+        "spastic diplegia",
+        "paraparesis"
+      ]
+    },
+    "Middle cerebral artery infarct left": {
+      "lesion": [
+        "primary-motor-cortex-left",
+        "sensory-strip-left",
+        "frontal-white-matter-left",
+        "parietal-white-matter-left"
+      ],
+      "affect": "all",
+      "matchers": [
+        "^mca",
+        "hemisphere infarct",
+        "taci",
+        "paci"
+      ]
+    },
+    "Cerebellar infarct": {
+      "lesion": [
+        "cerebellar-anterior-lobe-left",
+        "lateral-gaze-centre-left",
+        "oculomotor-nucleus-left",
+        "medial-longitudinal-fasciculus-left",
+        "medial-lemniscus-left",
+        "lateral-lemniscus-left",
+        "vestibular-nucleus-left"
+      ],
+      "affect": 0.3,
+      "extent": [
+        0.3,
+        0.5
+      ]
+    },
+    "Optic neuritis left": {
+      "lesion": [
+        "optic-nerve-left",
+        "fovea-left"
+      ]
+    },
+    "Optic neuritis right": {
+      "lesion": [
+        "optic-nerve-peripheral-right",
+        "fovea-right"
+      ]
+    },
+    "Cavernous sinus syndrome left": {
+      "lesion": [
+        "oculomotor-nerve-left",
+        "abducens-nerve-right",
+        "ophthalmic-trigeminal-left",
+        "maxillary-trigeminal-left",
+        "trochlear-nerve-left",
+        "ophthalmic-vein-left"
+      ],
+      "affect": 0.3,
+      "extent": 0.8
+    },
+    "Erb palsy": {
+      "lesion": [
+        "c5-nerve-root-left",
+        "c6-nerve-root-left"
+      ]
+    },
+    "Klumpke palsy": {
+      "lesion": [
+        "c8-nerve-root-left",
+        "t1-nerve-root-left",
+        "stellate-ganglion-left"
+      ]
+    }
+  }
+
+}

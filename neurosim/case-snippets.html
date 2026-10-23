@@ -1,0 +1,752 @@
+<html>
+  
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+  </head>
+  
+  <body>
+  <!-- 
+       Snippet file for neurosim cases. Includes bits of HTML that will be added by javascript
+       into the case HTML. 
+The class 'neurosim-snippet' identifies each snippet. 
+'snippet-exam-...' identifies exam sections, and replacing 'snippet' with 'neurosim' gives the actual exam class.
+  -->
+
+  <div>
+  
+  <div class="neurosim-snippet snippet-exam-snellen">
+    <li>
+      <h3>Visual acuity </h3>
+      <div class="neurosim-exam-snellen"> </div>  
+    </li>
+  </div>
+  <div class="neurosim-snippet snippet-exam-visualfields">
+    <li>
+      <h3>Visual fields </h3>
+      <div class="neurosim-exam-visualfields image-allow-hover image-show-tooltips image-show-regions image-show-selection
+            image-show-lesions image-click-to-test"> </div>  
+    </li>
+  </div>
+  
+  <div class="neurosim-snippet snippet-exam-face">
+    <li>
+      <h3> Face examination </h3>
+      <div class="neurosim-exam-face"></div>
+    </li>
+  </div>
+  
+  <div class="neurosim-snippet snippet-exam-motor">
+    <li>
+      <h3> Motor examination </h3>
+      <div class="neurosim-exam-motor image-allow-hover image-show-regions image-show-tooltips image-show-selection" data-region="all"></div>
+    </li>
+  </div>
+  
+  <div class="neurosim-snippet snippet-exam-reflexes">
+    <li>
+      <h3> Reflexes </h3>
+      <div class="neurosim-exam-reflexes image-allow-hover image-show-regions image-show-tooltips image-show-selection" data-region="all"></div>
+    </li>
+  </div>
+  
+  <div class="neurosim-snippet snippet-exam-dermatomes">
+    <li>
+      <h3> Dermatomes </h3>
+      <div class="neurosim-exam-dermatomes image-allow-hover image-show-regions image-show-tooltips image-show-selection image-show-lesions image-show-nonfunctional image-allow-panzoom 
+                image-click-to-test"></div>
+    </li>
+  </div>
+  
+
+  <!-- Tools to go on neurosim-exam-face. Pentorch, Pin and Cotton wool. Vergence?
+  -->
+  <div class="neurosim-snippet face-tools neurosim-icon-selector btn-group" data-toggle="buttons">
+  
+      <label class="btn btn-default active">
+        <input type="radio" checked class="neurosim-icon-pentorch" title="Pentorch">
+          <svg viewBox="0,0,550,500">
+            <use xlink:href="neurosim-face-tools.svg#torch-icon" />
+          </svg>
+      </label>
+      <label class="btn btn-default">
+        <input type="radio"  class="neurosim-icon-pin" title="Pin">
+          <svg viewBox="0,0,550,500">
+            <use xlink:href="neurosim-face-tools.svg#pin-icon" />
+          </svg>
+      </label>
+      <label class="btn btn-default">
+        <input type="radio"  class="neurosim-icon-cotton" title="Cotton wool">
+          <svg viewBox="0,0,550,500">
+            <use xlink:href="neurosim-face-tools.svg#cotton-icon" />
+          </svg>
+      </label>
+  
+  </div>
+
+
+  
+  
+  
+
+  <!-- Tools to go on NeuroImage. Include navigation, dropdowns for axis and modality,
+       and toggles for show regions, hover, labels, image and recolouring.
+  -->
+  <div class="neurosim-snippet snippet-image-buttons-complex btn-group image-buttons image-buttons-topleft">
+
+      <a class="btn " data-action="Next" title="Next" tabindex>  <i class="fa fa-arrow-circle-o-down fa-lg"></i> </a>
+      <a class="btn " data-action="Previous" title="Previous"  tabindex> <i class="fa fa-arrow-circle-o-up fa-lg"></i></a>
+
+      <span class="btn  dropdown" tabindex>
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-cube fa-lg"></i><b class="caret"></b></a>
+        <ul class="dropdown-menu image-plane-menu" id="menu1">
+          <li class="icon-plane">
+            <object type="image/svg+xml" data="axis-icons.svg"> </object>
+
+          </li>
+        </ul>
+      </span>
+
+      <span class="btn  dropdown" tabindex>
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-clone fa-lg"></i><b class="caret"></b></a>
+        <ul class="dropdown-menu image-modality-menu" id="menu2">
+          <li class="icon-modality">
+            <object type="image/svg+xml" data="modality-icons.svg"> </object>
+
+          </li>
+        </ul>
+      </span>
+
+      <a class="btn  btn-sm" data-action="Show regions" title="Show regions" tabindex> <span class="fa-stack">
+        <i class="fa fa-eye fa-stack-1x corner-icon"></i><i class="fa fa-square-o fa-stack-1x"></i></span></a>
+
+      <a class="btn  btn-sm" data-action="Show hover" title="Show hover" tabindex> <span class="fa-stack">
+        <i class="fa fa-eye fa-stack-1x corner-icon"></i><i class="fa fa-hand-pointer-o fa-stack-1x"></i></span></a>
+
+      <a class="btn  btn-sm" data-action="Show labels" title="Show labels" tabindex> <span class="fa-stack">
+        <i class="fa fa-eye fa-stack-1x corner-icon"></i><i class="fa fa-font fa-stack-1x"></i></span></a>
+
+      <a class="btn  btn-sm" data-action="Show image" title="Show image" tabindex> <span class="fa-stack">
+        <i class="fa fa-eye fa-stack-1x corner-icon"></i><i class="fa fa-image fa-stack-1x"></i></span></a>
+
+      <a class="btn  " data-action="Recolour" title="Recolour" tabindex>  <i class="fa fa-paw fa-lg"></i> </a>
+
+
+      
+    
+  </div>
+
+    
+  <!-- Simplified image buttons - for neuroimaging. -->    
+  <div class="neurosim-snippet snippet-image-buttons btn-group image-buttons image-buttons-topleft">
+
+      <a class="btn " data-action="Next" title="Next" tabindex>  <i class="fa fa-arrow-circle-o-down fa-lg"></i> </a>
+      <a class="btn " data-action="Previous" title="Previous"  tabindex> <i class="fa fa-arrow-circle-o-up fa-lg"></i></a>
+
+      <span class="btn  dropdown" tabindex>
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-cube fa-lg"></i></a>
+        <ul class="dropdown-menu image-plane-menu" id="menu1a">
+          <li class="icon-plane">
+            <object type="image/svg+xml" data="axis-icons.svg"> </object>
+
+          </li>
+        </ul>
+      </span>
+
+      <span class="btn  dropdown" tabindex>
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-clone fa-lg"></i></a>
+        <ul class="dropdown-menu image-modality-menu" id="menu2a">
+          <li class="icon-modality">
+            <object type="image/svg+xml" data="modality-icons.svg"> </object>
+
+          </li>
+        </ul>
+      </span>
+    
+      <span class="btn dropdown" tabindex>
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+          <i class="fa fa-sitemap fa-lg"></i>
+        </a>
+        <ul class="dropdown-menu image-lod-menu">
+          <li class="btn image-lod-indicator" data-action="lod1">Novice</li>
+          <li class="btn image-lod-indicator" data-action="lod3">Undergraduate</li>
+          <li class="btn image-lod-indicator" data-action="lod5">Graduate</li>
+          <li class="btn image-lod-indicator" data-action="lod6">Neurologist</li>
+          <li class="btn image-lod-indicator" data-action="lod8">Neuroanatomist</li>
+        </ul>
+      </span>
+    
+
+      <a class="btn  " data-action="Recolour" title="Recolour" tabindex>  <i class="fa fa-paw fa-lg"></i> </a>
+
+
+      
+    
+  </div>
+
+  <!-- Menu hierarchy for NeuroImage. Includes modalities, axis, View options, 
+       Level of detail selection, Tool selection, and info.
+  -->
+  <ul class="neurosim-snippet snippet-image-menu image-menu">
+      <li> <i  class="fa fa-cog fa-lg"></i>  <ul> 
+        <li>     Slice     
+            <ul> 
+                <li>  Next</li>
+                <li>  Previous</li>
+                <li> Modality 
+                    <ul class="image-menu-modality">
+                    </ul>
+                </li>
+                <li> Plane
+                    <ul>
+                        <li data-action="axi"> Axial </li>
+                        <li data-action="cor"> Coronal </li>
+                        <li data-action="sag"> Sagittal </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>     View     
+          <ul>
+              <li> Show regions </li>
+              <li> Show nonfunctional </li>
+              <li> Show lesions </li>
+              <li> Show selection </li>
+              <li> Show hover </li>
+              <li> Show labels </li>
+              <li> Show 3d cursor </li>
+              <li> Zoom 
+                  <ul> 
+                    <li> <span class="ui-icon ui-icon-zoomin" ></span> In</li>
+                    <li> <span class="ui-icon ui-icon-zoomout"></span> Out</li>
+                  </ul>
+              </li>
+              <li> Level of detail 
+                  <ul class="image-menu-lod"> 
+                  </ul>
+              </li>
+          </ul>
+        </li>
+        <li> Tool
+          <ul>
+            <li> Move </li>
+            <li> Zoom </li>
+            <li> Paint lesion </li>
+            <li> Select </li>
+          </ul>
+        </li>
+        <li> Info
+          <ul>
+            <li> <span class="ui-icon ui-icon-info"></span> Instructions </li>
+            <li> <span class="ui-icon ui-icon-help"></span> About this region </li>
+            <li> About this slice </li>
+            <li> About this modality </li>
+          </ul>
+        </li>
+      </ul></li>
+  </ul>
+
+<!--   Three panel images - with 2 navigation slices 
+-->
+  
+  <div class="neurosim-snippet snippet-image-with-nav row row-eq-height no-gutter">
+    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+      <div class="image-slice nav-image-vertical image-allow-hover image-show-selection 
+                  image-show-image image-nav-draw-line image-nav-draw-alllines image-allow-panzoom "
+           id="slice-nav" data-slice="slices/mri/t2/sag/mri-t2-sag-spine-midline.svg">
+          <div class="image-svg" ></div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+      <div class="image-slice nav-image image-allow-hover image-show-selection 
+                  image-show-image image-nav-draw-line image-allow-panzoom image-nav-goto-selection"
+           id="slice-nav2" data-slice="slices/mri/t1/cor/t1_cor_100.svg">
+          <div class="image-svg" ></div>
+      </div>
+    </div>  
+
+    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">  
+      <div class="image-slice image-allow-hover image-show-selection
+                  image-show-lesions image-allow-panzoom 
+                  image-show-nonfunctional image-show-tooltips
+                  image-show-image image-nav-goto-selection  neurosim-resizeable" 
+           id="slice2" data-slice="slices/mri/t1/axi/t1_axi_030.svg"
+           data-options="{
+             'foo':'bar'
+           }">
+        <div class="image-svg" ></div>
+        <div class="image-selection-name"></div>
+      </div>
+    </div>
+  </div>
+            
+    
+    
+ <!--
+       Selection information list
+-->
+    <div class="neurosim-snippet snippet-selection-info-list">
+      <span class="neurosim-selection-name">No Selection</span> 
+      <ul>
+        <li> Description 
+          <ul>
+            <li class="neurosim-selection-description"> No description </li>
+          </ul>
+        </li>
+        <li> Inputs
+          <ul class="neurosim-selection-inputlist">
+          </ul>
+        </li>
+        <li> Contains
+          <ul class="neurosim-selection-containslist">
+          </ul>
+        </li>
+        <li> Outputs
+          <ul class="neurosim-selection-outputlist">
+          </ul>
+        </li>
+      </ul>
+
+    </div>
+    
+    
+    
+    <div class="neurosim-snippet snippet-select-typing">
+      <div class="form-group card neurosim-control-box">
+      <label for="neurosim-region-completion-input" 
+               class=" col-form-label">
+        Region:
+      </label>
+      <div class="neurosim-control">
+        <input class="neurosim-region-completion neurosim-selection-input 
+                      lod-6 form-control form-control-lg"
+               id="neurosim-region-completion-input"
+               type="text"
+               placeholder="type region name">
+      </div>
+        </div>
+    </div>
+    
+    
+    <div class="neurosim-snippet snippet-lesion-slider">
+      <div class="form-group card neurosim-control-box">
+        <label for="lesion-slider" class="col-form-label">
+          Lesion: 
+        </label>
+        <div class="neurosim-control">
+          <div class="neurosim-lesion-slider" id="lesion-slider"></div>
+        </div>
+      </div>
+    </div>  
+<!--   Examination panels to be created when buttons pressed
+-->
+
+    
+    
+  
+<!--  3D SECTION! -->
+
+    
+  <div class="neurosim-snippet snippet-exam-viewport3d viewport3d">
+
+    <div class="exam-section">
+      <h3><a href="#"> Body </a></h3>
+    </div>    
+
+  
+    <div class="exam-section">
+      <h3><a href="#"> Body controls </a></h3>
+      <div>
+        <ul class="bonemenu"></ul>
+        <ul class="axismenu">
+          <li>x</li><li>y</li><li>z</li>
+        </ul>
+      </div>
+    </div>
+  
+  </div>
+
+<!-- END 3D SECTION -->
+
+    
+    
+    <!--  For the microphone icon and text input  -->
+  <form class="form-inline neurosim-snippet snippet-history-listen">
+    <button type="button" class="btn btn-primary neurosim-history-listen">
+      <i class="fa fa-microphone"></i>
+    </button>
+    <input type="text" class="form-control col-6 neurosim-question-completion " placeholder="Ask question..." x-webkit-speech>
+    <button type="submit" class="btn btn-primary">
+      Ask <i class="fa fa-question-circle"></i>
+    </button>
+    <button type="text" class="btn btn-primary neurosim-history-ask-collateral" placeholder="Ask family..." x-webkit-speech>
+      Collateral <i class="fa fa-users"></i>  
+    </button>
+    <button type="text" class="btn btn-primary neurosim-history-hints hidden"
+     placeholder="Hints" onclick="javascript:$('.neurosim-history-selector').removeClass('hidden');$('.btn.neurosim-history-hints').addClass('hidden')">
+      Hints <i class="fa fa-exclamation-circle"></i>  
+    </button>
+
+    <ul class="neurosim-history-selector hidden" data-history="case-specific"></ul>
+  </form>
+    
+    
+    
+
+  <!--   Diagnosis box
+  -->
+  <ul class="neurosim-snippet snippet-diagnosis-box">
+    <li>
+      <form class="form-inline">
+        <button type="button" class="btn btn-primary neurosim-diagnosis-listen">
+          <i class="fa fa-microphone"></i>
+        </button>
+        <input type="text" class="form-control col-6" placeholder="Diagnosis..." x-webkit-speech>
+        <button type="button" class="btn btn-primary neurosim-diagnosis-add">
+          Add <i class="fa fa-plus-circle"></i>
+        </button>
+        <button type="submit" class="btn btn-primary">
+          Done <i class="fa fa-check-circle"></i>
+        </button>
+      </form>
+    </li>
+  </ul>
+    
+    
+  <!--  Help text for the examination panels (in tooltip)
+  -->
+  <div class="neurosim-snippet snippet-help-history">
+    Type questions in the box to take a history. 
+    When you start typing, you can select from common questions. 
+    Press enter or "Ask" to ask the question.
+    To ask a partner or friend, press "collateral".
+    If you get stuck, a "hint" button will appear.
+    In some browsers, you can speak by clicking the microphone.
+  </div>
+  <div class="neurosim-snippet snippet-help-observations">
+    Observations while taking the history.
+  </div>
+  <div class="neurosim-snippet snippet-help-mmse">
+    Click components of the mini-mental state examination to 
+    see/hear the patient's answers.
+  </div>
+  <div class="neurosim-snippet snippet-help-snellen">
+    This is what the patient sees.
+    Click the icon to toggle which eye is open.
+  </div>  
+  <div class="neurosim-snippet snippet-help-visualfields">
+    Click to test the visual fields. 
+    Black dots indicate that the patient can see where you clicked.
+    Green indicates unable to see. 
+  </div>              
+  <div class="neurosim-snippet snippet-help-face">
+    Move mouse to test eye movements. 
+    Click to use pen torch.
+    Click on mouth to open. 
+  </div>  
+  <div class="neurosim-snippet snippet-help-motor">
+    Bars indicate power in each muscle group.
+    Numbers from 0 to 5 are MRC grading scores.
+  </div> 
+  <div class="neurosim-snippet snippet-help-reflexes">
+    This displays the patient's reflexes.
+    + indicates just present.
+    ++++ indicates pathologically brisk reflexes.
+  </div> 
+  <div class="neurosim-snippet snippet-help-dermatomes">
+    Select a sensory modality to test 
+    - pinprick, cotton wool or vibration.
+    Click to test sensation in a body region.
+    Black dots indicate veridical perception;
+    Green indicates lack of sensation.
+  </div>  
+    
+  <!--  Stems for MCQ   -->
+  <div class="neurosim-snippet snippet-stem-description" data-stem="middle-cerebral-artery">
+    The middle cerebral artery supplies a portion of the frontal lobe and the lateral surface of the temporal and parietal lobes, including the primary motor and sensory areas of the face, throat, hand and arm, and in the dominant hemisphere, the areas for speech. The also supply part of the internal capsule and basal ganglia. The superior portion of the parietal lobe is supplied the anterior cerebral artery. The inferior portion of the temporal lobe is supplied by the posterior cerebral artery.
+  </div>  
+  <div class="neurosim-snippet snippet-stem-description" data-stem="anterior-choroidal-artery">
+    The anterior choroidal artery supplies structures in the telencephalon, diencephalon, and mesencephalon. Areas include the optic chiasm and optic tract, the internal capsule, the lateral geniculate body and the globus pallidus. The posterior limb of the internal capsule is also supplied by lenticulostriate arteries.
+  </div>
+  <div class="neurosim-snippet snippet-stem-description" data-stem="anterior-cerebral-artery">
+    The anterior cerebral artery supplies the medial surface and the upper border of the frontal lobe and superior medial parietal lobes. It also supplies the front four–fifths of the corpus callosum. In addition, it supplies the anterior limb of the internal capsule, a portion of the caudate nucleus, and also the anterior globus pallidus. The anterior communicating artery connects the left and right anterior cerebral arteries.
+  </div>
+  <div class="neurosim-snippet snippet-stem-description" data-stem="internal-cerebral-vein">
+    This is responsible for venous drainage of the deep parts of the hemisphere and does not supply blood to a specific area.
+  </div>
+  <div class="neurosim-snippet snippet-stem-description" data-stem="lenticulostriate-artery">
+    The lenticulostriate arteries are end arteries that arise from the middle cerebral artery (MCA). They are small perforating arteries supplying blood to part of the basal ganglia and posterior limb of the internal capsule.
+  </div>
+  <div class="neurosim-snippet snippet-stem-description" data-stem="thalamogeniculate-artery">
+    This is a branch of the posterior cerebral artery. It supplies the medial and lateral geniculate nucleus and also part of the thalamus.
+  </div>
+  <div class="neurosim-snippet snippet-stem-description" data-stem="posterior-inferior-cerebellar-artery">
+    This is one of the three main arteries supplying the cerebellum. It also supplies the posterolateral part of the medulla and the choroid plexus of the fourth ventricle.
+  </div>
+  <div class="neurosim-snippet snippet-stem-description" data-stem="anterior-inferior-cerebellar-artery">
+    This is one of the three main arteries to the cerebellum, supplying the anteroinferior surface. It also supplies the flocculus, middle cerebellar peduncle and in addition the inferolateral portion of the pons.
+  </div>
+  <div class="neurosim-snippet snippet-stem-description" data-stem="superior-cerebellar-artery">
+    This is one of the three main arteries supplying the cerebellum. It supplies the superior half of the cerebellum and parts of the midbrain.
+  </div>
+  <div class="neurosim-snippet snippet-stem-description" data-stem="posterior-communicating-artery">   
+    This artery connects the internal carotid artery (ICA) prior to the terminal bifurcation of the ICA into the anterior cerebral artery and middle cerebral artery and the posterior cerebral artery.
+  </div>
+  <div class="neurosim-snippet snippet-stem-description" data-stem="posterior-cerebral-artery">   
+    This supplies the occipital lobe and inferior medial temporal lobe. It also has thalamogeniculate branches supplying the thalamus, and callosal branch supplying the splenium (posterior part of corpus callosum).
+  </div>
+  <div class="neurosim-snippet snippet-stem-description" data-stem="ophthalmic-artery">     
+    This is a branch of the internal carotid artery. It supplies the orbit in addition to some structures in the nose, face and meninges.
+  </div>
+  <div class="neurosim-snippet snippet-stem-description" data-stem="basilar-artery">         
+    This supplies the pons and superior and inferior aspects of the cerebellum.
+  </div>
+  <div class="neurosim-snippet snippet-stem-description" data-stem="huntingtons-disease">         
+    Huntington's is a genetic neurodegenerative disease that affects the basal ganglia. It is characterised by mood disturbance, impulsivity, chorea and dementia.
+  </div>
+
+  
+  <div class="neurosim-snippet snippet-stem-description" data-stem="hypodensity-of-the-caudate-nucleus">         
+    Focal caudate hypodensity occurs with lacunar infarcts. This form of cerebrovascular disease is often related to hypertension. They rarely affect eye movements.
+  </div>
+  <div class="neurosim-snippet snippet-stem-description" data-stem="subarachnoid-blood-in-the-third-ventricle">         
+    Hyperdensities in the ventricles on CT are often benign calcification of the choroid plexus. Blood is usually seen pooling toward the bottom of the ventricle, and is less bright than bone.
+    <div class="neurosim-brainscan"><img  src="resources/ct-axial-mid-subarachnoid.png"></p></div>
+
+  </div>
+  <div class="neurosim-snippet snippet-stem-description" data-stem="prefrontal-cortex-ischaemia">         
+    Prefrontal infarcts can present with acute confusion, dysphasia, focal weakness. They can cause ipsilateral gaze deviation, but not internuclear ophthalmoplegia.
+  </div>
+  <div class="neurosim-snippet snippet-stem-description" data-stem="lesions-in-the-dorsomedial-thalamus">         
+    There are focal hypodensities bilaterally in the thalamus.
+  </div>
+  <div class="neurosim-snippet snippet-stem-description" data-stem="subdural-haematoma">         
+    Subdurals are a common cause of fluctuating confusion. They appear as a rim inside the skull, which is dense (white) in the acute phase, and low density (grey) in the chronic phase.
+    <div class="neurosim-brainscan"><img src="resources/ct-axial-mid-subdural-acute.png"></div>s
+  </div>
+  <div class="neurosim-snippet snippet-stem-description" data-stem="acute-alcohol-poisoning">         
+    Alcohol can cause vestibular dysfunction and nystagmus but eye movements would remain conjugate.
+  </div>
+  <div class="neurosim-snippet snippet-stem-description" data-stem="b12-deficiency">         
+    B12 deficiency causes dorsal column sensory loss and spastic paraparesis. 
+  </div>
+  <div class="neurosim-snippet snippet-stem-description" data-stem="meningo-encephalitis">         
+    Meningeal involvement can cause cranial nerve palsies, but the patient would be meningitic and febrile.
+    A lumbar puncture can be performed to rule this out.
+  </div>
+  <div class="neurosim-snippet snippet-stem-description" data-stem="wernickes-encephalopathy">         
+    Wernicke's can cause brainstem ophthalmoplegia, anterograde amnesia and confabulation.
+  </div>
+
+    
+  <!--
+       Credits...
+  -->  
+    
+  <div class="neurosim-snippet snippet-credits">
+    <div class="credits">
+    <h2>NeuroSim</h2>
+    Neuroanatomy and clinical neurology simulator
+    <ul>
+      <li>
+        Concept and Programming: 
+        <a href="http://www.smanohar.com" target="_blank"><b>Sanjay G Manohar</b></a>
+        University of Oxford, 2010-2021
+      </li>
+      <li>
+        Funding
+        <ul>
+           <li> University of Oxford IT Innovations seed grant (2015-2016) </li>
+           <li> Nuffield Oxford Hospitals Fund (2019-2021) </li>
+        </ul>
+      </li>
+    </ul>
+    <h2>Team</h2>
+    <h3> Image labelling and Design </h3>
+    <ul><li>
+      Chevonne van Rhee, University of Oxford
+      </li><li>
+      Holly Hendron, University of Oxford
+    </li><li>
+      Govind Randhawa, University of Oxford
+    </li>
+    </ul>
+
+    <h3> Clinical Supervision </h3>
+    <ul>
+      <li>
+        <a href="http://www.ndcn.ox.ac.uk/team/gabriele-de-luca" target="_blank"> Dr Gabe De Luca </a> (Oxford Neurology Clinical Course Lead)
+      </li><li>
+        <a href="https://www.psych.ox.ac.uk/team/kate-saunders" target="_blank"> Dr Kate Saunders </a> (Oxford Psychiatry Clinical Course Lead)
+      </li><li>
+        Dr Gina Hadley 
+      </li><li>
+        Dr Iain Grant 
+     </li>
+    </ul>
+
+    <h3> Testing, data handling and deployment </h3>
+    <ul>
+      <li>
+        <a href="http://www.ndcn.ox.ac.uk/team/kinan-muhammed" target="_blank">Dr Kinan Muhammed</a>, Imperial College Hospitals
+      </li>
+      <li>
+        Jon Mason, <a href="https://www.medsci.ox.ac.uk/msdlt" target="_blank">Medical Sciences Division Learning Technologies </a>
+      </li>
+      <li>
+        Dr Xavier Laurent, University of Oxford
+      </li>
+    </ul>
+
+    <h2>Resources</h2>
+    <h3> Cryo slices </h3>
+      Courtesy of the <a href="https://www.nlm.nih.gov/research/visible/visible_human.html" target="_blank">Visible Human Project</a>
+      with permission from the National Library of Medicine
+    
+    <h3> Cell and fibre-stained histology </h3>
+      Courtesy of the <a href= "http://msu.edu/~brains/" target="_blank">Michigan State University Brian Bank </a>
+      Ref:  Sudheimer, Winn, Kerndt, Shoaps, Davis, Fobbs and Johnson
+    
+    <h3>Drawings</h3>
+      with permission from the <a href="https://www.amazon.co.uk/Oxford-Textbook-Functional-Anatomy-Musculo-skeletal/dp/019262816X" target="_blank">Oxford Textboook of Functional Anatomy</a>
+      MacKinnon and Morris 2005, with permission of <a href="https://www.dpag.ox.ac.uk/team/john-morris" target="_blank">Prof John Morris</a>, University of Oxford
+    
+    <h3> Specimen pots, spinal slides and pathology </h3>
+      Taken from <a href="https://history.medsci.ox.ac.uk/slides/">Sherrington and LeGros Clark Collections</a>
+      curated by Oxford University Medical Sciences Library    
+    
+    </div>
+  </div>
+    
+    
+  <div class="neurosim-snippet snippet-send-feedback">
+    <h2> Send feedback</h2>
+    <form action="javascript:NeuroSim.submit_feedback();"> 
+      <input type="text" class="feedback-comment" placeholder="Enter comments"> 
+      <input type="submit" value="Send">
+      <div class="feedback-result"></div>
+    </form>
+    
+  </div>  
+    
+  
+  <div class="neurosim-snippet snippet-mmse">
+        <div class="neurosim-exam-mmse">
+
+          <ul class="neurosim-history-selector" data-history="
+            mmse-orientation-year, mmse-orientation-season, mmse-orientation-month, mmse-orientation-date, mmse-orientation-time, 
+            mmse-registration, mmse-serial-sevens, mmse-recall"></ul>
+          <table><tr class="neurosim-mmse-naming-models"><td>
+              <img src="resources/mmse-name-pen-model.png">
+            </td><td>
+              <img src="resources/mmse-name-watch-model.png">
+            </td></tr>
+          </table>
+              
+          <ul class="neurosim-history-selector" data-history="
+            mmse-naming, mmse-repeating, mmse-3-stage-command"></ul>
+
+          <div class="neurosim-exam-mmse-instruction-text">close your eyes</div>
+
+          <ul class="neurosim-history-selector" data-history="
+            mmse-written-command,
+            mmse-writing, mmse-copying
+           ">
+
+          </ul>  
+
+
+          <table><tr><td>
+            <img src="resources/mmse-pentagons-model.png">
+          </td><td>
+            <div class="neurosim-exam-imageswapper" data-question="mmse-pentagons"></div>
+          </td></tr>
+          <tr><td>
+            <img src="resources/spiral-model.png">
+          </td><td>
+            <div class="neurosim-exam-imageswapper" data-question="copy-spiral"></div>
+          </td></tr>
+          <tr><td>
+            <img src="resources/mmse-clock-model.png">
+          </td><td>
+            <div class="neurosim-exam-imageswapper" data-question="mmse-clock"></div>
+          </td></tr>
+        </table>
+        </div>
+
+  </div>  
+
+
+  <!-- 
+
+          <img src="resources/mmse-DLB-hexagons.png" alt="mmse-DLB-hexagons">
+          <img src="resources/mmse-AD-hexagons.png" alt="mmse-AD-hexagons">
+          <img src="resources/mmse-normal-spiral.png" alt="mmse-normal-spiral">
+          <img src="resources/mmse-PD-spiral.png" alt="mmse-PD-spiral">
+          <img src="resources/mmse-micrographia-PD.png" alt="mmse-micrographia-PD">
+          <img src="resources/mmse-name-pen.png" alt="mmse-name-pen">
+          <img src="resources/mmse-name-watch.png" alt="mmse-name-watch">
+
+  -->
+
+
+
+
+
+<div class="neurosim-snippet snippet-observations">
+  <div class="neurosim-exam-observations">
+    <h4>
+      <a href="#">Appearance</a>
+    </h4>
+        <ul><li>
+        The patient is well-dressed
+       </li><li>
+        They have a normal body habitus
+       </li><li>
+        The patient looks physically healthy
+        </li></ul>                    
+      <h4>
+        <a href="#">Behaviour</a>
+      </h4>
+        <ul><li>
+          The patient engages well
+        </li><li>
+          They make good eye contact
+        </li><li>
+          The patient behaves appropriately
+        </li></ul>
+      <h4>
+        <a href="#">Speech</a>
+      </h4>
+      <ul><li>
+        The rate and quality of speech is normal
+      </li><li>
+        Tone and volume are normal
+      </li><li>
+        The speech is fluent
+      </li></ul>
+      <h4>
+        <a href="#">Affect</a>
+      </h4>
+      <ul><li>
+        The patient has appropriate facial expressions
+      </li><li>
+        Their affect is stable and congruent with the conversation
+      </li><li>
+        The variability of affect is normal 
+      </li></ul>
+      <h4>
+        <a href="#">Thought</a>
+      </h4>
+      <ul><li>
+        The patient's thoughts were normal speed
+      </li><li>
+        The flow of thought was normal
+      </li></ul>
+    </div>
+  </div>
+
+</div>
+</body> 
+</html>
+

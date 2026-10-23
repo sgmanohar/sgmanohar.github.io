@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="15.189369mm"
+   height="16.608248mm"
+   viewBox="0 0 53.8206 58.848122"
+   id="svg5323"
+   version="1.1"
+   >
+  <defs
+     id="defs5325" />
+  <g
+     id="layer1"
+     transform="translate(-223.67778,-284.94968)">
+    <path
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#ececec;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       d="m 266.03629,329.975 c -2.26527,0 -5.24315,-4.1459 -5.24315,-4.1459 0,0 2.90481,-0.045 5.24315,-0.045 2.33835,0 4.66727,-1.3488 4.66727,-1.3488 0.14606,-1.1759 0.15129,-2.0269 -0.058,-3.3364 0,0 5.60282,0.6633 5.60282,-2.4644 0,-3.1277 -6.12547,-6.0816 -8.1396,-14.227 -2.87277,-11.88781 -9.04931,-18.20782 -19.73024,-18.20782 -12.9515,0 -23.45076,12.61396 -23.45076,28.17402 0,15.5601 10.49926,28.1741 23.45076,28.1741 9.57832,0 17.15448,-4.6487 20.38781,-13.5662 0,0 -0.46479,0.9935 -2.73007,0.9935 z"
+       id="path5574"
+/>
+    <path
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#ececec;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       d="m 253.70126,306.3692 c 0,0 2.2171,-2.1303 4.70647,-2.1303 2.48937,0 4.46192,2.1303 4.46192,2.1303 0,0 -2.05034,2.0607 -4.46192,2.0607 -2.41158,0 -4.70647,-2.0607 -4.70647,-2.0607 z"
+       id="path5537"
+/>
+  </g>
+</svg>

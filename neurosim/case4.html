@@ -1,0 +1,281 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <!--
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>    -->
+    
+    
+    <script src="jquery-1.12.1.min.js"></script>
+    <script src="jquery-ui-1.12.0/jquery-ui.min.js"></script>
+    <script src="svg-pan-zoom.js"></script>
+    <script src="neurosim.js"></script>
+    <script src="jquery-svg/jquery.svg.min.js"></script>
+    <script src="hammer.min.js"></script>
+    
+    <!-- Bootstrap bits -->
+    <script src="tether/js/tether.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="tether/css/tether.min.css">
+    <script src="bootbox.min.js"></script>
+    
+    <link rel="stylesheet" href="jquery-ui-1.12.0/jquery-ui.css">
+    <link rel="stylesheet" href="neurosim.css">
+    
+    <!--
+    <script src="slick-1.6.0/slick/slick.min.js"></script>
+    <link rel="stylesheet" href="slick-1.6.0/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="slick-1.6.0/slick/slick-theme.css"/>
+    -->    
+
+    <!-- Three js for matrices and 3D visualisation -->
+    <script src="three.min.js"></script>
+    <script src="controls/TrackballControls.js"></script>
+    <script src="three_animate.js"></script>
+
+    
+  </head>
+    
+<body >
+
+  <div class="col-lg-8 col-lg-offset-2">
+
+  <!--  Case name can be specified in <h1 data-case=''>
+        and is looked up from cases.json
+  -->  
+  <h1 data-case='medullary-spinothalamic-tract-right:1;
+                 vestibular-nuclei-right:1;
+                 trigeminal-nucleus-right:1;
+                 middle-cerebellar-peduncle-right:1;
+                 inferior-cerebellar-peduncle-right:1;'
+      data-casename="stroke-04-right-pica"
+      >
+    Case 4: Mrs Wright
+  </h1>
+  
+  <ol class="exam-section" >
+    <li>
+      <h3> <a href="#">History</a></h3>
+      <div class='neurosim-history'>
+        <ul>
+          <li>
+            An 82-year-old woman woke up and described the room ‘spinning’. She was too unsteady to stand and had vomited twice. 
+          </li><li>
+            On examination at the hospital, she was ataxic, dysarthric, and had a tendency to lean to the right.
+          </li><li>
+            Pure horizontal beating nystagmus on right lateral gaze was noted. Sensation to temperature and pin prick were reduced on the left upper limb and right side of the face.
+          
+          </li>
+        </ul>
+        <ul class="neurosim-history-free neurosim-history-all">
+        </ul>
+      </div>
+    </li>
+    
+  
+<!--   
+   IMAGE-SLICE element:
+   Useful Classes: 
+      image-slice              : required to create the svg from data-slice attribute
+      image-allow-hover        : mouse causes regions to light up (see css .image-selected-region)
+      image-allow-panzoom      : add zoom control, drag to pan, wheel to zoom
+      image-show-selection     : selected region lights up
+      image-show-image         : without this, hides the background svg image
+      image-show-regions       : all regions visible and overalaid 
+      image-show-lesions       : lesioned regions shown in colour
+      image-show-nonfunctional : without this, regions that are not in the model are hidden
+      image-show-tooltips      : mouse movement shows name of region in bubble
+      image-show-3dcursor      : vert/horz lines at mouse cursor, and MNI values in corner
+      neurosim-resizeable      : add drag handles at bottom/right 
+      image-nav-goto-selection : when selection changes, try find a slice in current series.
+      image-nav-draw-line      : when a slice is changed in another image, show the line for that slice here
+      image-nav-draw-alllines  : when a series is changed in another image, show all lines for that series here
+-->
+  
+
+  
+
+ 
+  <li>
+    <h3><a href="#"> Visual acuity </a></h3>
+    <div class="neurosim-exam-snellen"> </div>  
+  </li>
+   
+
+
+  <li>
+    <h3><a href="#"> Visual fields </a></h3>
+    <div class="neurosim-exam neurosim-exam-visualfields image-show-tooltips image-show-regions 
+            image-show-lesions image-click-to-test"> </div>  
+  </li>
+  <li>
+    <h3><a href="#"> Face examination </a></h3>
+    <div class="neurosim-exam neurosim-exam-face"></div>
+  </li>
+  <li >
+    <h3><a href="#"> Motor examination </a></h3>
+    <div class="neurosim-exam neurosim-exam-motor image-allow-hover image-show-regions image-show-tooltips image-show-selection" data-region="all"></div>
+  </li>
+  <li >
+    <h3><a href="#"> Reflexes </a></h3>
+    <div class="neurosim-exam neurosim-exam-reflexes image-allow-hover image-show-regions image-show-tooltips image-show-selection" data-region="all"></div>
+  </li>
+  <li>
+    <h3><a href="#"> Dermatomes </a></h3>
+    <div class="neurosim-exam neurosim-exam-dermatomes image-allow-hover image-show-regions image-show-tooltips image-show-selection  image-show-nonfunctional image-allow-panzoom  
+                image-click-to-test"></div>
+  </li>
+  
+  
+  
+<!--  3D SECTION! ->
+    <div class="viewport3d"></div>
+
+  <div class="exam-section">
+    <h3><a href="#"> Body </a></h3>
+  </div>    
+
+  
+  <div class="exam-section">
+    <h3><a href="#"> Body controls </a></h3>
+    <div>
+      <ul class="bonemenu"></ul>  
+      <ul class="axismenu">
+        <li>x</li><li>y</li><li>z</li>
+      </ul>
+      <ul class="posturemenu"></ul>
+    </div>
+  </div>
+  
+
+
+<!-- END 3D SECTION -->
+
+
+  
+    
+  <li>
+    <h3> <a href="#"> Location </a></h3>
+    <div>
+      <p>
+        Where is the lesion?
+       </p>
+      <ul class="neurosim-pick-list stophere">
+        <li data-action="quiz-correct">   Right lateral medulla oblongata </li>
+        <li data-action="quiz-wrong"  >   Left lateral medulla oblongata </li>
+        <li data-action="quiz-wrong"  >   Right dorsolateral pons </li>
+        <li data-action="quiz-wrong"  >   Left dorsolateral pons </li>
+        <li data-action="quiz-wrong"  >   Right superior cerebellar peduncle </li>
+        <li data-action="quiz-wrong"  >   Left superior cerebellar peduncle </li>
+      </ul>
+    </div>
+  </li>
+
+  <li>
+    <h3> <a href="#"> Vessel </a></h3>
+    <div>
+      <p>
+        What is the blood supply?
+      </p>
+      <ul class="neurosim-pick-list stophere">
+        <li data-action="quiz-wrong"  > Left posterior inferior cerebellar artery </li>
+        <li data-action="quiz-correct"> Right posterior inferior cerebellar artery  </li>
+        <li data-action="quiz-wrong"  > Left anterior inferior cerebellar artery </li>
+        <li data-action="quiz-wrong"  > Right anterior inferior cerebellar artery </li>
+        <li data-action="quiz-wrong"  > Left superior cerebellar artery </li>
+        <li data-action="quiz-wrong"  > Right superior cerebellar artery </li>
+
+      </ul>
+    </div>
+  </li>
+  
+  <li>
+    <h3> <a href="#"> Differential </a></h3>
+    <div>
+      <p>
+
+        Which of the following conditions should be included in your differential diagnosis of vertigo?
+      </p>
+      <ul class="neurosim-pick-list stophere multiple">
+        <li data-action="quiz-correct"> Labyrinthitis </li>
+        <li data-action="quiz-correct"> Vestibular neuronitis  </li>
+        <li data-action="quiz-wrong"  > Posterior cerebral artery stroke </li>
+        <li data-action="quiz-wrong"  > Intraventricular haemorrhage </li>
+        <li data-action="quiz-correct"> Benign paroxysmal positional vertigo (BPPV)  </li>
+      </ul>
+    </div>
+  </li>
+
+  <li>
+    <h3> <a href="#"> Investigation </a></h3>
+    <div>
+      <p>
+        Is a CT or MRI scan more sensitive for posterior fossa pathology?
+      </p>
+      <ul class="neurosim-pick-list stophere neurosim-reveal-all-lesions">
+        <li data-action="quiz-wrong"  > CT </li>
+        <li data-action="quiz-correct"> MRI  </li>
+      </ul>
+    </div>
+  </li>
+
+    
+  <li>
+  <h3> <a href="#">  Imaging  </a></h3>
+  <div>
+      
+          <div class="image-slice image-allow-hover image-show-selection
+                      image-show-lesions image-allow-panzoom 
+                      image-show-nonfunctional image-show-tooltips
+                      image-show-image image-nav-goto-selection  neurosim-resizeable" 
+               id="slice1" data-slice="slices/mri/t1/axi/t1_axi_050.svg"
+               data-options='{
+                 "foo":"bar"
+               }'>
+
+
+            <div class="image-svg" ></div>
+
+            <div class="neurosim-snippet" data-action="snippet-image-buttons">
+            </div>
+
+            <!-- <div class="neurosim-snippet" data-action="snippet-image-menu"></div> 
+            -->
+
+            <div class="image-buttons image-buttons-bottomleft">
+            <button type="button" class="btn " data-action="About this region">      
+              <span class="image-selection-name"></span>
+            </button>
+            </div>
+
+          </div>
+    </div>
+        
+    <div>
+      <div class="neurosim-popup-box modal fade" id="selection-info-box">
+        <div class="modal-dialog"><div class="modal-content">
+          <div class="neurosim-snippet" data-action="snippet-selection-info-list">
+          </div>
+          
+          <div class="ui-widget">
+            <label>Region:</label><input class="neurosim-region-completion neurosim-selection-input">
+          </div>
+          <div class="neurosim-lesion-slider"></div>
+
+        </div></div>
+      </div>
+    </div>
+  </li>
+
+</ol>
+
+  </div>
+  
+</body>
+</html>

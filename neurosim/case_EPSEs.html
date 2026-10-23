@@ -1,0 +1,180 @@
+<html>
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+            <meta content="utf-8" http-equiv="encoding">
+                
+                <!--
+                 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+                 <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+                 <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>    -->
+                
+                
+                <script src="jquery-1.12.1.min.js"></script>
+                <script src="jquery-ui-1.12.0/jquery-ui.min.js"></script>
+                <script src="svg-pan-zoom.js"></script>
+                <script src="neurosim.js"></script>
+                <script src="jquery-svg/jquery.svg.min.js"></script>
+                <script src="hammer.min.js"></script>
+                
+                <!-- Bootstrap bits -->
+                <script src="tether/js/tether.min.js"></script>
+                <script src="bootstrap/js/bootstrap.min.js"></script>
+                <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
+                    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+                        <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+                            <link rel="stylesheet" href="tether/css/tether.min.css">
+                                <script src="bootbox.min.js"></script>
+                                
+                                <link rel="stylesheet" href="jquery-ui-1.12.0/jquery-ui.css">
+                                    <link rel="stylesheet" href="neurosim.css">
+                                        
+                                        <!--
+                                         <script src="slick-1.6.0/slick/slick.min.js"></script>
+                                         <link rel="stylesheet" href="slick-1.6.0/slick/slick.css">
+                                         <link rel="stylesheet" type="text/css" href="slick-1.6.0/slick/slick-theme.css"/>
+                                         -->
+                                        
+                                        <!-- Three js for matrices and 3D visualisation -->
+                                        <script src="three.min.js"></script>
+                                        <script src="controls/TrackballControls.js"></script>
+                                        <script src="three_animate.js"></script>
+                                        
+                                        
+                                        </head>
+    
+    <body >
+        
+        <div class="neurosim-column col-lg-8 offset-lg-2">
+            
+            <!--  Case name can be specified in <h1 data-case=''>
+             and is looked up from cases.json
+             -->
+            <h1 data-case='Extra pyramidal side effects'
+                >
+                <script>  NeuroSim.USE_RANDOM_SEED=true;  </script>
+                Case 15: Mr Foster
+            </h1>
+            
+            <ol class="exam-section" >
+                <li>
+                    <h3> <a href="#">History</a></h3>
+                    <div class='neurosim-history'>
+                        <ul>
+                            <li>
+                                Yesterday, a 24-year old man with no prior medical history 
+                                was brought in by the police following reports of agressive behaviour to other members of the public.
+
+                                </li> <li>
+                                He attended the emergency department and was reported to be agitated and angry. 
+                                He calmed down with some IM haloperidol and was discharged.
+                                </li> <li>
+                                The following day, the patient re-attends, agitated again. 
+                                Today he is making bizarre facial expressions and contorting his head and neck into strange postures.
+                                He complains that he is being controlled against his will.
+                                </li> <li>
+                                His basic observations were stable, and his blood count and electrolytes have come back normal.
+                            </li>
+                        </ul>
+                        <ul class="neurosim-history-free neurosim-history-all">
+                        </ul>
+                    </div>
+                </li>
+
+
+                <li>
+                    <h3> <a href="#">Mental state examination</a></h3>
+                    <div class="neurosim-exam-observations"></div>
+                </li>
+                  
+
+                <li>
+                    <h3> <a href="#"> Diagnosis </a></h3>
+                    <div>
+                        <p>
+                        What is the probable diagnosis?
+                        </p>
+                        <ul class="neurosim-pick-list stophere">
+                            <li data-action="quiz-wrong">          Schizophrenia </li>
+                            <li data-action="quiz-wrong"  >  Parkinson's disease  </li>
+                            <li data-action="quiz-wrong"  >  Manic Episode </li>
+                            <li data-action="quiz-correct">   Extrapyramidal side effects </li>
+                            <li data-action="quiz-wrong"  >   Delerium </li>
+                            <li data-action="quiz-wrong"  >   Huntington's disease </li>
+                        </ul>
+                    </div>
+                </li>
+                
+                <li>
+                    <h3> <a href="#"> Management </a></h3>
+                    <div>
+                        <p>
+                        What is the first line treatment for acute dystonia?
+                        </p>
+                        <ul class="neurosim-pick-list stophere">
+                            <li data-action="quiz-correct">      Benztropine </li>
+                            <li data-action="quiz-wrong"  >   Lorazepam  </li>
+                            <li data-action="quiz-wrong"  >   Dantrolene </li>
+                            <li data-action="quiz-wrong"  >   Amlodipine  </li>
+                            <li data-action="quiz-wrong">   Amantidine  </li>
+                        </ul>
+                    </div>
+                </li>
+                
+                <li>
+                    <h3> <a href="#"> Drug side effects </a></h3>
+                    <div>
+                        <p>
+                        Which of the following anti-psychotic drugs is most likely to cause weight gain and hyperglycemia?
+                        </p>
+                        <ul class="neurosim-pick-list stophere">
+                            <li data-action="quiz-wrong"> Flupenthixol     </li>
+                            <li data-action="quiz-wrong"  >   Haloperidol  </li>
+                            <li data-action="quiz-wrong"  >   Chlorpromazine </li>
+                            <li data-action="quiz-correct"  >   Olanzapine   </li>
+                            <li data-action="quiz-wrong">   Promethazine  </li>
+                        </ul>
+                    </div>
+                </li>
+                
+                <li>
+                    <h3> <a href="#"> Drug side effects </a></h3>
+                    <div>
+                        <p>
+                        Two weeks after one of your patients was started on an anti-psychotic, they attend the Emergency Department unwell with a fever of 38 degrees and a neutrophil count of 0.3 x 10^9 / L. Which drug was this patient given?
+                        </p>
+                        <ul class="neurosim-pick-list stophere">
+                            <li data-action="quiz-wrong"> Olanzapine     </li>
+                            <li data-action="quiz-correct"  >   Clozapine  </li>
+                            <li data-action="quiz-wrong"  >   Asenzapine </li>
+                            <li data-action="quiz-wrong"  >   Quetiapine   </li>
+                            <li data-action="quiz-wrong">   Haloperidol  </li>
+                        </ul>
+                    </div>
+                </li>
+                
+                <li>
+                    <h3> <a href="#"> Drug side effects </a></h3>
+                    <div>
+                        <p>
+                        Second generation antipsychotic drugs can cause which cardiac side effect?
+                        </p>
+                        <ul class="neurosim-pick-list stophere">
+                            <li data-action="quiz-wrong"> PR Depression     </li>
+                            <li data-action="quiz-wrong"  >   T-Wave Inversion  </li>
+                            <li data-action="quiz-wrong"  >   Reduced Ejection Fraction </li>
+                            <li data-action="quiz-wrong"  >   Bradycardia   </li>
+                            <li data-action="quiz-correct">   Prolonged QT Interval  </li>
+                        </ul>
+                    </div>
+                </li>
+                
+                
+                
+
+
+            </ol>
+            
+        </div>
+        
+    </body>
+</html>

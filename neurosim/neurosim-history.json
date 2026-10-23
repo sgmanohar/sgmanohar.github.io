@@ -1,0 +1,2776 @@
+{
+  "comment": [
+    "*  neurosim-history.json ",
+    "*  What to say, and when...",
+    "* test if there is an intact connection in the model",
+    "*      'connection':[ from, to ]",
+    "* If the connection (i.e. 1-testConnection)",
+    "* falls below the given value, the message is shown.",
+    "* Keywords are included if we ever get to implement voice recognition!",
+    "* currently as regexps, to be used as '/kw/.test(speech_input)'.",
+    "  Neutral answers - can be a single string or a list; used when there is no",
+    " problem in any domain, for a question that was understood"
+  ],
+  "history": {
+    "greeting":{
+      "question":"Hello.",
+      "keywords":["^hi$",  "^hi ", "hello"],
+      "answer":[["Hello doctor, thanks for seeing me."]]
+    },
+    "greeting-well":{
+      "question":"How are you?",
+      "keywords":["how are you","are you (well|ok)","how.*things"],
+      "answer":[
+        [ "I'm ",["fine","well","good"], "thank you,",["doctor","how are you?"] ]
+      ]
+    },
+    "basic-vision": {
+      "keywords": [
+        "vision",
+        "eyesight",
+        "able to see",
+        "can you see",
+        "with seeing"
+      ],
+      "question": "How is your eyesight?",
+      "answer": [
+        {
+          "connection": [
+            "retina-left",
+            "v1"
+          ],
+          "0.2": "I can't see anything  through my left eye",
+          "0.5": "I can't see much through my left eye",
+          "0.9": "My vision is blurred in my left eye"
+        },
+        {
+          "connection": [
+            "retina-right",
+            "v1"
+          ],
+          "0.2": "I can't see anything  through my right eye",
+          "0.5": "I can't see much through my right eye",
+          "0.9": "My vision is blurred in my right eye"
+        },
+        {
+          "connection": [
+            [
+              "lateral-gaze-centre-left",
+              "lateral-rectus-left"
+            ],
+            [
+              "lateral-gaze-centre-right",
+              "lateral-rectus-right"
+            ],
+            [
+              "lateral-gaze-centre-left",
+              "medial-rectus-right"
+            ],
+            [
+              "lateral-gaze-centre-right",
+              "medial-rectus-left"
+            ],
+            [
+              "superior-colliculus",
+              "inferior-rectus-left"
+            ],
+            [
+              "superior-colliculus",
+              "superior-rectus-left"
+            ],
+            [
+              "superior-colliculus",
+              "inferior-rectus-right"
+            ],
+            [
+              "superior-colliculus",
+              "superior-rectus-right"
+            ]
+          ],
+          "0.8": "I can see double",
+          "0.9": "My vision is slightly blurred, but gets better if I close one eye"
+        }
+      ],
+      "neutral_answer": "My vision seems fine"
+    },
+    "colour vision": {
+      "question": "Can you see in colour?",
+      "keywords": [
+        "color",
+        "green"
+      ],
+      "answer": [
+        {
+          "connection": [
+            "retina-left-fovea",
+            "v1"
+          ],
+          "0.8": "Colours are not as bright in my left eye"
+        },
+        {
+          "connection": [
+            "retina-right-fovea",
+            "v1"
+          ],
+          "0.8": "Colours are not as bright in my right eye"
+        }
+      ],
+      "neutral_answer": "I can see colour OK"
+    },
+    "smell": {
+      "question": "How is your sense of smell?",
+      "keywords": [
+        "smell",
+        "taste"
+      ],
+      "answer": [
+        {
+          "connection": [
+            [
+              "olfactory-bulb-left",
+              "entorhinal-cortex-left"
+            ],
+            [
+              "olfactory-bulb-right",
+              "entorhinal-cortex-right"
+            ]
+          ],
+          "0.5": "I can't smell very well"
+        }
+      ],
+      "neutral_answer": "I seem to be able to smell and taste OK"
+    },
+    "facial sensation": {
+      "question": "Is the sensation normal over your face?",
+      "keywords": [
+        "feeling .* face",
+        "sensation .* face"
+      ],
+      "answer": [
+        {
+          "connection": [
+            "ophthalmic-touch-receptor-left",
+            "primary-sensory-cortex"
+          ],
+          "0.8": "I'm numb around the left eye"
+        },
+        {
+          "connection": [
+            "ophththalmic-touch-receptor-right",
+            "primary-sensory-cortex"
+          ],
+          "0.8": "I'm numb around the right eye"
+        },
+        {
+          "connection": [
+            "maxillary-touch-receptor-left",
+            "primary-sensory-cortex"
+          ],
+          "0.8": "I'm numb over the left cheek"
+        },
+        {
+          "connection": [
+            "maxillary-touch-receptor-right",
+            "primary-sensory-cortex"
+          ],
+          "0.8": "I'm numb over the right cheek"
+        },
+        {
+          "connection": [
+            "mandibular-touch-receptor-left",
+            "primary-sensory-cortex"
+          ],
+          "0.8": "The left side of my tongue is numb"
+        },
+        {
+          "connection": [
+            "mandibular-touch-receptor-right",
+            "primary-sensory-cortex"
+          ],
+          "0.8": "The right side of my tongue is numb"
+        },
+        {
+          "connection": [
+            "primary-motor-cortex",
+            "lower-facial-muscles-left"
+          ],
+          "0.6": "The left side of my face feels odd",
+          "0.3": "The left side of my face feels weak. I think I look odd in the mirror."
+        }
+      ],
+      "neutral_answer": "My face feels normal"
+    },
+    "hearing": {
+      "question": "How is your hearing?",
+      "keywords": [
+        "hearing",
+        "deaf.*"
+      ],
+      "answer": [
+        {
+          "connection": [
+            [
+              "cochlea-left",
+              "auditory-cortex-left"
+            ],
+            [
+              "cochlea-left",
+              "auditory-cortex-right"
+            ]
+          ],
+          "0.5": "I'm a little deaf in the left ear"
+        },
+        {
+          "connection": [
+            [
+              "cochlea-right",
+              "auditory-cortex-left"
+            ],
+            [
+              "cochlea-right",
+              "auditory-cortex-right"
+            ]
+          ],
+          "0.5": "I'm a little deaf in the right ear"
+        }
+      ],
+      "neutral_answer": [
+        "My sense of hearing seems normal",
+        "What did you say? I'm joking! I think I can hear just fine"
+      ]
+    },
+    "balance": {
+      "question": "Any problems with your balance?",
+      "keywords": [
+        "unstead.*",
+        "balance",
+        "wobbly",
+        "on your feet",
+        "dizz",
+        "gidd",
+        "fall"
+      ],
+      "answer": [
+        {
+          "connection": [
+            [
+              "vestibular-organ-left",
+              "lateral-gaze-centre-left"
+            ],
+            [
+              "vestibular-organ-right",
+              "lateral-gaze-centre-right"
+            ]
+          ],
+          "0.5": "I'm really unsteady and the world is spinning",
+          "0.8": "I'm a little giddy"
+        },
+        {
+          "connection": [
+            [
+              "spinocerebellar-tract-left",
+              "cerebellar-anterior-lobe-left"
+            ],
+            [
+              "spinocerebellar-tract-right",
+              "cerebellar-anterior-lobe-right"
+            ],
+            [
+              "primary-motor-cortex",
+              "quadriceps-left"
+            ],
+            [
+              "primary-motor-cortex",
+              "quadriceps-right"
+            ],
+            [
+              "primary-motor-cortex",
+              "gastrocnemius-left"
+            ],
+            [
+              "primary-motor-cortex",
+              "gastrocnemius-right"
+            ]
+          ],
+          "0.1": "I can't really walk - my legs aren't working",
+          "0.6": "I'm very unsteady on my feet",
+          "0.8": "My walking is a bit unsteady"
+        },
+        {
+          "connection": [
+            
+            [
+              "lateral-gaze-centre-left",
+              "lateral-rectus-left"
+            ],
+            [
+              "lateral-gaze-centre-right",
+              "lateral-rectus-right"
+            ],
+            [
+              "lateral-gaze-centre-left",
+              "medial-rectus-right"
+            ],
+            [
+              "lateral-gaze-centre-right",
+              "medial-rectus-left"
+            ],
+            [
+              "superior-colliculus",
+              "inferior-rectus-left"
+            ],
+            [
+              "superior-colliculus",
+              "superior-rectus-left"
+            ],
+            [
+              "superior-colliculus",
+              "inferior-rectus-right"
+            ],
+            [
+              "superior-colliculus",
+              "superior-rectus-right"
+            ],
+     
+            [
+              "spinocerebellar-tract-left",
+              "cerebellar-anterior-lobe-left"
+            ],
+            [
+              "spinocerebellar-tract-right",
+              "cerebellar-anterior-lobe-right"
+            ]
+
+          ],
+          "0.8": "I'm not completely steady on my feet",
+          "0.5": "I'm quite unsteady",
+          "0.1": "I can't really walk, I'm so off balance"
+        },
+        {
+          "connection": [
+            [  "substantia-nigra-left",  "caudate-nucleus-left"],
+            
+            [  "substantia-nigra-right",  "caudate-nucleus-right"]
+          ],
+          "0.8": "I'm a bit unsteady",
+          "0.5": "I really struggle to keep balance",
+          "0.2": "I fall over multiple times a day"
+        }
+      ],
+      "neutral_answer": "My balance seems completely normal."
+    },
+    "tremor": {
+      "question": "Do you have a tremor?",
+      "keywords": [
+        "tremor",
+        "shake",
+        "twitch"
+      ],
+      "answer": [
+        {
+          "connection": [
+            [
+              "substantia-nigra",
+              "caudate-nucleus"
+            ]
+          ],
+          "0.8": "My hands twitch a little bit when I'm at rest",
+          "0.5": "My arms shake a bit, even when I'm at rest",
+          "0.2": "My arms shake uncontrollably"
+        }
+      ],
+      "neutral_answer": "I don't have a tremor"
+    },
+    "bradykinesia": {
+      "question": "Are your movements slow?",
+      "keywords": [
+        "movement",
+        "slow"
+      ],
+      "answer": [
+        {
+          "connection": [
+            [
+              "substantia-nigra",
+              "caudate-nucleus-left"
+            ]
+          ],
+          "0.8": "I'm a bit stiffer when walking than I was",
+          "0.5": "I do take a little time to get started when I'm walking",
+          "0.2": "I've really slowed up, and sometimes I freeze up while I'm walking"
+        }
+      ],
+      "neutral_answer": "I feel as fast as I can expect for my age"
+    },
+    "rigidity": {
+      "question": "Are your muscles rigid?",
+      "keywords": [
+        "rigid",
+        "stiff",
+        "tight.+muscle",
+        "stiff.+muscle"
+      ],
+      "answer": [
+        {
+          "connection": [
+            [
+              "substantia-nigra",
+              "striatum"
+            ]
+          ],
+          "0.8": "My arms often feel stiff",
+          "0.5": "My arms are often really stiff",
+          "0.2": "My limbs are often so stiff that it makes it diffuclt to move normally"
+        }
+      ],
+      "neutral_answer": "My limbs are not rigid"
+    },
+
+    "nausea": {
+      "question": "Do you feel sick?",
+      "keywords": [
+        "nausea",
+        "feel.* sick",
+        "sickness",
+        "vomit"
+      ],
+      "answer": [
+        {
+          "connection": [
+            [
+              "lateral-gaze-centre-left",
+              "lateral-rectus-left"
+            ],
+            [
+              "lateral-gaze-centre-right",
+              "lateral-rectus-right"
+            ],
+            [
+              "lateral-gaze-centre-left",
+              "medial-rectus-right"
+            ],
+            [
+              "lateral-gaze-centre-right",
+              "medial-rectus-left"
+            ],
+            [
+              "superior-colliculus",
+              "inferior-rectus-left"
+            ],
+            [
+              "superior-colliculus",
+              "superior-rectus-left"
+            ],
+            [
+              "superior-colliculus",
+              "inferior-rectus-right"
+            ],
+            [
+              "superior-colliculus",
+              "superior-rectus-right"
+            ],
+            [
+              "superior-colliculus",
+              "inferior-oblique-left"
+            ],
+            [
+              "superior-colliculus",
+              "superior-oblique-left"
+            ],
+            [
+              "superior-colliculus",
+              "inferior-oblique-right"
+            ],
+            [
+              "superior-colliculus",
+              "superior-oblique-right"
+            ]
+          ],
+          "0.8": "I feel a bit woozy",
+          "0.5": "I feel nauseous whenever I move my head",
+          "0.2": "Yes I was sick when I got out of bed this morning"
+        },
+        {
+          "connection": [
+            [
+              "vestibular-organ-left",
+              "lateral-gaze-centre-left"
+            ],
+            [
+              "vestibular-organ-right",
+              "lateral-gaze-centre-right"
+            ],
+            [
+              "spinocerebellar-tract-left",
+              "cerebellar-anterior-lobe-left"
+            ],
+            [
+              "spinocerebellar-tract-right",
+              "cerebellar-anterior-lobe-right"
+            ]
+          ],
+          "0.9": "I feel awful when I stand up",
+          "0.8": "I feel so dizzy and sick",
+          "0.7": "It's as though I'm on a merry-go-round. I've vomited twice",
+          "0.5": "I've been vomiting all morning"
+        }
+      ],
+      "neutral_answer": "I don't feel nauseous"
+    },
+    "walking": {
+      "question": "Any problems walking?",
+      "keywords": [
+        "walk",
+        "mobil",
+        "get about",
+        "get around"
+      ],
+      "answer": [
+        {
+          "connection": [
+            [
+              "vestibular-organ-left",
+              "lateral-gaze-centre-left"
+            ],
+            [
+              "vestibular-organ-right",
+              "lateral-gaze-centre-right"
+            ]
+          ],
+          "0.3": "I can barely stand as I feel everything is spinning"
+        },
+        {
+          "connection": [
+            [
+              "primary-motor-cortex",
+              "quadriceps-left"
+            ],
+            [
+              "primary-motor-cortex",
+              "quadriceps-right"
+            ]
+          ],
+          "0.1": "I can't stand up without holding on",
+          "0.2": "I can't get out of a chair",
+          "0.5": "I can't get up stairs",
+          "0.7": "I'm finding it hard getting up stairs"
+        },
+        {
+          "connection": [
+            [
+              "primary-motor-cortex",
+              "tibialis-anterior-right"
+            ]
+          ],
+          "0.6": "I seem to be tripping up from time to time",
+          "0.4": "I seem to be tripping over my right foot quite a lot"
+        },
+        {
+          "connection": [
+            [
+              "primary-motor-cortex",
+              "tibialis-anterior-left"
+            ]
+          ],
+          "0.6": "I seem to be tripping up from time to time",
+          "0.4": "I seem to be tripping over my left foot quite a lot"
+        },
+        {
+          "connection": [
+            [
+              "primary-motor-cortex",
+              "gastrocnemius-left"
+            ],
+            [
+              "primary-motor-cortex",
+              "gastrocnemius-right"
+            ]
+          ],
+          "0.7": "I get tired if I walk a lot",
+          "0.5": "My legs feel like jelly",
+          "0.2": "It's very hard to stand up. I need to hold on."
+        },
+        {
+          "connection": [
+            [
+              "lateral-gaze-centre-left",
+              "lateral-rectus-left"
+            ],
+            [
+              "lateral-gaze-centre-right",
+              "lateral-rectus-right"
+            ],
+            [
+              "lateral-gaze-centre-left",
+              "medial-rectus-right"
+            ],
+            [
+              "lateral-gaze-centre-right",
+              "medial-rectus-left"
+            ],
+            [
+              "superior-colliculus",
+              "inferior-rectus-left"
+            ],
+            [
+              "superior-colliculus",
+              "superior-rectus-left"
+            ],
+            [
+              "superior-colliculus",
+              "inferior-rectus-right"
+            ],
+            [
+              "superior-colliculus",
+              "superior-rectus-right"
+            ]
+          ],
+          "0.3": "When I walk, I feel like I'm about to fall over."
+        }
+      ],
+      "neutral_answer": "I can walk normally"
+    },
+    "swallowing": {
+      "question": "Any difficulty swallowing?",
+      "keywords": [
+        " chok",
+        " cough",
+        " swallow"
+      ],
+      "answer": [
+        {
+          "connection": [
+            [
+              "palatal-touch-receptor-left",
+              "palatal-muscle-left"
+            ],
+            [
+              "palatal-touch-receptor-left",
+              "palatal-muscle-left"
+            ]
+          ],
+          "0.1": "I really can't eat or drink without choking",
+          "0.4": "I often choke, and drinking has become difficult",
+          "0.6": "I do sometimes choke, and have to eat slowly",
+          "0.8": "Things occasionally go down the wrong way"
+        }
+      ],
+      "neutral_answer": "I haven't noticed any swallowing problems"
+    },
+    "speech": {
+      "question": "Has your speech changed?",
+      "keywords": [
+        "speech",
+        " talking",
+        "speaking"
+      ],
+      "answer": [
+        {
+          "connection": [
+            [
+              "primary-motor-cortex",
+              "tongue-left"
+            ],
+            [
+              "primary-motor-cortex",
+              "tongue-right"
+            ],
+            [
+              "primary-motor-cortex",
+              "lower-facial-muscles-left"
+            ],
+            [
+              "primary-motor-cortex",
+              "lower-facial-muscles-right"
+            ],
+            [
+              "premotor-cortex-right",
+              "cerebellar-posterior-lobe-left"
+            ],
+            [
+              "premotor-cortex-left",
+              "cerebellar-posterior-lobe-right"
+            ]
+          ],
+          "0.2": "My speech is dreadful, and people have a hard time understanding me",
+          "0.6": "My speech is slurred, and some people have asked whether I'm drunk",
+          "0.8": "My speech is sometimes a bit slurred",
+          "0.9": "Occasionally words don't come out right"
+        },
+        {
+          "connection": [
+            [
+              "nucleus-ambiguus-left",
+              "vocal-cord-left"
+            ],
+            [
+              "nucleus-ambiguus-right",
+              "vocal-cord-right"
+            ]
+          ],
+          "0.1": "I've noticed my voice sounds different",
+          "0.3": "My voice has become quieter",
+          "0.5": "My voice is hoarse",
+          "0.8": "My throat is quite tight, and I'm having difficulty breathing"
+        },
+        {
+          "connection": [
+            [
+              "gag-centre",
+              "palatal-muscle-left"
+            ],
+            [
+              "gag-centre",
+              "palatal-muscle-left"
+            ]
+          ],
+          "comment": [
+            "add pseudobulbar tests"
+          ],
+          "0.5": "My voice sounds like I've got a cold"
+        }
+      ],
+      "neutral_answer": "My speech seems OK"
+    },
+    "bowels": {
+      "question": "Any change in the bowels?",
+      "keywords": [
+        "bowels",
+        "stools",
+        " poo",
+        "toilet"
+      ],
+      "answer": [
+        {
+          "connection": [
+            [
+              "primary-motor-cortex-right",
+              "anal-sphincter-left"
+            ],
+            [
+              "primary-motor-cortex-left",
+              "anal-sphincter-right"
+            ]
+          ],
+          "0.2": "I'm incontinent",
+          "0.4": "I've had accidents",
+          "0.8": "I've had occasional leakage"
+        }
+      ],
+      "neutral_answer": "Um, all normal at that end"
+    },
+    "breathing": {
+      "question": "Any breathlessness?",
+      "keywords": [
+        " breath"
+      ],
+      "answer": [
+        {
+          "connection": [
+            [
+              "respiratory-centre",
+              "diaphragm-left"
+            ],
+            [
+              "respiratory-centre",
+              "diaphragm-right"
+            ]
+          ],
+          "0.3": "I get breathless when I lie flat",
+          "0.7": "I am tired and breathless most of the time"
+        }
+      ],
+      "neutral_answer": "I haven't had any breathlessness lately"
+    },
+    "pain": {
+      "question": "Any pain anywhere?",
+      "keywords": [
+        " pain",
+        "ache",
+        " hurt"
+      ],
+      "answer": [
+        {
+          "connection": [
+            [
+              "meninges",
+              "medial-dorsal-thalamus-right"
+            ]
+          ],
+          "0.8": "I have a bit of a headache",
+          "0.4": "I have a throbbing headache"
+        }
+      ],
+      "neutral_answer": [
+        "Thankfully I'm not in pain",
+        "No aches or pains anywhere"
+      ]
+    },
+    "power": {
+      "question": "Do you have any weakness?",
+      "keywords": [
+        " weak",
+        " strength",
+        " strong"
+      ],
+      "answer": [
+        {
+          "connection": [
+            [
+              "primary-motor-cortex-left",
+              "quadriceps-right"
+            ]
+          ],
+          "0.95": "My right leg is a bit weak",
+          "0.2": "I can't move my right leg"
+        },
+        {
+          "connection": [
+            [
+              "primary-motor-cortex-right",
+              "quadriceps-left"
+            ]
+          ],
+          "0.95": "My left leg is a bit weak",
+          "0.2": "I can't move my left leg"
+        },
+        {
+          "connection": [
+            [
+              "primary-motor-cortex-left",
+              "tibialis-anterior-right"
+            ]
+          ],
+          "0.95": "My right foot is a bit weak",
+          "0.2": "I can't move my right foot"
+        },
+        {
+          "connection": [
+            [
+              "primary-motor-cortex-right",
+              "tibialis-anterior-left"
+            ]
+          ],
+          "0.95": "My left foot is a bit weak",
+          "0.2": "I can't move my left foot"
+        },
+        {
+          "connection": [
+            [
+              "primary-motor-cortex-left",
+              "biceps-right"
+            ]
+          ],
+          "0.95": "My right arm is a bit weak",
+          "0.2": "I can't move my right arm"
+        },
+        {
+          "connection": [
+            [
+              "primary-motor-cortex-right",
+              "biceps-left"
+            ]
+          ],
+          "0.95": "My left arm is a bit weak",
+          "0.2": "I can't move my left arm"
+        },
+        {
+          "connection": [
+            [
+              "primary-motor-cortex-left",
+              "interossei-right"
+            ]
+          ],
+          "0.95": "My right hand is a bit weak",
+          "0.2": "I can't move my right hand"
+        },
+        {
+          "connection": [
+            [
+              "primary-motor-cortex-right",
+              "interossei-left"
+            ]
+          ],
+          "0.95": "My left hand is a bit weak",
+          "0.2": "I can't move my left hand"
+        }
+      ],
+      "neutral_answer": [
+        "No, I haven't noticed any weakness"
+      ]
+    },
+    "sensation": {
+      "question": "Do you have any sensory disturbance?",
+      "keywords": [
+        " numb",
+        " sensat",
+        " can you feel"
+      ],
+      "answer": [
+        {
+          "connection": [
+            "ophthalmic-touch-receptor-left",
+            "primary-sensory-cortex"
+          ],
+          "0.8": "I'm numb around the left eye"
+        },
+        {
+          "connection": [
+            "ophthalmic-touch-receptor-right",
+            "primary-sensory-cortex"
+          ],
+          "0.8": "I'm numb around the right eye"
+        },
+        {
+          "connection": [
+            "maxillary-touch-receptor-left",
+            "primary-sensory-cortex"
+          ],
+          "0.8": "I'm numb over the left cheek"
+        },
+        {
+          "connection": [
+            "maxillary-touch-receptor-right",
+            "primary-sensory-cortex"
+          ],
+          "0.8": "I'm numb over the right cheek"
+        },
+        {
+          "connection": [
+            "mandibular-touch-receptor-left",
+            "primary-sensory-cortex"
+          ],
+          "0.8": "The left side of my tongue is numb"
+        },
+        {
+          "connection": [
+            "mandibular-touch-receptor-right",
+            "primary-sensory-cortex"
+          ],
+          "0.8": "The right side of my tongue is numb"
+        },
+        {
+          "connection": [
+            [
+              "dorsal-hallux-touch-receptor-left",
+              "primary-sensory-cortex-right"
+            ]
+          ],
+          "0.95": "My right foot is a bit numb",
+          "0.2": "I can't feel my right foot"
+        },
+        {
+          "connection": [
+            [
+              "dorsal-hallux-touch-receptor-right",
+              "primary-sensory-cortex-left"
+            ]
+          ],
+          "0.95": "My left foot is a bit numb",
+          "0.2": "I can't feel my left foot"
+        }
+      ],
+      "neutral_answer": [
+        "No, I haven't noticed any change in sensation"
+      ]
+    },
+    "mmse-pentagons": {
+      "image": "mmse-pentagons-drawn",
+      "keywords": [
+        "(draw|copy).*pentagon"
+      ],
+      "answer": [
+        {
+          "connection": [
+            "parietal-cortex-right",
+            "primary-motor-cortex-left"
+          ],
+          "0.8": "resources/mmse-pentagons-apraxia-mild.png",
+          "0.6": "resources/mmse-pentagons-apraxia-moderate.png",
+          "0.3": "resources/mmse-pentagons-apraxia-severe.png",
+          "0.1": "resources/blank.png"
+        },
+        {
+          "connection": [
+            "substantia-nigra-pars-compacta-left",
+            "caudate-nucleus-left"
+          ],
+          "0.8": "resources/mmse-pentagons-DLB.png"
+        }
+      ],
+      "neutral_answer": [
+        "resources/mmse-pentagons-normal.png"
+      ]
+    },
+    "mmse-clock": {
+      "image": "mmse-clock-drawn",
+      "keywords": [
+        "(draw|copy).*clock"
+      ],
+      "answer": [
+        {
+          "connection": [
+            "parietal-cortex-left",
+            "primary-motor-cortex-left"
+          ],
+          "0.8": "resources/mmse-clock-apraxia-mild.png",
+          "0.6": "resources/mmse-clock-apraxia-moderate.png",
+          "0.3": "resources/mmse-clock-apraxia-severe.png",
+          "0.1": "resources/blank.png"
+        },
+        {
+          "connection": [
+            "parietal-cortex-right",
+            "primary-motor-cortex-left"
+          ],
+          "0.8": "resources/mmse-clock-neglect-mild.png",
+          "0.3": "resources/mmse-clock-neglect-severe.png",
+          "0.1": "resources/blank.png"
+        },
+        {
+          "connection": [
+            "substantia-nigra-pars-compacta-left",
+            "caudate-nucleus-left"
+          ],
+          "0.8": "resources/mmse-clock-normal.png"
+        }
+      ],
+      "neutral_answer": [
+        "resources/mmse-clock-normal.png"
+      ]
+    },
+    "mmse-pen": {
+      "text": "mmse-pen-named",
+      "keywords": [
+        "name this",
+        "is this called"
+      ],
+      "answer": [
+        {
+          "connection": [
+            "inferior-temporal-gyrus-left",
+            "inferior-frontal-gyrus-left"
+          ],
+          "0.5": "Not sure, is it an apricot?",
+          "0.1": "umm... mm.."
+        },
+        {
+          "connection": [
+            "temporal-pole-left",
+            "inferior-frontal-gyrus-left"
+          ],
+          "0.5": "It's a stick."
+        }
+      ],
+      "neutral_answer": [
+        "Pen."
+      ]
+    },
+    "copy-spiral": {
+      "text": "copy-spiral-drawn",
+      "keywords": [
+        "(draw|copy).*spiral"
+      ],
+      "answer": [
+        {
+          "connection": [
+            "substantia-nigra-pars-compacta-left",
+            "caudate-nucleus-left"
+          ],
+          "0.8": "resources/spiral-PD.png"
+        },
+        {
+          "connection": [
+            "ventral-intermediate-nucleus-thalamus-left",
+            "cerebellum-right"
+          ],
+          "1.1": "resources/spiral-essential-tremor.png"
+        }
+      ],
+      "neutral_answer": [
+        "resources/spiral-normal.png"
+      ]
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+    "family": {
+      "question": "Are there any diseases in the family?",
+      "keywords": [
+        "family",
+        "relatives"
+      ],
+      "answer": [
+        [
+          "My ",
+          [
+            "father",
+            "mother",
+            "uncle",
+            "aunt"
+          ],
+          "died of a heart attack at about",
+          [
+            "55",
+            "60",
+            "65"
+          ],
+          ". Everyone else is pretty healthy"
+        ],
+        [
+          "Well my ",
+          [
+            "aunt",
+            "grandmother"
+          ],
+          "had a couple of strokes when she was quite old. Nothing else I can think of"
+        ]
+      ]
+    },
+    "age":{
+      "question":"How old are you?",
+      "keywords":["age","how old"],
+      "answer":[
+        ["I am `$('.neurosim-history').html().match(/([0-9]+)[- ]year[- ]old/)[1]`"]
+      ]
+    },
+    "pmh": {
+      "question": "Have you had any previous medical problems?",
+      "keywords": [
+        "previous medical",
+        "past medical",
+        "previous illnes",
+        "medical problems"
+      ],
+      "answer": [
+        [
+          "No, no previous problems I can",
+          [
+            "think of",
+            "remember",
+            "recall"
+          ]
+        ],
+        [
+          "Nothing major, just",
+          [
+            "hayfever",
+            "the odd cold and cough",
+            "occasional mild headaches",
+            "usual coughs and colds"
+          ]
+        ],
+        [
+          "No",
+          [
+            "",
+            "I think"
+          ],
+          "I'm",
+          [
+            "pretty",
+            "generally",
+            "fairly"
+          ],
+          [
+            "well",
+            "healthy"
+          ]
+        ]
+      ]
+    },
+    "surgical": {
+      "question": "Have you had any operations before?",
+      "keywords": [
+        "operation",
+        " surg"
+      ],
+      "answer": [
+        [
+          "No I've not had any",
+          [
+            "operations",
+            "surgery"
+          ],
+          "before"
+        ],
+        [
+          "Um, yes - I had",
+          [
+            "my appendix",
+            "my tonsils",
+            "a skin cyst"
+          ],
+          [
+            "out",
+            "taken out",
+            "cut out",
+            "removed"
+          ],
+          "when I was",
+          [
+            "very young",
+            "a child",
+            "very small",
+            "8",
+            "10",
+            "12"
+          ]
+        ]
+      ]
+    },
+    "past-psych-hx": {
+      "question": "Have you had any previous psychiatric problems?",
+      "keywords": [
+        "previous psych",
+        "psychiatr*",
+        "mental*(ill|unwell|health|disorder)"
+      ],
+      "answer": [
+        [
+          "No, no previous problems I can",
+          [
+            "think of",
+            "remember",
+            "recall"
+          ]
+        ],
+        [
+          "No, I think I'm",
+          [
+            "pretty",
+            "generally",
+            "fairly"
+          ],
+          "mentally healthy"
+        ]
+      ]
+    },
+    "alcohol": {
+      "question": "Do you drink alcohol?",
+      "keywords": [
+        "alcohol",
+        " beer",
+        " wine",
+        " drink$",
+        " drunk",
+        " do you drink"
+      ],
+      "answer": [
+        [
+          "I drink ",
+          [
+            "a couple of",
+            "one or two",
+            "a few"
+          ],
+          [
+            "glasses of wine",
+            "pints of beer",
+            "shots of whisky"
+          ],
+          "a week maybe"
+        ],
+        [
+          "I only drink for",
+          [
+            "social",
+            "special"
+          ],
+          "occasions. Even then it's just one or two"
+        ],
+        [
+          "Well I have the odd gin and tonic, but not often"
+        ],
+        [
+          "I go out",
+          [
+            "at weekends",
+            "once or twice a week",
+            "once in a while",
+            "a couple of times a month"
+          ],
+          [
+            "and have a good time",
+            "and have some fun",
+            "and have a party",
+            "and have a few with my mates",
+            "and drink with friends"
+          ]
+        ],
+        [
+          "I hardly drink any alcohol at all these days"
+        ],
+        [
+          "I've never drunk alcohol, I'm muslim"
+        ]
+      ]
+    },
+    "smoking": {
+      "question": "Do you smoke?",
+      "keywords": [
+        "smoking",
+        "smoke"
+      ],
+      "answer": [
+        [
+          "I've never smoked",
+          [
+            "",
+            "in my life",
+            "ever"
+          ]
+        ],
+        [
+          "Not since I was",
+          [
+            "very young",
+            "a teenager"
+          ]
+        ],
+        [
+          "I gave up",
+          [
+            "15",
+            "20",
+            "25",
+            "30"
+          ],
+          "years ago",
+          [
+            "",
+            "and never looked back",
+            ". I just stopped and that was it",
+            ". My father died of lung cancer"
+          ]
+        ],
+        [
+          "I smoke very occasionally, maybe...",
+          [
+            "once",
+            "twice",
+            "once or twice",
+            "two or three times"
+          ],
+          [
+            "a month",
+            "a year"
+          ]
+        ]
+      ]
+    },
+    "drugs": {
+      "question": "Do you take any recreational drugs?",
+      "keywords": [
+        "substances",
+        "recreational drug",
+        "not tobacco",
+        "nonprescribed",
+        "not prescribed",
+        "illicit"
+      ],
+      "answer": [
+        [
+          "Oh... No, ",
+          [
+            "",
+            "no...",
+            "not at all"
+          ],
+          "I",
+          [
+            "don't take",
+            "have never taken",
+            "would never take"
+          ],
+          "drugs"
+        ],
+        [
+          "No, never taken recreational",
+          [
+            "drugs",
+            "substances"
+          ]
+        ],
+        [
+          "Only once, in my youth.",
+          [
+            "Never again",
+            "It wasn't good",
+            "You've got to try it once, right?"
+          ]
+        ],
+        [
+          "No! definitely no illicit drugs"
+        ]
+      ]
+    },
+    "medication": {
+      "question": "Are you on any medication?",
+      "keywords": [
+        "medication",
+        "on any drugs",
+        "medicines",
+        "any tablets"
+      ],
+      "answer": [
+        [
+          "No",
+          [
+            "I don't take",
+            "I'm not on"
+          ],
+          "any",
+          [
+            "",
+            "regular",
+            "prescription"
+          ],
+          [
+            "medications",
+            "drugs",
+            "tablets"
+          ]
+        ],
+        [
+          [
+            "Well",
+            "",
+            "No,"
+          ],
+          [
+            "Only",
+            "Just"
+          ],
+          [
+            "an",
+            "the"
+          ],
+          [
+            "occasional",
+            "odd"
+          ],
+          [
+            "paracetamol",
+            "aspirin",
+            "neurofen"
+          ],
+          "for",
+          [
+            "headaches",
+            "aches and pains",
+            "the flu",
+            "a cold"
+          ],
+          "...",
+          [
+            "",
+            "that's about it",
+            "that's all",
+            "nothing else"
+          ]
+        ]
+      ]
+    },
+    "occupation": {
+      "question": "What do you do for a living?",
+      "keywords": [
+        "job",
+        "for a living",
+        "do you work",
+        "you working",
+        "what do you do$",
+        "career"
+      ],
+      "answer": [
+        [
+          "I work in an office.",
+          [
+            "It's a dull desk job, really",
+            "It's mainly computer-based"
+          ]
+        ],
+        [
+          "I'm a",
+          [
+            "secretary",
+            "manager",
+            "builder",
+            "tradesperson",
+            "office worker",
+            "shop assistant",
+            "food server",
+            "janitor",
+            "civil servant",
+            "journalist",
+            "farmer",
+            "supervisor"
+          ],
+          [
+            "",
+            "It's quite dull really",
+            "It's not as dull as it sounds",
+            "It's moderately interesting",
+            "It pays the rent"
+          ]
+        ],
+        [
+          "I work in",
+          [
+            "the trade sector",
+            "a hotel",
+            "a supermarket",
+            "advertising",
+            "marketing",
+            "an office",
+            "a hospital",
+            "the airport",
+            "building sites",
+            "construction",
+            "industry",
+            "design",
+            "a bar"
+          ],
+          ".",
+          [
+            "It's OK",
+            "",
+            "It's a straightforward job",
+            "I enjoy my job",
+            "It's not too bad"
+          ]
+        ]
+      ]
+    },
+    "mood": {
+      "question": "How's your mood?",
+      "keywords": [
+        "feeling low",
+        " been down",
+        "feeling down",
+        " mood",
+        "depressed",
+        "anxious",
+        "anxiety",
+        "feel sad",
+        "happy"
+      ],
+      "answer": [
+        [
+          "I'm feeling",
+          [
+            "OK",
+            "not too bad",
+            "so-so"
+          ],
+          [
+            "I suppose",
+            "I guess"
+          ]
+        ],
+        [
+          "My mood has been",
+          [
+            "good",
+            "reasonable",
+            "pretty stable",
+            "OK"
+          ],
+          [
+            "recently",
+            "lately"
+          ]
+        ]
+      ]
+    },
+    "sleep": {
+      "question": "Are you sleeping well?",
+      "keywords": [
+        "sleep"
+      ],
+      "answer": [
+        [
+          "I'm sleeping ",
+          [
+            "well",
+            "OK",
+            "not too badly",
+            "as well as I'd expect"
+          ],
+          [
+            "",
+            "really",
+            "I suppose"
+          ],
+          [
+            "",
+            "at the moment",
+            "these days"
+          ]
+        ],
+        [
+          "I",
+          [
+            "sleep",
+            "have always slept"
+          ],
+          [
+            "very well",
+            "soundly",
+            "deeply"
+          ],
+          [
+            "",
+            "which is good",
+            "so that's all fine",
+            " - maybe too well at times!",
+            "I've not had any problems with it",
+            "I feel quite well rested"
+          ]
+        ]
+      ]
+    },
+    "well-or-unwell": {
+      "question": "Do you feel well in yourself",
+      "keywords": [
+        "well in yourself",
+        "feel ill",
+        "feel well",
+        "feel generally",
+        "you feeling",
+        "healthy"
+      ],
+      "answer": [
+        [
+          "I feel fine"
+        ],
+        [
+          "I'm fit as a fiddle doctor"
+        ]
+      ]
+    },
+    "confusion": {
+      "question": "Do you feel confused?",
+      "keywords": [  "confus"   ],
+      "answer": [
+        [
+          "I don't think I'm going nuts, if that's what you're asking?",
+          "My thought's feel clear."
+        ]
+      ]
+    },
+ 
+    "seizures": {
+      "question": "Have you had any seizures?",
+      "keywords": [
+        "fit",
+        "seizure","epilep"
+      ],
+      "answer": [
+        [
+          "No, I've never had a seizure"
+        ,
+          "Well when I was a baby I had an infection and a high fever, and my mother told me I had a seizure from that. It's never occurred again since though."
+        ]
+      ]
+    },
+    "orthostatic":{
+      "question":"Have you felt faint or light-headed?",
+      "keywords":["faint","funny turn","light-head","light head", 
+        "syncop","blackout"],
+      "answer":[
+        ["I fainted once when I was 16, but it happened when I was quite dehydrated. Nothing recently though.",
+          "No, I haven't had any episodes of feeling faint or light-headed."
+        ]
+      ]
+    },
+
+    "headache": {
+      "question": "Have you been having any headaches?",
+      "keywords": [
+        "headache"
+      ],
+      "answer": [
+        [
+          "No I don't typically suffer from headaches"
+        ],
+        [
+          [
+            "Just on occasion",
+            "Once every couple of months"
+          ],
+          "after a stressful day"
+        ]
+      ]
+    },
+    "hallucinations": {
+      "question": "Do you ever see things that other people don't see?",
+      "keywords": [
+        "hallucinat",
+        "aren't there",
+        "other people don't see",
+        "others don't see", "voices", "hearing (things|people|any)"
+      ],
+      "answer": [
+        [
+          "Hearing things or seeing things? Gosh, no, I've not experienced anything unusual like that."
+        ]
+      ]
+    },
+    "paranoia":{
+      "question": "Are you worried someone has been following or spying on you?",
+      "keywords": [ "paranoi","one.*following","spying","camera" ,"out to get"   ],
+      "answer":[
+        ["No, nobody's out to get me. At least I hope not!"]
+      ]
+    },
+    "fever": {
+      "question": "Have you been feeling feverish?",
+      "keywords": [
+        "sweat","chills","shiver","feel.*hot","feel.*cold",
+        "fever","temperature","pyrexia","febrile","rigor"
+      ],
+      "answer": [
+        [
+          "I haven't had any temperatures, or been having sweats recently."
+        ]
+      ]
+    },
+    "feelings-of-failure": {
+      "question": "Do you feel like a failure?",
+      "keywords": [
+        "fail"
+      ],
+      "answer": [
+        [
+          "I've probably failed as much as the average person"
+        ],
+        [
+          "I'd actually consider myself pretty successful"
+        ],
+        [
+          "All things considered, I've done fairly well for myself"
+        ]
+      ]
+    },
+    "feelings-toward-future": {
+      "question": "How do you feel about the future?",
+      "keywords": [
+        "future"
+      ],
+      "answer": [
+        [
+          "I think my future looks bright"
+        ],
+        [
+          "I've got a lot of exciting plans for my retirement"
+        ],
+        [
+          "I'm going away on holiday soon, actually"
+        ]
+      ]
+    },
+    "life-satisfaction": {
+      "question": "Do you still enjoy doing things?",
+      "keywords": [
+        "enjoy",
+        "satisfact"
+      ],
+      "answer": [
+        [
+          "Sure I do. I'm still keeping up with",
+          [
+            "my scrabble club",
+            "weekly bridge nights with my friends",
+            "book club"
+          ]
+        ]
+      ]
+    },
+    "feelings-of-guilt": {
+      "question": "Do you ever feel guilty about anything?",
+      "keywords": [
+        "guilt"
+      ],
+      "answer": [
+        [
+          "I don't feel particularly guilty about anything. We all have our failures in life"
+        ]
+      ]
+    },
+    "feelings-of-being-punished": {
+      "question": "Do you ever feel like you're being punished?",
+      "keywords": [
+        "punish"
+      ],
+      "answer": [
+        [
+          "No more than the average person, I would say"
+        ]
+      ]
+    },
+    "perception-of-self": {
+      "question": "How do you feel about yourself?",
+      "keywords": [
+        "fault",
+        "weakness",
+        "blame",
+        "feel about yourself"
+      ],
+      "answer": [
+        [
+          [
+            "I'm not perfect, but I'm okay with who I am",
+            "We all have our faults, but I don't think I am any worse than the average person",
+            "I've made mistakes in the past, but I'm not to blame for everything negative that's happened in my life. I'm a good person at the end of the day"
+          ]
+        ]
+      ]
+    },
+    "deliberate-self-harm": {
+      "question": "Have you ever thought of harming yourself before?",
+      "keywords": [
+        "harming yourself",
+        "harm yourself",
+        "hurt yourself",
+        "self harm",
+        "self-harm",
+        "harmed yourself"
+      ],
+      "answer": [
+        [
+          [
+            "My goodness, I've been down before, but never that depressed",
+            "No those thoughts have never crossed my mind"
+          ]
+        ]
+      ]
+    },
+    "suicidal-thoughts": {
+      "question": "Have you ever thought of killing yourself?",
+      "keywords": [
+        "suicid",
+        "kill"
+      ],
+      "answer": [
+        [
+          [
+            "My goodness, no! I've been down before, but never that low",
+            "I could never do that to my loved ones, no matter how bad things got",
+            "No those thoughts have never crossed my mind"
+          ]
+        ]
+      ]
+    },
+    "crying": {
+      "question": "How often do you cry",
+      "keywords": [
+        "cry"
+      ],
+      "answer": [
+        [
+          [
+            "Only every now and then, when I'm feeling a bit down",
+            "Not much- I'm pretty strong emotionally, though Marley and Me gets to me every time"
+          ]
+        ]
+      ]
+    },
+    "easily-irritated": {
+      "question": "Are you easily irritated by things?",
+      "keywords": [
+        "irritat",
+        "annoy"
+      ],
+      "answer": [
+        [
+          [
+            "I'm no more easily annoyed than usual",
+            "It drives me insane when my partner sings in the shower, but that has always been the case. Otherwise I am pretty tolerant"
+          ]
+        ]
+      ]
+    },
+    "interest-in-others": {
+      "question": "Have you lost interest in other people around you?",
+      "keywords": [
+        "interest in other"
+      ],
+      "answer": [
+        [
+          [
+            "I still take an interest in my friends and family. The highlight of my week is our neighborhood get together, when everyone talks about how their families are getting on",
+            "I do still think of others arounds me- I volunteer down at the local bakery and love chatting with the regular customers"
+          ]
+        ]
+      ]
+    },
+    "decision-making": {
+      "question": "Do you have trouble making decisions?",
+      "keywords": [
+        "decision",
+        "decid"
+      ],
+      "answer": [
+        [
+          [
+            [
+              "Decision making has never been an issue for me. I just choose and what will be will be"
+            ],
+            [
+              "I'm not the most decisive person in the world, but I'm not one to spend too long ruminating over a decision either"
+            ]
+          ]
+        ]
+      ]
+    },
+    "appearance": {
+      "question": "How do you feel about your appearance?",
+      "keywords": [
+        "appearance",
+        "ugly",
+        "attractive"
+      ],
+      "answer": [
+        [
+          [
+            [
+              "I know I'm getting older, but I think appearance-wise I'm doing well for my age"
+            ],
+            [
+              "I think I still look great- once a looker, always a looker, they say"
+            ]
+          ]
+        ]
+      ]
+    },
+    "tiredness": {
+      "question": "Do you tire easily",
+      "keywords": [
+        "tire",
+        "fatigue",
+        "letharg"
+      ],
+      "answer": [
+        [
+          "I suppose I feel tired at the ends of some days, but I think it's justified as I often spend a good few hours gardening or doing all the household chores"
+        ],
+        [
+          "Sometimes I get tired during the day, but I'll have a coffee and feel as good as new"
+        ],
+        [
+          "I haven't noticed that I'm more tired than usual"
+        ]
+      ]
+    },
+    "urine":{
+      "question":"Any change in passing urine?",
+      "keywords":[ "urin","wee","passing water","waterworks"," pee", "number one",
+         "wet your", "incontinen", "wet the" ],
+      "answer":[
+        ["Passing urine has been normal." ]
+      ]
+    },
+    "appetite": {
+      "question": "How is your appetite?",
+      "keywords": [
+        "appetite",
+        "food intake",
+        "^eating"
+      ],
+      "answer": [
+        [
+          "My appetite is the same as it's always been"
+        ],
+        [
+          "My appetite has been good lately- I've just bought some new cookbooks and am trying out different cuisines"
+        ],
+        [
+          "My appetite, if anything, as increased. I've been binging Masterchef recently and it has inspired me to try some new dishes"
+        ]
+      ]
+    },
+    "weight-loss": {
+      "question": "Have you lost any weight?",
+      "keywords": [
+        "lost weight",
+        "weight change"
+      ],
+      "answer": [
+        [
+          "I've not gained or lost any weight recently"
+        ]
+      ]
+    },
+    "physical-health-worries": {
+      "question": "Are you worried about your physical health?",
+      "keywords": [
+        "physical health",
+        "physical problems"
+      ],
+      "answer": [
+        [
+          "I haven't got any current worries about  my physical health"
+        ],
+        [
+          "I'm not concerned about my physical health right now, I am fit as a fiddle"
+        ]
+      ]
+    },
+    "interest-in-sex": {
+      "question": "Have you noticed any changes in your interest in sex",
+      "keywords": [
+        "sex",
+        "libido"
+      ],
+      "answer": [
+        [
+          "I haven't noticed any changes in my",
+          [
+            "libido",
+            "interest in sex"
+          ]
+        ]
+      ]
+    },
+    "travel-abroad": {
+      "question": "Have you travelled abroad recently?",
+      "keywords": [
+        "travel",
+        "abroad",
+        "out of the country",
+        "left the country"
+      ],
+      "answer": [
+        [
+          "Last time I travelled abroad was to",
+          [
+            "Spain",
+            "France",
+            "Switzerland",
+            "the US"
+          ],
+          "last year."
+        ],
+        [
+          "I haven't been outside the UK for years."
+        ]
+      ]
+    },
+    "gas": {
+      "question": "Do you have a gas hob and have you ever left it on?",
+      "keywords": [
+        "gas"
+      ],
+      "answer": [
+        [
+          [
+            "No, we don't have a gas hob. Everything is electric in our house",
+            "We do have a gas hob, but we're very good about making sure it's switched off when we're not using it"
+          ]
+        ]
+      ]
+    },
+    "gambling": {
+      "question": "Do you like to gamble?",
+      "keywords": [
+        "gambl*", "betting", "bet$","horses","lottery","bookie"
+      ],
+      "answer": [
+        [
+          [
+            "I do the lottery, but that's just a bit of fun.",
+            "No I never really liked gambling. Not my thing.",
+            "I do go to the bookie once in a while. But I always know when to quit!"
+          ]
+        ]
+      ]
+    },
+    "mmse-orientation-year": {
+      "question": "What year is it?",
+      "keywords": [
+        "year"
+      ],
+      "answer": [
+        [
+          "It's `(new Date()).getFullYear()`"
+        ]
+      ]
+    },
+    "mmse-orientation-season": {
+      "question": "What season are we in?",
+      "keywords": [
+        "season"
+      ],
+      "answer": [
+        [
+          "It's `['Spring','Summer','Autumn','Winter'][Math.floor( ((new Date().getMonth() + 10) % 12)/3 )]`"
+        ]
+      ]
+    },
+    "mmse-orientation-month": {
+      "question": "What month are we in?",
+      "keywords": [
+        "month"
+      ],
+      "answer": [
+        [
+          "We're in `new Date().toLocaleString('default',{'month':'long'})`"
+        ]
+      ]
+    },
+    "mmse-orientation-weekday": {
+      "question": "What day of the week is it?",
+      "keywords": [
+        "weekday"
+      ],
+      "answer": [
+        [
+          "It's `new Date().toLocaleString('default',{'weekday':'long'})`"
+        ]
+      ]
+    },
+    "mmse-orientation-date": {
+      "question": "What is the date?",
+      "keywords": [
+        "date"
+      ],
+      "answer": [
+        [
+          "It's the `ordinal_suffix_of( (new Date()).getDate() )`, I think"
+        ]
+      ]
+    },
+    "mmse-orientation-time": {
+      "question": "What time is it?",
+      "keywords": [
+        "time"
+      ],
+      "answer": [
+        [
+          "It's around `1 + Math.floor((new Date().getHours() + (new Date().getMinutes()/60 ) - 0.5) % 12)` o'clock"
+        ]
+      ]
+    },
+    "mmse-orientation-place": {
+      "question": "Where are we?",
+      "keywords": [
+        "^where are (you|we)", "^what place (are|is)", "this place", "where (you|we) are"
+      ],
+      "answer": [
+        [
+          "We are in the psychiatry clinic."
+        ]
+      ]
+    },
+    "mmse-orientation-country": {
+      "question": "What country are we in?",
+      "keywords": [
+        "country"
+      ],
+      "answer": [
+        [
+          "We are in England, of course!"
+        ]
+      ]
+    },
+    "mmse-registration": {
+      "question": "Repeat these 3 objects after I say them - Lemon, Key, Ball",
+      "keywords": [
+        "3 objects",
+        "three objects"
+      ],
+      "answer": [
+        [
+          "Lemon, key, and ball"
+        ]
+      ]
+    },
+    "mmse-serial-sevens": {
+      "question": "Can you subtract 7 from 100 and then repeat from that result?",
+      "keywords": [
+        "subtract 7",
+        "subtract seven"
+      ],
+      "answer": [
+        [
+          "100, 93, 86, 79, 72, 65"
+        ]
+      ]
+    },
+    "mmse-recall": {
+      "question": "Which 3 objects did I ask you to repeat earlier?",
+      "keywords": [
+        "objects learned earlier",
+        "objects repeated earlier"
+      ],
+      "answer": [
+        [
+          "Lemon, Key, and, Ball"
+        ]
+      ]
+    },
+    "mmse-naming": {
+      "question": "Can you name these 2 objects?",
+      "keywords": [
+        "name these objects",
+        "name these items",
+        "name the objects",
+        "name the items"
+      ],
+      "answer": [
+        [
+          "Pen and watch"
+        ]
+      ]
+    },
+    "mmse-repeating": {
+      "question": "Can you repeat after me - No ifs, ands, or buts",
+      "keywords": [
+        "repeat after me",
+        "repeat following words"
+      ],
+      "answer": [
+        [
+          "No ifs, ands, or buts"
+        ]
+      ]
+    },
+    "mmse-3-stage-command": {
+      "question": "Please touch your right hand to your nose and then your left ear",
+      "keywords": [
+        "three stage command",
+        "right hand to",
+        "hand to nose"
+      ],
+      "answer": [
+        [
+          "<b>[Patient touches their right hand to their nose and then left ear]</b>"
+        ]
+      ]
+    },
+    "mmse-written-command": {
+      "question": "Please do as instructed by the writing on this piece of paper",
+      "keywords": [
+        "written command"
+      ],
+      "answer": [
+        [
+          "<b>[closes eyes]</b>"
+        ]
+      ]
+    },
+    "mmse-writing": {
+      "question": "Please write down a full sentence",
+      "keywords": [
+        "write full sentence"
+      ],
+      "answer": [
+        [
+          "<b>[writes: 'My partner and I drove to the hospital']</b>"
+        ]
+      ]
+    },
+    "mmse-copying": {
+      "question": "Please copy the intersecting pentagons shown below",
+      "keywords": [
+        "copy"
+      ],
+      "answer": [
+        [
+          "<b>[Draws Pentagons]</b>"
+        ]
+      ]
+    },
+    "memory":{
+      "question":"How is your memory?",
+      "keywords":["memory", "rememb","forget"],
+      "answer":[
+        ["I haven't noticed any change in my memory."],
+        ["I've never had the best memory, really. I don't think anything has changed."],
+        ["My memory has got worse as I've got older, but that's normal, isn't it?"]
+      ]
+    },
+    "spatial-disorientation": {
+      "question": "Have you noticed yourself getting lost recently?",
+      "keywords": [
+        "get lost",
+        "been lost",
+        "got lost",
+        "gotten lost",
+        "navigat", "spatial"
+      ],
+      "answer": [
+        [
+          "No I have not noticed any problems with navigation or getting lost."
+        ]
+      ]
+
+    }
+  },
+  "collateral": {
+    "confusion":{
+      "question": "Have you noticed any confusion?",
+      "keywords":["confus","disorient"],
+      "answer": [ 
+        ["Thankfully, I don't think there has been any confusion."]
+      ]
+    },
+    "appetite": {
+      "question": "Have you noticed any change in their appetite?",
+      "keywords": [
+        "appetite",
+        "food",
+        " eat*"
+      ],
+      "answer": [
+        [
+          "No, no real change in appetite."
+        ],
+        [
+          "My partner has always had a sweet tooth. No change there."
+        ]
+      ]
+    },
+    "gambling": {
+      "question": "Does your partner like to gamble?",
+      "keywords": [
+        "gambl*","bet^","betting","bookie","horses","lottery"
+      ],
+      "answer": [
+        [
+          [
+            "Occasionally. I don't think it's particularly unusual.",
+            "No, my partner has never been a big gambler."
+          ]
+        ]
+      ]
+    },
+    "behavior-change": {
+      "question": "How has your partner's behavior changed?",
+      "keywords": [
+        "behav.*",
+        "personality",
+        "different person"
+      ],
+      "answer": [
+        [
+          "I think my partner is more grumpy these days."
+        ],
+        [
+          "I don't think there's a great deal of change in behaviour."
+        ],
+        [
+          "My partner has always been a bit of a joker. I don't think that has changed."
+        ]
+      ]
+    },
+    "memory": {
+      "question": "How is your partner's memory?",
+      "keywords": [
+        "memory",
+        "forget"
+      ],
+      "answer": [
+        [
+          "My partner's memory is remarkably good, probably better than mine"
+        ],
+        [
+          "My partner hasn't had any memory problems, actually"
+        ],
+        [
+          "Just the odd memory slip, I think we all have those"
+        ]
+      ]
+    },
+    "spatial-disorientation": {
+      "question": "Do your partner ever get lost in familiar places?",
+      "keywords": [
+        "get lost",
+        "been lost",
+        "got lost",
+        "gotten lost"
+      ],
+      "answer": [
+        [
+          "No, navigation seems fine"
+        ]
+      ]
+    },
+    "language": {
+      "question": "Has your partner had any problems with speech or language?",
+      "keywords": [
+        "speech",
+        "conversation",
+        "language"
+      ],
+      "answer": [
+        [
+          "Apart from talking too much sometimes!"
+        ],
+        [
+          "No, speech seems normal."
+        ],
+        [
+          "I haven't noticed anythinh unusual in conversation"
+        ]
+      ]
+    },
+    "planning": {
+      "question": "Is your partner still able to organize affairs as usual or plan ahead?",
+      "keywords": [
+        "organi",
+        "plan"
+      ],
+      "answer": [
+        [
+          "My partner has never been much of a planner. I've always been the one to make plans."
+        ],
+        [
+          "Yes, my partner loves planning things. "
+        ],
+        [
+          "My partner has always been a bit scatter-brained. I haven't noticed any change in organisation."
+        ]
+      ]
+    },
+    "mood": {
+      "question": "How is your partner's mood?",
+      "keywords": [
+        "mood",
+        "feel",
+        "depress",
+        "irrita",
+        "agitated"
+      ],
+      "answer": [
+        [
+          "My partner has up-days and down-days."
+        ],
+        [
+          "I haven't noticed any change in mood."
+        ],
+        [
+          "My partner remains fairly cheerful most of the time, despite circumstances"
+        ]
+      ]
+    },
+    "driving": {
+      "question": "Is your partner still driving?",
+      "keywords": [
+        "^driv"
+      ],
+      "answer": [
+        [
+          "Yes, still driving"
+        ]
+      ]
+    },
+    "gas": {
+      "question": "Do you have a gas hob in the house and has your partner ever left it on?",
+      "keywords": [
+        "^gas"
+      ],
+      "answer": [
+        [
+          "We don't have gas at home."
+        ],
+        [
+          "We have a gas hob, but my partner is always very careful to turn it off"
+        ]
+      ]
+    },
+    "insight": {
+      "question": "Do you feel like there is something medically wrong with your partner?",
+      "keywords": [
+        "concerns",
+        "ideas",
+        "expectations",
+        "something wrong",
+        "worrie"
+      ],
+      "answer": [
+        [
+          "I think my husband is not the same as he used to be, and his behavior isn't normal. I need some support in trying to manage him, doctor."
+        ],
+        [
+          "I thought that with all the changes in my partner's behavior over the past year, maybe he needed some psychiatric help. Or at least you could tell me how I can best manage him, because I'm at the point where I'm struggling to cope with his behavior."
+        ]
+      ]
+    },
+    "paranoia":{
+      "question": "Has your partner reported any paranoid thoughts? For example that someone is following or spying on them?",
+      "keywords": [ "paranoi","one.*following","spying","camera" ,"out to get"   ],
+      "answer":[
+        ["No, if anything I'm the more paranoid one. My partner is quite relaxed."]
+      ]      
+    },
+    "past-psychiatric-history": {
+      "question": "Has your partner had any psychiatric problems in the past?",
+      "keywords": [
+        "psychiatr*",
+        "mental.+(ill|unwell)",
+        "mental health",
+        "section"
+      ],
+      "answer": [
+        [
+          "My partner has never had any",
+          [
+            "psychiatric problems",
+            "mental illnesses",
+            "mental health problems"
+          ],
+          "in the past."
+        ]
+      ]
+    },
+    "recreational-drugs": {
+      "question": "Do you know if your partner uses recreational drugs?",
+      "keywords": [
+        "recreation",
+        "not prescribed",
+        "prescription"
+      ],
+      "answer": [
+        [
+          "My partner does not use any recreational drugs. If there is any white powder on his nose it really is doughnuts."
+        ]
+      ]
+    }
+  },
+  "tables": {
+    "Blood": {
+      "title": "Blood tests",
+      "rows": {
+        "Hb": [
+          "Haemoglobin",
+          "g/dL",
+          "11",
+          "15"
+        ],
+        "WCC": [
+          "White cell count",
+          "/uL",
+          "4",
+          "9"
+        ],
+        "Na": [
+          "Sodium",
+          "mmol/L",
+          "135",
+          "144"
+        ],
+        "K": [
+          "Potassium",
+          "mmol/L",
+          "3.5",
+          "5"
+        ],
+        "Ca": [
+          "Calcium",
+          "nmol/L",
+          "1.5",
+          "2.5"
+        ],
+        "Glu": [
+          "Glucose",
+          "mmol/L",
+          "4",
+          "7"
+        ],
+        "CK": [
+          "Creatine kinase",
+          "U/L",
+          "50",
+          "300"
+        ],
+        "AChRAb": [
+          "Anti-acetylcholine receptor antibody",
+          "IU/L",
+          "0",
+          ""
+        ],
+        "ESR": [
+          "Erythrocyte sedimentation rate",
+          "mm/hr",
+          "2",
+          "20"
+        ],
+        "ANA": [
+          "Antinuclear antibody",
+          "",
+          "Negative",
+          ""
+        ],
+        "ANCA": [
+          "Antineutrophil cytoplasmic antibody",
+          "",
+          "Negative",
+          ""
+        ],
+        "ACE": [
+          "Angiotensin converting enzyme",
+          "IU/L",
+          "10",
+          "40"
+        ],
+        "Lyme": [
+          "Borrelia antibodies",
+          "",
+          "Negative",
+          ""
+        ],
+        "EBV": [
+          "Epstein-Barr virus serology",
+          "",
+          "IgM/IgG Negative",
+          ""
+        ],
+        "CMV": [
+          "Cytomegalovirus serology",
+          "",
+          "IgM/IgG Negative",
+          ""
+        ]
+      }
+    },
+    "CSF": {
+      "title": "Cerebrospinal fluid",
+      "rows": {
+        "RCC": [
+          "Red cell count",
+          "/uL",
+          "0",
+          "1000/WC"
+        ],
+        "WCC": [
+          "White cell count",
+          "/uL",
+          "0",
+          "4"
+        ],
+        "Prot": [
+          "Protein",
+          "g/dL",
+          "0.2",
+          "0.6"
+        ],
+        "Glu": [
+          "Glucose",
+          "mmol/L",
+          "0.5 x plasma",
+          "7"
+        ],
+        "BGlu": [
+          "Matched blood glucose",
+          "mmol/L",
+          "4",
+          "7"
+        ],
+        "OCB": [
+          "Oligoclonal bands",
+          "",
+          "",
+          ""
+        ]
+      }
+    }
+  },
+  "neutral_answers": [
+    "No problems there",
+    "That seems all fine",
+    "I've not noticed anything",
+    "All OK I think"
+  ],
+  "history_order": {
+    "hpc": [
+      "pain",
+      "basic vision",
+      "balance",
+      "nausea",
+      "walking",
+      "swallowing"
+    ],
+    "full": [
+      "pain",
+      "basic vision",
+      "colour vision",
+      "hearing",
+      "facial sensation",
+      "smell",
+      "speech",
+      "balance",
+      "nausea",
+      "walking",
+      "bowels",
+      "urine",
+      "breathing",
+      "swallowing"
+    ]
+  },
+  "voice_problems": [
+    {
+      "description": "slurring dysarthria",
+      "connection": [
+        [
+          "premotor-cortex-right",
+          "cerebellar-posterior-lobe-left"
+        ],
+        [
+          "premotor-cortex-left",
+          "cerebellar-posterior-lobe-right"
+        ]
+      ],
+      "0.8": [
+        [
+          "st",
+          "sh"
+        ],
+        [
+          "ts",
+          "th "
+        ]
+      ]
+    },
+    {
+      "description": "agrammatic aphasia",
+      "connection": [
+        [
+          "prefrontal-cortex-left",
+          "inferior-frontal-cortex-left"
+        ]
+      ],
+      "0.7": [
+        [
+          " (i|am|have|i'm|i've|has|had|is|was|and|so|at) ",
+          " ... "
+        ],
+        [
+          " (the|a|my|it|of|if) ",
+          " ... erm ... er ... "
+        ],
+        [
+          " (can|when|of|that|so) ",
+          " ... , um , ... oh! er"
+        ],
+        [
+          " (very|not|this|want|keep|need|never|always|usually|sometimes) ",
+          " ... er $1 ... um, $1, ... er ... ah ... $1! ..."
+        ]
+      ]
+    }
+  ],
+  "observations":{
+    "comment":"can have appearance, beahviour, speech, affect, thought. see snippets-observations"
+  }
+}

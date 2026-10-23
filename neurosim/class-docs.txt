@@ -1,0 +1,27 @@
+// useful classes
+
+<h1 data-case> = look up in cases.json "diseases":{} object  
+<h1 data-casename> = case name to save in student file
+
+exam-section
+neurosim-history:
+ appearance of a history with bullets
+
+neurosim-history-free:
+  add snippet-history-listen
+neurosim-history-all
+neurosim-history-selector:
+  show a list of history questions
+  data-history="" comma-separated list of question names
+    i.e. taken from "history" object in cases.json
+
+neurosim-imageswapper:
+  show an image, that depends on the lesions.
+  in neurosim-history.json/history create an named object 
+  set the attribute data-question= the name of that object.
+  the response to the question is the image file name.
+
+// snippets
+snippet-history-listen:
+snippet-diagnosis-box:
+snippet-mmse: 

@@ -1,0 +1,1417 @@
+# neurological pathways
+# -c contains
+# -i input from
+# -v travels via via
+# -h hidden
+# -s synonyms
+# -m also mirrored left-to-right
+
+entorhinal-cortex-left: -i olfactory-bulb-left, -v olfactory-nerve-left -m
+
+# eye to v1
+# note that both superior/inferior and  temporal/nasal IS INVERTED in the retina 
+# and fibres in V1.
+#
+# the name "v1-left-right-superior" means area V1 in the left hemisphere, stripes that receive input from
+# the right eye's superior retina.
+# Do not use mirror "-m" for V1/retina, because it's ambiguous regarding left/right eye vs left/right hemisphere.
+
+# Main retinal areas
+v1-left-left-superior: -i retina-left-temporal-superior, -v optic-nerve-left, optic-chiasm-left, optic-tract-left, \
+ lateral-geniculate-nucleus-left, parietal-optic-radiation-left, -h
+v1-left-left-inferior: -i retina-left-temporal-inferior, -v optic-nerve-left, optic-chiasm-left, optic-tract-left, \
+ lateral-geniculate-nucleus-left, temporal-optic-radiation-left, -h
+v1-left-right-superior: -i retina-right-nasal-superior, -v optic-nerve-right, optic-chiasm-median, optic-tract-left, \
+ lateral-geniculate-nucleus-left, parietal-optic-radiation-left, -h
+v1-left-right-inferior: -i retina-right-nasal-inferior, -v optic-nerve-right, optic-chiasm-median, optic-tract-left, \
+ lateral-geniculate-nucleus-left, temporal-optic-radiation-left, -h
+v1-right-left-superior: -i retina-left-nasal-superior, -v optic-nerve-left, optic-chiasm-median, optic-tract-right, \
+ lateral-geniculate-nucleus-right, parietal-optic-radiation-right, -h
+v1-right-left-inferior: -i retina-left-nasal-inferior, -v optic-nerve-left, optic-chiasm-median, optic-tract-right, \
+ lateral-geniculate-nucleus-right, temporal-optic-radiation-right, -h
+v1-right-right-superior: -i retina-right-temporal-superior, -v optic-nerve-right, optic-chiasm-right, optic-tract-right, \
+ lateral-geniculate-nucleus-right, parietal-optic-radiation-right, -h
+v1-right-right-inferior: -i retina-right-temporal-inferior, -v optic-nerve-right, optic-chiasm-right, optic-tract-right, \
+ lateral-geniculate-nucleus-right, temporal-optic-radiation-right, -h
+
+# Peripheral regions
+v1-left-left-superior-periphery: -i retina-left-temporal-superior-periphery, -v optic-nerve-left, optic-chiasm-left, optic-tract-left, \
+ lateral-geniculate-nucleus-left, parietal-optic-radiation-left, -h
+v1-left-left-inferior-periphery: -i retina-left-temporal-inferior-periphery, -v optic-nerve-left, optic-chiasm-left, optic-tract-left, \
+ lateral-geniculate-nucleus-left, parietal-optic-radiation-left, -h
+v1-left-right-superior-periphery: -i retina-right-nasal-superior-periphery, -v optic-nerve-right, optic-chiasm-median, optic-tract-left, \
+ lateral-geniculate-nucleus-left, parietal-optic-radiation-left, -h
+v1-left-right-inferior-periphery: -i retina-right-nasal-inferior-periphery, -v optic-nerve-right, optic-chiasm-median, optic-tract-left, \
+ lateral-geniculate-nucleus-left, parietal-optic-radiation-left, -h
+v1-right-left-superior-periphery: -i retina-left-nasal-superior-periphery, -v optic-nerve-left, optic-chiasm-median, optic-tract-right, \
+ lateral-geniculate-nucleus-right, parietal-optic-radiation-right, -h
+v1-right-left-inferior-periphery: -i retina-left-nasal-inferior-periphery, -v optic-nerve-left, optic-chiasm-median, optic-tract-right, \
+ lateral-geniculate-nucleus-right, temporal-optic-radiation-right, -h
+v1-right-right-superior-periphery: -i retina-right-temporal-superior-periphery, -v optic-nerve-right, optic-chiasm-right, optic-tract-right, \
+ lateral-geniculate-nucleus-right, parietal-optic-radiation-right, -h
+v1-right-right-inferior-periphery: -i retina-right-temporal-inferior-periphery, -v optic-nerve-right, optic-chiasm-right, optic-tract-right, \
+ lateral-geniculate-nucleus-right, temporal-optic-radiation-right, -h
+
+# Fovea 
+v1-left-left-superior-fovea: -i retina-left-temporal-superior-fovea, -v optic-nerve-left, optic-chiasm-left, optic-tract-left, \
+ lateral-geniculate-nucleus-left, parietal-optic-radiation-left, -h
+v1-left-left-inferior-fovea: -i retina-left-temporal-inferior-fovea, -v optic-nerve-left, optic-chiasm-left, optic-tract-left, \
+ lateral-geniculate-nucleus-left, parietal-optic-radiation-left, -h
+v1-left-right-superior-fovea: -i retina-right-nasal-superior-fovea, -v optic-nerve-right, optic-chiasm-median, optic-tract-left, \
+ lateral-geniculate-nucleus-left, parietal-optic-radiation-left, -h
+v1-left-right-inferior-fovea: -i retina-right-nasal-inferior-fovea, -v optic-nerve-right, optic-chiasm-median, optic-tract-left, \
+ lateral-geniculate-nucleus-left, parietal-optic-radiation-left, -h
+v1-right-left-superior-fovea: -i retina-left-nasal-superior-fovea, -v optic-nerve-left, optic-chiasm-median, optic-tract-right, \
+ lateral-geniculate-nucleus-right, parietal-optic-radiation-right, -h
+v1-right-left-inferior-fovea: -i retina-left-nasal-inferior-fovea, -v optic-nerve-left, optic-chiasm-median, optic-tract-right, \
+ lateral-geniculate-nucleus-right, temporal-optic-radiation-right, -h
+v1-right-right-superior-fovea: -i retina-right-temporal-superior-fovea, -v optic-nerve-right, optic-chiasm-right, optic-tract-right, \
+ lateral-geniculate-nucleus-right, parietal-optic-radiation-right, -h
+v1-right-right-inferior-fovea: -i retina-right-temporal-inferior-fovea, -v optic-nerve-right, optic-chiasm-right, optic-tract-right, \
+ lateral-geniculate-nucleus-right, temporal-optic-radiation-right, -h
+ 
+# these cross-wirings allow foveal vision to be preserved in unilateral V1 lesions
+v1-right-left-superior-fovea-c: -i retina-left-temporal-superior-fovea, -v optic-nerve-left, optic-chiasm-left, optic-tract-left, \
+ lateral-geniculate-nucleus-left, parietal-optic-radiation-left, -h
+v1-right-left-inferior-fovea-c: -i retina-left-temporal-inferior-fovea, -v optic-nerve-left, optic-chiasm-left, optic-tract-left, \
+ lateral-geniculate-nucleus-left, parietal-optic-radiation-left, -h
+v1-right-right-superior-fovea-c: -i retina-right-nasal-superior-fovea, -v optic-nerve-right, optic-chiasm-median, optic-tract-left, \
+ lateral-geniculate-nucleus-left, parietal-optic-radiation-left, -h
+v1-right-right-inferior-fovea-c: -i retina-right-nasal-inferior-fovea, -v optic-nerve-right, optic-chiasm-median, optic-tract-left, \
+ lateral-geniculate-nucleus-left, parietal-optic-radiation-left, -h
+v1-left-left-superior-fovea-c: -i retina-left-nasal-superior-fovea, -v optic-nerve-left, optic-chiasm-median, optic-tract-right, \
+ lateral-geniculate-nucleus-right, parietal-optic-radiation-right, -h
+v1-left-left-inferior-fovea-c: -i retina-left-nasal-inferior-fovea, -v optic-nerve-left, optic-chiasm-median, optic-tract-right, \
+ lateral-geniculate-nucleus-right, temporal-optic-radiation-right, -h
+v1-left-right-superior-fovea-c: -i retina-right-temporal-superior-fovea, -v optic-nerve-right, optic-chiasm-right, optic-tract-right, \
+ lateral-geniculate-nucleus-right, parietal-optic-radiation-right, -h
+v1-left-right-inferior-fovea-c: -i retina-right-temporal-inferior-fovea, -v optic-nerve-right, optic-chiasm-right, optic-tract-right, \
+ lateral-geniculate-nucleus-right, temporal-optic-radiation-right, -h
+
+
+# optic disc region. It's not crossed, so I don't know why the extra lines are here.
+# they are now commented out.
+
+#v1-right-right-superior-disc: -i retina-right-superior-disc, -v optic-nerve-right, optic-chiasm-median, optic-tract-right, \
+# lateral-geniculate-nucleus-right, parietal-optic-radiation-right, -h 
+v1-left-right-superior-disc: -i retina-right-superior-disc, -v optic-nerve-right, optic-chiasm-median, optic-tract-left, \
+ lateral-geniculate-nucleus-left, parietal-optic-radiation-left, -h 
+
+v1-right-left-superior-disc: -i retina-left-superior-disc, -v optic-nerve-left, optic-chiasm-median, optic-tract-right, \
+ lateral-geniculate-nucleus-right, temporal-optic-radiation-right, -h 
+
+#
+#v1-left-left-superior-disc: -i retina-left-superior-disc, -v optic-nerve-left, optic-chiasm-median, optic-tract-left, \
+# lateral-geniculate-nucleus-left, temporal-optic-radiation-left, -h 
+#
+#v1-right-right-inferior-disc: -i retina-right-inferior-disc, -v optic-nerve-right, optic-chiasm-median, optic-tract-right, \
+# lateral-geniculate-nucleus-right, parietal-optic-radiation-right, -h 
+v1-left-right-inferior-disc: -i retina-right-inferior-disc, -v optic-nerve-right, optic-chiasm-median, optic-tract-left, \
+ lateral-geniculate-nucleus-left, parietal-optic-radiation-left, -h 
+v1-right-left-inferior-disc: -i retina-left-inferior-disc, -v optic-nerve-left, optic-chiasm-median, optic-tract-right, \
+ lateral-geniculate-nucleus-right, temporal-optic-radiation-right, -h 
+#v1-left-left-inferior-disc: -i retina-left-inferior-disc, -v optic-nerve-left, optic-chiasm-median, optic-tract-left, \
+# lateral-geniculate-nucleus-left, temporal-optic-radiation-left, -h 
+
+retroorbital-space-left: -c extraocular-muscles-left
+extraocular-muscles-left: -c lateral-rectus-left, medial-rectus-left, \
+ inferior-rectus-left, superior-rectus-left, superior-oblique-left, inferior-oblique-left, -m
+
+
+# group names
+v1-left-superior:  -c v1-left-left-superior, v1-left-right-superior, -h
+v1-left-inferior:  -c v1-left-left-inferior, v1-left-right-inferior, -h
+v1-right-superior: -c v1-right-left-superior, v1-right-right-superior, -h
+v1-right-inferior: -c v1-right-left-inferior, v1-right-right-inferior, -h
+v1-left-superior-periphery:  -c v1-left-left-superior-periphery, v1-left-right-superior-periphery, -h
+v1-left-inferior-periphery:  -c v1-left-left-inferior-periphery, v1-left-right-inferior-periphery, -h
+v1-right-superior-periphery: -c v1-right-left-superior-periphery, v1-right-right-superior-periphery, -h
+v1-right-inferior-periphery: -c v1-right-left-inferior-periphery, v1-right-right-inferior-periphery, -h
+v1-left-superior-fovea:  -c v1-left-left-superior-fovea, v1-left-right-superior-fovea, \
+ v1-left-left-superior-fovea-c, v1-left-right-superior-fovea-c, -h
+v1-left-inferior-fovea:  -c v1-left-left-inferior-fovea, v1-left-right-inferior-fovea, \
+ v1-left-left-inferior-fovea-c, v1-left-right-inferior-fovea-c,  -h
+v1-right-superior-fovea: -c v1-right-left-superior-fovea, v1-right-right-superior-fovea, \
+ v1-right-left-superior-fovea-c, v1-right-right-superior-fovea-c, -h
+v1-right-inferior-fovea: -c v1-right-left-inferior-fovea, v1-right-right-inferior-fovea, \
+ v1-right-left-inferior-fovea-c, v1-right-right-inferior-fovea-c, -h
+v1-right-superior-disc: -c v1-right-right-superior-disc, v1-right-left-superior-disc, -h
+v1-left-superior-disc: -c v1-left-right-superior-disc, v1-left-left-superior-disc, -h
+v1-right-inferior-disc: -c v1-right-right-inferior-disc, v1-right-left-inferior-disc, -h
+v1-left-inferior-disc: -c v1-left-right-inferior-disc, v1-left-left-inferior-disc, -h
+
+v1-left:  -c v1-left-superior, v1-left-inferior, v1-left-superior-periphery, \
+ v1-left-inferior-periphery, v1-left-superior-fovea, v1-left-inferior-fovea, \
+ v1-left-superior-disc, v1-left-inferior-disc, -m
+
+retina-left-fovea: -c retina-left-temporal-superior-fovea, retina-left-temporal-inferior-fovea, \
+ retina-left-nasal-superior-fovea, retina-left-nasal-inferior-fovea, -m
+retina-left-periphery: -c retina-left-temporal-superior-periphery, retina-left-temporal-inferior-periphery, \
+ retina-left-nasal-superior-periphery, retina-left-nasal-inferior-periphery, -m
+retina-left:  -c retina-left-temporal-superior, retina-left-temporal-inferior, retina-left-nasal-superior, retina-left-nasal-inferior, \
+ retina-left-fovea, retina-left-periphery, retina-left-superior-disc, retina-left-inferior-disc -m
+optic-chiasm: -c optic-chiasm-left, optic-chiasm-right, optic-chiasm-median
+
+# eye movements
+
+inferior-rectus-left: -i oculomotor-nucleus-medial-left, -v oculomotor-nerve-left, -m
+superior-rectus-left: -i oculomotor-nucleus-medial-left, -v oculomotor-nerve-left, -m
+medial-rectus-left: -i oculomotor-nucleus-lateral-left, -v oculomotor-nerve-left, -m
+inferior-oblique-left: -i oculomotor-nucleus-left, -v oculomotor-nerve-left, -m
+lateral-rectus-left: -i lateral-gaze-centre-left, -v abducens-nerve-left, -m
+superior-oblique-left: -i fourth-nerve-nucleus-left, -v trochlear-nerve-left, -m
+oculomotor-nucleus-lateral-left: -i lateral-gaze-centre-right, -v medial-longitudinal-fasciculus-pons-right, -h, -m
+oculomotor-nucleus-left: -c oculomotor-nucleus-lateral-left, oculomotor-nucleus-medial-left, -m
+oculomotor-nucleus-medial-left: -i cerebellar-flocculonodular-lobe-left, -m, -h
+fourth-nerve-nucleus-left: -i superior-colliculus-left, -m
+
+constrictor-pupillae-left: -i edinger-westphal-nucleus, -v ciliary-ganglion-left, \
+ oculomotor-nerve-left, -m
+edinger-westphal-nucleus-left: -i retina-left, -v optic-nerve-left, -m, -h
+edinger-westphal-nucleus: -c edinger-westphal-nucleus-left, edinger-westphal-nucleus-right
+dilator-pupillae-left: -i stellate-ganglion-left, -v carotid-artery-left, -m
+
+cavernous-sinus-left: -c trigeminal-ganglion-left, -m
+retroorbital-space-left: -c optic-nerve-left, oculomotor-nerve-left, abducens-nerve-left, -m
+
+superior-colliculus-right: -i frontal-eye-field-left, -v eye-movement-basal-ganglia, -m
+stellate-ganglion-left: -i sympathetic-nucleus, -v midbrain-reticular-formation, pontine-reticular-formation, \
+  medullary-reticular-formation-left, cervical-corticospinal-tract-left, -m 
+
+cavernous-sinus-left: -c carotid-artery-left, abducens-nerve-left, ophthalmic-trigeminal-nerve-left, maxillary-trigeminal-nerve-left \
+ oculomotor-nerve-left, trochlear-nerve-left, -m 
+superior-colliculus: -c superior-colliculus-left, superior-colliculus-right
+
+
+# cn 5
+pterygoid-left: -i trigeminal-motor-nucleus-left, -v mandibular-trigeminal-nerve-left, trigeminal-ganglion-left, trigeminal-nerve-left, -m
+trigeminal-motor-nucleus-left: -i face-motor-strip-right, -v pontine-corticospinal-tract-right, cerebral-peduncle-right, internal-capsule-right, -m
+
+trigeminal-ophthalmic-pain-nucleus-right: -i ophthalmic-pain-receptor-left, -v ophthalmic-trigeminal-nerve-left, trigeminal-nucleus-left, trigeminal-nerve-left,  -m, -h
+trigeminal-ophthalmic-thalamic-nucleus-right: -i trigeminal-ophthalmic-pain-nucleus-right, -v trigeminothalamic-tract-right, -m, -h
+
+trigeminal-ophthalmic-pain-nucleus-right: -i meninges-right -v ophthalmic-trigeminal-nerve-right, trigeminal-nucleus-right, trigeminal-nerve-right, -m, -h
+
+meninges: -c meninges-left, meninges-right 
+
+
+
+trigeminal-maxillary-pain-nucleus-right: -i maxillary-pain-receptor-left, -v maxillary-trigeminal-nerve-left, trigeminal-nucleus-left, trigeminal-nerve-left,  -m, -h
+trigeminal-maxillary-thalamic-nucleus-right: -i trigeminal-maxillary-pain-nucleus-right, -v trigeminothalamic-tract-right, -m, -h
+
+trigeminal-mandibular-pain-nucleus-right: -i mandibular-pain-receptor-left, -v mandibular-trigeminal-nerve-left, trigeminal-nucleus-left, trigeminal-nerve-left,  -m, -h
+trigeminal-mandibular-thalamic-nucleus-right: -i trigeminal-mandibular-pain-nucleus-right, -v trigeminothalamic-tract-right, -m, -h
+
+trigeminal-pain-nucleus-right: -c trigeminal-ophthalmic-pain-nucleus-right, trigeminal-maxillary-pain-nucleus-right, trigeminal-mandibular-pain-nucleus-right, -m 
+trigeminal-thalamic-nucleus-right: -c trigeminal-ophthalmic-thalamic-nucleus-right, trigeminal-mandibular-thalamic-nucleus-right, trigeminal-maxillary-thalamic-nucleus-right, -m
+
+ophthalmic-face-sensory-strip-right: -i ophthalmic-touch-receptor-left, -v ophthalmic-trigeminal-nerve-left, trigeminal-ganglion-left, trigeminal-nerve-left, medial-lemniscus-right, ventrolateral-thalamus-right, parietal-corona-radiata-right, -m, -h
+maxillary-face-sensory-strip-right: -i maxillary-touch-receptor-left, -v maxillary-trigeminal-nerve-left, trigeminal-ganglion-left, trigeminal-nerve-left, medial-lemniscus-right, ventrolateral-thalamus-right, parietal-corona-radiata-right, -m, -h
+mandibular-face-sensory-strip-right: -i mandibular-touch-receptor-left, -v mandibular-trigeminal-nerve-left, trigeminal-ganglion-left, trigeminal-nerve-left, medial-lemniscus-right, ventrolateral-thalamus-right, parietal-corona-radiata-right, -m, -h
+face-sensory-strip-right: -c ophthalmic-face-sensory-strip-right, maxillary-face-sensory-strip-right, mandibular-face-sensory-strip-right, -m
+
+
+corneal-reflex-arc: -i trigeminal-ophthalmic-pain-nucleus-right, trigeminal-ophthalmic-pain-nucleus-left
+orbicularis-oculi-left: -i corneal-reflex-arc, -v facial-nerve-left, facial-nerve-nucleus-left, -m
+
+
+# cn 7
+levator-palpebrae-superioris-left: -i oculomotor-nucleus-left -v oculomotor-nerve-left -m
+superior-tarsal-muscle-left: -i stellate-ganglion-left, -v carotid-artery-left, -m, -s mullers-muscle-left
+lower-facial-muscles-left: -i facial-nerve-nucleus-left, -v facial-nerve-left, -c orbicularis-oris-left, levator-anguli-oris-left, mentalis-left, zygomaticus-left, -m
+upper-facial-muscles-left: -i facial-nerve-nucleus-left, facial-nerve-nucleus-right, -v facial-nerve-left, -c orbicularis-oculi-left, frontalis-left, -m
+facial-nerve-nucleus-left: -i face-motor-strip-right, -v pontine-corticospinal-tract-right, cerebral-peduncle-right, internal-capsule-right, -c superior-salivatory-nucleus-left, -m
+
+# cn 8
+cochlear-nucleus-left: -i cochlea-left, -v vestibulocochlear-nerve-left, -m
+vestibular-nuclei-left: -i vestibular-organ-left, -v vestibulocochlear-nucleus-left, vestibulocochlear-nerve-left, -m
+medial-geniculate-nucleus-left: -i cochlear-nucleus-left, -v lateral-lemniscus-left, inferior-colliculus-left, -m
+auditory-cortex-left: -i medial-geniculate-nucleus-left, medial-geniculate-nucleus-right, -v temporal-corona-radiata, -c transverse-temporal-gyrus-left, -m
+lateral-gaze-centre-left: -i vestibular-nuclei-left, vestibular-nuclei-right, superior-colliculus-left, cerebellar-flocculonodular-lobe-left -m
+
+# cn 9, 10
+palatal-muscle-left: -i gag-centre, -v vagus-nerve-left, -m
+gag-centre-left: -i glossopharyngeal-nucleus-left, -m
+glossopharyngeal-nucleus-left: -i palatal-touch-receptor-left, -v glossopharyngeal-nerve-left, -m, -h
+gag-centre: -c gag-centre-left, gag-centre-right
+viscera: -i nucleus-ambiguus-left, -v vagus-nerve-left
+nucleus-tractus-solitarius-left: -i glossopharyngeal-nerve-left, -m
+nucleus-ambiguus-left: -i nucleus-tractus-solitarius-left, -m
+vocal-cord-left: -i nucleus-ambiguus-left, -v vagus-nerve-left, recurrent-laryngeal-nerve-left, -m
+
+
+# cn 11, 12
+sternocleidomastoid-left: -i accessory-nucleus-left, -v accessory-nerve-left, spinal-accessory-nerve-left, -m
+trapezius-left: -i accessory-nucleus-left, -v accessory-nerve-left, spinal-accessory-nerve-left,-m
+tongue-left: -i hypoglossal-nucleus-left,  -v hypoglossal-nerve-left, -m
+hypoglossal-nucleus-contralateral-left: -i face-motor-strip-right, -v pontine-corticospinal-tract-right, \
+ cerebral-peduncle-right, internal-capsule-right, -m, -h
+hypoglossal-nucleus-ipsilateral-left: -i face-motor-strip-left, -v pontine-corticospinal-tract-left, \
+ cerebral-peduncle-left, internal-capsule-left, -m, -h
+hypoglossal-nucleus-left: -c hypoglossal-nucleus-ipsilateral-left, hypoglossal-nucleus-contralateral-left, -m
+
+accessory-nucleus-left: -i face-motor-strip-right, -v pontine-corticospinal-tract-right, cerebral-peduncle-right, \
+ internal-capsule-right, -m 
+
+##############
+# motor system
+
+diaphragm-left: -i respiratory-centre, -v phrenic-nerve-left, c3-nerve-root-left, c3-ventral-root-left, c3-corticospinal-tract-left, c2-corticospinal-tract-left, -m
+
+#c5
+deltoid-left: -i c5-anterior-horn-left, -v lateral-cord-of-brachial-plexus-left, c5-nerve-root-left, \
+ c5-ventral-root-left, -m
+
+c5-anterior-horn-left: -i c5-upper-motor-neurone-left, -m
+
+c5-upper-motor-neurone-left: -i arm-motor-strip-right, -v c6-corticospinal-tract-left, c5-corticospinal-tract-left, \
+ c4-corticospinal-tract-left, c3-corticospinal-tract-left, c2-corticospinal-tract-left, pyramids-of-medulla, \
+ pontine-corticospinal-tract-right, cerebral-peduncle-right, internal-capsule-right, -m
+
+
+#c6
+extensor-carpi-radialis-left: -i c6-anterior-horn-left, -v posterior-interosseous-nerve-left, radial-nerve-arm-left, \
+ posterior-cord-of-brachial-plexus-left, c6-nerve-root-left, c6-ventral-root-left, -m
+brachioradialis-left: -i c6-anterior-horn-left, -v radial-nerve-arm-left, medial-cord-of-brachial-plexus-left, \
+ c6-nerve-root-left, c6-ventral-root-left, -m
+biceps-left: -i c6-anterior-horn-left, -v musculocutaneous-nerve-left, \
+ medial-cord-of-brachial-plexus-left, c5-nerve-root-left, \
+ c5-ventral-root-left, -m
+wrist-extensors-left: -c extensor-carpi-radialis-left, extensor-carpi-ulnaris-left, -m
+serratus-anterior-left: -i c6-anterior-horn-left, -v long-thoracic-nerve-of-bell-left, c6-ventral-root-left, -m
+
+
+c6-anterior-horn-left: -i c6-upper-motor-neurone-left, -m
+
+c6-upper-motor-neurone-left: -i arm-motor-strip-right, -v c6-corticospinal-tract-left, c5-corticospinal-tract-left, \
+ c4-corticospinal-tract-left, c3-corticospinal-tract-left, c2-corticospinal-tract-left, pyramids-of-medulla, \
+ pontine-corticospinal-tract-right, cerebral-peduncle-right, internal-capsule-right, -m
+
+
+#c7
+flexor-carpi-radialis-left: -i c7-anterior-horn-left, -v median-nerve-carpal-tunnel-left, median-nerve-left, \
+ lateral-cord-of-brachial-plexus-left, c7-nerve-root-left, c7-ventral-root-left, -m
+triceps-left: -i c7-anterior-horn-left, -v radial-nerve-arm-left, posterior-cord-of-brachial-plexus-left, \
+ c7-nerve-root-left, c7-ventral-root-left, -m
+extensor-digitorum-left: -i c7-anterior-horn-left, -v radial-nerve-arm-left, posterior-interosseous-nerve-left, \
+ posterior-cord-of-brachial-plexus-left, c7-nerve-root-left, c7-ventral-root-left, -m
+extensor-carpi-ulnaris-left: -i c7-anterior-horn-left, -v posterior-interosseous-nerve-left, \
+ radial-nerve-arm-left, posterior-cord-of-brachial-plexus-left, c7-nerve-root-left, c7-ventral-root-left, -m
+wrist-flexors-left: -c flexor-carpi-radialis-left, flexor-carpi-ulnaris-left, -m
+pectoralis-major-left: -i c7-anterior-horn-left, -v superior-cord-of-brachial-plexus-left, \
+  c7-nerve-root-left, c7-ventral-root-left, -m
+
+
+c7-upper-motor-neurone-left: -i arm-motor-strip-right, -v c7-corticospinal-tract-left, c6-corticospinal-tract-left, \
+ c5-corticospinal-tract-left, c4-corticospinal-tract-left, c3-corticospinal-tract-left, \
+ c2-corticospinal-tract-left, pyramids-of-medulla, pontine-corticospinal-tract-right, \
+ cerebral-peduncle-right, internal-capsule-right, -m
+
+c7-dorsal-root-ganglion-left: -i finger-stretch-receptor-left, -v median-nerve-left, \
+ lateral-cord-of-brachial-plexus-left, c7-nerve-root-left, -m
+
+hand-sensory-cortex-right: -i c7-dorsal-root-ganglion-left, -v medial-dorsal-thalamus-left, medial-lemniscus-right, \
+ c2-cuneate-fasciculus-left, c3-cuneate-fasciculus-left, \
+ c4-cuneate-fasciculus-left, c5-cuneate-fasciculus-left, c6-cuneate-fasciculus-left, c7-cuneate-fasciculus-left, -m
+
+c7-anterior-horn-left: -i c7-upper-motor-neurone-left, -m
+
+#c8
+flexor-digitorum-left: -i c8-anterior-horn-left, -v median-nerve-left, lateral-cord-of-brachial-plexus-left, \
+ c8-nerve-root-left, c8-ventral-root-left, -m
+flexor-carpi-ulnaris-left: -i c8-anterior-horn-left, -v ulnar-nerve-arm-left, lateral-cord-of-brachial-plexus-left, \
+ c8-nerve-root-left, c8-ventral-root-left, -m
+
+c8-upper-motor-neurone-left: -i hand-motor-strip-right, -v c8-corticospinal-tract-left, c7-corticospinal-tract-left, \
+ c6-corticospinal-tract-left, c5-corticospinal-tract-left, c4-corticospinal-tract-left, c3-corticospinal-tract-left, \
+ c2-corticospinal-tract-left, pyramids-of-medulla, pontine-corticospinal-tract-right, \
+ cerebral-peduncle-right, internal-capsule-right, -m
+
+c8-anterior-horn-left: -i c8-upper-motor-neurone-left, -m
+
+cervical-corticospinal-tract-left: -c c2-corticospinal-tract-left, c3-corticospinal-tract-left, c4-corticospinal-tract-left, \
+ c5-corticospinal-tract-left, c6-corticospinal-tract-left, c7-corticospinal-tract-left, -m
+
+#t1
+interossei-left: -i t1-anterior-horn-left, -v ulnar-nerve-forearm-left, ulnar-nerve-arm-left, \
+ lateral-cord-of-brachial-plexus-left, t1-nerve-root-left, t1-ventral-root-left, -m
+opponens-pollicis-left: -i t1-anterior-horn-left, -v median-nerve-carpal-tunnel-left, median-nerve-left, \
+ medial-cord-of-brachial-plexus-left, t1-nerve-root-left, t1-ventral-root-left, -m
+abductor-pollicis-brevis-left: -i t1-anterior-horn-left, -v median-nerve-carpal-tunnel-left, \
+ median-nerve-left, medial-cord-of-brachial-plexus-left, t1-nerve-root-left, t1-ventral-root-left, -m
+
+t1-upper-motor-neurone-left: -i hand-motor-strip-right, -v t1-corticospinal-tract-left, cervical-corticospinal-tract-left, \
+ pyramids-of-medulla, pontine-corticospinal-tract-right, \
+ cerebral-peduncle-right, internal-capsule-right, -m
+
+t1-anterior-horn-left: -i t1-upper-motor-neurone-left, t1-dorsal-root-ganglion-left, -m
+
+
+
+brachial-plexus-left: -c lateral-cord-of-brachial-plexus-left, medial-cord-of-brachial-plexus-left, \
+ posterior-cord-of-brachial-plexus-left, -m;
+
+thoracic-corticospinal-tract-left: -c t1-corticospinal-tract-left, t2-corticospinal-tract-left, \
+ t3-corticospinal-tract-left, t4-corticospinal-tract-left, t5-corticospinal-tract-left, \
+ t6-corticospinal-tract-left, t7-corticospinal-tract-left, t8-corticospinal-tract-left, \
+ t9-corticospinal-tract-left, t10-corticospinal-tract-left, t11-corticospinal-tract-left, \
+ t12-corticospinal-tract-left, -m
+
+#l2
+adductor-magnus-left: -i l2-anterior-horn-left, -v obturator-nerve-left, l2-nerve-root-left, l2-ventral-root-left, -m
+psoas-left: -i l2-anterior-horn-left, -v femoral-nerve-left, l2-nerve-root-left, l2-ventral-root-left, -m
+
+l2-anterior-horn-left: -i l2-upper-motor-neurone-left, -m
+
+l2-upper-motor-neurone-left: -i leg-motor-strip-right, -v l2-corticospinal-tract-left, \
+ l1-corticospinal-tract-left, thoracic-corticospinal-tract-left, cervical-corticospinal-tract-left, \
+ pyramids-of-medulla, pontine-corticospinal-tract-right, cerebral-peduncle-right, \
+ internal-capsule-right, -m
+
+#l3
+quadriceps-left: -i l3-anterior-horn-left, -v femoral-nerve-left, l3-nerve-root-left, l3-ventral-root-left, -m
+
+l3-anterior-horn-left: -i l3-upper-motor-neurone-left, -m
+l3-upper-motor-neurone-left: -i leg-motor-strip-right, -v l3-corticospinal-tract-left, \
+ l2-corticospinal-tract-left, l1-corticospinal-tract-left, thoracic-corticospinal-tract-left, \
+ cervical-corticospinal-tract-left, pyramids-of-medulla, pontine-corticospinal-tract-right, \
+ cerebral-peduncle-right, internal-capsule-right, -m
+
+#l4
+tibialis-anterior-left: -i l4-anterior-horn-left, -v common-peroneal-nerve-left, \
+ sciatic-nerve-left, l4-nerve-root-left, l4-ventral-root-left, -m
+tibialis-posterior-left: -i l4-anterior-horn-left, -v common-peroneal-nerve-left, \
+ sciatic-nerve-left, l4-nerve-root-left, l4-ventral-root-left, -m
+
+l4-anterior-horn-left: -i l4-upper-motor-neurone-left, -m
+l4-upper-motor-neurone-left: -i leg-motor-strip-right, -v l4-corticospinal-tract-left, \
+ l3-corticospinal-tract-left, l2-corticospinal-tract-left, l1-corticospinal-tract-left, \
+ thoracic-corticospinal-tract-left, \
+ cervical-corticospinal-tract-left, pyramids-of-medulla, pontine-corticospinal-tract-right, \
+ cerebral-peduncle-right, internal-capsule-right, -m
+
+#l5
+gluteus-left: -i l5-anterior-horn-left, -v gluteal-nerve-left, l5-nerve-root-left, l5-ventral-root-left, -m
+gluteus-maximus-left: -i l5-anterior-horn-left, -v gluteal-nerve-left, l5-nerve-root-left, l5-ventral-root-left, -m
+extensor-hallucis-longus-left: -i l5-anterior-horn-left, -v sciatic-nerve-left, l5-nerve-root-left, l5-ventral-root-left, -m
+peroneus-longus-left: -i l5-anterior-horn-left, -v sciatic-nerve-left, l5-nerve-root-left, l5-ventral-root-left, -m
+
+l5-anterior-horn-left: -i l5-upper-motor-neurone-left, -m
+l5-upper-motor-neurone-left: -i leg-motor-strip-right, -v l5-corticospinal-tract-left, \
+ l4-corticospinal-tract-left, l3-corticospinal-tract-left, l2-corticospinal-tract-left, \
+ l1-corticospinal-tract-left, thoracic-corticospinal-tract-left, \
+ cervical-corticospinal-tract-left, pyramids-of-medulla, pontine-corticospinal-tract-right, \
+ cerebral-peduncle-right, internal-capsule-right, -m
+
+lumbar-corticospinal-tract-left: -c l1-corticospinal-tract-left, l2-corticospinal-tract-left, \
+ l3-corticospinal-tract-left, l4-corticospinal-tract-left, l5-corticospinal-tract-left, -m
+
+
+#s1
+hamstrings-left: -i s1-anterior-horn-left, -v sciatic-nerve-left, s1-nerve-root-left, s1-ventral-root, -m
+gastrocnemius-left: -i s1-anterior-horn-left, -v sciatic-nerve-left, s1-nerve-root-left, s1-ventral-root, -m
+flexor-hallucis-longus-left: -i s1-anterior-horn-left, -v tibial-nerve-left, s1-nerve-root-left, s1-ventral-root, -m
+
+
+s1-anterior-horn-left: -i s1-upper-motor-neurone-left, -m
+s1-upper-motor-neurone-left: -i leg-motor-strip-right, -v s1-corticospinal-tract-left, \
+ lumbar-corticospinal-tract-left, thoracic-corticospinal-tract-left, \
+ cervical-corticospinal-tract-left, pyramids-of-medulla, pontine-corticospinal-tract-right, \
+ cerebral-peduncle-right, internal-capsule-right, -m
+
+#s4
+anal-sphincter-left: -i s4-anterior-horn-left, -v inferior-rectal-nerve-left, pudendal-nerve-left, sacral-plexus-left, s4-nerve-root-left, s4-ventral-root, -m
+anal-sphincter: -c anal-sphincter-left, anal-sphincter-right
+s4-anterior-horn-left: -i s4-upper-motor-neurone-left, -m
+s4-upper-motor-neurone-left: -i leg-motor-strip-right, -v s3-corticospinal-tract-left, \
+ s2-corticospinal-tract-left, s1-corticospinal-tract-left, lumbar-corticospinal-tract-left, \
+ thoracic-corticospinal-tract-left, cervical-corticospinal-tract-left, pyramids-of-medulla, \
+ pontine-corticspinal-tract-right, cerebral-peduncle-right, internal-capsule-right, -m
+
+primary-motor-cortex-right: -c arm-motor-strip-right, hand-motor-strip-right, leg-motor-strip-right, \
+ face-motor-strip-right, -m
+
+primary-motor-cortex: -c primary-motor-cortex-left, primary-motor-cortex-right
+motor-cortex-left: -c primary-motor-cortex-left, supplementary-motor-area-left, pre-supplementary-motor-area-left, premotor-cortex-left, -m
+motor-cortex: -c motor-cortex-left, motor-cortex-right
+
+# we effectiely rename 'frontal limbic area' to 'pre-SMA'...
+pre-supplementary-motor-area-left: -c frontal-limbic-area-left, -m
+
+## sensory upper limb
+
+
+cervical-cuneate-fasciculus-left: -c c2-cuneate-fasciculus-left, c3-cuneate-fasciculus-left, c4-cuneate-fasciculus-left, c5-cuneate-fasciculus-left, c6-cuneate-fasciculus-left, c7-cuneate-fasciculus-left, c8-cuneate-fasciculus-left, -m
+cervical-gracile-fasciculus-left: -c  c2-gracile-fasciculus-left, c3-gracile-fasciculus-left, c4-gracile-fasciculus-left, c5-gracile-fasciculus-left, c6-gracile-fasciculus-left, c7-gracile-fasciculus-left, c8-gracile-fasciculus-left, -m
+somatosensory-pathway-left: -c internal-arcuate-fibres-of-medulla-left, medial-lemniscus-right, ventrolateral-thalamus-right, parietal-corona-radiata-right, -h, -m
+
+# arm touch
+back-of-head-sensory-strip-right: -i back-of-head-touch-receptor-left, -v occipital-nerve-left, c2-nerve-root-left, c2-dorsal-root-left, c2-cuneate-fasciculus-left, cuneate-nucleus-left, somatosensory-pathway-left, -m, -h
+neck-anterior-upper-sensory-strip-right: -i neck-anterior-upper-touch-receptor-left, -v cervical-nerve-left, c3-nerve-root-left, c3-dorsal-root-left, c3-cuneate-fasciculus-left, c2-cuneate-fasciculus-left, cuneate-nucleus-left, somatosensory-pathway-left, -m, -h
+top-of-back-sensory-strip-right: -i top-of-back-touch-receptor-left, -v cervical-nerve-left, c4-nerve-root-left, c4-dorsal-root-left, c4-cuneate-fasciculus-left, c3-cuneate-fasciculus-left, c2-cuneate-fasciculus-left, cuneate-nucleus-left, somatosensory-pathway-left, -m, -h
+army-patch-sensory-strip-right: -i army-patch-touch-receptor-left, -v upper-cutaneous-nerve-of-arm-left, axillary-nerve-left, lateral-cord-of-brachial-plexus-left, c5-nerve-root-left, c5-dorsal-root-left, c5-cuneate-fasciculus-left, c4-cuneate-fasciculus-left, c3-cuneate-fasciculus-left, c2-cuneate-fasciculus-left, cuneate-nucleus-left, somatosensory-pathway-left, -m, -h
+manubrium-sensory-strip-right: -i manubrium-touch-receptor-left, -v supraclavicular-nerve-left, c3-nerve-root-left, c3-dorsal-root-left, c3-cuneate-fasciculus-left, c2-cuneate-fasciculus-left, cuneate-nucleus-left, somatosensory-pathway-left, -m, -h
+shoulder-sensory-strip-right: -i shoulder-touch-receptor-left, -v supraclavicular-nerve-left, c4-nerve-root-left, c4-dorsal-root-left, c4-cuneate-fasciculus-left, c3-cuneate-fasciculus-left, c2-cuneate-fasciculus-left, cuneate-nucleus-left, somatosensory-pathway-left, -m, -h
+lower-lateral-arm-sensory-strip-right: -i lower-lateral-arm-touch-receptor-left, -v lateral-cutaneous-nerve-of-arm-left, lateral-cord-of-brachial-plexus-left, c5-nerve-root-left, c5-dorsal-root-left, c5-cuneate-fasciculus-left, c4-cuneate-fasciculus-left, c3-cuneate-fasciculus-left, c2-cuneate-fasciculus-left, cuneate-nucleus-left, somatosensory-pathway-left, -m, -h
+posterior-upper-arm-sensory-strip-right: -i posterior-upper-arm-touch-receptor-left, -v posterior-cutaneous-nerve-of-arm-left, lateral-cord-of-brachial-plexus-left, c5-nerve-root-left, c5-dorsal-root-left, c5-cuneate-fasciculus-left, c4-cuneate-fasciculus-left, c3-cuneate-fasciculus-left, c2-cuneate-fasciculus-left, cuneate-nucleus-left, somatosensory-pathway-left, -m, -h
+anterior-upper-arm-sensory-strip-right: -i anterior-upper-arm-touch-receptor-left, -v medial-cutaneous-nerve-of-arm-left,  lateral-cord-of-brachial-plexus-left, c6-nerve-root-left,  c6-dorsal-root-left, c6-cuneate-fasciculus-left, c5-cuneate-fasciculus-left, c4-cuneate-fasciculus-left, c3-cuneate-fasciculus-left, c2-cuneate-fasciculus-left, cuneate-nucleus-left, somatosensory-pathway-left, -m, -h
+
+head-neck-sensory-strip-right: -c back-of-head-sensory-strip-right, neck-anterior-upper-sensory-strip-right, \
+ top-of-back-sensory-strip-right, manubrium-sensory-strip-right, \
+ -m, -h
+
+outer-anterior-forearm-sensory-strip-right: -i outer-anterior-forearm-touch-receptor-left, -v lateral-cutaneous-nerve-of-forearm-left, musculocutaneous-nerve-left, lateral-cord-of-brachial-plexus-left, c6-nerve-root-left, c6-dorsal-root-left, c6-cuneate-fasciculus-left, c5-cuneate-fasciculus-left, c4-cuneate-fasciculus-left, c3-cuneate-fasciculus-left, c2-cuneate-fasciculus-left, cuneate-nucleus-left, somatosensory-pathway-left, -m, -h
+anterior-thumb-sensory-strip-right: -i anterior-thumb-touch-receptor-left, -v median-nerve-carpal-tunnel-left, median-nerve-forearm-left, median-nerve-arm-left, medial-cord-of-brachial-plexus-left, c6-nerve-root-left, c6-dorsal-root-left, c6-cuneate-fasciculus-left,  c5-cuneate-fasciculus-left, c4-cuneate-fasciculus-left, c3-cuneate-fasciculus-left, c2-cuneate-fasciculus-left, cuneate-nucleus-left, somatosensory-pathway-left, -m, -h
+posterior-thumb-sensory-strip-right: -i posterior-thumb-touch-receptor-left, -v radial-nerve-left, radial-nerve-arm-left, posterior-cord-of-brachial-plexus-left, c6-nerve-root-left, c6-dorsal-root-left, c6-cuneate-fasciculus-left,  c5-cuneate-fasciculus-left, c4-cuneate-fasciculus-left, c3-cuneate-fasciculus-left, c2-cuneate-fasciculus-left, cuneate-nucleus-left, somatosensory-pathway-left, -m, -h
+anterior-index-finger-sensory-strip-right: -i anterior-index-finger-touch-receptor-left, -v median-nerve-carpal-tunnel-left, median-nerve-forearm-left, medial-nerve-arm-left, medial-cord-of-brachial-plexus-left, c7-nerve-root-left, c7-dorsal-root-left, c7-cuneate-fasciculus-left,  c6-cuneate-fasciculus-left,  c5-cuneate-fasciculus-left, c4-cuneate-fasciculus-left, c3-cuneate-fasciculus-left, c2-cuneate-fasciculus-left, cuneate-nucleus-left, somatosensory-pathway-left, -m, -h
+posterior-index-finger-sensory-strip-right: -i posterior-index-finger-touch-receptor-left, -v radial-nerve-left, radial-nerve-arm-left, posterior-cord-of-brachial-plexus-left, c7-nerve-root-left, c7-dorsal-root-left, c7-cuneate-fasciculus-left,  c6-cuneate-fasciculus-left,  c5-cuneate-fasciculus-left, c4-cuneate-fasciculus-left, c3-cuneate-fasciculus-left, c2-cuneate-fasciculus-left, cuneate-nucleus-left, somatosensory-pathway-left, -m, -h
+lateral-ring-finger-sensory-strip-right: -i lateral-ring-finger-touch-receptor-left, -v ulnar-nerve-left, medial-cord-of-brachial-plexus-left, c7-nerve-root-left, c7-dorsal-root-left, c7-cuneate-fasciculus-left,  c6-cuneate-fasciculus-left,  c5-cuneate-fasciculus-left, c4-cuneate-fasciculus-left, c3-cuneate-fasciculus-left, c2-cuneate-fasciculus-left, cuneate-nucleus-left, somatosensory-pathway-left, -m, -h
+little-finger-sensory-strip-right: -i little-finger-touch-receptor-left, -v ulnar-nerve-forearm-left, ulnar-nerve-arm-left, medial-cord-of-brachial-plexus-left, c8-nerve-root-left, c8-dorsal-root-left, c8-cuneate-fasciculus-left, c7-cuneate-fasciculus-left,  c6-cuneate-fasciculus-left,  c5-cuneate-fasciculus-left, c4-cuneate-fasciculus-left, c3-cuneate-fasciculus-left, c2-cuneate-fasciculus-left, cuneate-nucleus-left, somatosensory-pathway-left, -m, -h
+anterior-medial-forearm-sensory-strip-right: -i anterior-medial-forearm-touch-receptor-left, -v medial-cutanesous-nerve-of-forearm-left, medial-cord-of-brachial-plexus-left, t1-nerve-root-left,t1-dorsal-root-left, t1-cuneate-fasciculus-left, cervical-cuneate-fasciculus-left,  cuneate-nucleus-left, somatosensory-pathway-left, -m, -h
+posterior-forearm-sensory-strip-right: -i posterior-forearm-touch-receptor-left, -v posterior-cutaneous-nerve-of-arm, radial-nerve-arm-left, posterior-cord-of-brachial-plexus-left, c7-nerve-root-left, c7-dorsal-root-left, c7-cuneate-fasciculus-left,  c6-cuneate-fasciculus-left,  c5-cuneate-fasciculus-left, c4-cuneate-fasciculus-left, c3-cuneate-fasciculus-left, c2-cuneate-fasciculus-left, cuneate-nucleus-left, somatosensory-pathway-left, -m, -h
+posterior-medial-forearm-sensory-strip-right: -i posterior-medial-forearm-touch-receptor-left, -v medial-cutaneous-nerve-of-forearm-left, medial-cord-of-brachial-plexus-left, c8-nerve-root-left, c8-dorsal-root-left, c8-cuneate-fasciculus-left,  c7-cuneate-fasciculus-left,  c6-cuneate-fasciculus-left,  c5-cuneate-fasciculus-left, c4-cuneate-fasciculus-left, c3-cuneate-fasciculus-left, c2-cuneate-fasciculus-left, cuneate-nucleus-left, somatosensory-pathway-left, -m, -h
+posterior-lateral-forearm-sensory-strip-right: -i posterior-lateral-forearm-touch-receptor-left, -v posterior-cutaneous-nerve-of-arm-left, radial-nerve-arm-left, posterior-cord-of-brachial-plexus-left, c6-nerve-root-left, c6-dorsal-root-left, c6-cuneate-fasciculus-left, c5-cuneate-fasciculus-left, c4-cuneate-fasciculus-left, c3-cuneate-fasciculus-left, c2-cuneate-fasciculus-left, cuneate-nucleus-left, somatosensory-pathway-left, -m, -h
+inner-arm-sensory-strip-right: -i inner-arm-touch-receptor-left, -v musculocutaneous-nerve-left, t1-nerve-root-left, t1-dorsal-root-left, t1-cuneate-fasciculus-left, cervical-cuneate-fasciculus-left, cuneate-nucleus-left, somatosensory-pathway-left, -m, -h
+axilla-sensory-strip-right: -i axilla-touch-receptor-left, -v intercostobrachial-nerve-left, t2-nerve-root-left, t2-dorsal-root-left, t2-cuneate-fasciculus-left, t1-cuneate-fasciculus-left, cervical-cuneate-fasciculus-left, cuneate-nucleus-left, somatosensory-pathway-left, -m, -h
+
+upper-limb-sensory-strip-right: -c outer-anterior-forearm-sensory-strip-right, \
+ posterior-forearm-sensory-strip-right, anterior-thumb-sensory-strip-right, posterior-thumb-sensory-strip-right, \
+ anterior-index-finger-sensory-strip-right, posterior-index-finger-sensory-strip-right, \
+ lateral-ring-finger-sensory-strip-right, little-finger-sensory-strip-right, \
+ anterior-medial-forearm-sensory-strip-right, posterior-medial-forearm-sensory-strip-right, \
+ posterior-lateral-forearm-sensory-strip-right, \
+ inner-arm-sensory-strip-right, axilla-sensory-strip-right,  \
+ army-patch-sensory-strip-right, shoulder-sensory-strip-right, lower-lateral-arm-sensory-strip-right, \
+ posterior-upper-arm-sensory-strip-right,  anterior-upper-arm-sensory-strip-right, -m
+
+
+# arm pain
+back-of-head-pain-nucleus-right: -i back-of-head-pain-receptor-left, -v occipital-nerve-left, c2-nerve-root-left, c2-dorsal-root-left, brainstem-spinothalamic-tract-right, -m, -h
+neck-anterior-upper-pain-nucleus-right: -i neck-anterior-upper-pain-receptor-left, -v cervical-nerve-left, c3-nerve-root-left, c3-dorsal-root-left, c2-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+top-of-back-pain-nucleus-right: -i top-of-back-pain-receptor-left, -v cervical-nerve-left, c4-nerve-root-left, c4-dorsal-root-left, c3-spinothalamic-tract-right, c2-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+army-patch-pain-nucleus-right: -i army-patch-pain-receptor-left, -v upper-cutaneous-nerve-of-arm-left, axillary-nerve-left, c5-nerve-root-left, c5-dorsal-root-left, c4-spinothalamic-tract-right, c3-spinothalamic-tract-right, c2-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+manubrium-pain-nucleus-right: -i manubrium-pain-receptor-left, -v supraclavicular-nerve-left, c3-nerve-root-left, c3-dorsal-root-left, c2-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+shoulder-pain-nucleus-right: -i shoulder-pain-receptor-left, -v supraclavicular-nerve-left, c4-nerve-root-left, c4-dorsal-root-left, c3-spinothalamic-tract-right, c2-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+lower-lateral-arm-pain-nucleus-right: -i lower-lateral-arm-pain-receptor-left, -v lateral-cutaneous-nerve-of-arm-left, lateral-cord-of-brachial-plexus-left, c5-nerve-root-left, c5-dorsal-root-left, c4-spinothalamic-tract-right, c3-spinothalamic-tract-right, c2-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+anterior-upper-arm-pain-nucleus-right: -i anterior-upper-arm-pain-receptor-left, -v medial-cutaneous-nerve-of-arm-left,  lateral-cord-of-brachial-plexus-left, c6-nerve-root-left,  c6-dorsal-root-left, c6-spinothalamic-tract-right, c5-spinothalamic-tract-right, c4-spinothalamic-tract-right, c3-spinothalamic-tract-right, c2-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+axilla-pain-nucleus-right: -i axilla-pain-receptor-left, -v intercostobrachial-nerve-left, t2-nerve-root-left, t2-dorsal-root-left, t2-spinothalamic-tract-right, t1-spinothalamic-tract-right, cervical-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+posterior-lateral-forearm-pain-nucleus-right: -i posterior-lateral-forearm-pain-receptor-left, -v posterior-cutaneous-nerve-of-arm-left, radial-nerve-arm-left, posterior-cord-of-brachial-plexus-left, c6-nerve-root-left, c6-dorsal-root-left, c6-spinothalamic-tract-right, c5-spinothalamic-tract-right, c4-spinothalamic-tract-right, c3-spinothalamic-tract-right, c2-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+posterior-forearm-pain-nucleus-right: -i posterior-forearm-pain-receptor-left, -v posterior-cutaneous-nerve-of-arm, radial-nerve-arm-left, posterior-cord-of-brachial-plexus-left, c7-nerve-root-left, c7-dorsal-root-left, c7-spinothalamic-tract-right,  c6-spinothalamic-tract-right,  c5-spinothalamic-tract-right, c4-spinothalamic-tract-right, c3-spinothalamic-tract-right, c2-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+posterior-upper-arm-pain-nucleus-right: -i posterior-upper-arm-pain-receptor-left, -v posterior-cutaneous-nerve-of-arm-left, lateral-cord-of-brachial-plexus-left, c5-nerve-root-left, c5-dorsal-root-left, c5-spinothalamic-tract-right, c4-spinothalamic-tract-right, c3-spinothalamic-tract-right, c2-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+posterior-index-finger-pain-nucleus-right: -i posterior-index-finger-pain-receptor-left, -v radial-nerve-left, radial-nerve-arm-left, posterior-cord-of-brachial-plexus-left, c7-nerve-root-left, c7-dorsal-root-left, c7-spinothalamic-tract-right,  c6-spinothalamic-tract-right,  c5-spinothalamic-tract-right, c4-spinothalamic-tract-right, c3-spinothalamic-tract-right, c2-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+
+
+outer-anterior-forearm-pain-nucleus-right: -i outer-anterior-forearm-pain-receptor-left, -v median-nerve-arm-left, lateral-cord-of-brachial-plexus-left, c6-nerve-root-left, c6-dorsal-root-left, c5-spinothalamic-tract-right, c4-spinothalamic-tract-right, c3-spinothalamic-tract-right, c2-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+outer-posterior-forearm-pain-nucleus-right: -i outer-posterior-forearm-pain-receptor-left, -v radial-nerve-left, posterior-cord-of-brachial-plexus-left, c6-nerve-root-left, c6-dorsal-root-left, c6-cuneate-fasciculus-left, c5-spinothalamic-tract-right, c4-spinothalamic-tract-right, c3-spinothalamic-tract-right, c2-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+anterior-thumb-pain-nucleus-right: -i anterior-thumb-pain-receptor-left, -v median-nerve-carpal-tunnel-left, median-nerve-forearm-left, median-nerve-arm-left, medial-cord-of-brachial-plexus-left, c6-nerve-root-left, c6-dorsal-root-left, c5-spinothalamic-tract-right, c4-spinothalamic-tract-right, c3-spinothalamic-tract-right, c2-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+posterior-thumb-pain-nucleus-right: -i posterior-thumb-pain-receptor-left, -v radial-nerve-left, posterior-cord-of-brachial-plexus-left, c6-nerve-root-left, c6-dorsal-root-left, c5-spinothalamic-tract-right, c4-spinothalamic-tract-right, c3-spinothalamic-tract-right, c2-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+anterior-index-finger-pain-nucleus-right: -i anterior-index-finger-pain-receptor-left, -v median-nerve-carpal-tunnel-left, median-nerve-forearm-left, medial-nerve-arm-left, medial-cord-of-brachial-plexus-left, c7-nerve-root-left, c7-dorsal-root-left, c6-spinothalamic-tract-right, c5-spinothalamic-tract-right, c4-spinothalamic-tract-right, c3-spinothalamic-tract-right, c2-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+
+lateral-ring-finger-pain-nucleus-right: -i lateral-ring-finger-pain-receptor-left, -v  ulnar-nerve-left, medial-cord-of-brachial-plexus-left, c7-nerve-root-left, c7-dorsal-root-left, c7-spinothalamic-tract-right,  c6-spinothalamic-tract-right,  c5-spinothalamic-tract-right, c4-spinothalamic-tract-right, c3-spinothalamic-tract-right, c2-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+little-finger-pain-nucleus-right: -i little-finger-pain-receptor-left, -v ulnar-nerve-forearm-left, ulnar-nerve-arm-left, medial-cord-of-brachial-plexus-left, c8-nerve-root-left, c8-dorsal-root-left, c7-spinothalamic-tract-right, c6-spinothalamic-tract-right, c5-spinothalamic-tract-right, c4-spinothalamic-tract-right, c3-spinothalamic-tract-right, c2-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+anterior-medial-forearm-pain-nucleus-right: -i anterior-medial-forearm-pain-receptor-left, -v median-nerve-forearm-left, median-nerve-arm-left, medial-cord-of-brachial-plexus-left, c8-nerve-root-left, c8-dorsal-root-left, c7-spinothalamic-tract-right, c6-spinothalamic-tract-right, c5-spinothalamic-tract-right, c4-spinothalamic-tract-right, c3-spinothalamic-tract-right, c2-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+posterior-medial-forearm-pain-nucleus-right: -i posterior-medial-forearm-pain-receptor-left, -v radial-nerve-left, posterior-cord-of-brachial-plexus-left, c8-nerve-root-left, c8-dorsal-root-left, c7-spinothalamic-tract-right, c6-spinothalamic-tract-right, c5-spinothalamic-tract-right, c4-spinothalamic-tract-right, c3-spinothalamic-tract-right, c2-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+inner-arm-pain-nucleus-right: -i inner-arm-pain-receptor-left, -v musculocutaneous-nerve-left, t1-nerve-root-left, t1-dorsal-root-left, t1-cuneate-fasciculus-left, cervical-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+
+
+head-neck-medial-dorsal-thalamus-right: -c back-of-head-pain-nucleus-right, neck-anterior-upper-pain-nucleus-right, \
+ top-of-back-pain-nucleus-right,  manubrium-pain-nucleus-right, \
+  -m, -h
+
+upper-limb-medial-dorsal-thalamus-right: -c outer-anterior-forearm-pain-nucleus-right, outer-posterior-forearm-pain-nucleus-right, \
+ anterior-upper-arm-pain-nucleus-right, anterior-thumb-pain-nucleus-right, posterior-thumb-pain-nucleus-right, anterior-index-finger-pain-nucleus-right, \
+ posterior-index-finger-pain-nucleus-right, lateral-ring-finger-pain-nucleus-right, little-finger-pain-nucleus-right, anterior-medial-forearm-pain-nucleus-right, \
+ posterior-medial-forearm-pain-nucleus-right, lower-lateral-arm-pain-nucleus-right,inner-arm-pain-nucleus-right,\
+ shoulder-pain-nucleus-right, army-patch-pain-nucleus-right, posterior-upper-arm-pain-nucleus-right, posterior-forearm-pain-nucleus-right, \
+ posterior-lateral-forearm-pain-nucleus-right,  -m, -h
+
+medial-dorsal-thalamus-right: -c trigeminal-thalamic-nucleus-right, head-neck-medial-dorsal-thalamus-right, \
+ upper-limb-medial-dorsal-thalamus-right, thoracic-medial-dorsal-thalamus-right, lower-limb-medial-dorsal-thalamus-right, -m
+
+medial-dorsal-thalamus: -c medial-dorsal-thalamus-left, medial-dorsal-thalamus-right
+
+cervical-spinothalamic-tract-right: -c c1-spinothalamic-tract-right, c2-spinothalamic-tract-right, c3-spinothalamic-tract-right, \
+ c4-spinothalamic-tract-right, c5-spinothalamic-tract-right, c6-spinothalamic-tract-right, c7-spinothalamic-tract-right, -m
+
+## sensory thoracic
+
+thoracic-gracile-fasciculus-left: -c t1-gracile-fasciculus-left, t2-gracile-fasciculus-left, t3-gracile-fasciculus-left, t4-gracile-fasciculus-left, t4-gracile-fasciculus-left, t5-gracile-fasciculus-left, t6-gracile-fasciculus-left, t7-gracile-fasciculus-left, t8-gracile-fasciculus-left, t9-gracile-fasciculus-left, t10-gracile-fasciculus-left, t11-gracile-fasciculus-left, t12-gracile-fasciculus-left, -m
+
+t12-sensory-strip-right: -i t12-touch-receptor-left, -v t12-segmental-nerve-left, t12-nerve-root-left, t12-dorsal-root-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+
+t11-sensory-strip-right: -i t11-touch-receptor-left, -v t11-segmental-nerve-left, t11-nerve-root-left, t11-dorsal-root-left, t11-gracile-fasciculus-left, \
+ t10-gracile-fasciculus-left, t9-gracile-fasciculus-left, t8-gracile-fasciculus-left, t7-gracile-fasciculus-left, t6-gracile-fasciculus-left, t5-gracile-fasciculus-left, \
+ t4-gracile-fasciculus-left, t3-gracile-fasciculus-left, t2-gracile-fasciculus-left, t1-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+
+t10-sensory-strip-right: -i t10-touch-receptor-left, -v t10-segmental-nerve-left, t10-nerve-root-left, t10-dorsal-root-left, \
+ t10-gracile-fasciculus-left, t9-gracile-fasciculus-left, t8-gracile-fasciculus-left, t7-gracile-fasciculus-left, t6-gracile-fasciculus-left, t5-gracile-fasciculus-left, \
+ t4-gracile-fasciculus-left, t3-gracile-fasciculus-left, t2-gracile-fasciculus-left, t1-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+
+t9-sensory-strip-right: -i t9-touch-receptor-left, -v t9-segmental-nerve-left, t9-nerve-root-left, t9-dorsal-root-left, \
+ t9-gracile-fasciculus-left, t8-gracile-fasciculus-left, t7-gracile-fasciculus-left, t6-gracile-fasciculus-left, t5-gracile-fasciculus-left, \
+ t4-gracile-fasciculus-left, t3-gracile-fasciculus-left, t2-gracile-fasciculus-left, t1-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+
+t8-sensory-strip-right: -i t8-touch-receptor-left, -v t8-segmental-nerve-left, t8-nerve-root-left, t8-dorsal-root-left, \
+ t8-gracile-fasciculus-left, t7-gracile-fasciculus-left, t6-gracile-fasciculus-left, t5-gracile-fasciculus-left, \
+ t4-gracile-fasciculus-left, t3-gracile-fasciculus-left, t2-gracile-fasciculus-left, t1-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+
+t7-sensory-strip-right: -i t7-touch-receptor-left, -v t7-segmental-nerve-left, t7-nerve-root-left, t7-dorsal-root-left, \
+ t7-gracile-fasciculus-left, t6-gracile-fasciculus-left, t5-gracile-fasciculus-left, \
+ t4-gracile-fasciculus-left, t3-gracile-fasciculus-left, t2-gracile-fasciculus-left, t1-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+
+t6-sensory-strip-right: -i t6-touch-receptor-left, -v t6-segmental-nerve-left, t6-nerve-root-left, t6-dorsal-root-left, \
+ t6-gracile-fasciculus-left, t5-gracile-fasciculus-left, \
+ t4-gracile-fasciculus-left, t3-gracile-fasciculus-left, t2-gracile-fasciculus-left, t1-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+
+t5-sensory-strip-right: -i t5-touch-receptor-left, -v t5-segmental-nerve-left, t5-nerve-root-left, t5-dorsal-root-left, \
+ t5-gracile-fasciculus-left, t4-gracile-fasciculus-left, t3-gracile-fasciculus-left, t2-gracile-fasciculus-left, t1-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+
+t4-sensory-strip-right: -i t4-touch-receptor-left, -v t4-segmental-nerve-left, t4-nerve-root-left, t4-dorsal-root-left, \
+ t4-gracile-fasciculus-left, t3-gracile-fasciculus-left, t2-gracile-fasciculus-left, t1-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+
+t3-sensory-strip-right: -i t3-touch-receptor-left, -v t3-segmental-nerve-left, t3-nerve-root-left, t3-dorsal-root-left, \
+ t3-gracile-fasciculus-left, t2-gracile-fasciculus-left, t1-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+
+t2-sensory-strip-right: -i t2-touch-receptor-left, -v t2-segmental-nerve-left, t2-nerve-root-left, t2-dorsal-root-left, \
+ t2-gracile-fasciculus-left, t1-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+
+t1-sensory-strip-right: -i t1-touch-receptor-left, -v t1-segmental-nerve-left, t1-nerve-root-left, t1-dorsal-root-left, t1-gracile-fasciculus-left, cervical-gracile-fasciculus-left, gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+
+thoracic-sensory-strip-right: -c t1-sensory-strip-right, t2-sensory-strip-right, t3-sensory-strip-right, t4-sensory-strip-right, t5-sensory-strip-right, t6-sensory-strip-right, t7-sensory-strip-right, t8-sensory-strip-right, t9-sensory-strip-right, t10-sensory-strip-right, t11-sensory-strip-right, t12-sensory-strip-right, -m
+primary-sensory-cortex-right: -c head-neck-sensory-strip-right, thoracic-sensory-strip-right, upper-limb-sensory-strip-right, face-sensory-strip-right, lower-limb-sensory-strip-right, -m
+
+primary-sensory-cortex: -c primary-sensory-cortex-left, primary-sensory-cortex-right
+
+
+#thoracic pain
+t1-segment-pain-nucleus-right: -i t1-segment-pain-receptor-left, -v t1-segmental-nerve-left, t1-nerve-root-left, t1-dorsal-root-left, t1-spinothalamic-tract-right, cervical-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+t2-pain-nucleus-right: -i t2-pain-receptor-left, -v t2-segmental-nerve-left, t2-nerve-root-left, t2-dorsal-root-left, \
+ t2-spinothalamic-tract-right, t1-spinothalamic-tract-right, \
+ cervical-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+t3-pain-nucleus-right: -i t3-pain-receptor-left, -v t3-segmental-nerve-left, t3-nerve-root-left, t3-dorsal-root-left, \
+ t3-spinothalamic-tract-right, t2-spinothalamic-tract-right, t1-spinothalamic-tract-right, \
+ cervical-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+t4-pain-nucleus-right: -i t4-pain-receptor-left, -v t4-segmental-nerve-left, t4-nerve-root-left, t4-dorsal-root-left, \
+ t4-spinothalamic-tract-right, t3-spinothalamic-tract-right, t2-spinothalamic-tract-right, t1-spinothalamic-tract-right, \
+ cervical-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+t5-pain-nucleus-right: -i t5-pain-receptor-left, -v t5-segmental-nerve-left, t5-nerve-root-left, t5-dorsal-root-left, \
+ t5-spinothalamic-tract-right, \
+ t4-spinothalamic-tract-right, t3-spinothalamic-tract-right, t2-spinothalamic-tract-right, t1-spinothalamic-tract-right, \
+ cervical-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+t6-pain-nucleus-right: -i t6-pain-receptor-left, -v t6-segmental-nerve-left, t6-nerve-root-left, t6-dorsal-root-left, \
+ t6-spinothalamic-tract-right, t5-spinothalamic-tract-right, \
+ t4-spinothalamic-tract-right, t3-spinothalamic-tract-right, t2-spinothalamic-tract-right, t1-spinothalamic-tract-right, \
+ cervical-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+t7-pain-nucleus-right: -i t7-pain-receptor-left, -v t7-segmental-nerve-left, t7-nerve-root-left, t7-dorsal-root-left, \
+ t7-spinothalamic-tract-right, t6-spinothalamic-tract-right, t5-spinothalamic-tract-right, \
+ t4-spinothalamic-tract-right, t3-spinothalamic-tract-right, t2-spinothalamic-tract-right, t1-spinothalamic-tract-right, \
+ cervical-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+t8-pain-nucleus-right: -i t8-pain-receptor-left, -v t8-segmental-nerve-left, t8-nerve-root-left, t8-dorsal-root-left, \
+ t8-spinothalamic-tract-right, t7-spinothalamic-tract-right, t6-spinothalamic-tract-right, t5-spinothalamic-tract-right, \
+ t4-spinothalamic-tract-right, t3-spinothalamic-tract-right, t2-spinothalamic-tract-right, t1-spinothalamic-tract-right, \
+ cervical-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+t9-pain-nucleus-right: -i t9-pain-receptor-left, -v t9-segmental-nerve-left, t9-nerve-root-left, t9-dorsal-root-left, \
+ t9-spinothalamic-tract-right, \
+ t8-spinothalamic-tract-right, t7-spinothalamic-tract-right, t6-spinothalamic-tract-right, t5-spinothalamic-tract-right, \
+ t4-spinothalamic-tract-right, t3-spinothalamic-tract-right, t2-spinothalamic-tract-right, t1-spinothalamic-tract-right, \
+ cervical-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+t10-pain-nucleus-right: -i t10-pain-receptor-left, -v t10-segmental-nerve-left, t10-nerve-root-left, t10-dorsal-root-left, \
+ t10-spinothalamic-tract-right, t9-spinothalamic-tract-right, \
+ t8-spinothalamic-tract-right, t7-spinothalamic-tract-right, t6-spinothalamic-tract-right, t5-spinothalamic-tract-right, \
+ t4-spinothalamic-tract-right, t3-spinothalamic-tract-right, t2-spinothalamic-tract-right, t1-spinothalamic-tract-right, \
+ cervical-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+t11-pain-nucleus-right: -i t11-pain-receptor-left, -v t11-segmental-nerve-left, t11-nerve-root-left, t11-dorsal-root-left, \
+ t11-spinothalamic-tract-right, t10-spinothalamic-tract-right, t9-spinothalamic-tract-right, \
+ t8-spinothalamic-tract-right, t7-spinothalamic-tract-right, t6-spinothalamic-tract-right, t5-spinothalamic-tract-right, \
+ t4-spinothalamic-tract-right, t3-spinothalamic-tract-right, t2-spinothalamic-tract-right, t1-spinothalamic-tract-right, \
+ cervical-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+t12-pain-nucleus-right: -i t12-pain-receptor-left, -v t12-segmental-nerve-left, t12-nerve-root-left, t12-dorsal-root-left, \
+ t12-spinothalamic-tract-right, t11-spinothalamic-tract-right, t10-spinothalamic-tract-right, t9-spinothalamic-tract-right, \
+ t8-spinothalamic-tract-right, t7-spinothalamic-tract-right, t6-spinothalamic-tract-right, t5-spinothalamic-tract-right, \
+ t4-spinothalamic-tract-right, t3-spinothalamic-tract-right, t2-spinothalamic-tract-right, t1-spinothalamic-tract-right, \
+ cervical-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+
+thoracic-medial-dorsal-thalamus-right: -c axilla-pain-nucleus-right, t1-segment-pain-nucleus-right, t2-pain-nucleus-right, \
+ t3-pain-nucleus-right, t4-pain-nucleus-right, t5-pain-nucleus-right, t6-pain-nucleus-right, t7-pain-nucleus-right, \
+ t8-pain-nucleus-right, t9-pain-nucleus-right, t10-pain-nucleus-right, t11-pain-nucleus-right, t12-pain-nucleus-right, -m, -h
+
+thoracic-spinothalamic-tract-right: -c t1-spinothalamic-tract-right, t2-spinothalamic-tract-right, t3-spinothalamic-tract-right, \
+ t4-spinothalamic-tract-right, t5-spinothalamic-tract-right, t6-spinothalamic-tract-right, t7-spinothalamic-tract-right, \
+ t8-spinothalamic-tract-right, t9-spinothalamic-tract-right, t10-spinothalamic-tract-right, t11-spinothalamic-tract-right, \
+ t12-spinothalamic-tract-right, -m 
+
+
+
+
+######################
+## sensory lower limb
+
+
+l1-sensory-strip-right: -i l1-touch-receptor-left, -v l1-segmental-nerve-left, l1-nerve-root-left, \
+ l1-dorsal-root-left, l1-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, \
+ cervical-gracile-fasciculus-left, gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+ 
+hip-sensory-strip-right: -i hip-touch-receptor-left, -v lateral-femoral-cutaneous-nerve, \
+ lumbar-plexus-left, l2-nerve-root-left, l2-dorsal-root-left, l2-gracile-fasciculus-left, l1-gracile-fasciculus-left, \
+ thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, gracile-nucleus-left, \
+ somatosensory-pathway-left, -m, -h
+ 
+upper-anterior-thigh-sensory-strip-right: -i upper-anterior-thigh-touch-receptor-left, -v anterior-femoral-cutaneous-nerve-left, \
+ femoral-nerve-left, lumbar-plexus-left, l2-nerve-root-left, l2-dorsal-root-left, l2-gracile-fasciculus-left, l1-gracile-fasciculus-left, \
+ thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, gracile-nucleus-left, \
+ somatosensory-pathway-left, -m, -h
+ 
+scrotum-sensory-strip-right: -i scrotum-touch-receptor-left, -v ilioinguinal-nerve-left, \
+ lumbar-plexus-left, l1-nerve-root-left, l1-dorsal-root-left, l1-gracile-fasciculus-left, \
+ thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, gracile-nucleus-left, \
+ somatosensory-pathway-left, -m, -h
+ #l1 genitofemoral-nerve,
+ 
+inner-thigh-sensory-strip-right: -i inner-thigh-touch-receptor-left, -v obturator-nerve-left, \
+ lumbar-plexus-left, l2-nerve-root-left, l2-dorsal-root-left, l2-gracile-fasciculus-left, l1-gracile-fasciculus-left, \
+ thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, gracile-nucleus-left, \
+ somatosensory-pathway-left, -m, -h
+ 
+outer-thigh-sensory-strip-right: -i outer-thigh-touch-receptor-left, -v lateral-femoral-cutaneous-nerve-left, \
+ lumbar-plexus-left, l3-nerve-root-left, l3-dorsal-root-left, l3-gracile-fasciculus-left,  l2-gracile-fasciculus-left, \
+ l1-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+ 
+l2-back-sensory-strip-right: -i l2-back-touch-receptor-left, -v l2-segmental-nerve-left, l2-nerve-root-left, \
+ l2-dorsal-root-left, l2-gracile-fasciculus-left, \
+ l1-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+ 
+l3-back-sensory-strip-right: -i l3-back-touch-receptor-left, -v l3-segmental-nerve-left, l3-nerve-root-left, \
+ l3-dorsal-root-left, l3-gracile-fasciculus-left,  l2-gracile-fasciculus-left, \
+ l1-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+
+lateral-posterior-thigh-sensory-strip-right: -i lateral-posterior-thigh-touch-receptor-left, \
+ -v posterior-cutaneous-nerve-left, sacral-plexus-left, l3-nerve-root-left, l3-dorsal-root-left, \
+ l3-gracile-fasciculus-left,  l2-gracile-fasciculus-left, \
+ l1-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h 
+
+lower-anterior-thigh-sensory-strip-right: -i lower-anterior-thigh-touch-receptor-left, \
+ -v anterior-cutaneous-nerve-left, femoral-nerve-left, lumbar-plexus-left, l3-nerve-root-left, l3-dorsal-root-left, \
+ l3-gracile-fasciculus-left,  l2-gracile-fasciculus-left, \
+ l1-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+ 
+medial-knee-sensory-strip-right: -i medial-knee-touch-receptor-left, \
+ -v saphenous-nerve-left, femoral-nerve-left, lumbar-plexus-left, l3-nerve-root-left, l3-dorsal-root-left, \
+ l3-gracile-fasciculus-left,  l2-gracile-fasciculus-left, \
+ l1-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+ 
+upper-lateral-calf-sensory-strip-right: -i upper-lateral-calf-touch-receptor-left, \
+ -v lateral-cutaneous-nerve-of-calf-left, sciatic-nerve-left, sacral-plexus-left, l4-nerve-root-left, l4-dorsal-root-left, \
+ l4-gracile-fasciculus-left, l3-gracile-fasciculus-left,  l2-gracile-fasciculus-left, \
+ l1-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+
+lower-medial-calf-sensory-strip-right: -i lower-medial-calf-touch-receptor-left, \
+ -v saphenous-nerve-left, femoral-nerve-left, lumbar-plexus-left, l4-nerve-root-left, l4-dorsal-root-left, \
+ l4-gracile-fasciculus-left, l3-gracile-fasciculus-left,  l2-gracile-fasciculus-left, \
+ l1-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h, 
+ 
+dorsal-hallux-sensory-strip-right: -i dorsal-hallux-touch-receptor-left, \
+ -v medial-plantar-nerve-left, sciatic-nerve-left, sacral-plexus-left, l4-nerve-root-left, l4-dorsal-root-left, \
+ l4-gracile-fasciculus-left, l3-gracile-fasciculus-left,  l2-gracile-fasciculus-left, \
+ l1-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h, 
+ 
+lumbar-gracile-fasciculus-left: -c l5-gracile-fasciculus-left, l4-gracile-fasciculus-left, l3-gracile-fasciculus-left,  l2-gracile-fasciculus-left, \
+ l1-gracile-fasciculus-left, -m
+ 
+lateral-anterior-calf-sensory-strip-right: -i lateral-anterior-calf-touch-receptor-left, \
+ -v lateral-cutaneous-nerve-of-calf-left, sciatic-nerve-left, sacral-plexus-left, l5-nerve-root-left, l5-dorsal-root-left, \
+ lumbar-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+  
+dorsum-of-foot-sensory-strip-right: -i dorsum-of-foot-touch-receptor-left, \
+ -v common-peroneal-nerve-left, sciatic-nerve-left, sacral-plexus-left, l5-nerve-root-left, l5-dorsal-root-left, \
+ lumbar-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+
+middle-toes-sensory-strip-right: -i middle-toes-touch-receptor-left, \
+ -v medial-plantar-nerve-left, sciatic-nerve-left, sacral-plexus-left, l5-nerve-root-left, l5-dorsal-root-left, \
+ lumbar-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+ 
+lateral-posterior-calf-sensory-strip-right: -i lateral-posterior-calf-touch-receptor-left, \
+ -v common-peroneal-nerve-left, sacral-plexus-left, l5-nerve-root-left, l5-dorsal-root-left, \
+ lumbar-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+
+lower-lateral-calf-sensory-strip-right: -i lower-lateral-calf-touch-receptor-left, \
+ -v sural-nerve-left, common-peroneal-nerve-left, sacral-plexus-left, l5-nerve-root-left, l5-dorsal-root-left, \
+ lumbar-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+ 
+upper-medial-calf-sensory-strip-right: -i upper-medial-calf-touch-receptor-left, \
+ -v saphenous-nerve-left, femoral-nerve-left, lumbar-plexus-left, s1-nerve-root-left, s1-dorsal-root-left, \
+ lumbar-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+
+posterior-calf-sensory-strip-right: -i posterior-calf-touch-receptor-left, \
+ -v sural-nerve-left, common-peroneal-nerve-left, sacral-plexus-left, s1-nerve-root-left, s1-dorsal-root-left, \
+ lumbar-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h  
+
+medial-ankle-sensory-strip-right: -i medial-ankle-touch-receptor-left, \
+ -v tibial-nerve-left, sacral-plexus-left, s1-nerve-root-left, s1-dorsal-root-left, \
+ lumbar-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+ 
+lateral-plantar-surface-sensory-strip-right: -i lateral-plantar-surface-touch-receptor-left, \
+ -v lateral-plantar-nerve-left, sacral-plexus-left, s1-nerve-root-left, s1-dorsal-root-left, \
+ lumbar-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+ 
+dorsum-of-little-toe-sensory-strip-right: -i dorsum-of-little-toe-touch-receptor-left, \
+ -v sural-nerve-left, sciatic-nerve-left, sacral-plexus-left, s1-nerve-root-left, s1-dorsal-root-left, \
+ lumbar-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+ 
+plantar-surface-sensory-strip-right: -i plantar-surface-touch-receptor-left, \
+ -v medial-plantar-nerve-left, sciatic-nerve-left, sacral-plexus-left, s1-nerve-root-left, s1-dorsal-root-left, \
+ lumbar-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+ 
+plantar-surface-of-hallux-sensory-strip-right: -i plantar-surface-of-hallux-touch-receptor-left, \
+ -v medial-plantar-nerve-left, sciatic-nerve-left, sacral-plexus-left, l5-nerve-root-left, l5-dorsal-root-left, \
+ lumbar-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+
+s2-back-sensory-strip-right: -i s2-back-touch-receptor-left, \
+ -v s2-segmental-nerve, s2-nerve-root-left, s2-dorsal-root-left, \
+ lumbar-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+ 
+posterior-thigh-sensory-strip-right: -i posterior-thigh-touch-receptor-left, \
+ -v posterior-cutaneous-nerve-left, sacral-plexus-left, s2-nerve-root-left, s2-dorsal-root-left, \
+ lumbar-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h 
+
+lateral-knee-sensory-strip-right: -i lateral-knee-touch-receptor-left, \
+ -v common-peroneal-nerve-left, sacral-plexus-left, s2-nerve-root-left, s2-dorsal-root-left, \
+ lumbar-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+ 
+s3-back-sensory-strip-right: -i s3-back-touch-receptor-left, \
+ -v s3-segmental-nerve-left, s3-nerve-root-left, s3-dorsal-root-left, \
+ lumbar-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+ 
+perianal-ring-sensory-strip-right: -i perianal-ring-touch-receptor-left, \
+ -v pudendal-plexus-left, s3-nerve-root-left, s3-dorsal-root-left, \
+ lumbar-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+ #s3 perforating-branch-of-posterior-cutaneous-nerve, pudendal-plexus
+ 
+buttock-sensory-strip-right: -i buttock-touch-receptor-left, \
+ -v posterior-cutaneous-nerve-left, sacral-plexus-left, s3-nerve-root-left, s3-dorsal-root-left, \
+ lumbar-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+ 
+s4-sensory-strip-right: -i s4-touch-receptor-left, \
+ -v s4-segmental-nerve-left, s4-nerve-root-left, s4-dorsal-root-left, \
+ lumbar-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+ 
+s5-sensory-strip-right: -i s5-touch-receptor-left, \
+ -v s5-segmental-nerve-left, s5-nerve-root-left, s5-dorsal-root-left, \
+ lumbar-gracile-fasciculus-left, thoracic-gracile-fasciculus-left, cervical-gracile-fasciculus-left, \
+ gracile-nucleus-left, somatosensory-pathway-left, -m, -h
+
+
+
+lower-limb-sensory-strip-right: -c l1-sensory-strip-right, hip-sensory-strip-right, upper-anterior-thigh-sensory-strip-right, \
+ scrotum-sensory-strip-right, inner-thigh-sensory-strip-right, outer-thigh-sensory-strip-right, l2-back-sensory-strip-right, \
+ l3-back-sensory-strip-right, lateral-posterior-thigh-sensory-strip-right, lower-anterior-thigh-sensory-strip-right, \
+ medial-knee-sensory-strip-right, upper-lateral-calf-sensory-strip-right, lower-medial-calf-sensory-strip-right, \
+ dorsal-hallux-sensory-strip-right, lateral-anterior-calf-sensory-strip-right, \
+ dorsum-of-foot-sensory-strip-right, middle-toes-sensory-strip-right, lateral-posterior-calf-sensory-strip-right, \
+ lower-lateral-calf-sensory-strip-right, upper-medial-calf-sensory-strip-right, posterior-calf-sensory-strip-right, \
+ medial-ankle-sensory-strip-right, lateral-plantar-surface-sensory-strip-right, dorsum-of-little-toe-sensory-strip-right, \
+ plantar-surface-sensory-strip-right, plantar-surface-of-hallux-sensory-strip-right, s2-back-sensory-strip-right, \
+ posterior-thigh-sensory-strip-right, lateral-knee-sensory-strip-right, s3-back-sensory-strip-right, \
+ perianal-ring-sensory-strip-right, buttock-sensory-strip-right, s4-sensory-strip-right, \
+ s5-sensory-strip-right, -m
+
+# lower limb pain
+l1-pain-nucleus-right: -i l1-pain-receptor-left, -v l1-segmental-nerve-left, l1-nerve-root-left, \
+ l1-dorsal-root-left, l1-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, \
+ cervical-spinothalamic-tract-right, brainstem-spinothalamic-tract-right, -m, -h
+ 
+hip-pain-nucleus-right: -i hip-pain-receptor-left, -v lateral-femoral-cutaneous-nerve, \
+ lumbar-plexus-left, l2-nerve-root-left, l2-dorsal-root-left, l2-spinothalamic-tract-right, l1-spinothalamic-tract-right, \
+ thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+ 
+upper-anterior-thigh-pain-nucleus-right: -i upper-anterior-thigh-pain-receptor-left, -v anterior-femoral-cutaneous-nerve-left, \
+ femoral-nerve-left, lumbar-plexus-left, l2-nerve-root-left, l2-dorsal-root-left, l2-spinothalamic-tract-right, l1-spinothalamic-tract-right, \
+ thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+ 
+scrotum-pain-nucleus-right: -i scrotum-pain-receptor-left, -v ilioinguinal-nerve-left, \
+ lumbar-plexus-left, l1-nerve-root-left, l1-dorsal-root-left, l1-spinothalamic-tract-right, \
+ thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+ #l1 genitofemoral-nerve,
+ 
+inner-thigh-pain-nucleus-right: -i inner-thigh-pain-receptor-left, -v obturator-nerve-left, \
+ lumbar-plexus-left, l2-nerve-root-left, l2-dorsal-root-left, l2-spinothalamic-tract-right, l1-spinothalamic-tract-right, \
+ thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+ 
+outer-thigh-pain-nucleus-right: -i outer-thigh-pain-receptor-left, -v lateral-femoral-cutaneous-nerve-left, \
+ lumbar-plexus-left, l3-nerve-root-left, l3-dorsal-root-left, l3-spinothalamic-tract-right,  l2-spinothalamic-tract-right, \
+ l1-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+ 
+l2-back-pain-nucleus-right: -i l2-back-pain-receptor-left, -v l2-segmental-nerve-left, l2-nerve-root-left, \
+ l2-dorsal-root-left, l2-spinothalamic-tract-right, \
+ l1-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+ 
+l3-back-pain-nucleus-right: -i l3-back-pain-receptor-left, -v l3-segmental-nerve-left, l3-nerve-root-left, \
+ l3-dorsal-root-left, l3-spinothalamic-tract-right,  l2-spinothalamic-tract-right, \
+ l1-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+
+lateral-posterior-thigh-pain-nucleus-right: -i lateral-posterior-thigh-pain-receptor-left, \
+ -v posterior-cutaneous-nerve-left, sacral-plexus-left, l3-nerve-root-left, l3-dorsal-root-left, \
+ l3-spinothalamic-tract-right,  l2-spinothalamic-tract-right, \
+ l1-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h 
+
+lower-anterior-thigh-pain-nucleus-right: -i lower-anterior-thigh-pain-receptor-left, \
+ -v anterior-cutaneous-nerve-left, femoral-nerve-left, lumbar-plexus-left, l3-nerve-root-left, l3-dorsal-root-left, \
+ l3-spinothalamic-tract-right,  l2-spinothalamic-tract-right, \
+ l1-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+ 
+medial-knee-pain-nucleus-right: -i medial-knee-pain-receptor-left, \
+ -v saphenous-nerve-left, femoral-nerve-left, lumbar-plexus-left, l3-nerve-root-left, l3-dorsal-root-left, \
+ l3-spinothalamic-tract-right,  l2-spinothalamic-tract-right, \
+ l1-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+ 
+upper-lateral-calf-pain-nucleus-right: -i upper-lateral-calf-pain-receptor-left, \
+ -v lateral-cutaneous-nerve-of-calf-left, sciatic-nerve-left, sacral-plexus-left, l4-nerve-root-left, l4-dorsal-root-left, \
+ l4-spinothalamic-tract-right, l3-spinothalamic-tract-right,  l2-spinothalamic-tract-right, \
+ l1-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+
+lower-medial-calf-pain-nucleus-right: -i lower-medial-calf-pain-receptor-left, \
+ -v saphenous-nerve-left, femoral-nerve-left, lumbar-plexus-left, l4-nerve-root-left, l4-dorsal-root-left, \
+ l4-spinothalamic-tract-right, l3-spinothalamic-tract-right,  l2-spinothalamic-tract-right, \
+ l1-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h, 
+ 
+dorsal-hallux-pain-nucleus-right: -i dorsal-hallux-pain-receptor-left, \
+ -v medial-plantar-nerve-left, sciatic-nerve-left, sacral-plexus-left, l4-nerve-root-left, l4-dorsal-root-left, \
+ l4-spinothalamic-tract-right, l3-spinothalamic-tract-right,  l2-spinothalamic-tract-right, \
+ l1-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h, 
+ 
+lumbar-spinothalamic-tract-right: -c l5-spinothalamic-tract-right, l4-spinothalamic-tract-right, l3-spinothalamic-tract-right,  l2-spinothalamic-tract-right, \
+ l1-spinothalamic-tract-right, -m
+ 
+lateral-anterior-calf-pain-nucleus-right: -i lateral-anterior-calf-pain-receptor-left, \
+ -v lateral-cutaneous-nerve-of-calf-left, sciatic-nerve-left, sacral-plexus-left, l5-nerve-root-left, l5-dorsal-root-left, \
+ lumbar-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+  
+dorsum-of-foot-pain-nucleus-right: -i dorsum-of-foot-pain-receptor-left, \
+ -v common-peroneal-nerve-left, sciatic-nerve-left, sacral-plexus-left, l5-nerve-root-left, l5-dorsal-root-left, \
+ lumbar-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+
+middle-toes-pain-nucleus-right: -i middle-toes-pain-receptor-left, \
+ -v medial-plantar-nerve-left, sciatic-nerve-left, sacral-plexus-left, l5-nerve-root-left, l5-dorsal-root-left, \
+ lumbar-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+ 
+lateral-posterior-calf-pain-nucleus-right: -i lateral-posterior-calf-pain-receptor-left, \
+ -v common-peroneal-nerve-left, sacral-plexus-left, l5-nerve-root-left, l5-dorsal-root-left, \
+ lumbar-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+
+lower-lateral-calf-pain-nucleus-right: -i lower-lateral-calf-pain-receptor-left, \
+ -v sural-nerve-left, common-peroneal-nerve-left, sacral-plexus-left, l5-nerve-root-left, l5-dorsal-root-left, \
+ lumbar-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+ 
+upper-medial-calf-pain-nucleus-right: -i upper-medial-calf-pain-receptor-left, \
+ -v saphenous-nerve-left, femoral-nerve-left, lumbar-plexus-left, s1-nerve-root-left, s1-dorsal-root-left, \
+ lumbar-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+
+posterior-calf-pain-nucleus-right: -i posterior-calf-pain-receptor-left, \
+ -v sural-nerve-left, common-peroneal-nerve-left, sacral-plexus-left, s1-nerve-root-left, s1-dorsal-root-left, \
+ lumbar-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h  
+
+medial-ankle-pain-nucleus-right: -i medial-ankle-pain-receptor-left, \
+ -v tibial-nerve-left, sacral-plexus-left, s1-nerve-root-left, s1-dorsal-root-left, \
+ lumbar-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+ 
+lateral-plantar-surface-pain-nucleus-right: -i lateral-plantar-surface-pain-receptor-left, \
+ -v lateral-plantar-nerve-left, sacral-plexus-left, s1-nerve-root-left, s1-dorsal-root-left, \
+ lumbar-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+ 
+dorsum-of-little-toe-pain-nucleus-right: -i dorsum-of-little-toe-pain-receptor-left, \
+ -v sural-nerve-left, sciatic-nerve-left, sacral-plexus-left, s1-nerve-root-left, s1-dorsal-root-left, \
+ lumbar-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+ 
+plantar-surface-pain-nucleus-right: -i plantar-surface-pain-receptor-left, \
+ -v medial-plantar-nerve-left, sciatic-nerve-left, sacral-plexus-left, s1-nerve-root-left, s1-dorsal-root-left, \
+ lumbar-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+ 
+plantar-surface-of-hallux-pain-nucleus-right: -i plantar-surface-of-hallux-pain-receptor-left, \
+ -v medial-plantar-nerve-left, sciatic-nerve-left, sacral-plexus-left, l5-nerve-root-left, l5-dorsal-root-left, \
+ lumbar-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+
+s2-back-pain-nucleus-right: -i s2-back-pain-receptor-left, \
+ -v s2-segmental-nerve, s2-nerve-root-left, s2-dorsal-root-left, \
+ lumbar-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+ 
+posterior-thigh-pain-nucleus-right: -i posterior-thigh-pain-receptor-left, \
+ -v posterior-cutaneous-nerve-left, sacral-plexus-left, s2-nerve-root-left, s2-dorsal-root-left, \
+ lumbar-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h 
+
+lateral-knee-pain-nucleus-right: -i lateral-knee-pain-receptor-left, \
+ -v common-peroneal-nerve-left, sacral-plexus-left, s2-nerve-root-left, s2-dorsal-root-left, \
+ lumbar-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+ 
+s3-back-pain-nucleus-right: -i s3-back-pain-receptor-left, \
+ -v s3-segmental-nerve-left, s3-nerve-root-left, s3-dorsal-root-left, \
+ lumbar-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+ 
+perianal-ring-pain-nucleus-right: -i perianal-ring-pain-receptor-left, \
+ -v pudendal-plexus-left, s3-nerve-root-left, s3-dorsal-root-left, \
+ lumbar-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+ #s3 perforating-branch-of-posterior-cutaneous-nerve, pudendal-plexus
+ 
+buttock-pain-nucleus-right: -i buttock-pain-receptor-left, \
+ -v posterior-cutaneous-nerve-left, sacral-plexus-left, s3-nerve-root-left, s3-dorsal-root-left, \
+ lumbar-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+ 
+s4-pain-nucleus-right: -i s4-pain-receptor-left, \
+ -v s4-segmental-nerve-left, s4-nerve-root-left, s4-dorsal-root-left, \
+ lumbar-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+ 
+s5-pain-nucleus-right: -i s5-pain-receptor-left, \
+ -v s5-segmental-nerve-left, s5-nerve-root-left, s5-dorsal-root-left, \
+ lumbar-spinothalamic-tract-right, thoracic-spinothalamic-tract-right, cervical-spinothalamic-tract-right, \
+ brainstem-spinothalamic-tract-right, -m, -h
+
+
+
+lower-limb-medial-dorsal-thalamus-right: -c l1-pain-nucleus-right, hip-pain-nucleus-right, upper-anterior-thigh-pain-nucleus-right, \
+ scrotum-pain-nucleus-right, inner-thigh-pain-nucleus-right, outer-thigh-pain-nucleus-right, l2-back-pain-nucleus-right, \
+ l3-back-pain-nucleus-right, lateral-posterior-thigh-pain-nucleus-right, lower-anterior-thigh-pain-nucleus-right, \
+ medial-knee-pain-nucleus-right, upper-lateral-calf-pain-nucleus-right, lower-medial-calf-pain-nucleus-right, \
+ dorsal-hallux-pain-nucleus-right, lateral-anterior-calf-pain-nucleus-right, \
+ dorsum-of-foot-pain-nucleus-right, middle-toes-pain-nucleus-right, lateral-posterior-calf-pain-nucleus-right, \
+ lower-lateral-calf-pain-nucleus-right, upper-medial-calf-pain-nucleus-right, posterior-calf-pain-nucleus-right, \
+ medial-ankle-pain-nucleus-right, lateral-plantar-surface-pain-nucleus-right, dorsum-of-little-toe-pain-nucleus-right, \
+ plantar-surface-pain-nucleus-right, plantar-surface-of-hallux-pain-nucleus-right, s2-back-pain-nucleus-right, \
+ posterior-thigh-pain-nucleus-right, lateral-knee-pain-nucleus-right, s3-back-pain-nucleus-right, \
+ perianal-ring-pain-nucleus-right, buttock-pain-nucleus-right, s4-pain-nucleus-right, \
+ s5-pain-nucleus-right, -m
+
+
+
+cauda-equina: -c l2-nerve-root-left, l2-nerve-root-right, l3-nerve-root-left, l3-nerve-root-right, \
+ l4-nerve-root-right, l4-nerve-root-left, l5-nerve-root-right, l5-nerve-root-left, s1-nerve-root-right, \
+ s1-nerve-root-left, s2-nerve-root-right, s2-nerve-root-left, s3-nerve-root-right, s3-nerve-root-left, \
+ s4-nerve-root-right, s4-nerve-root-left, s5-nerve-root-right, s5-nerve-root-left
+  
+conus-medullaris: -c lumbar-corticospinal-tract-left, lumbar-corticospinal-tract-right, cauda-equina
+
+###############
+## coordination
+
+# neocerebellar - premotor loop
+ventrolateral-thalamus-right: -i cerebellar-posterior-lobe-left, cerebellar-anterior-lobe-left, -v dentate-nucleus-left, \
+ middle-cerebellar-peduncle-left, medial-longitudinal-fasciculus-pons-left, -m
+cerebellar-posterior-lobe-left: -i premotor-cortex-right, -v superior-cerebellar-peduncle-left, \
+ corticospinal-tract-pons-right, cerebral-peduncle-right, internal-capsule-right, \
+ -s neocerebellum-left, -m
+# premotor-cortex-right: -i ventrolateral-thalamus-right, -v frontal-cerebral-white-matter-right, -m
+ 
+# propriospinal to red nucleus
+red-nucleus-left: -i cerebellar-anterior-lobe-left, -v middle-cerebellar-peduncle-left, \
+ pontine-nuclei, -m
+cerebellar-anterior-lobe-left: -i spinocerebellar-tract-left, -v inferior-olive-left, \
+ inferior-cerebellar-peduncle-left, -s paleocerebellum-left, archicerebellum-left, -c flocculus-left, cerebellar-flocculonodular-lobe-left, cerebellar-nodule, -m
+cerebellar-flocculonodular-lobe-left: -i superior-colliculus-left, -m
+ 
+ 
+spinocerebellar-tract-left: -c medullary-dorsal-spinocerebellar-tract-left, medullary-ventral-spinocerebellar-tract-left, c2-dorsal-spinocerebellar-tract-left, c2-ventral-spinocerebellar-tract-left, \
+ c3-dorsal-spinocerebellar-tract-left, c3-ventral-spinocerebellar-tract-left, \
+ c4-dorsal-spinocerebellar-tract-left, c4-ventral-spinocerebellar-tract-left, \
+ c5-dorsal-spinocerebellar-tract-left, c5-ventral-spinocerebellar-tract-left, \
+ c6-dorsal-spinocerebellar-tract-left, c6-ventral-spinocerebellar-tract-left, \
+ c7-dorsal-spinocerebellar-tract-left, c7-ventral-spinocerebellar-tract-left, \
+ t1-dorsal-spinocerebellar-tract-left, t1-ventral-spinocerebellar-tract-left, \
+ -m
+
+# cognition (experimental)
+v2-left: -i v1-left, -m
+v3-left: -i v1-left, -m
+v5-left: -i v1-left, -m
+# expressive language (conduction loop)
+inferior-frontal-gyrus-left: -i superior-temporal-gyrus-left -v arcuate-fasciculus-left
+
+orbitofrontal-cortex-left: -i temporal-pole-left, -v uncinate-fasciculus-left, -m
+frontopolar-cortex-left: -i inferior-temporal-gyrus-left, -v uncinate-fasciculus-left, -m
+
+# dorsal stream
+parietal-reach-region-right: -i v5-right
+parietal-lobe-left: -i v1-left, v1-right
+
+# parietal motor loop
+primary-motor-cortex-left: -i parietal-cortex-left, parietal-cortex-right, -v corona-radiata-left
+
+
+# ventral stream
+inferior-temporal-gyrus-left: -i v1-left, v1-right
+
+# basis for consciousness
+thalamus-left: -i medullary-reticular-formation-left, -v pontine-reticular-formation-left, midbrain-reticular-formation-left, -m
+
+ventral-intermediate-nucleus-thalamus-left: -i cerebellum-right, -m
+
+
+######################
+#
+# 
+# HOLLY'S HIERARCHY
+#
+#
+#######################
+
+
+# this will be tagged onto the end of Neurology.txt
+# and has the same format.
+
+
+
+#eye to v1 
+#(Lx) = level at which this structure should be visible 
+
+peripheral-nervous-system: -c nerves
+central-nervous-system: -c retina, cerebral-hemispheres, brainstem, spinal-cord, cerebrospinal-fluid
+
+# retina 1
+retina: -c retina-left, retina-right 
+retina-left: -c retina-left-periphery, retina-left-fovea, retina-left-superior-disc, retina-left-inferior-disc -m 
+retina-left-periphery: -c retina-left-nasal-superior-periphery,  retina-left-temporal-superior-periphery, retina-left-nasal-inferior-periphery, retina-left-temporal-inferior-periphery -m 
+retina-left-fovea: -c retina-left-nasal-superior-fovea, retina-left-temporal-superior-fovea,  retina-left-nasal-inferior-fovea, retina-left-temporal-inferior-fovea-m 
+
+# cranial-nerves 
+optic-nerve: -c optic-nerve-left, optic-nerve-right
+optic-chiasm: -c optic-chasm-left, optic-chiasm-right, optic-chiasm-median 
+optic-tract: -c optic-tract-left, optic-tract-right
+optic-radiation: -c optic-radiation-left, optic-radiation-right
+thalamus: -c  thalamus-left, thalamus-right
+
+# occipital-lobe 
+
+v1: -c v1-left, v1-right 
+
+# hierarchy for visual regions
+v1-left: -c v1-left-superior, v1-left-inferior 
+v1-left-superior: -c v1-left-superior-periphery, v1-left-superior-fovea, v1-left-superior-disc, v1-left-left-superior, v1-left-right-superior 
+v1-left-inferior: -c v1-left-inferior-periphery, v1-left-inferior-fovea, v1-left-inferior-disc, v1-left-left-inferior, v1-left-right-inferior 
+v1-left-superior-periphery: -c v1-left-left-superior-periphery, v1-left-right-superior-periphery 
+#v1-left-superior-fovea: -c v1-left-left-superior-fovea, v1-left-right-superior-fovea 
+v1-left-superior-disc: -c v1-left-right-superior-disc, v1-left-left-superior-disc
+v1-left-inferior-periphery: -c v1-left-left-inferior-periphery, v1-left-right-inferior-periphery
+#v1-left-inferior-fovea: -c v1-left-left-inferior-fovea, v1-left-right-inferior-fovea
+v1-left-inferior-disc: -c v1-left-right-inferior-disc, v1-left-left-inferior-disc
+
+v1-right: -c v1-right-superior, v1-right-inferior 
+v1-right-superior: -c v1-right-superior-periphery, v1-right-superior-fovea, v1-right-superior-disc, v1-right-left-superior, v1-right-right-superior   
+v1-right-inferior: -c v1-right-inferior-periphery, v1-right-inferior-fovea, v1-right-inferior-disc, v1-right-left-inferior, v1-right-right-inferior 
+v1-right-superior-periphery: -c v1-right-left-superior-periphery, v1-right-right-superior-periphery 
+#v1-right-superior-fovea: -c v1-right-left-superior-fovea, v1-right-right-superior-fovea
+v1-right-superior-disc: -c v1-right-right-superior-disc, v1-right-left-superior-disc
+v1-right-inferior-periphery: -c v1-right-left-inferior-periphery, v1-right-right-inferior-periphery
+#v1-right-inferior-fovea: -c v1-right-left-inferior-fovea, v1-right-right-inferior-fovea
+v1-right-inferior-disc: -c v1-right-right-inferior-disc, v1-right-left-inferior-disc
+
+
+cerebral-hemispheres: -c cerebral-white-matter-left, cerebral-white-matter-right, cerebral-grey-matter-left, cerebral-grey-matter-right, frontal-lobe-left, frontal-lobe-right, frontal-lobe, parietal-lobe-left, parietal-lobe-right, occipital-lobe-left, occipital-lobe-right, temporal-lobe-left, temporal-lobe-right, insula-left, insula-right, corpus-callosum , cingulate-gyrus-left, cingulate-gyrus-right
+
+
+subcortical-nuclei: -c basal-ganglia, thalamus, hippocampal-formation-left, hippocampal-formation-right, amygdala-left, amygdala-right, hypothalamus-left, hypothalamus-right, basal-forebrain, mamillary-body-left, mamillary-body-right
+
+
+brainstem: -c midbrain, pons, medulla 
+spinal-cord: -c spinal-cord-white-matter-left, spinal-cord-white-matter-right, spinal-cord-grey-matter-left, spinal-cord-grey-matter-right 
+
+retroorbital-space-left: -c optic-nerve-left, lateral-rectus-left, medial-rectus-left, inferior-rectus-left, superior-rectus-left,  levator-palpebrae-left -m
+
+
+amygdala-left: -c amygdala-central-left, amygdala-medial-left, amygdala-basal-left, amygdala-lateral-left, amygdalohippocampal-area-left, amygdalo-claustrum-left -m
+
+#slides 2440, 2280, 2100,1740, 1640,1600
+#temporal corona radiata components
+#basal forebrain components
+
+cerebellum: -c lateral-cerebellar-cortex-left, lateral-cerebellar-cortex-right, cerebellar-tonsil-left, cerebellar-tonsil-right, dentate-nucleus-left, dentate-nucleus-right, inferior-cerebellar-peduncle-left,  inferior-cerebellar-peduncle-right, middle-cerebellar-peduncle-left, middle-cerebellar-peduncle-right, superior-cerebellar-peduncle-left, superior-cerebellar-peduncle-right, cerebellar-anterior-lobe-left, cerebellar-anterior-lobe-right, cerebellar-posterior-lobe-left, cerebellar-posterior-lobe-right, vermis , medullary-body-of-the-cerebellum-left, medullary-body-of-the-cerebellum-right
+
+vermis: -c vermis-anterior, vermis-posterior
+
+pyramids-of-medulla: -c pyramids-of-medulla-left, pyramids-of-medulla-right
+
+respiratory-centre: -c ventral-respiratory-group-left, ventral-respiratory-group-right, dorsal-respiratory-group-left, dorsal-respiratory-group-right
+
+medulla: -c medulla-left, medulla-right, raphe-nuclei
+medulla-left: -c cuneate-nucleus-left, cuneate-fasciculus-left, gracile-nucleus-left, gracile-fasciculus-left, inferior-olive-left, pyramids-of-medulla-left, inferior-cerebellar-peduncle-left, medial-lemniscus-medulla-left, tectospinal-tract-left, medial-longitudinal-fasciculus-medulla-left, medullary-spinothalamic-tract-left, medullary-reticular-formation-left, spinocerebellar-tract-left, anterior-cochlear-nucleus-left, posterior-cochlear-nucleus-left, hypoglossal-nucleus-left, vestibular-nuclei-left, spinal-nucleus-of-trigeminal-nerve-medulla-left, spinal-tract-of-trigeminal-nerve-left, vagus-motor-nucleus-left, nucleus-of-the-solitary-tract-left, nucleus-ambiguus-left, olivocerebellar-fibres-left, solitary-tract-left, medullary-dorsal-spinocerebellar-tract-left, medullary-ventral-spinocerebellar-tract-left, respiratory-centre, accessory-nucleus-left,  -m
+
+vagus-motor-nucleus-left: -c dorsal-motor-nucleus-of-vagus-nerve-left, -m
+
+brainstem-spinothalamic-tract-left: -c medullary-spinothalamic-tract-left, pontine-spinothalamic-tract-left, midbrain-spinothalamic-tract-left, -m
+
+
+cochlear-nucleus-left: -c posterior-cochlear-nucleus-left, anterior-cochlear-nucleus-left, -c
+
+pyramids-of-medulla-left: -c arcuate-nucleus-left -m
+vestibular-nuclei-left: -c lateral-vestibular-nucleus-left, medial-vestibular-nucleus-left -m
+
+pons: -c pons-left, pons-right, raphe-nuclei 
+pons-left: -c pontine-corticospinal-tract-left, pontine-spinothalamic-tract-left, pontine-reticular-formation-left, abducens-nucleus-left, middle-cerebellar-peduncle-left, pontine-nuclei-left, medial-lemniscus-pons-left, spinal-nucleus-of-trigeminal-nerve-pons-left, spinal-tract-of-trigeminal-nerve-left, vestibular-nuclei-pons-left, inferior-cerebellar-peduncle-left, medial-longitudinal-fasciculus-pons-left,  -m
+
+medial-lemniscus-left: -c medial-lemniscus-pons-left, medial-lemniscus-medulla-left, medial-lemnisucs-midbrain-left -m
+
+spinal-nucleus-of-trigeminal-nerve-left: -c spinal-nucleus-of-trigeminal-nerve-medulla-left, spinal-nucleus-of-trigeminal-nerve-pons-left, -m
+
+temporal-lobe-left: -c temporal-cortex-left, temporal-corona-radiata-left, lateral-ventricle-left,  -m
+temporal-corona-radiata-left: -c uncinate-fasciculus-left, arcuate-fasciculus-left, extreme-capsule-left, middle-longitudinal-fasciculus-left, inferior-longitudinal-fasciculus-left, cingulum-bundle-left, auditory-radiation-left, combined-optic-radiation-left, -m
+
+temporal-cortex-left:  -c  temporal-pole-left, entorhinal-cortex-left, medial-occipitotemporal-gyrus-left, lateral-occipitotemporal-gyrus-left, inferior-temporal-gyrus-left, superior-temporal-gyrus-left, middle-temporal-gyrus-left, parahippocampal-gyrus-left, fusiform-gyrus-left, auditory-cortex-left, uncus-left -m
+lateral-ventricle-left: -c choroid-plexus-left, temporal-horn-lateral-ventricle-left, trigone-lateral-ventricle-left, occipital-horn-lateral-ventricle-left, frontal-horn-lateral-ventricle-left, -m
+
+insula-left: -c insular-cortex-left, claustrum-left, extreme-capsule-left, -m
+
+entorhinal-cortex-left: -i olfactory-bulb-left, -v olfactory-nerve-left -m
+
+frontal-lobe: -c frontal-cortex-left, frontal-cortex-right, frontal-corona-radiata-left, frontal-corona-radiata-right, corpus-callosum-rostrum
+
+frontal-cortex-left: -c orbital-gyrus-left, orbitofrontal-gyrus-left, inferior-frontal-gyrus-left, middle-frontal-gyrus-left, superior-frontal-gyrus-left, straight-gyrus-left, anterior-cingulate-gyrus-left,  frontal-eye-field-left, frontal-operculum-left, superior-rostral-gyrus-left, inferior-rostral-gyrus-left, frontopolar-cortex-left, motor-cortex-left, ventromedial-prefrontal-cortex-left -m
+
+ventromedial-prefrontal-cortex-left: -c subcallosal-cortex-left,  -m
+
+cingulate-gyrus-left: -c anterior-cingulate-gyrus-left, posterior-cingulate-gyrus-left, subgenual-anterior-cingulate-gyrus-left,  -m
+
+occipital-lobe-left: -c occipital-cortex-left, optic-radiation-left -m
+occipital-cortex-left: -c v1-left, extrastriate-cortex-left, -m
+
+occipital-lobe: -c occipital-lobe-left, occipital-lobe-right
+optic-radiation-left: -c temporal-optic-radiation-left, parietal-optic-radiation-left -m
+
+parietal-lobe-left: -c parietal-cortex-left, parietal-corona-radiata-left -m
+parietal-cortex-left: -c inferior-parietal-lobule-left, superior-parietal-lobule-left, posterior-cingulate-gyrus-left, precuneus-left, primary-sensory-cortex-left, angular-gyrus-left, supramarginal-gyrus-left, -m
+
+# dopaminergic pathways - nigrostriatal and  mesolimbic
+caudate-nucleus-left: -i substantia-nigra-pars-compacta-left, substantia-nigra-pars-compacta-right,  -m
+putamen-nucleus-left: -i substantia-nigra-pars-compacta-left, substantia-nigra-pars-compacta-right
+nucleus-accumbens-left: -i ventral-tegmental-area-left, ventral-tegmental-area-right, -m
+
+
+ 
+
+cranial-nerves: -c cranial-nerves-left, cranial-nerves-right
+cranial-nerves-left: -c olfactory-nerve-left, optic-nerve-left, optic-tract-left, oculomotor-nerve-left, trochlear-nerve-left, trigeminal-nerve-left, trigeminal-ganglion-left, abducens-nerve-left, facial-nerve-left, vestibulocochlear-nerve-left, glossopharyngeal-nerve-left, vagus-nerve-left, accessory-nerve-left, hypoglossal-nerve-left -m
+
+trigeminal-nerve-left: -c maxillary-trigeminal-nerve-left, mandibular-trigeminal-nerve-left, ophthalmic-trigeminal-nerve-left -m
+
+nerve-roots-left: -c  c2-nerve-root-left, c3-nerve-root-left, c4-nerve-root-left, c5-nerve-root-left, c6-nerve-root-left, c7-nerve-root-left, c8-nerve-root-left, t1-nerve-root-left, t2-nerve-root-left, t3-nerve-root-left, t4-nerve-root-left, t5-nerve-root-left, t6-nerve-root-left, t7-nerve-root-left, t8-nerve-root-left, t9-nerve-root-left, t10-nerve-root-left, t11-nerve-root-left, t12-nerve-root-left, l1-nerve-root-left, l2-nerve-root-left, l3-nerve-root-left, l4-nerve-root-left, l5-nerve-root-left, s1-nerve-root-left, s2-nerve-root-left, s3-nerve-root-left, s4-nerve-root-left, s5-nerve-root-left, -m
+nerve-roots: -c nerve-roots-left, nerve-roots-right
+
+peripheral-nerves-left: -c brachial-plexus-left, median-nerve-left, ulnar-nerve-right, radial-nerve-right, -m
+peripheral-nerves: -c peripheral-nerves-left, peripheral-nerves-right
+nerves: -c cranial-nerves, nerve-roots, peripheral-nerves
+
+midbrain: -c upper-midbrain-left, upper-midbrain-right, lower-midbrain-left, lower-midbrain-right,  periaqueductal-grey, decussation-of-superior-cerebellar-peduncles, cerebral-peduncle-left, cerebral-peduncle-right
+
+lower-midbrain-left: -c medial-longitudinal-fasciculus-left, trochlear-nucleus-left, cerebral-peduncle-left, ventral-tegmental-area-left, substantia-nigra-left, medial-lemniscus-midbrain-left, midbrain-spinothalamic-tract-left, brachium-of-inferior-colliculus-left, midbrain-reticular-formation-left, inferior-colliculus-left, pedunculopontine-nucleus-left, tegmentum-left, lateral-lemniscus-left,  -m
+
+upper-midbrain-left: -c  oculomotor-nucleus-left, edinger-westphal-nucleus,  midbrain-spinothalamic-tract-left, central-tegmental-tract-left,  trigeminial-nucleus-left,medial-longitudinal-fasciculus-left, superior-colliculus-left, red-nucleus-left, interpeduncular-nucleus, medial-lemniscus-midbrain-left, ventral-tegmental-area-left, rubrospinal-tract-left, midbrain-reticular-formation-left, substantia-nigra-left, cerebral-peduncle-left, posterior-perforated-substance-left, subthalamus-left, brachium-of-superior-colliculus-left, trigeminal-mesencephalic-nucleus-left, locus-coeruleus-left,  tectum-left, -m
+
+substantia-nigra-left: -c substantia-nigra-pars-compacta-left, substantia-nigra-pars-reticulata-left, -m
+
+subthalamus-left: -c subthalamic-nucleus-left, fields-of-forel-left, zona-incerta-left, -m
+
+hypothalamus-left: -c preoptic-nucleus-left, suprachiasmatic-nucleus-left, -m
+
+basal-forebrain: -c nucleus-accumbens-left, anterior-perforated-substance-left, medial-septal-nuclei,  nucleus-accumbens-right, anterior-perforated-substance-right, septum-pellucidum, uncus-left, uncus-right, fundus-striati-left, fundus-striati-right, bed-nucleus-stria-terminalis
+
+uncus-left: -c olfactory-tubercle-left,  ambiens-gyrus-left, semilunar-gyrus-left, piriform-cortex-left, -m
+
+anterior-perforated-substance-left: -c substantia-innominata-left, diagonal-band-of-broca-left, -m
+substantia-innominata-left: -c basal-nucleus-of-meynert-left, nucleus-basalis-left, -m
+
+
+internal-capsule-posterior-limb-left: -c internal-capsule-posterior-limb-motor-left, internal-capsule-posterior-limb-sensory-left, -m
+internal-capsule-left: -c internal-capsule-posterior-limb-left, internal-capsule-anterior-limb-left, -m
+
+
+#1400,1300,1000
+fornix-left: -c fimbria-fornix-left, body-of-fornix-left, crus-of-fornix-left, -m
+fornix: -c fornix-left, fornix-right, body-of-fornix
+
+mamillary-body: -c mamillary-body-left, mamillary-body-right, mamiillothalamic-tract-left, mamillothalamic-tract-right
+# septum-pellucidum
+corpus-callosum: -c corpus-callosum-rostrum, corpus-callosum-splenium, corpus-callosum-genu, corpus-callosum-body
+
+thalamus: -c thalamus-left, thalamus-right, posterior-commissure
+
+thalamus-left: -c  anterior-thalamus-left, medial-dorsal-thalamic-nucleus-left, anteroventral-thalamus-left, \
+  ventrolateral-thalamus-left, ventroposterolateral-thalamus-left, lateral-posterior-thalamic-nucleus-left, lateral-dorsal-thalamus-left, pulvinar-left, centrolateral-thalamus-left, centromedian-thalamic-nucleus-left,  reticular-nucleus-thalamus-left, lateral-geniculate-nucleus-left, \
+  medial-geniculate-nucleus-left, habenula-left, fasciculosus-nucleus-thalamus-left, stria-terminalis-left, paraventricular-nucleus-thalamus-left, \
+  dorsolateral-thalamus-left -m
+
+basal-ganglia: -c basal-ganglia-left, basal-ganglia-right, anterior-commissure
+# subthalamic-nucleus-left is no longer in the basal ganglia - 
+# it's now in the subthalamus, which is sort-of midbrain.
+basal-ganglia-left: -c caudate-nucleus-left, putamen-left,  globus-pallidus-left, external-capsule-left, putamen-ventral-left, ventral-pallidum-left, anterior-commissure-left, ansa-lenticularis-left, -m 
+globus-pallidus-left: -c globus-pallidus-externa-left, globus-pallidus-interna-left, -m
+
+caudate-nucleus-left: -c caudate-nucleus-head-left, caudate-nucleus-tail-left, -m
+
+medial-longitudinal-fasciculus-left: -c medial-longitudinal-fasciculus-midbrain-left, medial-longitudinal-fasciculus-pons-left, medial-longitudinal-fasciculus-medulla-left, -m
+
+hippocampus-left: -c ca1-hippocampus-left, ca2-hippocampus-left, ca3-hippocampus-left, ca4-hippocampus-left, dentate-gyrus-left, -m
+
+hippocampal-formation-left: -c hippocampus-left, entorhinal-cortex-left, subiculum-left, fornix-left, fasciolar-gyrus-left, -m
+
+
+
+#CSF
+
+cerebrospinal-fluid: -c ventricles, cisterns, fissures
+ventricles: -c lateral-ventricle-left, lateral-ventricle-right, third-ventricle, cerebral-aqueduct, fourth-ventricle, central-canal, choroid-plexus
+
+cisterns: -c ventral-cisterns, dorsal-cisterns, communicating-cisterns
+ventral-cisterns: -c medullary-cistern, pontine-cistern, prepontine-cistern, interpeduncular-cistern, chiasmatic-cistern, cerebellopontine-angle-cistern-left, cerebellopontine-angle-cistern-right, crural-cistern-left, crural-cistern-right, carotid-cistern-left, carotid-cistern-right, sylvian-cistern-left, sylvian-cistern-right, foramen-magnum  
+dorsal-cisterns: -c pericallosal-cistern, quadrigeminal-cistern, supracerebellar-cistern, cisterna-ambiens-left, cisterna-ambiens-right, retrothalamic-cistern-left, retrothalamic-cistern-right
+communicating-cisterns: -c cisterna-magna, cistern-of-lamina-terminalis
+
+fissures: -c longitudinal-fissure, sylvian-fissure-left, sylvian-fissure-right, transverse-cerebral-fissure-left, transverse-cerebral-fissure-right, medullopontine-sulcus-left, medullopontine-sulcus-right
+
+# vessels
+
+blood-vessels: -c arteries, venous-sinuses
+venous-sinuses: -c superior-sagittal-sinus, transverse-sinus-left, transverse-sinus-right, sigmoid-sinus-left, sigmoid-sinus-right, straight-sinus, cavernous-sinus-left, cavernous-sinus-right, inferior-sagittal-sinus
+
+arteries: -c internal-carotid-artery-left, internal-carotid-artery-right, carotid-artery-left, carotid-artery-right, vertebral-artery-left, vertebral-artery-right, basilar-artery, middle-cerebral-artery-left, middle-cerebral-artery-right, anterior-cerebral-artery-right, anterior-cerebral-artery,  anterior-cerebral-artery-left, internal-jugular-vein-left, internal-jugular-vein-right, anterior-communicating-artery, posterior-communicating-artery-left, posterior-communicating-artery-right 
+
+internal-carotid-artery-left: -c intracavernous-internal-carotid-artery-left, -m
+
+# muscles
+
+pharynx: -c palatal-muscle-left, palatal-muscle-right
+musculoskeletal: -c vomer, pharynx, nasal-cartilege, medial-pterygoid-left, medial-pterygoid-right, lateral-pterygoid-left, lateral-pterygoid-right, masseter-left, masseter-right, occipital-condyle-left, occipital-condyle-right, lateral-mass-of-the-atlas-left, lateral-mass-of-the-atlas-right, temporalis-left, temporalis-right, maxillary-sinus-left, maxillary-sinus-right, sphenoid-sinus 
+
+
+muscles-left: -c lateral-pterygoid-left, masseter-left, temporalis-muscle-left, extraocular-muscles-left, lower-facial-muscles-left, upper-facial-muscles-left, -m
+muscles: -c muscles-left, muscles-right
+
+
+cerebral-white-matter-left: -c parietal-corona-radiata-left, frontal-corona-radiata-left,temporal-corona-radiata-left, internal-capsule-left, optic-radiation-left, fornix, -m
+
+# cord
+c2-cord-left: -c c2-corticospinal-tract-left, c2-spinothalamic-tract-left, c2-dorsal-spinocerebellar-tract-left, c2-ventral-spinocerebellar-tract-left,  c2-cuneate-fasciculus-left, c2-gracile-fasciculus-left, c2-rubrospinal-tract-left, c2-motor-nuclei-left, c2-reticulospinal-tract-left, c3-lateral-vestibulospinal-tract-left, c2-ventral-corticospinal-tract-left, c2-anterior-white-commissure-left, c2-grey-commissure-left, c2-clarkes-nucleus-left, c2-nucleus-proprius-left, c2-substantia-gelatinosa-left, c2-dorsolateral-fasciculus-left, -m
+
+pituitary-gland: -c infundibulum, anterior-pituitary, posterior-pituitary
+
+
+vertebrae: -c atlas, axis, c2-vertebra, 
+
+
+
+# Aug 2017:  the following re-names have been performed in the slices
+# using rename_entities.sh.
+
+#1
+#from='posterior-limb-internal-capsule'
+#to='internal-capsule-posterior-limb'
+
+#2
+#from='pyramid-of-medulla'
+#to='pyramids-of-medulla'
+
+#3
+#from='mammillary'
+#to='mamillary'
+
+#4
+#from='basal-optic-nucleus-of-meynert'
+#to='basal-nucleus-of-meynert'
+
+#5
+#from='fornix-fimbria'
+#to='fimbria-fornix'
+
+#6
+#from='reticular-thalamic-nucleus'
+#to='reticular-nucleus-thalamus'
+
+#7
+#from='centromedial-thalamic-nucleus'
+#to='centromedian-thalamic-nucleus'
+
+#8
+#from='centromedian-nucleus'
+#to='centromedian-thalamic-nucleus'
+
+#9
+#from='anterior-cerebellar-lobe'
+#to='cerebellar-anterior-lobe'
+
+#10
+#from='lateral-geniculate'
+#to='lateral-geniculate-nucleus'
+#10.5
+#from='nucleus-nucleus'
+#to='nucleus'
+
+#11
+#from='coronal-radiata'
+#to='corona-radiata'
+
+#12
+#from='lateral-posterior-nucleus'
+#to='lateral-posterior-thalamic-nucleus'

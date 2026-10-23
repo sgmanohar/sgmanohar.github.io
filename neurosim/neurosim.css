@@ -1,0 +1,778 @@
+/*****
+ * IMAGE STYLE 
+ */
+/* Image slice: for slices only */
+.image-slice-small{  
+  border:3px solid #000080;
+  display:inline-block;
+  position:relative;
+  /*width:640px;*/
+  width:100%;
+  height:480px;
+  overflow:hidden;
+}
+.image-slice{
+  border:none;
+  position:relative;
+  display:inline-block;
+  width:100%;
+  /* height:100%; */
+  overflow: hidden;
+}
+.nav-image-vertical{
+  /* width:100px; */
+  height:480px;
+  float:left;
+}
+
+.image-slice svg{ 
+  width:100%; 
+  height:100%;
+}
+
+/* allow images to be shown or hidden */
+.image-slice:not(.image-show-image) .image-svg svg  image, .image-slice:not(.image-show-image) .image-svg svg  use  {
+  visibility:hidden;
+}
+.image-svg{
+   height:100%;
+}
+
+
+/* Region visibility */
+.image-hide-region{
+  fill:none; /* make region truly invisible and unselectable */
+  stroke:none;
+  border:none;
+}
+
+.image-region {
+  /* fill:none; Note this means the region can't be clicked either! */
+  fill-opacity:0; /** allow  area to be clickable but not visible */
+  stroke:none; /* this gets overridden if show-outlines is present on the outer div */
+  pointer-events: all;
+  transition: 0.3s;
+  border:none;
+}
+/* set the pointer on image-regions that are in a slice without 'forbid-selection' */
+.image-slice:not(.image-forbid-selection) .image-region{
+  cursor:pointer;
+}
+
+
+/** 
+ * Selection and hovering logic 
+ */
+.image-show-regions .image-region{ /* show All regions in a light shading */
+  fill-opacity:0.1;
+  fill:#0f0;
+  stroke-width:0.2px;
+}
+.image-show-regions.image-show-outlines { stroke:#000; }
+.image-allow-hover .image-region:hover{
+  fill:#f00               !important;   /** This has to override the individual colours when using colorise */ ;
+  fill-opacity:0.5        !important;
+  stroke-width:0.7px;
+}
+.image-allow-hover.image-show-outlines .image-region:hover{ stroke:#000; }
+.image-show-selection .image-selectedregion{
+  fill:#f00              !important;   /** This has to override the individual colours when using colorise */ ;
+  fill-opacity:0.4       !important;  /** This overrides lesions */
+  stroke-width:1px; 
+}
+.image-show-selection.image-show-outlines .image-selected-region { stroke:#000; }
+
+
+.image-show-selection .image-selectedregion:hover{
+  fill:#f00; 
+  fill-opacity:0.5;
+  stroke:none;
+  stroke-width:1px; 
+}
+.image-show-lesions .image-lesioned{
+  fill:#ff0            !important;
+  fill-opacity:0.4;
+  stroke:#000;
+  stroke-width:1px;
+}
+.image-selection-name-top {
+  border: 3px solid #808080; font-family: sans-serif;
+  background-color:#eff;  padding:4px;
+  display:inline-block;
+  position:absolute;
+  top:0px; right:0px;
+}
+/** The nav image on the left */
+.image-nav{ /** the nav image is special */
+  position:absolute;
+  top:90px; left:0px;
+  display:inline-block;
+  padding:4px;
+}
+.image-nav-line { /** nav lines in a nav image */
+  fill:#ff0;
+  stroke:#f00;
+  stroke-width:10px;
+}
+.image-nav-line:hover { /** nav lines in a nav image */
+  fill:#f00;
+  stroke:#ff0;
+  stroke-width:10px;
+}
+.image-nav-coords {
+  display:inline-block;
+  position:relative; top:-1.6em;
+  font-size:60%; background:rgba(128,255,255,0.3);
+}
+.image-show-3dcursor .image-nav-3dcursor {
+  stroke:rgba(255,0,0,0.5); stroke-width:5px;
+}
+.image-fullscreen { height:100%; }
+
+.image-fullscreen svg{
+  height:100%;
+  width:100%;
+}
+
+
+/**
+ *    UI ELEMENTS 
+ */
+.ui-menu { width: 10em; }
+.image-menu {
+  position:absolute; 
+  top:3px; right:3px; width:30px;
+}
+.image-buttons{
+  display:inline-block;
+  padding:4px;
+}
+.image-buttons-topleft{
+  position:absolute;
+  top:0px; left:0px;
+}
+.image-buttons-bottomleft{
+  position:absolute;
+  bottom:0px;left:0px;
+}
+/* .btn{display:table-cell;}        /* makes all buttons same size */
+.dropdown:hover .dropdown-menu { /* allow dropdown from buttons */
+  display: block;
+  margin:-1;
+}
+.btn.icon-highlight i{ color:#f00; }
+.nav-tabs .dropdown-menu, .nav-pills .dropdown-menu, .navbar .dropdown-menu {
+    margin-top: 0px;
+}
+.image-buttons .dropdown-menu{
+    top:99%; /* push dropdowsn upclose to the button */
+}
+
+.image-buttons .btn { 
+  background-color:rgba(192,224,255,0.3); 
+  font-size: 24px;
+}
+.image-buttons .dropdown-menu .btn{ 
+  /* this is for menu item buttons in a dropdown eg for LoD */
+  display:block; width:100%;
+}
+.image-buttons .dropdown-menu .btn:hover{
+  color:#00a;
+}
+
+.icon-plane {        /* allow space for dropdown plane icons */
+  background: none;
+  width:250px;
+  margin:10px;
+}
+.icon-plane path{   /* default style for individual plane icon paths */
+  display:inline;
+  overflow:visible;
+  isolation:auto;
+  fill:#ececec;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;
+  stroke-opacity:1;marker:none;
+  cursor:pointer;
+  transition:0.3s;
+}
+.icon-plane-active path{  /* hover style for plane icons */
+  fill:#ff0000;
+  transition:0.3s;
+}
+.image-plane-menu {
+  left:-50px;
+}
+.icon-modality {
+  background:none;
+  width:400px; 
+}
+.icon-modality g > rect {
+  fill:#ff0000; stroke:none; 
+  fill-opacity:0;
+}
+.icon-modality g:hover > rect {
+  fill-opacity:1;
+  transition:0.3s;
+}
+.image-modality-menu{
+  left:-200px;
+}
+.image-lod-indicator.image-lod-selected{
+  background: #faa;
+}
+
+
+.neurosim-lesion-slider .ui-slider-range{
+  background:#8af;
+}
+.neurosim-lesion-slider .ui-slider-handle{
+  background:#58f;
+}
+.neurosim-control-box{
+    background: #fffff0;
+    border: 2px solid #eeeea0;
+    overflow: hidden;
+    width: 100%;
+}
+.neurosim-control-box label{
+  float:left;
+  padding:10px; 
+}
+.neurosim-control-box .neurosim-control { /* for slider */
+    padding: 10px 10px 10px 10px;
+    float: left;
+    width: 50%;
+}
+.neurosim-input-title{
+  font-weight:bold;
+  font-size:24px;
+}
+
+.ui-slider{margin-top:10px; margin-bottom:10px;} /* remove the big margin below slider */
+
+.neurosim-number-table th { background-color:#ffe; }
+.neurosim-number-table td { padding:8px; }
+.neurosim-number-table tr:nth-child(even) { background-color:#eee; }
+.neurosim-number-table tr:hover { background-color:#fdd;}
+
+.wait-spinner{
+  position: absolute;
+  top:   100%;
+  left:    0%;
+  width:  10%;
+  height: 10%;
+  transform: translate(0%,-100%);
+}
+.wait-spinner i { /* spinner to be displayed in the image loading window */
+    animation: spin 1s infinite linear;
+    -webkit-animation: spin2 1s infinite linear;
+  color:#528ac7;
+}
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg); }
+    to { transform: scale(1) rotate(360deg); }
+}
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+
+/** bootstrap no gutter trick */
+.row.no-gutter {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.row.no-gutter [class*='col-']:not(:first-child),
+.row.no-gutter [class*='col-']:not(:last-child) {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+
+/*#main-menu {display:inline;}*/
+#main-menu > li {width:1em; height:1em; float:left;}
+
+/* NEUROSIM 
+.neurosim-selection-name {
+  border: 3px solid #808080; font-family: sans-serif;
+  background-color:#eff;  padding:4px;
+  display:inline-block;
+}
+*/
+
+.neurosim-column{
+  max-width: 800px;
+}
+/* Autocompletion for neurosim */
+.neurosim-region-completion{
+  width:20em;
+}
+.neurosim-selection-slice{
+  width:20em;
+}
+
+.ui-autocomplete {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden; /* prevent horz scrollbar */
+}
+.ui-autocomplete .ui-menu-item{
+  font-size:0.8em;
+  border-bottom: solid  2pt dimgray;
+}
+.ui-autocomplete .ui-menu-item .neurosim-description{
+  font-size:0.8em;
+}
+
+.neurosim-connection-graph{
+  width:100%;
+  height:300px;
+}
+
+
+
+/**************
+ *
+ * EXAMINATION
+ * 
+ ********************/
+
+
+.neurosim-exam{
+  display:inline-block;
+  
+  overflow:hidden;
+}
+
+/** Snellen chart styling */
+.neurosim-exam-snellen{
+  display:inline-block;
+  /* width:  300px; */
+  height: 200px;
+    width:100%;
+
+}
+.neurosim-exam-snellen svg{ 
+  /* width:  300px; */
+  height: 200px;
+  width:100%;
+}
+.neurosim-exam-snellen svg .image-region:focus{
+  outline:none;
+}
+
+/** Visual field examination */
+.neurosim-exam-visualfields {
+  display:inline-block;
+  /* width:  540px;
+     height: 220px; */
+    width:100%;
+}
+neurosim-visualfields svg, .neurosim-exam-visualfields svg {
+  width:  100%;
+  max-height: 200px;
+  /* this enables it to shrink to small screen widths  if needed */
+}
+
+/** the class for the eyepatch selector, used for Snellen chart */
+.neurosim-eye-selector  {
+  position:absolute;
+  width: 50px; 
+  height:50px;
+}
+.neurosim-eye-selector svg {
+  width: 50px; 
+  height:50px;
+  cursor:pointer;
+}
+.neurosim-eye-selector:hover {
+  background-color:red;
+  transition:0.5s;
+}
+/** Face examination styles */
+.neurosim-exam-face {
+  display:inline-block;
+  /* width:  320; */
+  height: 420;
+  cursor:pointer;
+}
+#pentorch {
+  transition:0.3s;
+}
+/* motor exam */
+.neurosim-exam-motor{
+  display:inline-block;
+  width:100%;
+}
+.neurosim-exam-motor *, neurosim-exam-visualfields *, neurosim-exam-face * {
+  /* This is supposed to prevent phones putting up their silly menus for  exam clicks */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.neurosim-exam-motor >.image-svg .image-region {
+  fill-opacity:0.9;  /* make the motor regions show the lesion always */
+}
+.motor-diagram .image-region{
+  fill-opacity:0.1;
+  fill:#080;
+}
+.neurosim-exam-motor > .image-svg { float:left;  width:70%; }
+.neurosim-exam-motor > .image-svg > svg { 
+  width:100%;
+  min-width:280px;
+}
+.motor-diagram {
+  float:left;
+  width:30%; height:360px;
+}
+/* text style for MRC grading */
+.neurosim-exam-motor > .image-svg .image-region + text{
+  pointer-events:none;
+  fill:#000;
+  font-size:20px;
+  font-weight:bold;
+}
+
+.motor-diagram .image-svg{ height:100%; }
+.motor-diagram svg{
+  width:100%; height:100%;
+}
+
+.neurosim-exam-reflexes{
+  display:inline-block;
+}
+.neurosim-exam-reflexes > .image-svg svg{
+  width:300px;
+  height:100%;
+}
+
+
+/* Dermatomes styling */
+.neurosim-exam-dermatomes{
+  display:inline-block;
+
+}
+.neurosim-exam-dermatomes .image-svg, .neurosim-exam-dermatomes .image-svg svg{ 
+  width:  520px;
+  height: 100%;
+}
+.neurosim-dermatomes-selector{
+  position:absolute;
+  width:30%; 
+  left:35%;
+  /* height:100px; */
+  cursor:pointer;
+  background:rgba(255,255,128,0.3);
+  padding:6px 6px 0px 6px;
+  border:2px solid #ec4;
+}
+.neurosim-dermatomes-selector svg > g > rect {
+  fill:white; fill-opacity:0;
+}
+.neurosim-dermatomes-selector svg > g.selected > rect {
+  fill:blue; fill-opacity:0.5;
+}
+.neurosim-dermatomes-selector svg > g:hover > rect {
+  fill:red; fill-opacity:0.5;
+  transition:0.3s;
+}
+.neurosim-exam-dermatomes .image-svg .image-region {
+  fill-opacity:0.1;
+  fill:#008;
+  stroke:#008;
+  stroke-width:1px;
+}
+.ui-accordion .ui-accordion-content{
+  padding:1em;
+}
+/** style for svg button icon sets */
+.neurosim-icon-selector svg{
+  width:4em; height:4em;
+}
+.neuroexam-help-icon {
+  float:right;
+  font-size:130%;
+  margin-top:-6px;
+  cursor:pointer;
+}
+
+
+
+/** Results */
+.neurosim-table {
+  border:2px;
+  -webkit-padding-start: 0px;
+}
+.neurosim-table > li {
+  list-style:outside none;
+  padding:2px;
+  border-bottom:1px black solid;
+  border-top:1px black solid;
+  clear:left;
+  overflow:hidden;
+}
+.neurosim-table > li > span {
+  width:6em; 
+  float:left;
+  cursor:default;
+}/* fix width of column */
+.neurosim-table > li > span:hover {
+  background:#ccf;
+}
+.neurosim-table.neurosim-highlight-abnormal > li.neurosim-abnormal {
+  background:#fcc;
+} /* highlight abnormal results */
+.neurosim-table > li > span.table-header{
+  font-weight:bold; width:12em;
+}
+/* History styles*/
+.neurosim-history {
+
+}
+.neurosim-history ul{
+  padding-inline-start: 0px;
+  padding: 0em 0.3em;
+}
+.neurosim-history ul li {
+  list-style-type: none;
+  margin-bottom:1em;
+  padding: 0em 0.3em;
+}
+.neurosim-history-free li {
+  border:2px #cdf solid;
+  background:#f0f8ff;
+}
+.neurosim-history-qa {
+  background:#cdf;
+}
+
+.neurosim-history  .neurosim-history-question{
+  border-bottom:2px solid #cdf;
+}
+
+.neurosim-history  .neurosim-history-question::before{
+  font-family: "FontAwesome"; font-weight: 900;
+  content:"\f059";
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  padding-right:0.5em;
+}
+
+.neurosim-history  .neurosim-history-answer::before{
+  font-family: "FontAwesome"; font-weight: 900;
+  content:"\f075";
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  padding-right:0.5em;
+}
+
+.neurosim-history  .neurosim-history-answer{
+  font-style:italic; 
+  margin-left: 0.5em;
+}
+.neurosim-history  .neurosim-history-answer-collateral{
+  font-style:italic; 
+  margin-left: 0.5em;
+  color:#900;
+}
+.neurosim-history form {
+  margin-block-end: 0em;
+}
+
+.neurosim-history-selector .neurosim-history-question{
+  cursor:pointer;
+  background:#f0f4ff;
+}
+.neurosim-history-selector .neurosim-history-question:hover{
+  background:#e0f0ff;
+}
+/** for naming watch : fix height */
+.neurosim-exam-mmse .neurosim-mmse-naming-models img {
+  max-height:10em;
+  width:auto;
+}
+
+.neurosim-exam-mmse table td {
+  width:50%;
+}
+.neurosim-exam-mmse table td img {
+  width:100%;
+}
+.neurosim-exam-mmse-instruction-text {
+  font-size:300%;
+  font-weight: bold;
+  border: black solid 3px;
+  padding:0.2em;
+  margin:0.3em;
+  text-align: center;
+}
+
+.bonemenu{
+  height:300px; 
+}
+.bonemenu li{
+  float:left; border:#444 solid 2px;background: #fee;
+  cursor:pointer;
+  list-style: none
+}
+
+.posturemenu{
+  height:600px;
+}
+.posturemenu li{
+  float:left; border:#444 solid 2px;background: #fee;
+  cursor:pointer;
+  list-style: none
+}
+.posturemenu li:hover{ background:#fdd; }
+.viewport3d{
+  width:500px;
+  height:500px;
+  background: #edd;
+  border:3px solid #888;
+}
+
+/** text directly within exam sections  - more padding*/
+.exam-section > li > div > p {
+  padding:10px;
+}
+
+ol.exam-section > li::before, ol.exam-section > li::marker{
+  font-size: large;
+}
+
+
+/** Fix the problem with scrollbars appearing in the accorddion segments */
+.ui-accordion .ui-accordion-content { overflow:hidden !important; }
+.corner-icon {margin-top:7px; margin-left:10px;}
+.exam-section {
+  /* border:2px solid black; */
+  padding:2px;
+}
+/* body {padding:5px;} */
+.exam-section > li {height:auto;}
+.exam-section li table{ width: 80%; margin:0 auto; text-align:center; }
+.exam-section.flat{
+}
+.exam-section.flat > li {
+  border: 2px #aaf solid;
+  margin: 3px;
+}
+.exam-section.flat > li > h3 {
+  background:#ccf;
+  border:2px #aae solid;
+}
+.exam-section.flat > li > div {
+  padding:0px 5px;
+}
+
+
+/** Prevent tooltips from blocking drags etc */
+.tooltip {pointer-events: none;}
+
+/** 
+ * Quiz
+ */
+.btn-correct{
+  background-color:#22f; 
+}
+.btn-wrong{
+  background-color:#888;
+}
+.btn-description{
+  width:inherit;
+  white-space:normal;
+  text-align: left;
+  font-size:80%;
+  display:block;
+}
+
+.btn-correct::before{
+  content: '\f058';
+  font-size:150%;   color:#f00;
+  font-family:FontAwesome;
+  display:inline-block;
+}
+.btn-wrong::before{
+  content: '\f00d';
+  font-size:150%;   color:#f00;
+  font-family:FontAwesome;
+  display:inline-block;
+}
+
+.neurosim-diagnosis-correct{
+  color:#080;
+}
+.neurosim-diagnosis-correct:before{
+  content:"\f00c";
+  font-family:FontAwesome;
+  color:#080;
+}
+.neurosim-diagnosis-wrong{
+  color:#800;
+}
+.neurosim-diagnosis-wrong:before{
+  content:"\f00d";
+  font-family:FontAwesome;
+  color:#800;
+}
+.neurosim-pick-list{
+  width:100%; 
+  padding:0px 20px;
+}
+.neurosim-pick-list .btn{
+  /* Picklist buttons should wrap text if needed, on mobiles */
+  white-space: normal;
+  width:100%;
+  margin:2px;
+}
+/** make the nav bar on the left look right */
+nav.navbar { padding:0px; }
+/** front page styling */
+.neurosim-instruction-list li em{
+  font-weight: bold; 
+}
+.neurosim-instruction-list li em::after{
+  content:":";
+}
+/** tick after completed cases */
+.neurosim-case-complete::after{
+   content: '\f058';
+   font-family: FontAwesome;
+   font-weight: normal;
+   font-style: normal;
+   margin:0px 0px 0px 10px;
+   text-decoration:none;
+  display:inline-block;
+  font-size:150%;
+}
+.hide-empty:empty{ display:none;}
+.hidden{display:none;}
+/** Credits */
+.credits h2{  border-bottom: solid #22b;   }
+.credits h3{  font-size:90%;   }
+.neurosim-brainscan{
+  margin:5px;
+}
+.neurosim-exam-observations h4 {
+  width: 100%;
+  background: #eef;
+  border: solid 2px #ddf;
+}
+.neurosim-exam-observations h4 a {
+  width: 100%;
+  display: block;
+}
+.neurosim-exam-observations h4 a:hover {
+  background: #ddf;
+}

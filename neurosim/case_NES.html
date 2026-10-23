@@ -1,0 +1,175 @@
+<html>
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+            <meta content="utf-8" http-equiv="encoding">
+                
+                <!--
+                 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+                 <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+                 <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>    -->
+                
+                
+                <script src="jquery-1.12.1.min.js"></script>
+                <script src="jquery-ui-1.12.0/jquery-ui.min.js"></script>
+                <script src="svg-pan-zoom.js"></script>
+                <script src="neurosim.js"></script>
+                <script src="jquery-svg/jquery.svg.min.js"></script>
+                <script src="hammer.min.js"></script>
+                
+                <!-- Bootstrap bits -->
+                <script src="tether/js/tether.min.js"></script>
+                <script src="bootstrap/js/bootstrap.min.js"></script>
+                <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
+                    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+                        <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+                            <link rel="stylesheet" href="tether/css/tether.min.css">
+                                <script src="bootbox.min.js"></script>
+                                
+                                <link rel="stylesheet" href="jquery-ui-1.12.0/jquery-ui.css">
+                                    <link rel="stylesheet" href="neurosim.css">
+                                        
+                                        <!--
+                                         <script src="slick-1.6.0/slick/slick.min.js"></script>
+                                         <link rel="stylesheet" href="slick-1.6.0/slick/slick.css">
+                                         <link rel="stylesheet" type="text/css" href="slick-1.6.0/slick/slick-theme.css"/>
+                                         -->
+                                        
+                                        <!-- Three js for matrices and 3D visualisation -->
+                                        <script src="three.min.js"></script>
+                                        <script src="controls/TrackballControls.js"></script>
+                                        <script src="three_animate.js"></script>
+                                        
+                                        
+                                        </head>
+    
+    <body >
+        
+        <div class="neurosim-column col-lg-8 offset-lg-2">
+            
+            <!--  Case name can be specified in <h1 data-case=''>
+             and is looked up from cases.json
+             -->
+            <h1 data-case='Non-epileptic seizure'
+                >
+                Case 16: Miss Stephens
+            </h1>
+            
+            <ol class="exam-section" >
+                <li>
+                    <h3> <a href="#">History</a></h3>
+                    <div class='neurosim-history'>
+                        <ul>
+                            <li>
+                                A 28-year old woman is brought in by paramedics having suffered a seizure in the street.
+                                </li> <li>
+                                The patient appears lethargic and her speech is slightly slurred.
+                                </li> <li>
+                                Please take a history from Miss Stephens, and a collateral history from her sister who was accompanying Miss Stephens at the time of the seizure.
+                                
+                            </li>
+                        </ul>
+                        <ul class="neurosim-history-free neurosim-history-all">
+                        </ul>
+                    </div>
+                </li>
+
+
+              
+
+                  <li>
+                    <h3><a href="#"> Visual fields </a></h3>
+                    <div class="neurosim-exam neurosim-exam-visualfields  image-show-regions 
+                            image-show-lesions image-click-to-test"> </div>  
+                  </li>
+                  <li>
+                    <h3><a href="#"> Face examination </a></h3>
+                    <div class="neurosim-exam neurosim-exam-face"></div>
+                  </li>
+                  <li >
+                    <h3><a href="#"> Motor examination </a></h3>
+                    <div class="neurosim-exam neurosim-exam-motor image-allow-hover image-show-regions image-show-tooltips image-show-selection" data-region="all"></div>
+                  </li>
+                  <li >
+                    <h3><a href="#"> Reflexes </a></h3>
+                    <div class="neurosim-exam neurosim-exam-reflexes image-allow-hover image-show-regions image-show-tooltips image-show-selection" data-region="all"></div>
+                  </li>
+                  
+
+                <li>
+                    <h3> <a href="#"> Diagnosis </a></h3>
+                    <div>
+                        <p>
+                        What is the most likely diagnosis?
+                        </p>
+                        <ul class="neurosim-pick-list stophere">
+                            <li data-action="quiz-wrong">          Orthostatic Hypotension </li>
+                            <li data-action="quiz-wrong"  >   Cardiac Syncope </li>
+                            <li data-action="quiz-wrong"  >   Epileptic Seizure </li>
+                            <li data-action="quiz-wrong">   Situational Syncope  </li>
+                            <li data-action="quiz-wrong">   Panic Attack  </li>
+                            <li data-action="quiz-correct"  > Non-epileptic Attack </li>
+                            <li data-action="quiz-wrong"  >   Basilar Migraine </li>
+                            <li data-action="quiz-wrong"  >   Hypoglycemia </li>
+                        </ul>
+                    </div>
+                </li>
+                
+                
+                <li>
+                    <h3> <a href="#"> Differentiating Features </a></h3>
+                    <div>
+                        <p>
+                        Inquiry about which of the following symptoms in the history is most useful in excluding a diagnosis of epilepsy?
+                        </p>
+                        <ul class="neurosim-pick-list stophere">
+                            <li data-action="quiz-wrong"  > Incontinence </li>
+                            <li data-action="quiz-correct"> Post-Ictal State  </li>
+                            <li data-action="quiz-wrong"  > Tongue-biting </li>
+                            <li data-action="quiz-wrong"> Presence of thrashing movements </li>
+                            <li data-action="quiz-wrong"  > Eyes open during the episode </li>
+                            
+                        </ul>
+                    </div>
+                </li>
+                
+                <li>
+                    <h3> <a href="#"> Investigations </a></h3>
+                    <div>
+                        <p>
+                        What single investigation is most useful in establishing this patient's diagnosis?
+                        </p>
+                        <ul class="neurosim-pick-list stophere multiple">
+                            <li data-action="quiz-wrong"> Lactate Levels </li>
+                            <li data-action="quiz-wrong"> Prolactin levels </li>
+                            <li data-action="quiz-wrong"  > CT Scan </li>
+                            <li data-action="quiz-wrong"  > Resting EEG </li>
+                            <li data-action="quiz-correct"> Recorded video of event </li>
+                        </ul>
+                    </div>
+                </li>
+                
+                
+                <li>
+                    <h3> <a href="#"> Management </a></h3>
+                    <div>
+                        <p>
+                        Which TWO treatments may be appropriate managment options for this patient?
+                        </p>
+                        <ul class="neurosim-pick-list stophere multiple">
+                            <li data-action="quiz-wrong"  > Trial of Anti-Epileptic Medications </li>
+                            <li data-action="quiz-correct"> Family Therapy </li>
+                            <li data-action="quiz-wrong"> None. Assure the patient nothing is physically wrong, and that the condition is psychiatric. </li>
+                            <li data-action="quiz-correct"> Cognitive Behavioral Therapy </li>
+                            <li data-action="quiz-wrong"  >  Modification of diet and exercise </li>
+                            
+                            
+                        </ul>
+                    </div>
+                </li>
+
+            </ol>
+            
+        </div>
+        
+    </body>
+</html>

@@ -1,0 +1,145 @@
+<html>
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+            <meta content="utf-8" http-equiv="encoding">
+                
+                <!--
+                 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+                 <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+                 <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>    -->
+                
+                
+                <script src="jquery-1.12.1.min.js"></script>
+                <script src="jquery-ui-1.12.0/jquery-ui.min.js"></script>
+                <script src="svg-pan-zoom.js"></script>
+                <script src="neurosim.js"></script>
+                <script src="jquery-svg/jquery.svg.min.js"></script>
+                <script src="hammer.min.js"></script>
+                
+                <!-- Bootstrap bits -->
+                <script src="tether/js/tether.min.js"></script>
+                <script src="bootstrap/js/bootstrap.min.js"></script>
+                <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
+                    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+                        <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+                            <link rel="stylesheet" href="tether/css/tether.min.css">
+                                <script src="bootbox.min.js"></script>
+                                
+                                <link rel="stylesheet" href="jquery-ui-1.12.0/jquery-ui.css">
+                                    <link rel="stylesheet" href="neurosim.css">
+                                        
+                                        <!--
+                                         <script src="slick-1.6.0/slick/slick.min.js"></script>
+                                         <link rel="stylesheet" href="slick-1.6.0/slick/slick.css">
+                                         <link rel="stylesheet" type="text/css" href="slick-1.6.0/slick/slick-theme.css"/>
+                                         -->
+                                        
+                                        <!-- Three js for matrices and 3D visualisation -->
+                                        <script src="three.min.js"></script>
+                                        <script src="controls/TrackballControls.js"></script>
+                                        <script src="three_animate.js"></script>
+                                        
+                                        
+                                        </head>
+    
+    <body >
+        
+        <div class="neurosim-column col-lg-8 offset-lg-2">
+            
+            <!--  Case name can be specified in <h1 data-case=''>
+             and is looked up from cases.json
+             -->
+            <h1 data-case='Dementia with Lewy bodies'
+                >
+                Case 13: Mrs Davies
+            </h1>
+            
+            <ol class="exam-section" >
+                <li>
+                    <h3> <a href="#">History</a></h3>
+                    <div class='neurosim-history'>
+                        <ul>
+                            <li>
+                                 71-year old woman is brought in with a fracutured arm following a fall.
+                            </li><li>
+                                On examination at the hospital, she had a fluctuating GCS.
+                            </li><li>
+                                Please take a history from the patient, and a collateral history from her husband who is also present.
+                                
+                            </li>
+                        </ul>
+                        <ul class="neurosim-history-free neurosim-history-all">
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <h3> <a href="#">Mental state examination</a></h3>
+                    <div class="neurosim-exam-observations"></div>
+                </li>
+                  
+  <li>
+      <h3><a href="#"> MMSE </a></h3>
+      <div class="neurosim-snippet" data-action="snippet-mmse"></div>
+  </li>
+
+
+
+  <li>
+      <h3> <a href="#"> Diagnosis </a></h3>
+      <div>
+          <p>
+          What is the most-likely diagnosis?
+          </p>
+          <ul class="neurosim-pick-list stophere">
+              <li data-action="quiz-wrong">          Huntington's Disease </li>
+              <li data-action="quiz-wrong"  >   Parkinson's Disease </li>
+              <li data-action="quiz-wrong"  >   Vascular Dementia </li>
+              <li data-action="quiz-wrong"  >   Alcohol Withdrawal </li>
+              <li data-action="quiz-wrong">   Progressive Supranuclear Palsy </li>
+              <li data-action="quiz-wrong"  >  Multi-System Atrophy </li>
+              <li data-action="quiz-correct"  >   Lewy Body Dementia </li>
+              <li data-action="quiz-wrong"  >   Delirium </li>
+          </ul>
+      </div>
+  </li>
+  
+  
+  <li>
+      <h3> <a href="#"> Prescribing Risks </a></h3>
+      <div>
+          <p>
+          Which TWO drugs should be avoided in patients with this disease?
+          </p>
+          <ul class="neurosim-pick-list stophere multiple">
+              <li data-action="quiz-correct"> Haloperidol </li>
+              <li data-action="quiz-correct"> Metoclopramide  </li>
+              <li data-action="quiz-wrong"  > Atorvastatin </li>
+              <li data-action="quiz-wrong"  > Levodopa </li>
+              <li data-action="quiz-wrong"> Cholinesterase Inhibitors </li>
+          </ul>
+      </div>
+  </li>
+  
+  <li>
+      <h3> <a href="#"> Management </a></h3>
+      <div>
+          <p>
+          Which drug is used in the management of this disease?
+          </p>
+          <ul class="neurosim-pick-list stophere neurosim-reveal-all-lesions">
+              <li data-action="quiz-wrong"  > Memantine </li>
+              <li data-action="quiz-wrong"> Olanzapine  </li>
+              <li data-action="quiz-wrong"  > Citalopram </li>
+              <li data-action="quiz-wrong"  > Statins and Anti-hypertensives </li>
+              <li data-action="quiz-correct"  > Rivastigmine </li>
+          </ul>
+      </div>
+      </li>
+
+            </ol>
+            
+        </div>
+        
+    </body>
+</html>

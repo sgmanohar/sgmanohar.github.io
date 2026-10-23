@@ -1,0 +1,99 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <!--
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>    -->
+    
+    
+    <script src="jquery-1.12.1.min.js"></script>
+    <script src="jquery-ui-1.12.0/jquery-ui.min.js"></script>
+    <script src="svg-pan-zoom.js"></script>
+    <script src="neurosim.js"></script>
+    <script src="jquery-svg/jquery.svg.min.js"></script>
+    
+    <!-- Bootstrap bits -->
+    <script src="tether/js/tether.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="tether/css/tether.min.css">
+    <script src="bootbox.min.js"></script>
+    
+    <link rel="stylesheet" href="jquery-ui-1.12.0/jquery-ui.css">
+    <link rel="stylesheet" href="neurosim.css">
+    
+    <!-- slick carousel -->
+    <script src="slick-1.6.0/slick/slick.min.js"></script>
+    <link rel="stylesheet" href="slick-1.6.0/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="slick-1.6.0/slick/slick-theme.css"/>
+        
+    <script src="hammer.min.js"></script>
+
+    <!-- Three js for matrices and 3D visualisation -->
+    <script src="three.min.js"></script>
+    <script src="controls/TrackballControls.js"></script>
+    <script src="three_animate.js"></script>
+
+    
+  </head>
+    
+<body >
+      <div class="image-slice  image-allow-hover image-show-selection 
+                  image-show-image image-show-3dcursor image-allow-panzoom 
+                  image-show-tooltips image-show-nonfunctional image-nav-goto-selection
+                  image-lod-1 image-fullscreen"
+           id="slice-nav" 
+           data-slice="slices/vhp/cryo/sag/0530.01.svg"
+           >
+        
+        
+        <!-- 
+      other good slices to start on:
+           data-slice="slices/msubb/fiber/sag/0332.svg"
+          -->
+
+        <div class="image-svg">
+        </div>
+        
+        <div class="neurosim-snippet" data-action="snippet-image-buttons">
+        </div>
+
+        <div class="image-buttons image-buttons-bottomleft">
+            <button type="button" class="btn " data-action="About this region">      
+              <span class="image-selection-name"></span>
+            </button>
+        </div>
+        
+      </div>
+
+      <div class="swipe-panel" style="display:none;">  
+          <h3><a href="#"> Examination </a></h3>
+          <div>
+            Which would you like to perform first?
+            <!--  
+                 neurosim-pick-list  can have the following classes:
+                 'multiple' - to allow multiselection
+                 'stophere' - to hide subsequent sections until something is selected
+                 'replace'  - button click causes the button to be replaced by something
+                 and should have a 'data-action' property. If the action begins with 'snippet-', the 
+                 property value indicates which section from case-snippets.html should be appended here. 
+                 Otherwise consult NeuroSim.case_button_actions to find the appropriate action.
+            -->
+            <ul class="neurosim-pick-list stophere">
+              <li data-action="snippet-exam-visualfields"> Visual fields       </li>
+              <li data-action="snippet-exam-snellen">      Visual acuity       </li>
+              <li data-action="snippet-exam-face">         Eye movements       </li>
+              <li data-action="snippet-exam-motor">        Motor power         </li>
+              <li data-action="snippet-exam-dermatomes">   Sensory examination </li>
+            </ul>
+          </div>
+      </div>
+        
+
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+
+  <!--
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>    -->
+
+
+  <script src="jquery-1.12.1.min.js"></script>
+  <script src="jquery-ui-1.12.0/jquery-ui.min.js"></script>
+  <script src="svg-pan-zoom.js"></script>
+  <script src="neurosim.js"></script>
+  <script src="jquery-svg/jquery.svg.min.js"></script>
+  <script src="hammer.min.js"></script>
+
+  <!-- Bootstrap bits -->
+  <script src="tether/js/tether.min.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="tether/css/tether.min.css">
+  <script src="bootbox.min.js"></script>
+
+  <link rel="stylesheet" href="jquery-ui-1.12.0/jquery-ui.css">
+  <link rel="stylesheet" href="neurosim.css">
+
+  <!--
+    <script src="slick-1.6.0/slick/slick.min.js"></script>
+    <link rel="stylesheet" href="slick-1.6.0/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="slick-1.6.0/slick/slick-theme.css"/>
+    -->
+
+  <!-- Three js for matrices and 3D visualisation 
+    <script src="three.min.js"></script>
+    <script src="controls/TrackballControls.js"></script>
+    <script src="three_animate.js"></script>
+    -->
+  <title> WK </title>
+</head>
+
+<body>
+
+  <div class="neurosim-column col-lg-8 offset-lg-2">
+
+    <!--  Case name can be specified in <h1 data-case=''>
+        and is looked up from cases.json
+  -->
+    <h1 data-case="Wernicke-Korsakoff Syndrome" data-casename="psych-01-wk">
+      Case 9: Mr. Callaghan
+    </h1>
+
+    <ol class="exam-section">
+      <li>
+        <h3> <a href="#">History</a></h3>
+        <div class="neurosim-history">
+          <ul>
+            <li>
+              A 41-year old man is brought in off the street by paramedics having had a fall.
+            </li>
+            <li>
+              On examination he has a large, bleeding cut on his left arm.
+            </li>
+            <li>
+
+
+            </li>
+          </ul>
+          <ul class="neurosim-history-free neurosim-history-all">
+          </ul>
+        </div>
+      </li>
+
+      <li>
+        <h3><a href="#"> Mental state examination </a></h3>
+        <div class="neurosim-exam-observations"></div>
+      </li>
+  
+
+      <li>
+        <h3> 
+          <a href="#">Mini-mental state examination</a>
+        </h3>
+        <div class="neurosim-snippet" data-action="snippet-mmse">
+        </div>
+      </li>
+
+      <!--   
+   IMAGE-SLICE element:
+   Useful Classes: 
+      image-slice              : required to create the svg from data-slice attribute
+      image-allow-hover        : mouse causes regions to light up (see css .image-selected-region)
+      image-allow-panzoom      : add zoom control, drag to pan, wheel to zoom
+      image-show-selection     : selected region lights up
+      image-show-image         : without this, hides the background svg image
+      image-show-regions       : all regions visible and overalaid 
+      image-show-lesions       : lesioned regions shown in colour
+      image-show-nonfunctional : without this, regions that are not in the model are hidden
+      image-show-tooltips      : mouse movement shows name of region in bubble
+      image-show-3dcursor      : vert/horz lines at mouse cursor, and MNI values in corner
+      neurosim-resizeable      : add drag handles at bottom/right 
+      image-nav-goto-selection : when selection changes, try find a slice in current series.
+      image-nav-draw-line      : when a slice is changed in another image, show the line for that slice here
+      image-nav-draw-alllines  : when a series is changed in another image, show all lines for that series here
+-->
+
+
+
+
+      <li>
+        <h3><a href="#"> Face examination </a></h3>
+        <div class="neurosim-exam neurosim-exam-face"></div>
+      </li>
+
+      <li>
+        <h3> <a href="#"> Blood Results </a> </h3>
+        <div class="Bloods">
+          <p> Admission bloods are unremarkable except for the following: </p>
+
+          <style type="text/css">
+            .tg {
+              border-collapse: collapse;
+              border-spacing: 0;
+            }
+
+            .tg td {
+              border-color: black;
+              border-style: solid;
+              border-width: 1px;
+              font-family: Arial, sans-serif;
+              font-size: 14px;
+              overflow: hidden;
+              padding: 10px 5px;
+              word-break: normal;
+            }
+
+            .tg th {
+              border-color: black;
+              border-style: solid;
+              border-width: 1px;
+              font-family: Arial, sans-serif;
+              font-size: 14px;
+              font-weight: normal;
+              overflow: hidden;
+              padding: 10px 5px;
+              word-break: normal;
+            }
+
+            .tg .tg-baqh {
+              text-align: center;
+              vertical-align: top
+            }
+
+            .tg .tg-9c93 {
+              background-color: #ec9a9a;
+              font-weight: bold;
+              text-align: center;
+              vertical-align: top
+            }
+          </style>
+          <table class="tg">
+            <thead>
+              <tr>
+                <th class="tg-9c93">Bilirubin</th>
+                <th class="tg-baqh">80 </th>
+                <th class="tg-baqh">&lt;21 μmol/L</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="tg-9c93">ALP</td>
+                <td class="tg-baqh">140</td>
+                <td class="tg-baqh">30&ndash;130 U/L</td>
+              </tr>
+              <tr>
+                <td class="tg-9c93">AST</td>
+                <td class="tg-baqh">126</td>
+                <td class="tg-baqh">10&ndash;40 U/L</td>
+              </tr>
+              <tr>
+                <td class="tg-9c93">ALT</td>
+                <td class="tg-baqh">52</td>
+                <td class="tg-baqh">&lt;41 U/L</td>
+              </tr>
+              <tr>
+                <td class="tg-9c93">Serum Albumin</td>
+                <td class="tg-baqh">28</td>
+                <td class="tg-baqh">35&ndash;50 g/L</td>
+              </tr>
+              <tr>
+                <td class="tg-9c93">Lactate</td>
+                <td class="tg-baqh">2.6</td>
+                <td class="tg-baqh">0.5- 2.2 mmol/L</td>
+              </tr>
+              <tr>
+                <td class="tg-9c93">INR</td>
+                <td class="tg-baqh">1.8</td>
+                <td class="tg-baqh">&lt; 1.1</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </li>
+
+      <li>
+        <h3><a href="#"> Imaging </a></h3>
+        <p> A CT Head of the patient is performed </p>
+        
+        <div class="neurosim-brainscan">
+          <img  src="resources/ct-axial-mid-wernicke.jpg" alt="CT Head of Patient">
+        </div>
+        What does this axial mid-slice show?
+        <ul class="neurosim-pick-list stophere">
+          <li data-action="quiz-wrong"> Hypodensity of the caudate nucleus </li>
+          <li data-action="quiz-wrong"> Subarachnoid blood in the third ventricle </li>
+          <li data-action="quiz-wrong"> Prefrontal cortex ischaemia </li>
+          <li data-action="quiz-correct"> Lesions in the dorsomedial thalamus </li>
+          <li data-action="quiz-wrong"> The scan is normal </li>
+          <li data-action="quiz-wrong"> Subdural haematoma </li>
+        </ul>
+      </li>
+
+
+
+      <li>
+        <h3> <a href="#"> Diagnosis </a></h3>
+        <div>
+          <p>
+            What is the most likely diagnosis?
+          </p>
+          <ul class="neurosim-pick-list stophere">
+            <li data-action="quiz-wrong"> Acute alcohol poisoning </li>
+            <li data-action="quiz-correct"> Wernicke's Encephalopathy </li>
+            <li data-action="quiz-wrong"> B12 Deficiency </li>
+            <li data-action="quiz-wrong"> Delirium </li>
+            <li data-action="quiz-wrong"> Acute Psychotic Episode </li>
+            <li data-action="quiz-wrong"> Meningo-encephalitis </li>
+          </ul>
+        </div>
+      </li>
+
+      <li>
+        <h3> <a href="#"> Management </a></h3>
+        <div>
+          <p>
+            What treatment should this patient be given? Select TWO items.
+          </p>
+          <ul class="neurosim-pick-list stophere neurosim-reveal-all-lesions">
+            <li data-action="quiz-wrong"> IM Cobalamin </li>
+            <li data-action="quiz-correct"> Oral Chlordiazepoxide </li>
+            <li data-action="quiz-correct"> IV Pabrinex </li>
+            <li data-action="quiz-wrong"> IV Lorazepam </li>
+            <li data-action="quiz-wrong"> IV Ceftriaxone </li>
+            <li data-action="quiz-wrong"> IM Olanzapine </li>
+          </ul>
+        </div>
+      </li>
+
+      <li>
+        <h3> <a href="#"> Associated Condition </a></h3>
+        <div>
+          <p>
+            One week later, upon full recovery from his acute condition, the patient exhibits anterograde memory loss
+            and confabulation. What associated diagnosis can he be given?
+          </p>
+          <ul class="neurosim-pick-list stophere">
+            <li data-action="quiz-wrong"> Cerebral Contusion </li>
+            <li data-action="quiz-wrong"> Conversion Disorder </li>
+            <li data-action="quiz-wrong"> Alzheimer's Dementia </li>
+            <li data-action="quiz-wrong"> Delirium Tremens </li>
+            <li data-action="quiz-correct"> Korsakoff's Syndrome </li>
+            <li data-action="quiz-wrong"> Depressive Episode </li>
+          </ul>
+        </div>
+      </li>
+
+      <li>
+        <h3> <a href="#"> Neuroanatomy </a></h3>
+        <div>
+          <style>
+            .exam-section li table.ad-compare-images {  width:100%; table-layout: fixed;  }
+            .wk-images {background:black;}
+          </style>
+          <table class="ad-compare-images"><tr>
+            
+            An MRI scan was performed.
+            Right: Comparison with a frozen brain slice.
+          </tr>
+          <tr class="wk-images">
+            <td>
+              <img class="neurosim-brainscan" src="resources/mri-flair-axial-lower-wernicke.png" alt="MRI of brain">
+            <td>
+              <div class="image-slice image-allow-hover image-show-selection
+                          image-show-lesions  
+                          image-show-nonfunctional image-show-tooltips
+                          image-show-image image-nav-goto-selection 
+                          image-lod-5" 
+                   id="slice1" data-slice="slices/vhp/cryo/axi/0650.01.svg"
+                   data-options='{
+                     "foo":"bar"
+                   }'>
+                <div class="image-svg" ></div>
+                <div class="neurosim-snippet" data-action="snippet-image-buttons"> </div>
+                <!-- <div class="neurosim-snippet" data-action="snippet-image-menu"></div> 
+                -->
+                <div class="image-buttons image-buttons-bottomleft">
+                  <button type="button" class="btn " data-action="About this region">      
+                    <span class="image-selection-name"></span>
+                  </button>
+                </div>
+    
+              </div>
+            </td>
+          </tr></table>
+          
+          
+          <p>
+            Damage to which region of the brain causes this associated condition?
+          </p>
+          <ul class="neurosim-pick-list stophere multiple">
+            <li data-action="quiz-correct"> Mammillary body </li>
+            <li data-action="quiz-wrong"> Hippocampus </li>
+            <li data-action="quiz-wrong"> Periaqueductal Grey </li>
+            <li data-action="quiz-wrong"> Insula </li>
+            <li data-action="quiz-wrong"> Amygdala </li>
+            <li data-action="quiz-wrong"> Putamen </li>
+          </ul>
+        </div>
+      </li>
+
+
+    </ol>
+
+  </div>
+
+</body>
+
+</html>

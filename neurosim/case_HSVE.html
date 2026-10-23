@@ -1,0 +1,360 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <!--
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>    -->
+    
+    
+    <script src="jquery-1.12.1.min.js"></script>
+    <script src="jquery-ui-1.12.0/jquery-ui.min.js"></script>
+    <script src="svg-pan-zoom.js"></script>
+    <script src="neurosim.js"></script>
+    <script src="jquery-svg/jquery.svg.min.js"></script>
+    <script src="hammer.min.js"></script>
+    
+    <!-- Bootstrap bits -->
+    <script src="tether/js/tether.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="tether/css/tether.min.css">
+    <script src="bootbox.min.js"></script>
+    
+    <link rel="stylesheet" href="jquery-ui-1.12.0/jquery-ui.css">
+    <link rel="stylesheet" href="neurosim.css">
+    
+    <!--
+    <script src="slick-1.6.0/slick/slick.min.js"></script>
+    <link rel="stylesheet" href="slick-1.6.0/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="slick-1.6.0/slick/slick-theme.css"/>
+    -->    
+
+    <!-- Three js for matrices and 3D visualisation -->
+    <script src="three.min.js"></script>
+    <script src="controls/TrackballControls.js"></script>
+    <script src="three_animate.js"></script>
+
+    
+  </head>
+    
+<body >
+
+  <div class="neurosim-column col-lg-8 offset-lg-2">
+
+  <!--  Case name can be specified in <h1 data-case=''>
+        and is looked up from cases.json
+  -->  
+  <h1 data-case='HSV Encephalitis'
+      data-casename="psych-03-hsv"
+      >
+  <!--  Turn on stochastic responses...  -->  
+  <script> NeuroSim.USE_RANDOM_SEED=true; </script> 
+    Case 11: Miss Davidson
+  </h1>
+  
+  <ol class="exam-section" >
+    <li>
+      <h3> <a href="#">History</a></h3>
+      <div class='neurosim-history'>
+        <ul>
+          <li>
+            A 19 year old female is brought in via A+E with a one day history of severe headache and sweating since yesterday.
+          </li><li>
+            On examination at the hospital, she has fluctuating GCS.
+          </li><li>
+             Please take a history from the patient, and a collateral history from her sister who has just arrived. 
+          
+          </li>
+        </ul>
+        <ul class="neurosim-history-free neurosim-history-all">
+        </ul>
+      </div>
+    </li>
+         
+		<li>
+      <h3> <a href="#">Mental state examination</a></h3>
+      <div class="neurosim-exam-observations"></div>
+    </li>
+        
+    <li>
+      <h3> 
+        <a href="#">Mini-mental state examination</a>
+      </h3>
+      <div class="neurosim-snippet" data-action="snippet-mmse">
+      </div>
+    </li>
+
+    
+		<li>
+    <h3> <a href="#"> Blood Results</a></h3>
+			<div class = "blood results" >
+				<p>
+					Bloods taken on admission are unremarkable except for the following:
+				</p>
+				<style type="text/css">
+						.tg  {border-collapse:collapse;border-spacing:0;}
+						.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+							overflow:hidden;padding:10px 5px;word-break:normal;}
+						.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+							font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+						.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+						.tg .tg-rjuq{background-color:#ec9a9a;border-color:inherit;font-weight:bold;text-align:center;vertical-align:top}
+				</style>
+				<table class="tg">
+					<thead>
+						<tr>
+							<th class="tg-rjuq">WCC</th>
+							<th class="tg-c3ow">13.1 </th>
+							<th class="tg-c3ow">4.0 -11.0&nbsp;&nbsp;( × 10^9/L)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="tg-rjuq">Neutrophils</td>
+							<td class="tg-c3ow">9.2</td>
+							<td class="tg-c3ow">1.8-7.5 <span style="font-weight:400;font-style:normal">(× 10^9/L)&nbsp;&nbsp;</span><br></td>
+						</tr>
+						<tr>
+							<td class="tg-rjuq">Lymphocytes</td>
+							<td class="tg-c3ow">3.5</td>
+							<td class="tg-c3ow">1.0-4.0 &nbsp;&nbsp;&nbsp;<span style="font-weight:400;font-style:normal">(× 10^9/L)</span><br></td>
+						</tr>
+						<tr>
+							<td class="tg-rjuq" rowspan="4">CRP</td>
+							<td class="tg-c3ow" rowspan="4">58</td>
+							<td class="tg-c3ow" rowspan="4">&lt; 5mg/L</td>
+						</tr>
+						<tr>
+						</tr>
+						<tr>
+						</tr>
+						<tr>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</li>
+		
+		
+  
+<!--   
+   IMAGE-SLICE element:
+   Useful Classes: 
+      image-slice              : required to create the svg from data-slice attribute
+      image-allow-hover        : mouse causes regions to light up (see css .image-selected-region)
+      image-allow-panzoom      : add zoom control, drag to pan, wheel to zoom
+      image-show-selection     : selected region lights up
+      image-show-image         : without this, hides the background svg image
+      image-show-regions       : all regions visible and overalaid 
+      image-show-lesions       : lesioned regions shown in colour
+      image-show-nonfunctional : without this, regions that are not in the model are hidden
+      image-show-tooltips      : mouse movement shows name of region in bubble
+      image-show-3dcursor      : vert/horz lines at mouse cursor, and MNI values in corner
+      neurosim-resizeable      : add drag handles at bottom/right 
+      image-nav-goto-selection : when selection changes, try find a slice in current series.
+      image-nav-draw-line      : when a slice is changed in another image, show the line for that slice here
+      image-nav-draw-alllines  : when a series is changed in another image, show all lines for that series here
+-->
+  
+
+ 
+
+  
+<!--  3D SECTION! ->
+    <div class="viewport3d"></div>
+
+  <div class="exam-section">
+    <h3><a href="#"> Body </a></h3>
+  </div>    
+
+  
+  <div class="exam-section">
+    <h3><a href="#"> Body controls </a></h3>
+    <div>
+      <ul class="bonemenu"></ul>  
+      <ul class="axismenu">
+        <li>x</li><li>y</li><li>z</li>
+      </ul>
+      <ul class="posturemenu"></ul>
+    </div>
+  </div>
+  
+
+
+<!-- END 3D SECTION -->
+
+
+  
+  <li>
+    <h3> <a href="#"> Diagnosis </a></h3>
+    <div>
+      <p>
+        What is the probable diagnosis?
+       </p>
+      <ul class="neurosim-pick-list stophere">
+        <li data-action="quiz-correct">   Herpes Simplex Encephalitis </li>
+        <li data-action="quiz-wrong"  >  Bacterial Meningitis </li>
+        <li data-action="quiz-wrong"  >   Brain Abscess </li>
+        <li data-action="quiz-wrong"  >   Delirium </li>
+        <li data-action="quiz-wrong"  >   Multiple Sclerosis </li>
+        <li data-action="quiz-wrong"  >   Subarachnoid Hemorrhage </li>
+      </ul>
+    </div>
+  </li>
+  
+  <li>
+    <h3> <a href="#"> Investigations </a></h3>
+    <div>
+      <p>
+				What is the most appropriate investigation to obtain the definitive diagnosis?
+      </p>
+      <ul class="neurosim-pick-list stophere multiple">
+        <li data-action="quiz-wrong"> CT Scan </li>
+        <li data-action="quiz-correct"> Lumbar Puncture </li>
+        <li data-action="quiz-wrong"  > MRI </li>
+        <li data-action="quiz-wrong"  > Blood Test </li>
+        <li data-action="quiz-wrong"> EEG  </li>
+				<li data-action="quiz-wrong"> Brain Biopsy  </li>
+      </ul>
+    </div>
+	</li>
+	<li>
+    <h3> <a href="#"> CSF Results</a></h3>
+      <p>
+        A Lumbar Puncture is performed. The results are as follows:
+      </p>
+			<style type="text/css">
+				.tg  {border-collapse:collapse;border-spacing:0;}
+				.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+					overflow:hidden;padding:10px 5px;word-break:normal;}
+				.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+					font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+				.tg .tg-8m8h{background-color:#cbcefb;border-color:inherit;font-weight:bold;text-align:center;vertical-align:top}
+				.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+			</style>
+			<table class="tg">
+				<thead>
+					<tr>
+						<th class="tg-8m8h">Appearance</th>
+						<th class="tg-c3ow">Clear </th>
+						<th class="tg-c3ow"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="tg-8m8h">Opening Pressure</td>
+						<td class="tg-c3ow">22</td>
+						<td class="tg-c3ow">&lt;20 cm H20</td>
+					</tr>
+					<tr>
+						<td class="tg-8m8h" rowspan="2">WCC</td>
+						<td class="tg-c3ow">150&nbsp;&nbsp;</td>
+						<td class="tg-c3ow">&lt;100/ uL</td>
+					</tr>
+					<tr>
+						<td class="tg-c3ow">Lymphocytes Predominate</td>
+						<td class="tg-c3ow"></td>
+					</tr>
+					<tr>
+						<td class="tg-8m8h">Protein</td>
+						<td class="tg-c3ow">100 </td>
+						<td class="tg-c3ow">&lt;50 mg/dL</td>
+					</tr>
+					<tr>
+						<td class="tg-8m8h">Glucose CSF/Serum Ratio</td>
+						<td class="tg-c3ow">0.7</td>
+						<td class="tg-c3ow"></td>
+					</tr>
+					<tr>
+						<td class="tg-8m8h">PCR </td>
+						<td class="tg-c3ow">+ HSV DNA </td>
+						<td class="tg-c3ow"></td>
+					</tr>
+				</tbody>
+			</table>
+  </li>
+
+  <li>
+    <h3> <a href="#"> Management </a></h3>
+    <div>
+      <p>
+        Choose the most suitable treatment option for this patient.
+      </p>
+      <ul class="neurosim-pick-list stophere neurosim-reveal-all-lesions">
+        <li data-action="quiz-wrong"  > IV Ceftriaxone </li>
+				<li data-action="quiz-wrong"  > Oral Olanzapine </li>
+				<li data-action="quiz-wrong"  > IM Benzylpenicillin </li>
+        <li data-action="quiz-correct"> IV Aciclovir  </li>
+				<li data-action="quiz-wrong"  > IV Lorazepam </li>
+				<li data-action="quiz-wrong"  > Neurosurgical Intervention </li>
+      </ul>
+    </div>
+  </li>
+
+ <li>
+    <h3> <a href="#"> Neuroanatomy </a></h3>
+    <div>
+        <style>
+          .exam-section li table.ad-compare-images {  width:100%; table-layout: fixed;  }
+          .ad-images {background:black;}
+        </style>
+        <table class="ad-compare-images"><tr>
+            An MRI Head is ordered for the patient 5 days later.
+            Right: Comparison with healthy brain.
+        </tr>
+        <tr class="ad-images">
+          <td>
+            <img class="neurosim-brainscan" src= "resources/mri-flair-axial-hsve-mild.png" alt = "MRI">
+          </td>
+          <td>
+            <div class="image-slice image-allow-hover image-show-selection
+                        image-show-lesions  
+                        image-show-nonfunctional image-show-tooltips
+                        image-show-image image-nav-goto-selection 
+                        image-lod-2" 
+                 id="slice1" data-slice="slices/mri/t1/axi/t1_axi_074.svg"
+                 data-options='{
+                   "foo":"bar"
+                 }'>
+              <div class="image-svg" ></div>
+              <div class="neurosim-snippet" data-action="snippet-image-buttons"> </div>
+              <!-- <div class="neurosim-snippet" data-action="snippet-image-menu"></div> 
+              -->
+              <div class="image-buttons image-buttons-bottomleft">
+                <button type="button" class="btn " data-action="About this region">      
+                  <span class="image-selection-name"></span>
+                </button>
+              </div>
+  
+            </div>
+          </td>
+      </tr></table>
+        
+
+			
+			<p>Which area of the brain is most commonly affected by this disease?</p>
+			
+			
+      <ul class="neurosim-pick-list stophere">
+        <li data-action="quiz-wrong"  > Frontal lobe </li>
+        <li data-action="quiz-wrong"> Thalamus  </li>
+        <li data-action="quiz-wrong"  > Basal Ganglia </li>
+        <li data-action="quiz-wrong"  > Parietal Lobe </li>
+        <li data-action="quiz-correct"  > Temporal Lobe </li>
+        <li data-action="quiz-wrong"  > Pons  </li>
+      </ul>
+    </div>
+  </li>
+    
+
+</ol>
+
+  </div>
+  
+</body>
+</html>

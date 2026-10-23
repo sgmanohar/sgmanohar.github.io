@@ -1,0 +1,225 @@
+<html>
+  <head>
+    <script src="tinymce/js/tinymce/tinymce.min.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="tether/css/tether.min.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1">  
+  </head>
+<script>
+tinymce.init({
+  selector: 'textarea',
+  height: 500,
+  toolbar:'undo redo styleselect | bold italic | link image neurosim neuroimage',
+  plugins:['preview visualblocks fullscreen contextmenu link image',
+           'searchreplace code save'],
+  style_formats: [
+    { title: 'Heading 1', block: 'h1' },
+    { title: 'Heading 2', block: 'h2' },
+    { title: 'Heading 3', block: 'h3' },
+    { title: 'Badge', inline: 'span', styles: { display: 'inline-block', border: '1px solid #2276d2', 'border-radius': '5px', padding: '2px 5px', margin: '0 2px', color: '#2276d2' } },
+    { title: 'Table row 1', selector: 'tr', classes: 'tablerow1' }
+  ],
+  formats: {
+    bold: { inline: 'span', 'classes': 'bold' },
+    italic: { inline: 'span', 'classes': 'italic' },
+    underline: { inline: 'span', 'classes': 'underline', exact: true },
+  },
+  content_css: [
+    'font-awesome-4.6.3/css/font-awesome.min.css',
+    "tether/css/tether.min.css",
+    'bootstrap/css/bootstrap.min.css',
+    "jquery-ui-1.11.4/jquery-ui.css",
+    'neurosim.css'
+  ],
+  setup:function(editor){
+    
+    editor.addButton('neurosim',{
+      type: 'menubutton',
+      text: "Examination",
+      icon: false,
+      menu: [{
+        text:   'Visual acuity',
+        onclick: NeuroEdit.create_exam_func(editor,"neurosim-exam-snellen")
+      },{
+        text:   'Visual fields',
+        onclick: NeuroEdit.create_exam_func(editor,"neurosim-exam-visualfields ")
+      },{
+        text:   'Face',
+        onclick: NeuroEdit.create_exam_func(editor,"neurosim-exam-face")
+      },{
+        text:   'Motor',
+        onclick: NeuroEdit.create_exam_func(editor,"neurosim-exam-motor")
+      },{
+        text:   'Reflexes',
+        onclick: NeuroEdit.create_exam_func(editor,"neurosim-exam-reflexes")
+      },{
+        text:   'Sensory',
+        onclick: NeuroEdit.create_exam_func(editor,"neurosim-exam-dermatomes neurosim-exam-dermatomes image-allow-hover image-show-regions image-show-tooltips image-show-selection image-show-lesions image-show-nonfunctional image-allow-panzoom ")
+      }]
+    });
+    editor.addButton('neuroimage', {
+      type: 'menubutton',
+      text: 'Neuro Image',
+      icon: false,
+      menu: [{
+        text: '3D Cursor',
+        onclick: function() {
+          var n = $(tinymce.activeEditor.selection.getNode() ).parents().find(".image-slice")[0];
+
+          tinymce.DOM.addClass(n,"image-show-3dcursor");
+          editor.insertContent('&nbsp;<strong>Menu item 1 here!</strong>&nbsp;');
+        }
+      }, {
+        text: 'Navigation icons',
+        onclick: function() {
+          // find image-slice within currently selected element
+          var n = $(tinymce.activeEditor.selection.getNode() ).parents().find(".image-slice")[0];
+          /*
+          n=tinymce.activeEditor.dom.add('div',{class:"image-buttons btn-group"});
+
+          var  b=tinymce.activeEditor.dom.add(n,'a',{class:"btn ",
+                                 "data-action":"Next",
+                                 title:"Next" ,
+                                 tabindex:""});
+          tinymce.activeEditor.dom.add(b,'i',{ class:"fa fa-arrow-circle-o-down fa-lg"}); 
+          b=tinymce.activeEditor.dom.add(n,'a',{class:"btn ",
+                                   "data-action":"Previous",
+                                  title:"Previous" ,
+                                  tabindex:""});
+          tinymce.activeEditor.dom.add(b,'i',{ class:"fa fa-arrow-circle-o-up fa-lg"}); 
+          */
+          $(n).append($('<div class="image-buttons btn-group">'+
+                        '<a class="btn " data-action="Next" title="Next" tabindex>  <i class="fa fa-arrow-circle-o-down fa-lg"></i> </a>'+
+                        '<a class="btn " data-action="Previous" title="Previous"  tabindex> <i class="fa fa-arrow-circle-o-up fa-lg"></i></a>"))'
+                        ));
+          /*
+          editor.insertContent('<a class="btn " data-action="Next" title="Next" tabindex>  <i class="fa fa-arrow-circle-o-down fa-lg"></i> </a>');
+          
+          editor.insertContent('<a class="btn " data-action="Previous" title="Previous"  tabindex> <i class="fa fa-arrow-circle-o-up fa-lg"></i></a>')
+          */
+        }
+      },{
+        text: "Create image",
+        icon: false,
+        onclick: function(){
+          // create unique id
+          var new_id = "neurosim_"+Math.floor(Math.random()*10000)
+          // create the element
+          editor.insertContent(
+            '<div class="image-slice image-show-image image-allow-hover image-show-selection image-show-lesions image-allow-panzoom image-show-nonfunctional image-show-tooltips neurosim-resizeable" data-slice="slices/vhp/cryo/axi/0950.01.svg" data-visisbility="10" id="'+new_id+'">'+
+            ' <div class="image-svg">.</div>'+
+            '</div>');
+          // find the element in the document dom
+          var new_elem = $(editor.dom.doc).find("#"+new_id);
+          // Initialise the neuroimage
+          var image=NeuroImage(new_elem[0]);
+          image.initialise();      
+        }
+      },{
+        text: "Allow selection",
+        onclick: function(){
+          var n = $(tinymce.activeEditor.selection.getNode() ).parents().find(".image-slice")[0];
+          tinymce.DOM.addClass(n,"image-allow-hover image-show-selection");
+        }
+      }] // end menu
+    }); // end addButton
+    
+    
+    
+    /**
+     * Initialise the editor - load scripts 
+     */
+    editor.on('init',function(ed, evt) {
+      var scripts = [
+        // load these first
+        [ "jquery-1.12.1.min.js", "jquery-ui-1.12.0/jquery-ui.min.js", "svg-pan-zoom.js", 
+          "tether/js/tether.min.js",  "bootbox.min.js" , 
+          "three.min.js"], 
+        // then when they are complete, load these:
+        [  "controls/TrackballControls.js", "bootstrap/js/bootstrap.min.js", "jquery-svg/jquery.svg.min.js"],
+        // then finally load these
+        [ "three_animate.js",  "neurosim.js"]
+      ];
+      var loadscripts = function(i){ // self-calling function that loads the next tier of scripts.
+        var scriptLoader = new tinymce.dom.ScriptLoader();
+        for(var j=0;j<scripts[i].length;j++){
+          scriptLoader.add(scripts[i][j]);
+        }
+        scriptLoader.loadQueue(function(){
+          console.log("scripts loaded "+i);
+          i++;
+          if(i<scripts.length){
+            loadscripts(i);
+          }
+        });
+      };
+      loadscripts(0); // start loading first tier of scripts
+    }); // end editor.on
+  } // end setup function
+  ,
+  save_onsavecallback: function(){
+    msg = 
+    console.log(msg);
+  },
+  save_enablewhendirty: true
+}); // end init
+var NeuroEdit = function(){
+  var my={};
+  /** 
+   * Create exam function: 
+   * this function returns a function that will add an examination to the document.
+   * It can be used as a click handler for a button.
+   *  editor: the MCE editor to add to 
+   *  classes: the classes that are added to the new div.
+   */
+  my.create_exam_func = function(editor,classes){
+    return function(){
+      // create unique id
+      var new_id = "neurosim_"+Math.floor(Math.random()*10000)
+      // create the element
+      editor.insertContent(
+        '<div class="'+classes+'" id="'+new_id+'"></div>' );
+      // find the element in the document dom
+      var new_elem = $(editor.dom.doc).find("#"+new_id);
+      // Initialise the neuroimage
+      var exam=NeuroExam(new_elem[0]);
+    };
+  };
+  /**
+   * Add image class function: 
+   * this returns a function handle, which will add the specified class
+   * to the surrounding "image-slice" element.
+   */
+  my.add_image_class_func = function(editor, classes){
+    return function(){
+      var n = $(tinymce.activeEditor.selection.getNode() ).parents().find(".image-slice")[0];
+      tinymce.DOM.addClass(n,classes);      
+    };
+  };
+  /**
+   * Load content from server , then initialise any components
+   */
+  my.load_case = function(file){
+    var ed = tinyMCE.get('content');
+    ed.setProgressState(1); // Show progress
+    $.get(file, function(data){
+      ed.setProgressState(0); // Hide progress
+      ed.setContent(data);
+    });
+
+    $(".neurosim-editor").load(file, function(){
+      // initialise examinations and images
+      $(tinymce.DOM).find(".image-svg");
+      
+    });
+  };
+  
+  return my;
+}();
+</script>
+  <body>
+<textarea class="neurosim-editor">
+
+</textarea>
+    </body>
+</html>
